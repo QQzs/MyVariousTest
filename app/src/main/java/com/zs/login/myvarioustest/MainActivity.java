@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.zs.login.myvarioustest.view.AnimButton;
-import com.zs.login.myvarioustest.view.RadarView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -18,8 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.btn)
     AnimButton button;
-    @Bind(R.id.radarview)
-    RadarView radarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
