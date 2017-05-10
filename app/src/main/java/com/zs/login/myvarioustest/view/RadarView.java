@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
@@ -32,6 +33,8 @@ public class RadarView extends View {
     private int mCricleRadius;
 
     private ValueAnimator[] mValueAnimators = new ValueAnimator[2];
+
+    private ValueAnimator[] mValueAnimators2 = new ValueAnimator[4];
 
     private AnimatorSet mAnimatorSet;
 
@@ -103,21 +106,21 @@ public class RadarView extends View {
 
     private void initScaleAnimSet() {
         //沿x轴放大
-        ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(this, "scaleX", 1f, 1.2f, 1f);
+        mValueAnimators2[0] = ObjectAnimator.ofFloat(this, "scaleX", 1f, 1.2f, 1f);
         //沿y轴放大
-        ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(this, "scaleY", 1f, 1.2f, 1f);
+        mValueAnimators2[1] = ObjectAnimator.ofFloat(this, "scaleY", 1f, 1.2f, 1f);
 
         //沿x轴放大
-        ObjectAnimator scaleXAnimator2 = ObjectAnimator.ofFloat(this, "scaleX", 1f, 1.2f, 1f);
+        mValueAnimators2[2] = ObjectAnimator.ofFloat(this, "scaleX", 1f, 1.2f, 1f);
         //沿y轴放大
-        ObjectAnimator scaleYAnimator2 = ObjectAnimator.ofFloat(this, "scaleY", 1f, 1.2f, 1f);
+        mValueAnimators2[3] = ObjectAnimator.ofFloat(this, "scaleY", 1f, 1.2f, 1f);
         mAnimatorScaleSet = new AnimatorSet();
 
-        //同时沿X,Y轴放大
-        mAnimatorScaleSet.play(scaleXAnimator).with(scaleYAnimator);
-        mAnimatorScaleSet.play(scaleXAnimator2).with(scaleYAnimator2).after(scaleXAnimator);
         //都设置2s，也可以为每个单独设置
         mAnimatorScaleSet.setDuration(2000);
+        //同时沿X,Y轴放大
+        mAnimatorScaleSet.play(mValueAnimators2[0]).with(mValueAnimators2[1]);
+        mAnimatorScaleSet.play(mValueAnimators2[2]).with(mValueAnimators2[3]).after(mValueAnimators2[0]);
         mAnimatorScaleSet.start();
 
         mAnimatorScaleSet.addListener(new Animator.AnimatorListener() {
@@ -188,6 +191,34 @@ public class RadarView extends View {
         canvas.drawCircle(getWidth()/2,getHeight()/2,mRadius,mBgPaint);
         // 画圆环
         canvas.drawCircle(getWidth()/2,getHeight()/2,mCricleRadius,mCriclePaint);
+    }
+
+    public void startAnim(){
+        if (!mAnimatorSet.isRunning()){
+            Log.d("My_Anim","startAnim  111111111111");
+//            mAnimatorSet.play(mValueAnimators[0]).before(mValueAnimators[1]);
+            mAnimatorSet.start();
+        }
+        if (!mAnimatorScaleSet.isRunning()){
+            Log.d("My_Anim","startAnim  22222222222");
+            //同时沿X,Y轴放大
+//            mAnimatorScaleSet.play(mValueAnimators2[0]).with(mValueAnimators2[1]);
+//            mAnimatorScaleSet.play(mValueAnimators2[2]).with(mValueAnimators2[3]).after(mValueAnimators2[0]);
+            mAnimatorScaleSet.start();
+        }
+    }
+
+    public void stopAnim(){
+        if (mAnimatorSet != null && mAnimatorSet.isRunning()) {
+            Log.d("My_Anim","stopAnim 111");
+            mAnimatorSet.cancel();
+            clearAnimation();
+        }
+        if (mAnimatorScaleSet != null && mAnimatorScaleSet.isRunning()) {
+            Log.d("My_Anim","stopAnim 222");
+            mAnimatorScaleSet.cancel();
+            clearAnimation();
+        }
     }
 
 }
