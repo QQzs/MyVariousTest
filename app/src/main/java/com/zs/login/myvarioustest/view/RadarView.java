@@ -196,14 +196,11 @@ public class RadarView extends View {
     public void startAnim(){
         if (!mAnimatorSet.isRunning()){
             Log.d("My_Anim","startAnim  111111111111");
-//            mAnimatorSet.play(mValueAnimators[0]).before(mValueAnimators[1]);
             mAnimatorSet.start();
         }
         if (!mAnimatorScaleSet.isRunning()){
             Log.d("My_Anim","startAnim  22222222222");
             //同时沿X,Y轴放大
-//            mAnimatorScaleSet.play(mValueAnimators2[0]).with(mValueAnimators2[1]);
-//            mAnimatorScaleSet.play(mValueAnimators2[2]).with(mValueAnimators2[3]).after(mValueAnimators2[0]);
             mAnimatorScaleSet.start();
         }
     }
