@@ -1,10 +1,11 @@
-package com.zs.login.myvarioustest;
+package com.zs.login.myvarioustest.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.zs.login.myvarioustest.R;
 import com.zs.login.myvarioustest.view.AnimButton;
 
 import butterknife.Bind;

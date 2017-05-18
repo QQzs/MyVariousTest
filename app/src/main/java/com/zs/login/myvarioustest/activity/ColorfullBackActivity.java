@@ -1,4 +1,4 @@
-package com.zs.login.myvarioustest;
+package com.zs.login.myvarioustest.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -20,17 +20,16 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
+import com.zs.login.myvarioustest.R;
 import com.zs.login.myvarioustest.util.BezierUtil;
 
 import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-import static android.view.Gravity.CENTER_HORIZONTAL;
 
 /**
  * Created by zs
@@ -45,7 +44,7 @@ public class ColorfullBackActivity extends Activity {
 
 
     @Bind(R.id.back_view)
-    RelativeLayout backView;
+    FrameLayout backView;
 
     private Paint mPaint;
     private Bitmap mBitmap;
@@ -69,13 +68,6 @@ public class ColorfullBackActivity extends Activity {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 0:
-
-                    break;
-                case 1:
-
-                    break;
-
                 }
             super.handleMessage(msg);
         }
@@ -130,8 +122,8 @@ public class ColorfullBackActivity extends Activity {
 
 
 //        HeartView heartView = new HeartView(this);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.addRule(CENTER_HORIZONTAL);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+//        params.addRule(CENTER_HORIZONTAL);
         backView.addView(imageView,params);
         initAnimation(imageView);
     }
@@ -166,7 +158,7 @@ public class ColorfullBackActivity extends Activity {
             }
         });
 
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView, "alpha", 1.0f, 0);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView, "alpha", 1.0f, 0.2f);
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(6000);

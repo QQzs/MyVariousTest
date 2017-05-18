@@ -1,4 +1,4 @@
-package com.zs.login.myvarioustest;
+package com.zs.login.myvarioustest.application;
 
 import android.app.Application;
 import android.util.Log;

@@ -1,9 +1,11 @@
-package com.zs.login.myvarioustest;
+package com.zs.login.myvarioustest.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.zs.login.myvarioustest.R;
 
 import butterknife.ButterKnife;
 

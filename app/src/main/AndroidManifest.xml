@@ -8,9 +8,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".MyApp"
+        android:name=".application.MyApp"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,13 +18,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ButtonActivity"></activity>
+        <activity android:name=".activity.ButtonActivity"></activity>
 
-        <activity android:name=".RadarActivity"></activity>
+        <activity android:name=".activity.RadarActivity"></activity>
 
-        <activity android:name=".ColorfullActivity"></activity>
+        <activity android:name=".activity.ColorfullActivity"></activity>
 
-        <activity android:name=".ColorfullBackActivity"></activity>
+        <activity android:name=".activity.ColorfullBackActivity"></activity>
 
     </application>
 

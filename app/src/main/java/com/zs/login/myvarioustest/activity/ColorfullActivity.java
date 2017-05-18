@@ -1,8 +1,10 @@
-package com.zs.login.myvarioustest;
+package com.zs.login.myvarioustest.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
+import com.zs.login.myvarioustest.R;
 
 import butterknife.ButterKnife;
 
@@ -15,13 +17,13 @@ import butterknife.ButterKnife;
  * —————————————————————————————————————
  */
 
-public class RadarActivity extends Activity {
+public class ColorfullActivity extends Activity {
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.radar_layout);
+        setContentView(R.layout.colorfull_layout);
         ButterKnife.bind(this);
 
 

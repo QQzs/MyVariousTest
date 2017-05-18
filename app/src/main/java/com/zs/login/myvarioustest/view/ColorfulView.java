@@ -14,6 +14,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -51,6 +53,19 @@ public class ColorfulView extends FrameLayout {
     private Random mRandom;
     protected int[] mColors = {Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.MAGENTA, Color.YELLOW};
 
+
+    /**
+     * handler
+     **/
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                }
+            super.handleMessage(msg);
+        }
+    };
+
     public ColorfulView(Context context) {
         this(context,null);
     }
@@ -69,7 +84,7 @@ public class ColorfulView extends FrameLayout {
      */
     private void initView(){
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_star);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.heart);
         mRandom = new Random();
     }
 
@@ -78,11 +93,26 @@ public class ColorfulView extends FrameLayout {
         super.onSizeChanged(w, h, oldw, oldh);
         mScreenWidth = w;
         mScreenHeight = h;
-        mStartPoint = new Point(mScreenWidth / 2, 0);
-        mEndPoint = new Point(mScreenWidth / 2, mScreenHeight);
-        mConOnePoint = new Point(mScreenWidth, mScreenHeight * 3 / 4);
-        mConTwoPoint = new Point(0, mScreenHeight / 4);
+//        mStartPoint = new Point(mScreenWidth / 2, 0);
+//        mEndPoint = new Point(mScreenWidth / 2, mScreenHeight);
+//        mConOnePoint = new Point(mScreenWidth, mScreenHeight * 3 / 4);
+//        mConTwoPoint = new Point(0, mScreenHeight / 4);
+
+        mHandler.postDelayed(runnable,600);
+
     }
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            mStartPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),-100);
+            mEndPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),mScreenHeight + 50);
+            mConOnePoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
+            mConTwoPoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
+            addMyView();
+            mHandler.postDelayed(this, 600);
+        }
+    };
 
     /**
      * 初始化动画
@@ -116,7 +146,7 @@ public class ColorfulView extends FrameLayout {
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView,"alpha",1.0f,0);
 
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.setDuration(4000);
+        animatorSet.setDuration(6000);
         animatorSet.play(valueAnimator).with(objectAnimator);
         animatorSet.start();
 
@@ -158,11 +188,6 @@ public class ColorfulView extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
-//        mStartPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),-100);
-//        mEndPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),mScreenHeight + 50);
-//        mConOnePoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * 3 * mRandom.nextFloat() / 4));
-//        mConTwoPoint = new Point(100, (int) (mScreenHeight * mRandom.nextFloat() / 4));
 
         mStartPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),-100);
         mEndPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),mScreenHeight + 50);
