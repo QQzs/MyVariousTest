@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zs.login.myvarioustest">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,6 +27,10 @@
         <activity android:name=".activity.ColorfullActivity"></activity>
 
         <activity android:name=".activity.ColorfullBackActivity"></activity>
+
+        <activity android:name=".activity.ItemActivity"></activity>
+
+        <activity android:name=".activity.WebViewActivity"></activity>
 
     </application>
 

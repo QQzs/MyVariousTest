@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="com.zs.login.myvarioustest.activity.MainActivity">
 
 
@@ -36,6 +37,22 @@
         android:layout_height="50dp"
         android:text="背景"
         android:onClick="colorfullBackView"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="自定义"
+        android:onClick="itemView"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="webview"
+        android:onClick="webView"
         android:layout_marginTop="10dp"
         />
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ItemView">
+
+        <attr name="showIcon" format="boolean"></attr>
+        <attr name="title" format="string"></attr>
+        <attr name="titleColor" format="color"></attr>
+        <attr name="titleSize" format="dimension"></attr>
+
+        <attr name="content" format="string"></attr>
+        <attr name="contentColor" format="color"></attr>
+        <attr name="contentSize" format="dimension"></attr>
+        <attr name="hint" format="string"></attr>
+        <attr name="hintContentColor" format="color"></attr>
+
+        <attr name="showImage" format="boolean"></attr>
+        <attr name="radius" format="dimension"></attr>
+        <attr name="showLine" format="boolean"></attr>
+
+
+    </declare-styleable>
+
+</resources>

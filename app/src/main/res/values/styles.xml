@@ -6,14 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
-    <style name="MyNoTitle" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="MyAllNoTitle" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen">
-        <item name="android:windowNoTitle">true</item>
+    <style name="TranAppTheme" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/tran_black</item>    <!-- 状态栏 -->
+        <item name="colorPrimaryDark">@color/tran_black</item> <!-- toolbar -->
+        <item name="colorAccent">@color/colorAccent</item>  <!-- 重点 -->
     </style>
+
+    <style name="MyTranAppTheme" parent="TranAppTheme"/>
 
 </resources>

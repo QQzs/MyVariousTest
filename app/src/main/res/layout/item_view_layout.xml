@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/list_item_selector"
+    >
+    
+    <TextView
+        android:id="@+id/tv_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/default_size"
+        android:textColor="@color/defaultText"
+        android:text="title"
+        android:paddingLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/iv_more"
+        android:text="content"
+        android:textSize="@dimen/default_size"
+        android:textColor="@color/hint_color"
+        />
+
+    <ImageView
+        android:id="@+id/iv_item_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/iv_more"
+        android:src="@drawable/user_card_icon"
+
+        />
+
+    <ImageView
+        android:id="@+id/iv_more"
+        android:layout_width="20dp"
+        android:layout_height="15dp"
+        android:src="@drawable/all_more"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        />
+
+    <View
+        android:id="@+id/line_item"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_line"
+        android:paddingLeft="10dp"
+        >
+
+    </View>
+
+</RelativeLayout>
