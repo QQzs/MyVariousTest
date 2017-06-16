@@ -20,6 +20,10 @@
         <item name="colorAccent">@color/colorAccent</item>  <!-- 重点 -->
     </style>
 
+    <style name="ItemType">
+        <item name="android:inputType">textPassword</item>
+    </style>
+
     <style name="MyTranAppTheme" parent="TranAppTheme"/>
 
 </resources>

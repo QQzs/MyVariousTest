@@ -32,6 +32,8 @@
 
         <activity android:name=".activity.WebViewActivity"></activity>
 
+        <activity android:name=".activity.ShowActivity"></activity>
+
     </application>
 
 </manifest>

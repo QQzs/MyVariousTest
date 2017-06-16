@@ -67,7 +67,7 @@ public class RadarView extends View {
 
         mBgPaint = new Paint();
         mBgPaint.setAntiAlias(true);
-        mBgPaint.setColor(0x66000000);
+        mBgPaint.setColor(0x66ee4000);
         mBgPaint.setStyle(Paint.Style.FILL);
 
         mCriclePaint = new Paint();

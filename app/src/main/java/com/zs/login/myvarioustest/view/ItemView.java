@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -100,6 +101,7 @@ public class ItemView extends FrameLayout {
                 }
             }else{
                 mTvContent.setText(content);
+                mTvContent.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 if (mContentColor != 0){
                     mTvContent.setTextColor(mContentColor);
                 }
