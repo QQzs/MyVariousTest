@@ -4,13 +4,15 @@
     <declare-styleable name="ItemView">
 
         <attr name="showIcon" format="boolean"></attr>
-        <attr name="title" format="string"></attr>
+        <attr name="itemIcon" format="reference"></attr>
+        <attr name="itemTitle" format="string"></attr>
         <attr name="titleColor" format="color"></attr>
         <attr name="titleSize" format="dimension"></attr>
 
         <attr name="content" format="string"></attr>
         <attr name="contentColor" format="color"></attr>
         <attr name="contentSize" format="dimension"></attr>
+        <attr name="contentLines" format="integer"></attr>
         <attr name="hint" format="string"></attr>
         <attr name="hintContentColor" format="color"></attr>
 

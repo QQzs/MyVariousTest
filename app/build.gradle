@@ -47,6 +47,8 @@ dependencies {
 
     // 设置沉浸式状态栏
     compile 'com.githang:status-bar-compat:0.2'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
 
 walle {

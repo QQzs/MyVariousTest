@@ -11,7 +11,6 @@
         android:id="@+id/item_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="标题1"
         app:titleColor="@color/colorPrimary"
         app:titleSize="10dp"
         app:content="内容1"
@@ -26,7 +25,7 @@
     <com.zs.login.myvarioustest.view.ItemView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:title="标题2"
+        app:itemTitle="标题2"
         app:content=""
         app:contentColor="@color/colorPrimary"
         app:contentSize="20dp"
@@ -38,7 +37,6 @@
     <com.zs.login.myvarioustest.view.ItemView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:title="标题3"
         app:titleColor="@color/colorPrimary"
         app:titleSize="12dp"
         app:content="内容3"
@@ -52,7 +50,6 @@
         android:id="@+id/item_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="标题4"
         app:titleColor="@color/colorPrimary"
         app:titleSize="10dp"
         app:hint="提示"

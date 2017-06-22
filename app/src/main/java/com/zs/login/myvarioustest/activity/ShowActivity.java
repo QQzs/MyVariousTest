@@ -2,9 +2,12 @@ package com.zs.login.myvarioustest.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +41,25 @@ public class ShowActivity extends Activity {
 
     private boolean mIsShow = false;
 
+    /**
+     * handler
+     **/
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+
+                    break;
+                case 1:
+
+                    break;
+
+            }
+            super.handleMessage(msg);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,32 +71,41 @@ public class ShowActivity extends Activity {
         // 计算隐藏布局的高度
         mDensity = getResources().getDisplayMetrics().density;
         mHiddenViewMeasuredHeight = (int) (mDensity * 120 + 0.5);
-        Log.d("My_Height","mHiddenViewMeasuredHeight = " + mHiddenViewMeasuredHeight);
+        Log.d("My_Height", "mHiddenViewMeasuredHeight = " + mHiddenViewMeasuredHeight);
 
 //        animateClose(mHiddenLayout);
+        alphaAnimator();
 
     }
 
     private void alphaAnimator() {
 
-//        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mHiddenLayout, "alpha", 1f, 0f);
-//        AnimatorSet set = new AnimatorSet();
-//        set.play(objectAnimator);
-//        set.setDuration(1000);
-//        set.start();
-
-        ValueAnimator animator = ValueAnimator.ofFloat(1f, 0.0f);
-        animator.setDuration(1200);
-        animator.setInterpolator(new AccelerateInterpolator());
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-
+        mHandler.postDelayed(new Runnable() {
             @Override
-            public void onAnimationUpdate(ValueAnimator arg0) {
-                float value = (float) arg0.getAnimatedValue();
-                mHiddenLayout.setAlpha(value);
+            public void run() {
+                ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mHiddenLayout, "alpha", 1f, 0f);
+                objectAnimator.setDuration(1000);
+                objectAnimator.start();
+//                AnimatorSet set = new AnimatorSet();
+//                set.play(objectAnimator);
+//                set.setDuration(1000);
+//                set.start();
+
+//                ValueAnimator animator = ValueAnimator.ofFloat(1f, 0.0f);
+//                animator.setDuration(1200);
+//                animator.setInterpolator(new AccelerateInterpolator());
+//                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//
+//                    @Override
+//                    public void onAnimationUpdate(ValueAnimator arg0) {
+//                        float value = (float) arg0.getAnimatedValue();
+//                        mHiddenLayout.setAlpha(value);
+//                    }
+//                });
+//                animator.start();
             }
-        });
-        animator.start();
+        }, 2000);
+
 
     }
 

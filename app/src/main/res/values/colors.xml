@@ -14,4 +14,15 @@
 
     <color name="background">#f1f1f1</color>
 
+    <color name="color_d7d8da">#d7d8da</color>
+
+    <color name="font_black">#333333</color>
+    // 字体 黑色
+    <color name="font_gray">#666666</color>
+    // 字体 灰色
+    <color name="font_light">#777777</color>
+    // 字体
+    <color name="font_lightgray">#999999</color>
+    // 字体 浅灰色
+
 </resources>

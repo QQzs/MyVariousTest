@@ -2,10 +2,10 @@ package com.zs.login.myvarioustest.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -15,19 +15,23 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.zs.login.myvarioustest.R;
+import com.zs.login.myvarioustest.util.DensityUtil;
+import com.zs.login.myvarioustest.util.RoundTransform;
 
 /**
  * Created by zs
  * Date：2017年 05月 19日
  * Time：13:23
  * —————————————————————————————————————
- * About:
+ * About:自定义 item
  * —————————————————————————————————————
  */
 
 public class ItemView extends FrameLayout {
 
+    private ImageView mIvIcon;
     private TextView mTvTitle;
     private int mTitleColor;
     private float mTitleSize;
@@ -36,9 +40,11 @@ public class ItemView extends FrameLayout {
     private int mContentColor;
     private int mHintContentColor;
     private float mContentSize;
+    private int mContentLines;
 
     private ImageView mIvContent;
 
+    private boolean mShowIcon;
     private boolean mShowImage;
     private boolean mShowLine;
 
@@ -56,26 +62,38 @@ public class ItemView extends FrameLayout {
         super(context, attrs, defStyleAttr);
 
         LayoutInflater.from(context).inflate(R.layout.item_view_layout, this);
+        mIvIcon = (ImageView) findViewById(R.id.iv_item_icon);
         mTvTitle = (TextView) findViewById(R.id.tv_item_title);
         mTvContent = (TextView) findViewById(R.id.tv_item_content);
         mIvContent = (ImageView) findViewById(R.id.iv_item_content);
 
         TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.ItemView);
-        String title = array.getString(R.styleable.ItemView_title);
+
+        mShowIcon = array.getBoolean(R.styleable.ItemView_showIcon,false);
+        Drawable icon = array.getDrawable(R.styleable.ItemView_itemIcon);
+        if (mShowIcon){
+            mIvIcon.setVisibility(VISIBLE);
+            mIvIcon.setImageDrawable(icon);
+        }else{
+            mIvIcon.setVisibility(GONE);
+        }
+
+        String title = array.getString(R.styleable.ItemView_itemTitle);
         mTitleColor = array.getColor(R.styleable.ItemView_titleColor,0);
         mTitleSize = array.getDimension(R.styleable.ItemView_titleSize,0);
 
         mShowImage = array.getBoolean(R.styleable.ItemView_showImage,false);
         String hint = array.getString(R.styleable.ItemView_hint);
         String content = array.getString(R.styleable.ItemView_content);
-        mContentColor = array.getColor(R.styleable.ItemView_contentColor,0x333333);
-        mContentSize = array.getDimension(R.styleable.ItemView_contentSize,0);
-        mHintContentColor = array.getColor(R.styleable.ItemView_hintContentColor,0);
+        mContentColor = array.getColor(R.styleable.ItemView_contentColor, getResources().getColor(R.color.font_black));
+        mContentSize = array.getDimension(R.styleable.ItemView_contentSize, DensityUtil.dip2px(context,15));
+        mHintContentColor = array.getColor(R.styleable.ItemView_hintContentColor,getResources().getColor(R.color.font_lightgray));
+        mContentLines = array.getInteger(R.styleable.ItemView_contentLines,2);
 
         mShowLine = array.getBoolean(R.styleable.ItemView_showLine,true);
         line = findViewById(R.id.line_item);
 
-        if (title != null) {
+        if (!TextUtils.isEmpty(title)) {
             mTvTitle.setText(title);
         }
         if (mTitleColor != 0){
@@ -91,17 +109,17 @@ public class ItemView extends FrameLayout {
         }else{
             mIvContent.setVisibility(GONE);
             mTvContent.setVisibility(VISIBLE);
+            mTvContent.setMaxLines(mContentLines);
 
             if (TextUtils.isEmpty(content)){
                 if (!TextUtils.isEmpty(hint)){
-                    mTvContent.setText(hint);
+                    mTvContent.setHint(hint);
                     if (mHintContentColor != 0){
-                        mTvContent.setTextColor(mHintContentColor);
+                        mTvContent.setHintTextColor(mHintContentColor);
                     }
                 }
             }else{
                 mTvContent.setText(content);
-                mTvContent.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 if (mContentColor != 0){
                     mTvContent.setTextColor(mContentColor);
                 }
@@ -115,6 +133,7 @@ public class ItemView extends FrameLayout {
         }else{
             line.setVisibility(GONE);
         }
+        array.recycle();
 
     }
 
@@ -127,12 +146,30 @@ public class ItemView extends FrameLayout {
     }
 
     /**
+     * 获取标题
+     * @return
+     */
+    public String getTitle(){
+        return mTvTitle.getText().toString().trim();
+    }
+
+    /**
      * 设置内容
      * @param content
      */
     public void setContent(String content){
         mTvContent.setText(content);
-        mTvContent.setTextColor(mContentColor);
+    }
+
+    /**
+     * 获取内容
+     */
+    public String getContent(){
+        if (TextUtils.isEmpty(mTvContent.getText().toString().trim())){
+            return "";
+        }else{
+            return mTvContent.getText().toString().trim();
+        }
     }
 
     /**
@@ -140,6 +177,6 @@ public class ItemView extends FrameLayout {
      * @param image
      */
     public void setImage(String image){
-
+        Picasso.with(getContext()).load(image).transform(new RoundTransform(DensityUtil.dip2px(getContext(),4))).resize(DensityUtil.dip2px(getContext(), 30), DensityUtil.dip2px(getContext(), 30)).into(mIvContent);
     }
 }
