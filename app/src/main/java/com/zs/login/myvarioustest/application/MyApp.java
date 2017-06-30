@@ -19,7 +19,6 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-//        String channel = ChannelUtil.getChannel(getApplicationContext());
         String channel = WalleChannelReader.getChannel(this.getApplicationContext());
         Log.d("My_Channel","channel = " + channel);
     }

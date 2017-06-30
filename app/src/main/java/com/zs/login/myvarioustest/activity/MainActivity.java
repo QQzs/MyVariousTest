@@ -64,47 +64,12 @@ public class MainActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Adapter adapter = (Adapter) parent.getAdapter();
+                Adapter adapter = parent.getAdapter();
                 Class act = (Class) adapter.getItem(position);
                 startActivity(new Intent(MainActivity.this, act));
             }
         });
 
     }
-
-//    public void animButton(View view){
-//        Intent intent = new Intent(this,ButtonActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void radarView(View view){
-//        Intent intent = new Intent(this,RadarActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void colorfullView(View view){
-//        Intent intent = new Intent(this,ColorfullActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void colorfullBackView(View view){
-//        Intent intent = new Intent(this,ColorfullBackActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void itemView(View view){
-//        Intent intent = new Intent(this,ItemActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void webView(View view){
-//        Intent intent = new Intent(this,WebViewActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void show(View view){
-//        Intent intent = new Intent(this,ShowActivity.class);
-//        startActivity(intent);
-//    }
 
 }
