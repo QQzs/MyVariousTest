@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.zs.login.myvarioustest.activity.MainActivity"
+    tools:context="com.zs.login.various.activity.MainActivity"
     android:id="@+id/layout_main">
 
 </LinearLayout>

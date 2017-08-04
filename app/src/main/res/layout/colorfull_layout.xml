@@ -5,13 +5,13 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.zs.login.myvarioustest.view.ColorfulView
+    <com.zs.login.various.view.ColorfulView
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
 
-    </com.zs.login.myvarioustest.view.ColorfulView>
+    </com.zs.login.various.view.ColorfulView>
 
 
 </LinearLayout>

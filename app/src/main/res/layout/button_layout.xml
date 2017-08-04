@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zs.login.myvarioustest.view.ColorfulView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zs.login.various.view.ColorfulView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,11 +7,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.zs.login.myvarioustest.view.AnimButton
+        <com.zs.login.various.view.AnimButton
             android:id="@+id/btn"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_centerInParent="true" />
     </RelativeLayout>
 
-</com.zs.login.myvarioustest.view.ColorfulView>
+</com.zs.login.various.view.ColorfulView>
