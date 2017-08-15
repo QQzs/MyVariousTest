@@ -5,7 +5,7 @@
     android:gravity="center"
     >
 
-    <com.zs.login.various.view.RadarView
+    <com.zs.various.view.RadarView
         android:id="@+id/radarview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

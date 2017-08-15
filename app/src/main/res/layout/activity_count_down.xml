@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.zs.login.various.activity.CountDownActivity">
+    tools:context="com.zs.various.activity.CountDownActivity">
 
 
     <cn.iwgang.countdownview.CountdownView
@@ -53,7 +53,7 @@
         app:suffixSecond="秒"
         app:suffixMillisecond="毫秒" />
 
-    <com.zs.login.various.view.MyCountDownView
+    <com.zs.various.view.MyCountDownView
         android:id="@+id/count_down_view3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

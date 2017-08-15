@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.zs.login.various.view.ItemView
+    <com.zs.various.view.ItemView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:itemTitle="标题2"

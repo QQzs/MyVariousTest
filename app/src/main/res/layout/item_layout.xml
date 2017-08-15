@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-            <com.zs.login.various.view.ItemView
+            <com.zs.various.view.ItemView
                 android:id="@+id/item_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,9 +33,9 @@
 
                 >
 
-            </com.zs.login.various.view.ItemView>
+            </com.zs.various.view.ItemView>
 
-            <com.zs.login.various.view.ItemView
+            <com.zs.various.view.ItemView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:itemTitle="标题2"
@@ -46,9 +46,9 @@
                 android:layout_marginTop="10dp"
                 >
 
-            </com.zs.login.various.view.ItemView>
+            </com.zs.various.view.ItemView>
 
-            <com.zs.login.various.view.ItemView
+            <com.zs.various.view.ItemView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:titleColor="@color/colorPrimary"
@@ -58,9 +58,9 @@
                 android:layout_marginTop="10dp"
                 >
 
-            </com.zs.login.various.view.ItemView>
+            </com.zs.various.view.ItemView>
 
-            <com.zs.login.various.view.ItemView
+            <com.zs.various.view.ItemView
                 android:id="@+id/item_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                 android:layout_marginTop="10dp"
                 >
 
-            </com.zs.login.various.view.ItemView>
+            </com.zs.various.view.ItemView>
 
         </LinearLayout>
 
