@@ -52,6 +52,8 @@ class MainActivity : Activity() {
         acts.add(ShowActivity::class.java)
         acts.add(WebViewActivity::class.java)
         acts.add(CountDownActivity::class.java)
+        acts.add(RelativeActivity::class.java)
+        acts.add(VoiceAnimActivity::class.java)
         listView.adapter = MyAdapter(acts)
 
         //点击进入Activity

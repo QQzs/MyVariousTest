@@ -98,6 +98,7 @@ public class WebViewActivity extends Activity {
         String text2 = "<html><header>" + txtcss + "</header><body>" + "<br>第二段文字显示第二段文混排显示图文混字显示第二段文字显示" + "</body></html>";
 
         String data = text1 + image + text2;
-        webView.loadDataWithBaseURL(null, data, "text/html", "UTF-8", null);
+//        webView.loadDataWithBaseURL(null, data, "text/html", "UTF-8", null);
+        webView.loadUrl("http://localhost:63343/HTML_Day/Demo/Login/index.html?_ijt=jqinknmdcg5ueonq1ueluqcl9o#");
     }
 }

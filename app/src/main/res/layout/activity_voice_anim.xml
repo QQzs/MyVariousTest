@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zs.various.activity.VoiceAnimActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorAccent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zhibo_yuyin3"
+            android:layout_marginTop="30dp"
+            />
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_voice_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_centerInParent="true"
+            >
+
+            <ImageView
+                android:id="@+id/ic_voice_start"
+                android:layout_width="210dp"
+                android:layout_height="36dp"
+                android:background="@drawable/progress_bg_nor"
+                android:visibility="visible"/>
+
+            <ProgressBar
+                android:id="@+id/progress_voice"
+                android:layout_width="210dp"
+                android:layout_height="36dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="120"
+                android:progress="0"
+                android:progressDrawable="@drawable/progress_bg"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/iv_voice_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/zhibo_yuyin_start"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="录制中。。。"
+                android:textColor="@color/white"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="35/120"
+            android:textColor="@color/font_black"
+            android:layout_toRightOf="@+id/rl_voice_progress"
+            android:layout_alignBottom="@+id/rl_voice_progress"
+            android:layout_marginLeft="10dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp">
+
+        <ImageView
+            android:id="@+id/view_test"
+            android:layout_width="50dp"
+            android:layout_height="36dp"
+            android:background="@color/colorPrimary"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
