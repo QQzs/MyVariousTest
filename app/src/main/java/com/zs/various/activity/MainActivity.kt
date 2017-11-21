@@ -54,6 +54,7 @@ class MainActivity : Activity() {
         acts.add(CountDownActivity::class.java)
         acts.add(RelativeActivity::class.java)
         acts.add(VoiceAnimActivity::class.java)
+        acts.add(CustomViewActivity::class.java)
         listView.adapter = MyAdapter(acts)
 
         //点击进入Activity

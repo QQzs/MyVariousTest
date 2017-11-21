@@ -48,13 +48,6 @@ public class ShowActivity extends Activity {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 0:
-
-                    break;
-                case 1:
-
-                    break;
-
             }
             super.handleMessage(msg);
         }
@@ -73,11 +66,18 @@ public class ShowActivity extends Activity {
         mHiddenViewMeasuredHeight = (int) (mDensity * 120 + 0.5);
         Log.d("My_Height", "mHiddenViewMeasuredHeight = " + mHiddenViewMeasuredHeight);
 
-//        animateClose(mHiddenLayout);
-        alphaAnimator();
+        int h = mHiddenLayout.getMeasuredHeight();
+        Log.d("My_Height", "h = " + h);
+
+        animateClose(mHiddenLayout);
+
+//        alphaAnimator();
 
     }
 
+    /**
+     * view 透明度动画
+     */
     private void alphaAnimator() {
 
         mHandler.postDelayed(new Runnable() {
@@ -121,6 +121,9 @@ public class ShowActivity extends Activity {
         }
     }
 
+    /**
+     * view打开 图标旋转动画
+     */
     private void animationIvOpen() {
         RotateAnimation animation = new RotateAnimation(0, 180,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
@@ -130,6 +133,9 @@ public class ShowActivity extends Activity {
         mIv.startAnimation(animation);
     }
 
+    /**
+     * view关闭 图标旋转动画
+     */
     private void animationIvClose() {
         RotateAnimation animation = new RotateAnimation(180, 0,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
@@ -139,12 +145,10 @@ public class ShowActivity extends Activity {
         mIv.startAnimation(animation);
     }
 
-    private void animateOpen(View v) {
-        v.setVisibility(View.VISIBLE);
-        ValueAnimator animator = createDropAnimator(v, 0,
+    private void animateOpen(View view) {
+        ValueAnimator animator = createDropAnimator(view, 0,
                 mHiddenViewMeasuredHeight);
         animator.start();
-
     }
 
     private void animateClose(final View view) {

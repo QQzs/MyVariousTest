@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.zs.various.activity.CustomViewActivity">
+
+
+    <com.zs.various.view.BorderTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="dddd"
+        android:gravity="center"
+        app:strokeWidth="1px"
+        app:strokeColor="@color/font_light"
+        app:cornerRadius="5dp"
+        app:contentBackColor="@color/background"
+        android:layout_margin="20dp"/>
+
+</RelativeLayout>

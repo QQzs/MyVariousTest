@@ -28,7 +28,8 @@
         <activity android:name=".activity.ShowActivity" />
         <activity android:name=".activity.CountDownActivity" />
         <activity android:name=".activity.RelativeActivity" />
-        <activity android:name=".activity.VoiceAnimActivity"></activity>
+        <activity android:name=".activity.VoiceAnimActivity" />
+        <activity android:name=".activity.CustomViewActivity"></activity>
     </application>
 
 </manifest>
