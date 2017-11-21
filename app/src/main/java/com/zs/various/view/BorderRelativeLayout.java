@@ -9,7 +9,6 @@ package com.zs.various.view;
  * —————————————————————————————————————
  */
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -20,19 +19,18 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import com.zs.various.R;
 
 
 /**
- * 带边框属性的TextView
+ * 带边框属性的RelativeLayout
  *
  * @author zs
  * @date 2017/21/11
  */
-@SuppressLint("AppCompatCustomView")
-public class BorderTextView extends TextView {
+public class BorderRelativeLayout extends RelativeLayout {
 
     public static final float DEFAULT_STROKE_WIDTH = 1.0f;    // 默认边框宽度, 1dp
     public static final float DEFAULT_CORNER_RADIUS = 2.0f;   // 默认圆角半径, 2dp
@@ -49,15 +47,15 @@ public class BorderTextView extends TextView {
     private Paint mPaintBackground = new Paint();     // 画边框所使用画笔对象
     private RectF mRectF;                   // 画边框要使用的矩形
 
-    public BorderTextView(Context context) {
+    public BorderRelativeLayout(Context context) {
         this(context, null);
     }
 
-    public BorderTextView(Context context, AttributeSet attrs) {
+    public BorderRelativeLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BorderTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BorderRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         // 将DIP单位默认值转为PX
@@ -94,10 +92,13 @@ public class BorderTextView extends TextView {
                 TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING,
                 displayMetrics) : getPaddingBottom();
         setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+        //设置调用onDraw方法
+        setWillNotDraw(false);
     }
 
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
+
         mPaint.setStyle(Paint.Style.STROKE);     // 空心效果
         mPaint.setAntiAlias(true);               // 设置画笔为无锯齿
         mPaint.setStrokeWidth(strokeWidth);      // 线宽
@@ -106,8 +107,8 @@ public class BorderTextView extends TextView {
         mPaintBackground.setAntiAlias(true);               // 设置画笔为无锯齿
 
         // 设置边框线的颜色, 如果声明为边框跟随文字颜色且当前边框颜色与文字颜色不同时重新设置边框颜色
-        if (mFollowTextColor && strokeColor != getCurrentTextColor())
-            strokeColor = getCurrentTextColor();
+//        if (mFollowTextColor && strokeColor != getCurrentTextColor())
+//            strokeColor = getCurrentTextColor();
         mPaint.setColor(strokeColor);
 
         // 画空心圆角矩形

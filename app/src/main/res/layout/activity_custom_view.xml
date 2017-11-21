@@ -8,15 +8,39 @@
     tools:context="com.zs.various.activity.CustomViewActivity">
 
 
-    <com.zs.various.view.BorderTextView
+    <com.zs.various.view.BorderRelativeLayout
+        android:id="@+id/rl_border"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="dddd"
-        android:gravity="center"
         app:strokeWidth="1px"
         app:strokeColor="@color/font_light"
         app:cornerRadius="5dp"
         app:contentBackColor="@color/background"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dddd"
+            android:textColor="@color/font_black"
+            android:layout_centerInParent="true"
+            />
+
+    </com.zs.various.view.BorderRelativeLayout>
+
+    <com.zs.various.view.BorderTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="dddd"
+        android:textColor="@color/font_black"
+        app:strokeWidth="1px"
+        app:strokeColor="@color/font_light"
+        app:cornerRadius="5dp"
+        app:contentBackColor="@color/background"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/rl_border"
+        android:gravity="center">
+
+    </com.zs.various.view.BorderTextView>
 
 </RelativeLayout>
