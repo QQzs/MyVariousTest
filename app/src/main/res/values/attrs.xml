@@ -24,6 +24,16 @@
     </declare-styleable>
 
 
+    <!-- 虚线 -->
+    <declare-styleable name="DashView">
+        <attr name="dashWidth" format="dimension"/>
+        <attr name="dashLineWidth" format="dimension"/>
+        <attr name="dashLineHeight" format="dimension"/>
+        <attr name="dashLineColor" format="color"/>
+        <attr name="dashOrientation" format="integer"/>
+    </declare-styleable>
+
+
     <!-- 有边框和背景的TextView -->
     <declare-styleable name="BorderTextView">
         <attr name="strokeWidth" format="dimension"/>

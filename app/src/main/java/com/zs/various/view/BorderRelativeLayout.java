@@ -16,8 +16,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.RelativeLayout;
 
@@ -46,6 +48,7 @@ public class BorderRelativeLayout extends RelativeLayout {
     private Paint mPaint = new Paint();     // 画边框所使用画笔对象
     private Paint mPaintBackground = new Paint();     // 画边框所使用画笔对象
     private RectF mRectF;                   // 画边框要使用的矩形
+    private DisplayMetrics displayMetrics;
 
     public BorderRelativeLayout(Context context) {
         this(context, null);
@@ -58,12 +61,10 @@ public class BorderRelativeLayout extends RelativeLayout {
     public BorderRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        // 将DIP单位默认值转为PX
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        strokeWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                DEFAULT_STROKE_WIDTH, displayMetrics);
-        cornerRadius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                DEFAULT_CORNER_RADIUS, displayMetrics);
+
+        displayMetrics = context.getResources().getDisplayMetrics();
+        strokeWidth = dp2px(DEFAULT_STROKE_WIDTH);
+        cornerRadius = dp2px(DEFAULT_CORNER_RADIUS);
 
         // 读取属性值
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BorderTextView);
@@ -96,6 +97,48 @@ public class BorderRelativeLayout extends RelativeLayout {
         setWillNotDraw(false);
     }
 
+    /**
+     * 修改边框宽度
+     * @param roederWidth  传值：px
+     */
+    public void setStrokeWidth(int roederWidth){
+        try {
+            strokeWidth = roederWidth;
+            invalidate();
+        }catch (Exception e){
+            Log.e("My_Error",e.toString());
+        }
+
+    }
+
+    /**
+     * 修改边框颜色
+     * @param colorResource  传值：R.color.XXXX
+     */
+    public void setStrokeColor(int colorResource){
+        try {
+            strokeColor = ContextCompat.getColor(getContext(), colorResource);
+            invalidate();
+        }catch (Exception e){
+            Log.e("My_Error",e.toString());
+        }
+
+    }
+
+    /**
+     * 修背景颜色
+     * @param colorResource  传值：R.color.XXXX
+     */
+    public void setContentColorResource(int colorResource){
+        try {
+            contentColor = ContextCompat.getColor(getContext(), colorResource);
+            invalidate();
+        }catch (Exception e){
+            Log.e("My_Error",e.toString());
+        }
+
+    }
+
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
 
@@ -120,5 +163,15 @@ public class BorderRelativeLayout extends RelativeLayout {
         mPaintBackground.setColor(contentColor);
         canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaintBackground);
         super.onDraw(canvas);
+    }
+
+    /**
+     * 将DIP单位默认值转为PX
+     * @param data
+     * @return
+     */
+    private int dp2px(float data){
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                data, displayMetrics);
     }
 }

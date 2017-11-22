@@ -146,6 +146,7 @@ public class ShowActivity extends Activity {
     }
 
     private void animateOpen(View view) {
+        view.setVisibility(View.VISIBLE);
         ValueAnimator animator = createDropAnimator(view, 0,
                 mHiddenViewMeasuredHeight);
         animator.start();

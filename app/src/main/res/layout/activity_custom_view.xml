@@ -7,6 +7,12 @@
     android:background="@color/white"
     tools:context="com.zs.various.activity.CustomViewActivity">
 
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/image_custom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
 
     <com.zs.various.view.BorderRelativeLayout
         android:id="@+id/rl_border"
@@ -29,6 +35,7 @@
     </com.zs.various.view.BorderRelativeLayout>
 
     <com.zs.various.view.BorderTextView
+        android:id="@+id/tv_border"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="dddd"
@@ -42,5 +49,16 @@
         android:gravity="center">
 
     </com.zs.various.view.BorderTextView>
+
+    <com.zs.various.view.DashView
+        android:id="@+id/view_line"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        app:dashWidth="2dp"
+        app:dashLineWidth="4dp"
+        app:dashLineHeight="1dp"
+        app:dashLineColor="@color/colorAccent"
+        app:dashOrientation="1"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
