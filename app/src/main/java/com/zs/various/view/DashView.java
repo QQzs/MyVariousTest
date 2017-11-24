@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -66,8 +67,6 @@ public class DashView extends View {
         lineWidth = typedArray.getDimension(R.styleable.DashView_dashLineWidth, DEFAULT_LINE_WIDTH);
         lineColor = typedArray.getColor(R.styleable.DashView_dashLineColor, DEFAULT_LINE_COLOR);
         dashOrientation = typedArray.getInteger(R.styleable.DashView_dashOrientation,DEFAULT_DASH_ORIENTATION);
-        mPaint.setColor(lineColor);
-        mPaint.setStrokeWidth(lineHeight);
         typedArray.recycle();
     }
 
@@ -90,6 +89,8 @@ public class DashView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        mPaint.setColor(lineColor);
+        mPaint.setStrokeWidth(lineHeight);
         switch (dashOrientation){
             case ORIENTATION_VERTICAL:
                 drawVerticalLine(canvas);
@@ -97,6 +98,20 @@ public class DashView extends View {
             default:
                 drawHorizontalLine(canvas);
         }
+    }
+
+    /**
+     * 修改颜色
+     * @param colorResource  传值：R.color.XXXX
+     */
+    public void setLineColorResource(int colorResource){
+        try {
+            lineColor = ContextCompat.getColor(getContext(), colorResource);
+            invalidate();
+        }catch (Exception e){
+            Log.e("My_Error",e.toString());
+        }
+
     }
 
     /**

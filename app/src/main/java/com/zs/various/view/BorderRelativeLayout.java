@@ -126,7 +126,7 @@ public class BorderRelativeLayout extends RelativeLayout {
     }
 
     /**
-     * 修背景颜色
+     * 修改背景颜色
      * @param colorResource  传值：R.color.XXXX
      */
     public void setContentColorResource(int colorResource){
