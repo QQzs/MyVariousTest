@@ -3,7 +3,7 @@
     package="com.zs.various">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".application.MyApp"
@@ -12,11 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MyTheme">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,7 +29,9 @@
         <activity android:name=".activity.CountDownActivity" />
         <activity android:name=".activity.RelativeActivity" />
         <activity android:name=".activity.VoiceAnimActivity" />
-        <activity android:name=".activity.CustomViewActivity"></activity>
+        <activity android:name=".activity.CustomViewActivity" />
+        <activity android:name=".activity.VideoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
     </application>
 
 </manifest>

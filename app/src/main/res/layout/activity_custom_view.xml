@@ -61,4 +61,15 @@
         app:dashOrientation="1"
         android:layout_centerHorizontal="true"/>
 
+    <!--<com.zs.various.view.AppendTextView-->
+        <!--android:id="@+id/tv_append"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/tv_border"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:text="我的测试文字"-->
+        <!--android:gravity="center"/>-->
+
 </RelativeLayout>
