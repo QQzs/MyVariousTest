@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.zs.various.R;
+import com.zs.various.util.DensityUtil;
 
 /**
  * Created by zs
@@ -62,14 +63,13 @@ public class ShowActivity extends Activity {
         mIv = (ImageView) findViewById(R.id.my_iv);
 
         // 计算隐藏布局的高度
-        mDensity = getResources().getDisplayMetrics().density;
-        mHiddenViewMeasuredHeight = (int) (mDensity * 120 + 0.5);
+        mHiddenViewMeasuredHeight = DensityUtil.dip2px(this,120);
         Log.d("My_Height", "mHiddenViewMeasuredHeight = " + mHiddenViewMeasuredHeight);
 
         int h = mHiddenLayout.getMeasuredHeight();
         Log.d("My_Height", "h = " + h);
 
-        animateClose(mHiddenLayout);
+//        animateClose(mHiddenLayout);
 
 //        alphaAnimator();
 

@@ -26,4 +26,6 @@
     <color name="font_lightgray">#999999</color>
     // 字体 浅灰色
 
+    <color name="blue_show">#548AEA</color>
+
 </resources>

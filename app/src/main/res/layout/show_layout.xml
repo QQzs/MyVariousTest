@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,10 +6,14 @@
     >
 
     <RelativeLayout
+        android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#458EFD"
-        android:padding="10dip" >
+        android:padding="10dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,11 +26,14 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ll_show"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#548AEA"
         android:gravity="center"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_below="@+id/rl_title"
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,35 +54,40 @@
     <LinearLayout
         android:id="@+id/linear_hidden"
         android:layout_width="match_parent"
-        android:layout_height="120dip"
-        android:background="#548AEA"
+        android:layout_height="120dp"
+        android:background="@color/blue_show"
         android:gravity="center"
         android:orientation="vertical"
+        android:layout_below="@+id/ll_show"
         android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dip"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:text="显示的View"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:gravity="center"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:text="0.00"
             android:textColor="#ffffff"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            android:gravity="center"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#548AEA"
+        android:background="@color/blue_show"
         android:gravity="center"
         android:onClick="onClick"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_below="@+id/linear_hidden">
 
         <ImageView
             android:id="@+id/my_iv"
@@ -85,9 +97,9 @@
             android:src="@mipmap/zhibo_more" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent"/>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/colorAccent"/>-->
 
-</LinearLayout>
+</RelativeLayout>

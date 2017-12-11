@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.zs.various.R
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
@@ -30,8 +31,8 @@ class VideoActivity : AppCompatActivity() {
      * @return
      */
     fun getNetVideoBitmap(videoUrl: String): Bitmap? {
+        var startTime = System.currentTimeMillis()
         var bitmap: Bitmap? = null
-
         val retriever = MediaMetadataRetriever()
         try {
             //根据url获取缩略图
@@ -43,6 +44,8 @@ class VideoActivity : AppCompatActivity() {
         } finally {
             retriever.release()
         }
+        var endTime = System.currentTimeMillis()
+        Log.d("My_Log","time == " + (endTime - startTime))
         return bitmap
     }
 
