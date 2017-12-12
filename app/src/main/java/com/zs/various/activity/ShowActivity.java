@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -41,6 +40,13 @@ public class ShowActivity extends Activity {
     private ImageView mIv;
 
     private boolean mIsShow = false;
+    private boolean mIsAnim = false;
+
+    private View view_bottom,view_0,view_1, view_2;
+    private int mViewHeight;
+    private int mViewHeight1;
+    private int mViewHeight2;
+
 
     /**
      * handler
@@ -61,16 +67,32 @@ public class ShowActivity extends Activity {
         setContentView(R.layout.show_layout);
         mHiddenLayout = (LinearLayout) findViewById(R.id.linear_hidden);
         mIv = (ImageView) findViewById(R.id.my_iv);
+        view_bottom = findViewById(R.id.view_bottom);
+        view_0 = findViewById(R.id.view_0);
+        view_1 = findViewById(R.id.view_1);
+        view_2 = findViewById(R.id.view_2);
+
 
         // 计算隐藏布局的高度
         mHiddenViewMeasuredHeight = DensityUtil.dip2px(this,120);
-        Log.d("My_Height", "mHiddenViewMeasuredHeight = " + mHiddenViewMeasuredHeight);
+        mViewHeight1 = DensityUtil.dip2px(this,150);
+        mViewHeight2 = DensityUtil.dip2px(this,200);
+        mViewHeight = mViewHeight2 - mViewHeight1;
 
-        int h = mHiddenLayout.getMeasuredHeight();
-        Log.d("My_Height", "h = " + h);
+//        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+//        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+//        view_1.measure(w, h);
+//        Log.d("My_Height", "h2  ===== " + view_1.getMeasuredHeight());
+
+//        view_1.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                view_1.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+//                Log.d("My_Height"," h ==== "+ view_1.getMeasuredHeight());
+//            }
+//        });
 
 //        animateClose(mHiddenLayout);
-
 //        alphaAnimator();
 
     }
@@ -110,15 +132,43 @@ public class ShowActivity extends Activity {
     }
 
     public void onClick(View v) {
+        // 上半部分动画
+        if (mIsShow) {
+            animationIvClose();
+            animateClose(mHiddenLayout,mHiddenViewMeasuredHeight);
+        } else {
+            animationIvOpen();
+            animateOpen(mHiddenLayout,mHiddenViewMeasuredHeight);
+        }
+
+        // 下半部分动画
         if (mIsShow) {
             mIsShow = false;
-            animateClose(mHiddenLayout);
-            animationIvClose();
+            testAnimDown(view_bottom,mViewHeight,500);
+            testAnimUp(view_1,-mViewHeight1,400);
+            testAnimDown(view_2,mViewHeight2,600);
         } else {
             mIsShow = true;
-            animateOpen(mHiddenLayout);
-            animationIvOpen();
+            testAnimUp(view_bottom,mViewHeight,600);
+            testAnimDown(view_1,-mViewHeight1,500);
+            testAnimUp(view_2,mViewHeight2,400);
         }
+    }
+
+
+    private void testAnimUp(final View view , int height , long time){
+        view.clearAnimation();
+        view.setVisibility(View.VISIBLE);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, height,0);
+        objectAnimator.setDuration(time);
+        objectAnimator.start();
+    }
+
+    private void testAnimDown(final View view , int height , long time){
+        view.clearAnimation();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0, height);
+        objectAnimator.start();
+        objectAnimator.setDuration(time);
     }
 
     /**
@@ -145,15 +195,15 @@ public class ShowActivity extends Activity {
         mIv.startAnimation(animation);
     }
 
-    private void animateOpen(View view) {
+    private void animateOpen(View view , int height) {
         view.setVisibility(View.VISIBLE);
         ValueAnimator animator = createDropAnimator(view, 0,
-                mHiddenViewMeasuredHeight);
+                height);
         animator.start();
     }
 
-    private void animateClose(final View view) {
-        ValueAnimator animator = createDropAnimator(view, mHiddenViewMeasuredHeight, 0);
+    private void animateClose(final View view , int height) {
+        ValueAnimator animator = createDropAnimator(view, height, 0);
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -166,7 +216,7 @@ public class ShowActivity extends Activity {
 
     private ValueAnimator createDropAnimator(final View v, int start, int end) {
         ValueAnimator animator = ValueAnimator.ofInt(start, end);
-        animator.setDuration(1200);
+        animator.setDuration(500);
         animator.setInterpolator(new AccelerateInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 

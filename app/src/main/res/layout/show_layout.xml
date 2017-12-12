@@ -97,9 +97,52 @@
             android:src="@mipmap/zhibo_more" />
     </LinearLayout>
 
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@color/colorAccent"/>-->
+    <RelativeLayout
+        android:id="@+id/view_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/view_1"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/blue_show"
+            android:layout_below="@+id/view_0"
+            android:gravity="center"
+            android:text="view_1"
+            android:textColor="@color/white"
+            android:textSize="30dp"/>
+
+        <LinearLayout
+            android:id="@+id/view_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_0"
+            android:visibility="gone"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorAccent"
+
+                android:gravity="center"
+                android:text="view_2"
+                android:textColor="@color/white"
+                android:textSize="30dp"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_0"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/planbook_default">
+
+        </View>
+
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>
