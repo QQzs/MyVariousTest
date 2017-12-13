@@ -149,8 +149,8 @@ public class ShowActivity extends Activity {
             testAnimDown(view_2,mViewHeight2,600);
         } else {
             mIsShow = true;
-            testAnimUp(view_bottom,mViewHeight,600);
-            testAnimDown(view_1,-mViewHeight1,500);
+            testAnimUp(view_bottom,mViewHeight,500);
+            testAnimDown(view_1,-mViewHeight1,600);
             testAnimUp(view_2,mViewHeight2,400);
         }
     }

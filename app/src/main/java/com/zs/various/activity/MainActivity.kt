@@ -56,6 +56,7 @@ class MainActivity : Activity() {
         acts.add(VoiceAnimActivity::class.java)
         acts.add(CustomViewActivity::class.java)
         acts.add(VideoActivity::class.java)
+        acts.add(DialogActivity::class.java)
         listView.adapter = MyAdapter(acts)
 
         //点击进入Activity

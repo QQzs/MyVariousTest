@@ -28,5 +28,6 @@
 
     <color name="blue_show">#548AEA</color>
     <color name="planbook_default">#ff6969</color>
+    <color name="dialog_tran_color">#99000000</color>
 
 </resources>

@@ -16,6 +16,7 @@
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,8 +31,10 @@
         <activity android:name=".activity.RelativeActivity" />
         <activity android:name=".activity.VoiceAnimActivity" />
         <activity android:name=".activity.CustomViewActivity" />
-        <activity android:name=".activity.VideoActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
+        <activity
+            android:name=".activity.VideoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".activity.DialogActivity"></activity>
     </application>
 
 </manifest>
