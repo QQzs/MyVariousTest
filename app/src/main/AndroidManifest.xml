@@ -34,7 +34,8 @@
         <activity
             android:name=".activity.VideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
-        <activity android:name=".activity.DialogActivity"></activity>
+        <activity android:name=".activity.DialogActivity" />
+        <activity android:name=".activity.SpanStringActivity"></activity>
     </application>
 
 </manifest>
