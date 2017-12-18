@@ -1,18 +1,19 @@
 package com.zs.various.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
-import android.util.Log;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.view.View;
+import android.widget.ImageView;
 
-import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 import com.zs.various.R;
-import com.zs.various.bean.DataBean;
+import com.zs.various.util.Constant;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -27,32 +28,34 @@ import butterknife.ButterKnife;
 public class ColorfullActivity extends Activity {
 
 
+    @Bind(R.id.iv_show)
+    ImageView iv_show;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colorfull_layout);
         ButterKnife.bind(this);
 
-        String data = "{\"data\":{\"id\":{\"courseid\":4,\"time\":1501409165300}}}";
+        Picasso.with(this)
+                .load(Constant.IMAGE_URL)
+                .placeholder(R.mipmap.timg)
+                .into(iv_show);
 
-        DataBean bean = new Gson().fromJson(data, DataBean.class);
+        iv_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ColorfullActivity.this,ColorfullBackActivity.class);
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        ColorfullActivity.this,
+                        iv_show,
+                        getString(R.string.transition_image)
+                );
+                ActivityCompat.startActivity(ColorfullActivity.this, intent, optionsCompat.toBundle());
+//                startActivity(intent);
+            }
+        });
 
-        DataBean.IdBean.InnerBean innerBean = bean.getData().getId();
 
-
-        String date = timeStamp2Date(System.currentTimeMillis() + "");
-
-        Log.d("My_time",System.currentTimeMillis() + "");
-        Log.d("My_time",date);
-    }
-
-
-    public static String timeStamp2Date(String time) {
-
-        if(TextUtils.isEmpty(time)){
-            return "";
-        }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(new Date(Long.valueOf(time)));
     }
 }

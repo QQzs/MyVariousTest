@@ -23,8 +23,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
 import com.zs.various.R;
 import com.zs.various.util.BezierUtil;
+import com.zs.various.util.Constant;
 
 import java.util.Random;
 
@@ -45,6 +47,8 @@ public class ColorfullBackActivity extends Activity {
 
     @Bind(R.id.back_view)
     FrameLayout backView;
+    @Bind(R.id.iv_show)
+    ImageView iv_show;
 
     private Paint mPaint;
     private Bitmap mBitmap;
@@ -79,12 +83,15 @@ public class ColorfullBackActivity extends Activity {
         setContentView(R.layout.colorfull_back_layout);
         ButterKnife.bind(this);
         initView();
-
         mScreenWidth = getWindowManager().getDefaultDisplay().getWidth();
         mScreenHeight = getWindowManager().getDefaultDisplay().getHeight();
-
-
         mHandler.postDelayed(runnable,600);
+
+
+        Picasso.with(this)
+                .load(Constant.IMAGE_URL)
+                .placeholder(R.mipmap.timg)
+                .into(iv_show);
 
     }
 
