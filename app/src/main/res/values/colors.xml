@@ -26,6 +26,11 @@
     <color name="font_lightgray">#999999</color>
     // 字体 浅灰色
 
+    <color name="gray">#999999</color>
+    <color name="blue">#288dde</color>
+    <color name="red">#FF3B00</color>
+
+    <color name="gray_light">#cfcfd2</color>
     <color name="blue_show">#548AEA</color>
     <color name="planbook_default">#ff6969</color>
     <color name="dialog_tran_color">#99000000</color>

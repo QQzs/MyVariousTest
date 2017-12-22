@@ -17,32 +17,84 @@
         app:loca="bottom"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
-    <com.zs.various.view.MusicView
-        android:id="@+id/widget_view"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="10dp"
-        android:background="@color/background"
-        app:color="@color/colorAccent"
-        android:layout_marginTop="20dp"/>
+        <com.zs.various.view.MusicView
+            android:id="@+id/widget_view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:background="@color/background"
+            app:color="@color/colorAccent"
+            />
 
-    <com.zs.various.view.MusicView2
-        android:id="@+id/widget_view2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="10dp"
-        android:background="@color/background"
-        app:color="@color/colorAccent"
-        android:layout_marginTop="20dp"/>
+        <com.zs.various.view.MusicView2
+            android:id="@+id/widget_view2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:background="@color/background"
+            app:color="@color/colorAccent"
+            android:layout_marginLeft="20dp"/>
 
-    <com.zs.various.view.MusicView3
-        android:id="@+id/widget_view3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="10dp"
-        android:background="@color/background"
-        app:color="@color/colorAccent"
-        android:layout_marginTop="20dp"/>
+        <com.zs.various.view.MusicView3
+            android:id="@+id/widget_view3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:background="@color/background"
+            app:color="@color/colorAccent"
+            android:layout_marginLeft="20dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <com.zs.various.view.RoundProgressBar
+            android:id="@+id/barStrokeText"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:backColor="@color/gray"
+            app:frontColor="@color/blue"
+            app:mode="STROKE_TEXT"
+            app:textColor="@color/red"
+            app:textSize="18sp"
+            />
+
+        <com.zs.various.view.RoundProgressBar
+            android:id="@+id/barStroke"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            app:backColor="@color/gray"
+            app:frontColor="@color/blue"
+            app:mode="STROKE"
+            app:textColor="@color/red"
+            app:textSize="15sp"
+            />
+
+        <com.zs.various.view.RoundProgressBar
+            android:id="@+id/barFill"
+            android:layout_width="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="100dp"
+            app:backColor="@color/gray_light"
+            app:frontColor="@color/blue"
+            app:mode="FILL"
+            app:textColor="@color/red"
+            app:textSize="15sp"
+            />
+
+    </LinearLayout>
+
 
 </LinearLayout>
