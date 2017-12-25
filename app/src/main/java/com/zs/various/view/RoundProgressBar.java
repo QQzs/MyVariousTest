@@ -2,6 +2,8 @@ package com.zs.various.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -34,6 +36,11 @@ public class RoundProgressBar extends View {
      */
     private static final int STROKE_FILL = 2;
 
+    /**
+     * 填充
+     */
+    private static final int STROKE_IMAGE = 3;
+
     private Paint mPaint;
     private int mBackColor;
     private int mFontColor;
@@ -49,6 +56,7 @@ public class RoundProgressBar extends View {
     private Paint.Style style;
     private boolean isFill;
     private int textHalfSize;
+    private Bitmap bitmap;
 
     public RoundProgressBar(Context context) {
         super(context, null);
@@ -68,9 +76,10 @@ public class RoundProgressBar extends View {
         textHalfSize = (int) (mTextSize*0.4f);
         mBorderWidth = mTypedArray.getDimension(R.styleable.RoundProgressBar_borderWidth, getResources().getDimensionPixelSize(R.dimen.round_progress_border_width));
         mHalfBorder = mBorderWidth * 0.5f;
-        mMode = mTypedArray.getInteger(R.styleable.RoundProgressBar_mode, STROKE_TEXT);
+        mMode = mTypedArray.getInteger(R.styleable.RoundProgressBar_mode, STROKE);
         isFill = mMode == STROKE_FILL;
         style = isFill ? Paint.Style.FILL_AND_STROKE : Paint.Style.STROKE;
+        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.zhibo_jilu_bofang);
         mTypedArray.recycle();
     }
 
@@ -85,6 +94,15 @@ public class RoundProgressBar extends View {
     public int getValue() {
         return value;
     }
+
+    public void setImage(boolean play){
+        if (play){
+            bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.zhibo_jilu_bofang);
+        }else{
+            bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.zhibo_jilu_zanting);
+        }
+    }
+
 
     public synchronized void setValue(int newValue) {
         newValue = Math.max(0, newValue);
@@ -116,8 +134,13 @@ public class RoundProgressBar extends View {
             mPaint.setTypeface(Typeface.DEFAULT_BOLD); //设置字体
 
             float textHalfWidth = mPaint.measureText(percent + "%")*0.5f;
-            canvas.drawText(percent + "%", center - textHalfWidth, center +textHalfSize,
+            canvas.drawText(percent + "%", center - textHalfWidth, center + textHalfSize,
             mPaint);
+        }
+
+        if (mMode == STROKE_IMAGE){
+            canvas.drawBitmap(bitmap, center - bitmap.getWidth()*0.5f + 3, center - bitmap.getHeight()*0.5f,
+                    mPaint);
         }
 
         //进度

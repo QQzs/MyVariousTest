@@ -63,6 +63,7 @@
             <enum name="STROKE" value="0" />
             <enum name="STROKE_TEXT" value="1" />
             <enum name="FILL" value="2"/>
+            <enum name="STROKE_IMAGE" value="3"/>
         </attr>
     </declare-styleable>
 

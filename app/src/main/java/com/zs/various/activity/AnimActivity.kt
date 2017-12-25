@@ -13,6 +13,7 @@ class AnimActivity : AppCompatActivity() {
     var flag1 = true
     var flag2 = true
     var flag3 = true
+    var play = true
     var currentValue = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,7 @@ class AnimActivity : AppCompatActivity() {
         barStroke.max = 100
         barStrokeText.max = 100
         barFill.max = 100
+        barStrokeTest.max = 100
 
         val pool = Executors.newScheduledThreadPool(1)
         var updateTimerTask = object : TimerTask() {
@@ -50,12 +52,18 @@ class AnimActivity : AppCompatActivity() {
                 barStroke.value = currentValue
                 barStrokeText.value = currentValue
                 barFill.value = currentValue
+                barStrokeTest.value = currentValue
                 if (currentValue >= 100) {
                     currentValue = 0
                 }
             }
         }
         pool.scheduleAtFixedRate(updateTimerTask, 0, 100, TimeUnit.MILLISECONDS)
+
+        barStrokeTest.setOnClickListener{
+            barStrokeTest.setImage(!play)
+            play = !play
+        }
     }
 
 }

@@ -61,8 +61,8 @@
 
         <com.zs.various.view.RoundProgressBar
             android:id="@+id/barStrokeText"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/round_progress_wh"
+            android:layout_height="@dimen/round_progress_wh"
             app:backColor="@color/gray"
             app:frontColor="@color/blue"
             app:mode="STROKE_TEXT"
@@ -72,8 +72,8 @@
 
         <com.zs.various.view.RoundProgressBar
             android:id="@+id/barStroke"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/round_progress_wh"
+            android:layout_height="@dimen/round_progress_wh"
             android:layout_marginLeft="10dp"
             app:backColor="@color/gray"
             app:frontColor="@color/blue"
@@ -84,9 +84,9 @@
 
         <com.zs.various.view.RoundProgressBar
             android:id="@+id/barFill"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/round_progress_wh"
+            android:layout_height="@dimen/round_progress_wh"
             android:layout_marginLeft="10dp"
-            android:layout_height="100dp"
             app:backColor="@color/gray_light"
             app:frontColor="@color/blue"
             app:mode="FILL"
@@ -94,7 +94,20 @@
             app:textSize="15sp"
             />
 
-    </LinearLayout>
+        <com.zs.various.view.RoundProgressBar
+            android:id="@+id/barStrokeTest"
+            android:layout_width="@dimen/round_progress_wh"
+            android:layout_height="@dimen/round_progress_wh"
+            android:layout_marginLeft="10dp"
+            app:backColor="@color/white"
+            app:frontColor="@color/blue"
+            app:borderWidth="2dp"
+            app:mode="STROKE_IMAGE"
+            app:textColor="@color/red"
+            app:textSize="15sp"
+            android:background="@color/hint_color"
+            />
 
+    </LinearLayout>
 
 </LinearLayout>

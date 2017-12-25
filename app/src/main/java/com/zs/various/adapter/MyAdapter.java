@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.zs.various.R;
+
 import java.util.List;
 
 /**
@@ -21,6 +23,8 @@ public class MyAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
     private List<Class> acts;
+    private int[] mColors = {R.color.color_0,R.color.color_1,R.color.color_2,R.color.color_3,
+            R.color.color_4,R.color.color_5,R.color.color_6,R.color.color_7};
 
     public MyAdapter(List<Class> acts) {
         this.acts = acts;
@@ -49,8 +53,10 @@ public class MyAdapter extends BaseAdapter {
             }
             convertView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
         }
+        convertView.setBackgroundColor(parent.getResources().getColor(mColors[position%8]));
         TextView textView = (TextView) convertView;
         textView.setText(acts.get(position).getSimpleName());
+        textView.setTextColor(parent.getResources().getColor(R.color.white));
         return textView;
     }
 }
