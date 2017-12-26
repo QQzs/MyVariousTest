@@ -65,7 +65,6 @@ public class MusicView3 extends View {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == MESSAGE_WHAT) {
-                Log.d("My_Log", "handleMessage");
                 initAnimator();
                 mHandler.sendEmptyMessageDelayed(MESSAGE_WHAT,duration);
             }

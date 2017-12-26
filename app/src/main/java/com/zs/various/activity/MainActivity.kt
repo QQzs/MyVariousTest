@@ -36,7 +36,7 @@ class MainActivity : Activity() {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = Color.TRANSPARENT
+            window.statusBarColor = Color.parseColor("#D2691E")
         }
 
         val layout = findViewById(R.id.layout_main) as LinearLayout
@@ -59,6 +59,8 @@ class MainActivity : Activity() {
         acts.add(DialogActivity::class.java)
         acts.add(SpanStringActivity::class.java)
         acts.add(AnimActivity::class.java)
+        acts.add(ReflexActivity::class.java)
+
         listView.adapter = MyAdapter(acts)
 
         //点击进入Activity

@@ -36,7 +36,8 @@
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".activity.DialogActivity" />
         <activity android:name=".activity.SpanStringActivity" />
-        <activity android:name=".activity.AnimActivity"></activity>
+        <activity android:name=".activity.AnimActivity" />
+        <activity android:name=".activity.ReflexActivity"></activity>
     </application>
 
 </manifest>

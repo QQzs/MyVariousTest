@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.zs.various.R;
@@ -84,7 +83,6 @@ public class MusicView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec) ;
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        Log.d("My_Log", "onMeasure: "+ widthSize+"----"+heightSize);
         setMeasuredDimension(widthSize, heightSize);
 
         width = widthSize- getPaddingLeft() - getPaddingRight();

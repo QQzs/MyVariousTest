@@ -89,6 +89,7 @@
             android:layout_marginLeft="10dp"
             app:backColor="@color/gray_light"
             app:frontColor="@color/blue"
+            app:borderWidth="1px"
             app:mode="FILL"
             app:textColor="@color/red"
             app:textSize="15sp"

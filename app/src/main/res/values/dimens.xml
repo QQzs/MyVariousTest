@@ -8,6 +8,6 @@
     <!--环形边框宽度-->
     <dimen name="round_progress_border_width">5dp</dimen>
 
-    <dimen name="round_progress_wh">70dp</dimen>
+    <dimen name="round_progress_wh">60dp</dimen>
 
 </resources>

@@ -17,7 +17,6 @@ import com.zs.various.R;
 
 /**
  * 圆形的进度条
- *
  */
 public class RoundProgressBar extends View {
 
@@ -43,7 +42,7 @@ public class RoundProgressBar extends View {
 
     private Paint mPaint;
     private int mBackColor;
-    private int mFontColor;
+    private int mFrontColor;
     private int mTextColor;
     private float mTextSize;
     private float mBorderWidth;
@@ -70,15 +69,16 @@ public class RoundProgressBar extends View {
                 R.styleable.RoundProgressBar);
 
         mBackColor = mTypedArray.getColor(R.styleable.RoundProgressBar_backColor, Color.WHITE);
-        mFontColor = mTypedArray.getColor(R.styleable.RoundProgressBar_frontColor, Color.GRAY);
+        mFrontColor = mTypedArray.getColor(R.styleable.RoundProgressBar_frontColor, Color.GRAY);
         mTextColor = mTypedArray.getColor(R.styleable.RoundProgressBar_textColor, Color.GRAY);
         mTextSize = mTypedArray.getDimension(R.styleable.RoundProgressBar_textSize, getResources().getDimensionPixelSize(R.dimen.round_progress_text_size));
-        textHalfSize = (int) (mTextSize*0.4f);
+        textHalfSize = (int) (mTextSize * 0.4f);
         mBorderWidth = mTypedArray.getDimension(R.styleable.RoundProgressBar_borderWidth, getResources().getDimensionPixelSize(R.dimen.round_progress_border_width));
         mHalfBorder = mBorderWidth * 0.5f;
         mMode = mTypedArray.getInteger(R.styleable.RoundProgressBar_mode, STROKE);
         isFill = mMode == STROKE_FILL;
         style = isFill ? Paint.Style.FILL_AND_STROKE : Paint.Style.STROKE;
+//        style = Paint.Style.STROKE;
         bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.zhibo_jilu_bofang);
         mTypedArray.recycle();
     }
@@ -95,10 +95,10 @@ public class RoundProgressBar extends View {
         return value;
     }
 
-    public void setImage(boolean play){
-        if (play){
+    public void setImage(boolean play) {
+        if (play) {
             bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.zhibo_jilu_bofang);
-        }else{
+        } else {
             bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.zhibo_jilu_zanting);
         }
     }
@@ -126,27 +126,32 @@ public class RoundProgressBar extends View {
         canvas.drawCircle(center, center, radius, mPaint); //画出圆环
 
         int percent = (int) (value * 100f / max);
-        //文本
+        // 文本
         if (mMode == STROKE_TEXT) {
             mPaint.setStrokeWidth(0);
             mPaint.setColor(mTextColor);
             mPaint.setTextSize(mTextSize);
             mPaint.setTypeface(Typeface.DEFAULT_BOLD); //设置字体
 
-            float textHalfWidth = mPaint.measureText(percent + "%")*0.5f;
+            float textHalfWidth = mPaint.measureText(percent + "%") * 0.5f;
             canvas.drawText(percent + "%", center - textHalfWidth, center + textHalfSize,
-            mPaint);
-        }
-
-        if (mMode == STROKE_IMAGE){
-            canvas.drawBitmap(bitmap, center - bitmap.getWidth()*0.5f + 3, center - bitmap.getHeight()*0.5f,
                     mPaint);
         }
 
+        // 图片
+        if (mMode == STROKE_IMAGE) {
+            canvas.drawBitmap(bitmap, center - bitmap.getWidth() * 0.5f, center - bitmap.getHeight() * 0.5f,
+                    mPaint);
+        }
+
+        if(mMode == STROKE_FILL){
+            mPaint.setStrokeWidth(0);
+        }
+
         //进度
-        if (value>0) {
+        if (value > 0) {
             mPaint.setStrokeWidth(mBorderWidth);
-            mPaint.setColor(mFontColor);
+            mPaint.setColor(mFrontColor);
             RectF oval = new RectF(center - radius, center - radius, center + radius, center + radius);
             int angle = (int) (360 * percent / 100f);
             mPaint.setStyle(style);
