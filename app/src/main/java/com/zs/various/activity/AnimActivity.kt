@@ -45,7 +45,7 @@ class AnimActivity : AppCompatActivity() {
         barFill.max = 100
         barStrokeTest.max = 100
 
-        val pool = Executors.newScheduledThreadPool(1)
+        var pool = Executors.newScheduledThreadPool(1)
         var updateTimerTask = object : TimerTask() {
             override fun run() {
                 currentValue += 1
