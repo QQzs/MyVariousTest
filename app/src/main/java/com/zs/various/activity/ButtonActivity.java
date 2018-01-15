@@ -8,9 +8,6 @@ import android.widget.Toast;
 import com.zs.various.R;
 import com.zs.various.view.AnimButton;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  * Created by zs
  * Date：2017年 05月 11日
@@ -22,14 +19,15 @@ import butterknife.ButterKnife;
 
 public class ButtonActivity extends Activity {
 
-    @Bind(R.id.btn)
+//    @Bind(R.id.btn)
     AnimButton button;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.button_layout);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
+        button = findViewById(R.id.btn);
 
         button.setAnimationButtonListener(new AnimButton.AnimationButtonListener() {
             @Override

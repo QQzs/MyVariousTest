@@ -14,7 +14,7 @@ class AnimActivity : AppCompatActivity() {
     var flag2 = true
     var flag3 = true
     var play = true
-    var currentValue = 0
+    var currentValue = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,13 +48,13 @@ class AnimActivity : AppCompatActivity() {
         var pool = Executors.newScheduledThreadPool(1)
         var updateTimerTask = object : TimerTask() {
             override fun run() {
-                currentValue += 1
+                currentValue += 0.1f
                 barStroke.value = currentValue
                 barStrokeText.value = currentValue
                 barFill.value = currentValue
                 barStrokeTest.value = currentValue
-                if (currentValue >= 100) {
-                    currentValue = 0
+                if (currentValue >= 100f) {
+                    currentValue = 0f
                 }
             }
         }

@@ -3,10 +3,8 @@ package com.zs.various.activity
 import android.app.Activity
 import android.os.Bundle
 import android.view.View
-import butterknife.ButterKnife
 import com.zs.various.R
-import com.zs.various.util.bindView
-import com.zs.various.view.ItemView
+import kotlinx.android.synthetic.main.item_layout.*
 import org.jetbrains.anko.toast
 
 /**
@@ -20,12 +18,9 @@ import org.jetbrains.anko.toast
 
 class ItemActivity : Activity(), View.OnClickListener {
 
-    val itemView1: ItemView by bindView(R.id.item_1)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_layout)
-        ButterKnife.bind(this)
 
 //        if (Build.VERSION.SDK_INT >= 21) {
 //            val decorView = window.decorView
@@ -35,7 +30,7 @@ class ItemActivity : Activity(), View.OnClickListener {
 //            window.statusBarColor = Color.TRANSPARENT
 //
 //        }
-        itemView1!!.setOnClickListener(this)
+        item_1?.setOnClickListener(this)
 
     }
 
@@ -43,7 +38,7 @@ class ItemActivity : Activity(), View.OnClickListener {
 
         when(v.id){
             R.id.item_1 ->{
-                itemView1.content = "ssssss"
+                item_1.content = "ssssss"
                 toast("item1")
             }
 

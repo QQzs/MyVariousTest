@@ -8,11 +8,10 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
-import android.widget.LinearLayout
 import android.widget.ListView
-import butterknife.ButterKnife
 import com.zs.various.R
 import com.zs.various.adapter.MyAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : Activity() {
@@ -20,7 +19,6 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ButterKnife.bind(this)
         //        StatusBarCompat.setStatusBarColor(this, Color.parseColor("#3300ff00"), true);
 
         //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -39,9 +37,8 @@ class MainActivity : Activity() {
             window.statusBarColor = Color.parseColor("#D2691E")
         }
 
-        val layout = findViewById(R.id.layout_main) as LinearLayout
         val listView = ListView(this)
-        layout.addView(listView)
+        layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
         acts.add(ButtonActivity::class.java)

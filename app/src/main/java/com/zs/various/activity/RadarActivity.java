@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 
 import com.zs.various.R;
 
-import butterknife.ButterKnife;
 
 /**
  * Created by zs
@@ -23,7 +22,6 @@ public class RadarActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.radar_layout);
-        ButterKnife.bind(this);
 
     }
 }

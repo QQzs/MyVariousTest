@@ -30,9 +30,6 @@ import com.zs.various.util.Constant;
 
 import java.util.Random;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  * Created by zs
  * Date：2017年 05月 11日
@@ -44,11 +41,8 @@ import butterknife.ButterKnife;
 
 public class ColorfullBackActivity extends Activity {
 
-
-    @Bind(R.id.back_view)
-    FrameLayout backView;
-    @Bind(R.id.iv_show)
-    ImageView iv_show;
+    private FrameLayout backView;
+    private ImageView iv_show;
 
     private Paint mPaint;
     private Bitmap mBitmap;
@@ -81,7 +75,8 @@ public class ColorfullBackActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colorfull_back_layout);
-        ButterKnife.bind(this);
+        backView = findViewById(R.id.back_view);
+        iv_show = findViewById(R.id.iv_show);
         initView();
         mScreenWidth = getWindowManager().getDefaultDisplay().getWidth();
         mScreenHeight = getWindowManager().getDefaultDisplay().getHeight();

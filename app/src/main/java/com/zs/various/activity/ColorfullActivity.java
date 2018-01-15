@@ -13,9 +13,6 @@ import com.squareup.picasso.Picasso;
 import com.zs.various.R;
 import com.zs.various.util.Constant;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  * Created by zs
  * Date：2017年 05月 11日
@@ -27,15 +24,13 @@ import butterknife.ButterKnife;
 
 public class ColorfullActivity extends Activity {
 
-
-    @Bind(R.id.iv_show)
-    ImageView iv_show;
+    private ImageView iv_show;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colorfull_layout);
-        ButterKnife.bind(this);
+        iv_show = findViewById(R.id.iv_show);
 
         Picasso.with(this)
                 .load(Constant.IMAGE_URL)

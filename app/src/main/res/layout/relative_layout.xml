@@ -7,7 +7,8 @@
         android:id="@+id/rl_home_guid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#c000">
+        android:background="#c000"
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/iv_page_guid"
@@ -17,6 +18,30 @@
             android:visibility="visible"
             android:src="@mipmap/home_guid_02"/>
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_ad_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/status_bar"
+        android:layout_toRightOf="@+id/status_bar"
+        android:background="#c000"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/rl_ad"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/iv_ad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </LinearLayout>

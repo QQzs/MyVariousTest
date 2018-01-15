@@ -50,7 +50,7 @@ public class RoundProgressBar extends View {
 
     private float mHalfBorder;
     private int max;
-    private int value;
+    private float value;
     private int startPos = -90;
     private Paint.Style style;
     private boolean isFill;
@@ -91,7 +91,7 @@ public class RoundProgressBar extends View {
         this.max = max;
     }
 
-    public int getValue() {
+    public float getValue() {
         return value;
     }
 
@@ -101,10 +101,11 @@ public class RoundProgressBar extends View {
         } else {
             bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.zhibo_jilu_zanting);
         }
+        postInvalidate();
     }
 
 
-    public synchronized void setValue(int newValue) {
+    public synchronized void setValue(float newValue) {
         newValue = Math.max(0, newValue);
         newValue = Math.min(max, newValue);
 
@@ -125,7 +126,7 @@ public class RoundProgressBar extends View {
         mPaint.setAntiAlias(true);  //消除锯齿
         canvas.drawCircle(center, center, radius, mPaint); //画出圆环
 
-        int percent = (int) (value * 100f / max);
+        float percent = value * 100f / max;
         // 文本
         if (mMode == STROKE_TEXT) {
             mPaint.setStrokeWidth(0);
@@ -133,8 +134,8 @@ public class RoundProgressBar extends View {
             mPaint.setTextSize(mTextSize);
             mPaint.setTypeface(Typeface.DEFAULT_BOLD); //设置字体
 
-            float textHalfWidth = mPaint.measureText(percent + "%") * 0.5f;
-            canvas.drawText(percent + "%", center - textHalfWidth, center + textHalfSize,
+            float textHalfWidth = mPaint.measureText((int)percent + "%") * 0.5f;
+            canvas.drawText((int)percent + "%", center - textHalfWidth, center + textHalfSize,
                     mPaint);
         }
 
@@ -153,7 +154,7 @@ public class RoundProgressBar extends View {
             mPaint.setStrokeWidth(mBorderWidth);
             mPaint.setColor(mFrontColor);
             RectF oval = new RectF(center - radius, center - radius, center + radius, center + radius);
-            int angle = (int) (360 * percent / 100f);
+            float angle = 360 * percent / 100f;
             mPaint.setStyle(style);
             canvas.drawArc(oval, startPos, angle, isFill, mPaint);
         }
