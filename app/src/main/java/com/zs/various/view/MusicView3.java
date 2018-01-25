@@ -34,7 +34,7 @@ public class MusicView3 extends View {
     /**
      * 条形宽度
      */
-    private int lineWidth = 6;
+    private int lineWidth = 4;
     /**
      * 条形高度
      */
@@ -47,7 +47,7 @@ public class MusicView3 extends View {
     /**
      * 动画时长
      */
-    private long duration = 1500;
+    private long duration = 600;
     /**
      * 画布宽高
      */
@@ -56,6 +56,10 @@ public class MusicView3 extends View {
     private int minHeight;
 
     private int maxHeight;
+    /**
+     * 差值，有参差不齐的赶脚
+     */
+    private int disparityHeight = 15;
 
     private int color;
 
@@ -104,6 +108,7 @@ public class MusicView3 extends View {
         height = heightSize - getPaddingTop() - getPaddingBottom();
         minHeight = height / 2;
         maxHeight = height + getPaddingTop();
+        disparityHeight = maxHeight / 12;
 
         //初始化采样点和映射
         samplingX = new float[SAMPLING_SIZE];//因为包括起点和终点所以需要+1个位置
@@ -149,7 +154,7 @@ public class MusicView3 extends View {
         paint1.setStyle(Paint.Style.STROKE);
         // 抗锯齿
         paint1.setAntiAlias(true);
-        mHandler.sendEmptyMessage(MESSAGE_WHAT);
+//        mHandler.sendEmptyMessage(MESSAGE_WHAT);
     }
 
     public void startAnimator(boolean flag){
@@ -176,10 +181,28 @@ public class MusicView3 extends View {
             //计算采样点的位置
             x = samplingX[i] + getPaddingLeft();
             //计算采样点的位置
-            if (i%2 == 0){
-                y = lineHeight / 100f * minHeight + getPaddingTop();
-            }else{
-                y = (100 - lineHeight) / 100f * minHeight + getPaddingTop();
+//            if (i%2 == 0){
+//                y = lineHeight / 100f * minHeight + getPaddingTop();
+//            }else{
+//                y = (100 - lineHeight) / 100f * minHeight + getPaddingTop();
+//            }
+
+            switch (i){
+                case 0:
+                    y = lineHeight / 100f * minHeight + getPaddingTop() + disparityHeight;
+                    break;
+                case 1:
+                    y = (100 - lineHeight) / 100f * minHeight + getPaddingTop() - disparityHeight;
+                    break;
+                case 2:
+                    y = lineHeight / 100f * minHeight + getPaddingTop();
+                    break;
+                case 3:
+                    y = (100 - lineHeight) / 100f * minHeight + getPaddingTop() + disparityHeight;
+                    break;
+                default:
+                    y = lineHeight / 100f * minHeight + getPaddingTop();
+                    break;
             }
             canvas.drawLine(x, maxHeight, x, y, paint1);
         }
