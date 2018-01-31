@@ -56,7 +56,7 @@ public class HeartView extends View {
 
         mRandom = new Random();
         //源图像
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.heart);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_heart_img);
         //创建一个目标图像，由于不能对getResources方法提取到的Bitmap对象进行修改操作，必须复制出一个
 //        mCopyBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         mCopyBitmap = mBitmap.copy(Bitmap.Config.ARGB_8888,true);

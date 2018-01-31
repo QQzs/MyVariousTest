@@ -154,7 +154,7 @@ public class MusicView3 extends View {
         paint1.setStyle(Paint.Style.STROKE);
         // 抗锯齿
         paint1.setAntiAlias(true);
-//        mHandler.sendEmptyMessage(MESSAGE_WHAT);
+        mHandler.sendEmptyMessage(MESSAGE_WHAT);
     }
 
     public void startAnimator(boolean flag){

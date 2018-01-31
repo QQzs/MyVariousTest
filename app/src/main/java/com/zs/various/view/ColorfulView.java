@@ -35,24 +35,37 @@ import java.util.Random;
  * About:
  * —————————————————————————————————————
  */
-
 public class ColorfulView extends FrameLayout {
 
     private Paint mPaint;
+    /**
+     * 原始图
+     */
     private Bitmap mBitmap;
+    /**
+     * 复制图
+     */
     private Bitmap mCopyBitmap;
 
     private int mScreenWidth;
     private int mScreenHeight;
 
+    /**
+     * 起始位置  结束位置 中间点1 中间点2
+     */
     private Point mStartPoint;
     private Point mEndPoint;
     private Point mConOnePoint;
     private Point mConTwoPoint;
 
+    /**
+     * 产生随机数
+     */
     private Random mRandom;
+    /**
+     * 所有颜色
+     */
     protected int[] mColors = {Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.MAGENTA, Color.YELLOW};
-
 
     /**
      * handler
@@ -60,11 +73,19 @@ public class ColorfulView extends FrameLayout {
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what) {
-                }
+            if (msg.what == mWhat){
+                addMyView();
+                mHandler.sendEmptyMessageDelayed(mWhat,mDuration);
+            }
             super.handleMessage(msg);
         }
     };
+
+    /**
+     * 添加view间隔时间
+     */
+    private static int mDuration = 600;
+    private static int mWhat = 1000;
 
     public ColorfulView(Context context) {
         this(context,null);
@@ -84,8 +105,10 @@ public class ColorfulView extends FrameLayout {
      */
     private void initView(){
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.heart);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_snow_img);
         mRandom = new Random();
+
+        switchAnim(true);
     }
 
     @Override
@@ -93,26 +116,26 @@ public class ColorfulView extends FrameLayout {
         super.onSizeChanged(w, h, oldw, oldh);
         mScreenWidth = w;
         mScreenHeight = h;
-//        mStartPoint = new Point(mScreenWidth / 2, 0);
-//        mEndPoint = new Point(mScreenWidth / 2, mScreenHeight);
-//        mConOnePoint = new Point(mScreenWidth, mScreenHeight * 3 / 4);
-//        mConTwoPoint = new Point(0, mScreenHeight / 4);
-
-        mHandler.postDelayed(runnable,600);
 
     }
 
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            mStartPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),-100);
-            mEndPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),mScreenHeight + 50);
-            mConOnePoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
-            mConTwoPoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
-            addMyView();
-            mHandler.postDelayed(this, 600);
+    /**
+     * 开启关闭动画
+     * @param flag
+     */
+    public void switchAnim(boolean flag){
+
+        if (flag){
+            if (!mHandler.hasMessages(mWhat)){
+                mHandler.sendEmptyMessageDelayed(mWhat,mDuration);
+            }
+        }else{
+            if (mHandler.hasMessages(mWhat)){
+                mHandler.removeMessages(mWhat);
+            }
         }
-    };
+
+    }
 
     /**
      * 初始化动画
@@ -144,7 +167,6 @@ public class ColorfulView extends FrameLayout {
         });
 
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView,"alpha",1.0f,0);
-
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(6000);
         animatorSet.play(valueAnimator).with(objectAnimator);
@@ -152,7 +174,7 @@ public class ColorfulView extends FrameLayout {
 
     }
 
-    class MyTypeEvaluator implements TypeEvaluator<Point>{
+    class MyTypeEvaluator implements TypeEvaluator<Point> {
 
         private Point onePoint;
         private Point twoPoint;
@@ -173,27 +195,25 @@ public class ColorfulView extends FrameLayout {
      * 添加view
      */
     private void addMyView(){
+
+        mStartPoint = new Point((int)(mRandom.nextFloat() * (Math.random()>0.5?1:-1) * mScreenWidth),-200);
+        mEndPoint = new Point((int)(mRandom.nextFloat() *(Math.random()>0.5?1:-1) * mScreenWidth),mScreenHeight + 50);
+        mConOnePoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
+        mConTwoPoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
+
         mCopyBitmap = Bitmap.createBitmap(mBitmap.getWidth(),mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(mCopyBitmap);
         canvas.drawBitmap(mBitmap,0,0,mPaint);
         canvas.drawColor(mColors[mRandom.nextInt(mColors.length)], PorterDuff.Mode.SRC_IN);
         final ImageView imageView = new ImageView(getContext());
         imageView.setImageBitmap(mCopyBitmap);
-//        RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-//        params.addRule(CENTER_HORIZONTAL);
-        FrameLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        FrameLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         addView(imageView,params);
         initAnimation(imageView);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
-        mStartPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),-100);
-        mEndPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),mScreenHeight + 50);
-        mConOnePoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
-        mConTwoPoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
-
         addMyView();
         return true;
     }

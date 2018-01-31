@@ -93,8 +93,8 @@ public class ColorfullBackActivity extends Activity {
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            mStartPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),-100);
-            mEndPoint = new Point((int)(mRandom.nextFloat() * mScreenWidth),mScreenHeight + 50);
+            mStartPoint = new Point((int)(mRandom.nextFloat() * (Math.random()>0.5?1:-1) * mScreenWidth),-200);
+            mEndPoint = new Point((int)(mRandom.nextFloat() *(Math.random()>0.5?1:-1) * mScreenWidth),mScreenHeight + 50);
             mConOnePoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
             mConTwoPoint = new Point((int) (mScreenWidth * mRandom.nextFloat()), (int) (mScreenHeight * mRandom.nextFloat() ));
             addMyView();
@@ -107,7 +107,7 @@ public class ColorfullBackActivity extends Activity {
      */
     private void initView(){
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.heart);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_star_img);
         mRandom = new Random();
     }
 
