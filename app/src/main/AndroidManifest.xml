@@ -33,7 +33,8 @@
         <activity android:name=".activity.CustomViewActivity" />
         <activity
             android:name=".activity.VideoActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activity.DialogActivity" />
         <activity android:name=".activity.SpanStringActivity" />
         <activity android:name=".activity.AnimActivity" />

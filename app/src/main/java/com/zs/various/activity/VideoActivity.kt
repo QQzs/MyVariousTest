@@ -18,8 +18,13 @@ class VideoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_video)
 
         var url = "http://mvideo.spriteapp.cn/video/2017/1202/5a228eb680283_wpc.mp4"
-        videoplayer?.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "")
+        videoplayer?.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "搞笑视频")
         videoplayer?.thumbImageView?.setImageBitmap(getNetVideoBitmap(url))
+
+//        videoplayer?.fullscreenButton?.visibility = View.GONE
+//        videoplayer?.progressBar?.progressDrawable = ContextCompat.getDrawable(this,R.drawable.seekbar_bg)
+//        videoplayer?.bottomProgressBar?.progressDrawable = ContextCompat.getDrawable(this,R.drawable.seekbar_bg)
+
     }
 
     /**
