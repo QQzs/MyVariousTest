@@ -5,6 +5,7 @@ import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.SeekBar
 import com.zs.various.R
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
@@ -20,6 +21,21 @@ class VideoActivity : AppCompatActivity() {
         var url = "http://mvideo.spriteapp.cn/video/2017/1202/5a228eb680283_wpc.mp4"
         videoplayer?.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "搞笑视频")
         videoplayer?.thumbImageView?.setImageBitmap(getNetVideoBitmap(url))
+
+        videoplayer?.progressBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, p2: Boolean) {
+                Log.d("My_Log","progress = " + progress)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                Log.d("My_Log","start progress ==== " + seekBar?.progress)
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                Log.d("My_Log","pause progress ==== " + seekBar?.progress)
+            }
+
+        })
 
 //        videoplayer?.fullscreenButton?.visibility = View.GONE
 //        videoplayer?.progressBar?.progressDrawable = ContextCompat.getDrawable(this,R.drawable.seekbar_bg)
@@ -50,7 +66,6 @@ class VideoActivity : AppCompatActivity() {
             retriever.release()
         }
         var endTime = System.currentTimeMillis()
-        Log.d("My_Log","time == " + (endTime - startTime))
         return bitmap
     }
 
