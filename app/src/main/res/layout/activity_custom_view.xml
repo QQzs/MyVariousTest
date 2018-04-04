@@ -50,6 +50,16 @@
 
     </com.zs.various.view.BorderTextView>
 
+    <Switch
+        android:id="@+id/btn_switch"
+        android:layout_below="@+id/tv_border"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:track="@drawable/selector_switch_track"
+        android:thumb="@drawable/selector_switch_thumb"/>
+
     <com.zs.various.view.DashView
         android:id="@+id/view_line"
         android:layout_width="wrap_content"
