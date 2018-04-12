@@ -33,7 +33,7 @@ class DatePickerActivity : AppCompatActivity(){
                 .textConfirm("完成") //text of confirm button
                 .textCancel("取消") //text of cancel button
                 .btnTextSize(16) // button text size
-                .viewTextSize(15) // pick view text size
+                .viewTextSize(18) // pick view text size
                 .colorCancel(Color.parseColor("#222222")) //color of cancel button
                 .colorConfirm(Color.parseColor("#222222"))//color of confirm button
                 .minYear(1900) //min year in loop
