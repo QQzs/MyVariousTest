@@ -9,6 +9,7 @@ import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
 import com.zs.various.R
+import com.zs.various.span.TextLineSpan
 import com.zs.various.span.TextSizeSpan
 import kotlinx.android.synthetic.main.activity_span_string.*
 
@@ -25,6 +26,8 @@ class SpanStringActivity : AppCompatActivity() {
         setBackgroundColor()
         setLink()
         changeTextSize()
+        addTextLine()
+
     }
 
     /**
@@ -34,7 +37,7 @@ class SpanStringActivity : AppCompatActivity() {
         val spannableString = SpannableString(mContent)
         spannableString.setSpan(ForegroundColorSpan(Color.RED), 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-        tv_span_1.text = spannableString
+        tv_span_1?.text = spannableString
     }
 
     /**
@@ -44,7 +47,7 @@ class SpanStringActivity : AppCompatActivity() {
         val spannableString = SpannableString(mContent)
         spannableString.setSpan(BackgroundColorSpan(Color.RED), 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-        tv_span_2.text = spannableString
+        tv_span_2?.text = spannableString
     }
 
     /**
@@ -54,7 +57,7 @@ class SpanStringActivity : AppCompatActivity() {
         val spannableString = SpannableString(mContent)
         //设置下划线
         spannableString.setSpan(UnderlineSpan(), 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        tv_span_3.text = spannableString
+        tv_span_3?.text = spannableString
     }
 
     /**
@@ -63,6 +66,15 @@ class SpanStringActivity : AppCompatActivity() {
     private fun changeTextSize() {
         val spannableString = SpannableString(mContent)
         spannableString.setSpan(TextSizeSpan(this), 5, mContent!!.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-        tv_span_4.text = spannableString
+        tv_span_4?.text = spannableString
+    }
+
+    /**
+     * 中划线
+     */
+    private fun addTextLine() {
+        val spannableString = SpannableString(mContent)
+        spannableString.setSpan(TextLineSpan(this), 0,5, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+        tv_span_5?.text = spannableString
     }
 }

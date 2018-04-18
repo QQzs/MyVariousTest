@@ -44,4 +44,13 @@
         android:textColor="@color/font_black"
         android:layout_marginBottom="15dp"/>
 
+    <TextView
+        android:id="@+id/tv_span_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18dp"
+        android:textColor="@color/font_black"
+        android:layout_marginBottom="15dp"/>
+
 </LinearLayout>
