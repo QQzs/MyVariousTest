@@ -40,6 +40,10 @@
         <activity android:name=".activity.AnimActivity" />
         <activity android:name=".activity.ReflexActivity"></activity>
         <activity android:name=".activity.DatePickerActivity"></activity>
+        <activity android:name=".activity.FullVideoActivity"
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+        </activity>
     </application>
 
 </manifest>
