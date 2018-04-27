@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -20,7 +21,7 @@ import com.zs.various.R;
  */
 public class MusicView3 extends View {
 
-    private Paint paint1;
+    private Paint paint;
 
     /**
      * 采样点的数量，越高越精细，
@@ -34,7 +35,7 @@ public class MusicView3 extends View {
     /**
      * 条形宽度
      */
-    private int lineWidth = 4;
+    private float lineWidth = 3;
     /**
      * 条形高度
      */
@@ -146,14 +147,14 @@ public class MusicView3 extends View {
     }
 
     private void initView() {
-        paint1 = new Paint();
-        paint1.setColor(color);
+        paint = new Paint();
+        paint.setColor(color);
         // 设置宽度
-        paint1.setStrokeWidth(lineWidth);
+        paint.setStrokeWidth(lineWidth);
         // 设置样式
-        paint1.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.STROKE);
         // 抗锯齿
-        paint1.setAntiAlias(true);
+        paint.setAntiAlias(true);
         mHandler.sendEmptyMessage(MESSAGE_WHAT);
     }
 
@@ -189,22 +190,30 @@ public class MusicView3 extends View {
 
             switch (i){
                 case 0:
-                    y = lineHeight / 100f * minHeight + getPaddingTop() + disparityHeight;
+                    y = lineHeight / 100f * minHeight + disparityHeight;
                     break;
                 case 1:
-                    y = (100 - lineHeight) / 100f * minHeight + getPaddingTop() - disparityHeight;
+                    y = (100 - lineHeight) / 100f * minHeight - disparityHeight;
                     break;
                 case 2:
-                    y = lineHeight / 100f * minHeight + getPaddingTop();
+                    y = lineHeight / 100f * minHeight;
                     break;
                 case 3:
-                    y = (100 - lineHeight) / 100f * minHeight + getPaddingTop() + disparityHeight;
+                    y = (100 - lineHeight) / 100f * minHeight + disparityHeight;
                     break;
                 default:
-                    y = lineHeight / 100f * minHeight + getPaddingTop();
+                    y = lineHeight / 100f * minHeight;
                     break;
             }
-            canvas.drawLine(x, maxHeight, x, y, paint1);
+            // 画直线
+//            canvas.drawLine(x, maxHeight, x, y + getPaddingTop(), paint);
+            // 画圆角矩形
+            RectF rf = new RectF();
+            rf.left = x;
+            rf.top = y + getPaddingTop();
+            rf.right = x + lineWidth;
+            rf.bottom = maxHeight ;
+            canvas.drawRoundRect(rf, lineWidth / 2, lineWidth / 2, paint);// 圆角矩形
         }
 
     }
