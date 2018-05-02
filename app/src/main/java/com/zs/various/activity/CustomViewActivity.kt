@@ -1,14 +1,13 @@
 package com.zs.various.activity
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.flaviofaria.kenburnsview.KenBurnsView
 import com.flaviofaria.kenburnsview.Transition
 import com.zs.various.R
 import kotlinx.android.synthetic.main.activity_custom_view.*
-
-
 
 class CustomViewActivity : AppCompatActivity() {
 
@@ -27,6 +26,7 @@ class CustomViewActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
+        switch_view?.switchColor(ContextCompat.getColor(this,R.color.blue_show))
 
         var image = "http://www.bing.com/az/hprichbg/rb/Forest20171122_ZH-CN11904842708_1920x1080.jpg"
 //        MyGlideImageLoader.displayImage(image, image_custom)

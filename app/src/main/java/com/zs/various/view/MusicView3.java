@@ -35,7 +35,7 @@ public class MusicView3 extends View {
     /**
      * 条形宽度
      */
-    private float lineWidth = 3;
+    private float lineWidth = 5f;
     /**
      * 条形高度
      */
@@ -152,10 +152,10 @@ public class MusicView3 extends View {
         // 设置宽度
         paint.setStrokeWidth(lineWidth);
         // 设置样式
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
         // 抗锯齿
         paint.setAntiAlias(true);
-        mHandler.sendEmptyMessage(MESSAGE_WHAT);
+//        mHandler.sendEmptyMessage(MESSAGE_WHAT);
     }
 
     public void startAnimator(boolean flag){

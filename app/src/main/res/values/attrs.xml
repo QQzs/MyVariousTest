@@ -79,4 +79,9 @@
         <attr name="drawItemCount" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="SwitchColorView">
+        <attr name="switchColor" format="color"/>
+        <attr name="switchImage" format="reference"/>
+    </declare-styleable>
+
 </resources>
