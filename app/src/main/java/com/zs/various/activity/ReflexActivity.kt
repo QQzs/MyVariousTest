@@ -28,13 +28,15 @@ class ReflexActivity : FragmentActivity() {
         var hero2 = createHero("com.zs.various.bean.Hulk")
         hero2.attack()
 
+        fragment_layout.visibility = View.GONE
+
         fragmentmanager = this.supportFragmentManager
         transaction = fragmentmanager?.beginTransaction()
         transaction?.add(R.id.fragment_layout,fragment)
         transaction?.commit()
 
         btn_fragment.setOnClickListener {
-            if (flag){
+            if (!flag){
                 fragment_layout.visibility = View.VISIBLE
             }else{
                 fragment_layout.visibility = View.GONE
