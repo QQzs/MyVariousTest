@@ -96,12 +96,14 @@ public class MediaView extends View {
     }
 
     public void setAnim(boolean flag){
-        if (mHandler.hasMessages(1)){
-            if (!flag){
-               mHandler.removeMessages(1);
+        if (flag){
+            if (!mHandler.hasMessages(1)){
+                mHandler.sendEmptyMessage(1);
             }
         }else{
-            mHandler.sendEmptyMessage(1);
+            if (mHandler.hasMessages(1)){
+                mHandler.removeMessages(1);
+            }
         }
     }
 

@@ -117,17 +117,8 @@
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
 
-        <com.zs.various.view.MusicView3
-            android:id="@+id/widget_view4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="14dp"
-            android:background="@color/background"
-            app:color="@color/colorAccent"
-            />
-
         <com.zs.various.view.MusicView4
-            android:id="@+id/widget_view5"
+            android:id="@+id/widget_view4"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="14dp"

@@ -13,6 +13,7 @@ class AnimActivity : AppCompatActivity() {
     var flag1 = true
     var flag2 = true
     var flag3 = true
+    var flag4 = true
     var play = true
     var currentValue = 0f
 
@@ -36,6 +37,11 @@ class AnimActivity : AppCompatActivity() {
         widget_view3.setOnClickListener {
             flag3 = !flag3
             widget_view3.startAnimator(flag3)
+        }
+        widget_view4?.setOnClickListener{
+            widget_view4.startAnimator(flag4)
+            flag4 = !flag4
+
         }
     }
 

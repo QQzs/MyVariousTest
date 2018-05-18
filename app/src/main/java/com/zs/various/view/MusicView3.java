@@ -7,8 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -64,18 +62,7 @@ public class MusicView3 extends View {
 
     private int color;
 
-    private int MESSAGE_WHAT = 2222;
-
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == MESSAGE_WHAT) {
-                initAnimator();
-                mHandler.sendEmptyMessageDelayed(MESSAGE_WHAT,duration);
-            }
-            super.handleMessage(msg);
-        }
-    };
+    private ValueAnimator mAnimator;
 
     public MusicView3(Context context) {
         this(context,null);
@@ -156,18 +143,7 @@ public class MusicView3 extends View {
         // 抗锯齿
         paint.setAntiAlias(true);
 //        mHandler.sendEmptyMessage(MESSAGE_WHAT);
-    }
-
-    public void startAnimator(boolean flag){
-
-        if (mHandler.hasMessages(MESSAGE_WHAT)) {
-            if (!flag) {
-                mHandler.removeMessages(MESSAGE_WHAT);
-            }
-        } else {
-            mHandler.sendEmptyMessage(MESSAGE_WHAT);
-        }
-
+        initAnimator();
     }
 
     @Override
@@ -223,20 +199,42 @@ public class MusicView3 extends View {
      */
     private void initAnimator(){
 
-        ValueAnimator animator = ValueAnimator.ofFloat(0,max,0);
-        animator.setDuration(duration);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        mAnimator = ValueAnimator.ofFloat(0,max,0);
+        mAnimator.setDuration(duration);
+        mAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
+        mAnimator.setRepeatMode(ValueAnimator.REVERSE);// 循环方式
+        mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 lineHeight = (Float) animation.getAnimatedValue();
                 invalidate();
             }
         });
-        animator.start();
+    }
+
+    /**
+     * 开启关闭动画
+     * @param flag
+     */
+    public void startAnimator(boolean flag){
+        if (flag){
+            if (!mAnimator.isRunning()){
+                mAnimator.start();
+            }
+        }else{
+            if (mAnimator.isRunning()){
+                mAnimator.end();
+            }
+        }
     }
 
     @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+    protected void onDetachedFromWindow() {
+        if(mAnimator != null){
+            mAnimator.removeAllUpdateListeners();
+            mAnimator.cancel();
+            mAnimator = null;
+        }
+        super.onDetachedFromWindow();
     }
 }
