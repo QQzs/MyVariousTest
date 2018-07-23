@@ -41,6 +41,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
+        acts.add(ContactViewActivity::class.java)
         acts.add(ContactActivity::class.java)
         acts.add(FullVideoActivity::class.java)
         acts.add(DatePickerActivity::class.java)

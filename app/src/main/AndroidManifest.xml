@@ -34,6 +34,9 @@
         <activity android:name=".activity.ContactActivity"
             android:windowSoftInputMode="adjustPan">
         </activity>
+        <activity android:name=".activity.ContactViewActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
         <activity
             android:name=".activity.VideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

@@ -25,7 +25,7 @@ Time：15:04
 About:
 —————————————————————————————————————
  */
-class ContactActivity: AppCompatActivity() , SideBarView.onTouchChangeListener, SideBarView.onTouchListener{
+class ContactActivity: AppCompatActivity() , SideBarView.LetterTouchListener{
 
     private var mAdater: ContactSortAdapter? = null
     private var mDataList: MutableList<SortModel>? = null
@@ -40,8 +40,7 @@ class ContactActivity: AppCompatActivity() , SideBarView.onTouchChangeListener, 
     }
 
     fun initView(){
-        sidebar.setonTouchChangeListener(this)
-        sidebar.setonTouchListener(this)
+        sidebar.setLetterTouchListener(this)
         search.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int,
@@ -119,8 +118,7 @@ class ContactActivity: AppCompatActivity() , SideBarView.onTouchChangeListener, 
         mAdater?.initData(filterData)
     }
 
-    override fun setVisibility(visibility: Int) {
-        Log.d("My_Log", "visibility = $visibility")
+    override fun setLetterVisibility(visibility: Int) {
         tv_letter?.visibility = visibility
     }
 
