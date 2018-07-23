@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.zs.various.R
 import com.zs.various.view.datepicker.DatePickerPopWin
+import com.zs.various.view.datetimepicker.adapter.NumericWheelAdapter
 import kotlinx.android.synthetic.main.activity_date_picker.*
 
 /**
@@ -22,7 +23,7 @@ class DatePickerActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_date_picker)
-
+        initTime()
     }
 
     fun datePicker(view: View){
@@ -44,6 +45,19 @@ class DatePickerActivity : AppCompatActivity(){
 
         pickerPopWin.showPopWin(this)
 
+    }
+
+
+    fun initTime(){
+
+        hour?.viewAdapter = NumericWheelAdapter(this, 0, 23, "%02d")
+        minute?.viewAdapter = NumericWheelAdapter(this, 0, 59, "%02d")
+        second?.viewAdapter = NumericWheelAdapter(this, 0, 59, "%02d")
+
+        // 设置当前时间
+        hour?.currentItem = 8
+        minute?.currentItem = 30
+        second?.currentItem = 30
     }
 
 }
