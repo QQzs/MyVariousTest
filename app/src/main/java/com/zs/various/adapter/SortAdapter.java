@@ -47,7 +47,7 @@ public class SortAdapter extends BaseAdapter {
 			view = LayoutInflater.from(mContext).inflate(R.layout.adapter_sort,
 					null);
 			holder = new ViewHolder();
-			holder.letter_tv = (TextView) view.findViewById(R.id.letter);
+			holder.letter_tv = (TextView) view.findViewById(R.id.tv_letter);
 			holder.name_tv = (TextView) view.findViewById(R.id.name);
 			holder.line_view = view.findViewById(R.id.line_view);
 			view.setTag(holder);

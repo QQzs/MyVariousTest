@@ -119,14 +119,14 @@ class ContactActivity: AppCompatActivity() , SideBarView.LetterTouchListener{
     }
 
     override fun setLetterVisibility(visibility: Int) {
-        tv_letter?.visibility = visibility
+        tv_letter_show?.visibility = visibility
     }
 
     override fun setLetter(letter: String?) {
         if (mAdater == null || letter == null){
            return
         }
-        tv_letter?.text = letter
+        tv_letter_show?.text = letter
         var position = mAdater!!.getPositionForSection(letter!![0].toInt())
         if (position != -1) {
             (recycler_view?.layoutManager as LinearLayoutManager)?.scrollToPositionWithOffset(position,0) // 使当前位置处于最顶端

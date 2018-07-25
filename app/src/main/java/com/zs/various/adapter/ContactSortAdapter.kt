@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.zs.various.R
 import com.zs.various.bean.SortModel
 import kotlinx.android.synthetic.main.adapter_sort.view.*
+import kotlinx.android.synthetic.main.item_letter_layout.view.*
 
 /**
  *
@@ -44,11 +45,11 @@ class ContactSortAdapter : RecyclerView.Adapter<ContactSortAdapter.ContactHolder
             var sortModel = mData!![position]
             name?.text = sortModel.name
             if (!compareSection(position)){
-                letter?.visibility = View.VISIBLE
-                letter?.text = sortModel.letter
+                tv_letter?.visibility = View.VISIBLE
+                tv_letter?.text = sortModel.letter
                 line_view?.visibility = View.GONE
             }else{
-                letter?.visibility = View.GONE
+                tv_letter?.visibility = View.GONE
                 line_view?.visibility = View.VISIBLE
             }
         }

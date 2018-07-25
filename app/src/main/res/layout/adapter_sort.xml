@@ -2,18 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e5e5"
+    android:background="@color/background"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/letter"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical"
-        android:text="A"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+    <include layout="@layout/item_letter_layout"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

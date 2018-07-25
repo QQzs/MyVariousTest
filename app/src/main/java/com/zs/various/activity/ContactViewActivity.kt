@@ -3,6 +3,7 @@ package com.zs.various.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import com.zs.various.R
 import com.zs.various.adapter.ContactSortAdapter
@@ -36,7 +37,12 @@ class ContactViewActivity: AppCompatActivity(){
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int,
                                        count: Int) {
-                mAdater?.initData(contact_view?.updateData(s.toString()))
+                if (TextUtils.isEmpty(s.toString().trim())){
+                    contact_view?.initData(mDataList)
+                    mAdater?.initData(mDataList)
+                }else{
+                    mAdater?.initData(contact_view?.updateData(s.toString()))
+                }
 
             }
 
@@ -53,14 +59,18 @@ class ContactViewActivity: AppCompatActivity(){
     }
 
     fun initData(){
-        val arrayData = arrayOf("a", "bd", "ced", "de", "as", "许爱明", "秋雅", "夏洛", "马冬梅", "大春", "袁华", "我", "你", "啊", "哈哈", "嘿")
+        val arrayData = arrayOf("a", "bd", "ced", "de", "as", "东皇太一","宫本武藏","王昭君","李元芳","刘禅","后裔","许爱明","无名","流海"
+                ,"亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华", "我", "你", "啊", "哈哈", "嘿"
+                ,"无名","流海","亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华","无名","流海","亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华"
+                ,"无名","流海","亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华","无名","流海","亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华")
         var data = mutableListOf<String>()
         for (i in arrayData){
             data.add(i)
         }
-        mDataList = contact_view?.sortData(data)
         mAdater = ContactSortAdapter()
         RecyclerViewUtil.init(this,contact_view?.getRecycler(),mAdater)
+        mDataList = contact_view?.sortData(data)
+        contact_view?.initData(mDataList)
         mAdater?.initData(mDataList)
 
     }

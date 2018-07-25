@@ -83,7 +83,7 @@ public class SideBarView extends View {
                 mFlag = true;
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (index > 0) {
+                if (index > -1 && index < c.length) {
                     mTouchListener.setLetter(c[index]);
                     choose = index;
                     mFlag = true;
@@ -98,17 +98,9 @@ public class SideBarView extends View {
         return true;
     }
 
-//    public void setonTouchChangeListener(LetterChangeListener listener) {
-//        mChangeListener = listener;
-//    }
-
     public void setLetterTouchListener(LetterTouchListener listener) {
         mTouchListener = listener;
     }
-
-//    public interface LetterChangeListener {
-//        void setLetter(String letter);
-//    }
 
     public interface LetterTouchListener {
         void setLetterVisibility(int visibility);
