@@ -15,7 +15,7 @@ import android.widget.TextView
  * —————————————————————————————————————
  */
 
-class MyAdapter2(private val acts: List<Class<*>>?) : BaseAdapter() {
+class KotlinMyAdapter(private var acts: List<Class<*>>?) : BaseAdapter() {
 
     private var inflater: LayoutInflater? = null
 

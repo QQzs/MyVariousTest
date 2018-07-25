@@ -46,6 +46,7 @@
             android:hardwareAccelerated="true"
             android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
+        <activity android:name=".activity.CXRecyclerViewActivity"/>
     </application>
 
 </manifest>
