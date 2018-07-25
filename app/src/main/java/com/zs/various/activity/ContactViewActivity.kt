@@ -60,15 +60,15 @@ class ContactViewActivity: AppCompatActivity(){
 
     fun initData(){
         val arrayData = arrayOf("a", "bd", "ced", "de", "as", "东皇太一","宫本武藏","王昭君","李元芳","刘禅","后裔","许爱明","无名","流海"
-                ,"亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华", "我", "你", "啊", "哈哈", "嘿"
-                ,"无名","流海","亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华","无名","流海","亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华"
-                ,"无名","流海","亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华","无名","流海","亚瑟","貂蝉", "秋雅", "夏洛", "马冬梅", "大春", "袁华")
+                ,"亚瑟","吕布", "秋雅", "夏洛", "公孙离", "张良", "孙尚香", "我", "你", "啊", "哈哈", "嘿"
+                ,"无名","流海","亚瑟","吕布", "夏洛", "公孙离", "张良", "孙尚香","无名","流海","亚瑟","吕布", "刘备", "夏洛", "公孙离", "张良", "孙尚香"
+                ,"无名","流海","亚瑟","吕布", "秋雅", "夏洛", "公孙离", "张良", "孙尚香","无名","流海","亚瑟","吕布", "秋雅", "夏洛", "公孙离", "张良", "孙尚香")
         var data = mutableListOf<String>()
         for (i in arrayData){
             data.add(i)
         }
         mAdater = ContactSortAdapter()
-        RecyclerViewUtil.init(this,contact_view?.getRecycler(),mAdater)
+        RecyclerViewUtil.initNoDecoration(this,contact_view?.getRecycler(),mAdater)
         mDataList = contact_view?.sortData(data)
         contact_view?.initData(mDataList)
         mAdater?.initData(mDataList)
