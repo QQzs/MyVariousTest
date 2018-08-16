@@ -47,6 +47,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
         <activity android:name=".activity.CXRecyclerViewActivity"/>
+        <activity android:name=".activity.DrawerLayoutActivity"/>
     </application>
 
 </manifest>

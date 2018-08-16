@@ -41,6 +41,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
+        acts.add(DrawerLayoutActivity::class.java)
         acts.add(CXRecyclerViewActivity::class.java)
         acts.add(ContactViewActivity::class.java)
         acts.add(ContactActivity::class.java)
