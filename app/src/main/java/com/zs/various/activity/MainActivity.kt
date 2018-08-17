@@ -19,6 +19,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         //        StatusBarCompat.setStatusBarColor(this, Color.parseColor("#3300ff00"), true);
 
         //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -41,6 +42,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
+        acts.add(ConstraintLayoutActivity::class.java)
         acts.add(DrawerLayoutActivity::class.java)
         acts.add(CXRecyclerViewActivity::class.java)
         acts.add(ContactViewActivity::class.java)
