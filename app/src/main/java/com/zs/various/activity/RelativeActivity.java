@@ -3,6 +3,7 @@ package com.zs.various.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -46,6 +47,17 @@ public class RelativeActivity extends Activity implements View.OnClickListener{
         iv_ad.setOnClickListener(this);
 
         setImage();
+
+        try {
+            String id1 = "raw:/storage/emulated/0/Download/browser/问答社区接口文档1.0-19.doc";
+            String id2 = "raw:/storage/emulated/0/Download/browser/Webinar 测试 修改 V4.pptx";
+            long test1 = Long.valueOf(id1);
+            Log.d("My_Log","id1 = " + test1);
+            long test2 = Long.valueOf(id2);
+            Log.d("My_Log","id2 = " + test2);
+        } catch (NumberFormatException e) {
+            Log.d("My_Log","error = " + e.toString());
+        }
 
 
     }

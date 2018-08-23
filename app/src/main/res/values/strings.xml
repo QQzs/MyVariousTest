@@ -3,6 +3,10 @@
 
     <string name="transition_image">transition_pinchimageview</string>
 
+    <string name="soft_update_title">软件更新</string>
+    <string name="soft_updating">正在更新</string>
+    <string name="soft_update_cancel">取消</string>
+
     <string name="listview_header_hint_normal">下拉刷新</string>
     <string name="listview_header_hint_release">释放立即刷新</string>
     <string name="listview_header_last_time">上次更新时间：</string>
