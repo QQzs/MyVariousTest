@@ -42,6 +42,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
+        acts.add(OpenFileActivity::class.java)
         acts.add(UpdateActivity::class.java)
         acts.add(ConstraintLayoutActivity::class.java)
         acts.add(DrawerLayoutActivity::class.java)

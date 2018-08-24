@@ -72,7 +72,6 @@ public class ShowActivity extends Activity {
         view_1 = findViewById(R.id.view_1);
         view_2 = findViewById(R.id.view_2);
 
-
         // 计算隐藏布局的高度
         mHiddenViewMeasuredHeight = DensityUtil.dip2px(this,120);
         mViewHeight1 = DensityUtil.dip2px(this,150);
