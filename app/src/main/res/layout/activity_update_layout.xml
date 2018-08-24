@@ -12,9 +12,12 @@
         />
 
     <Button
-        android:layout_width="100dp"
+        android:id="@+id/tv_download"
+        android:layout_width="160dp"
         android:layout_height="50dp"
-        android:text="update"
+        android:text="download"
         android:onClick="updateVersion"/>
+
+
 
 </LinearLayout>

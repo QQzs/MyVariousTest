@@ -2,10 +2,10 @@ package com.zs.various.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import com.zs.various.R
 import com.zs.various.util.DownloadUtil
+import kotlinx.android.synthetic.main.activity_update_layout.*
 import org.jetbrains.anko.toast
 
 class UpdateActivity : AppCompatActivity() {
@@ -30,14 +30,16 @@ class UpdateActivity : AppCompatActivity() {
         mDownloadUtil?.download(url,mDownloadUtil?.apkDir,object : DownloadUtil.OnDownloadListener{
             override fun onDownloadSuccess() {
                 toast("下载成功")
+                tv_download?.text = "download"
             }
 
             override fun onDownloading(progress: Int) {
-                Log.d("My_Log", "progress = $progress")
+                tv_download?.text = "$progress%"
             }
 
             override fun onDownloadFailed() {
                 toast("下载失败")
+                tv_download?.text = "download"
             }
 
         })
