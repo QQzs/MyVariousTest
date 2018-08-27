@@ -36,10 +36,6 @@
         <activity android:name=".activity.VoiceAnimActivity" />
         <activity android:name=".activity.CustomViewActivity" />
         <activity android:name=".activity.UpdateActivity"/>
-        <activity
-            android:name=".activity.VideoActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"/>
         <activity android:name=".activity.ContactActivity"
             android:windowSoftInputMode="adjustPan">
         </activity>
@@ -59,6 +55,7 @@
         <activity android:name=".activity.DrawerLayoutActivity"/>
         <activity android:name=".activity.ConstraintLayoutActivity"/>
         <activity android:name=".activity.OpenFileActivity"/>
+        <activity android:name=".activity.CoordinatorLayoutActivity"/>
     </application>
 
 </manifest>
