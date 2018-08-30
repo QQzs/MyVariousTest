@@ -10,4 +10,7 @@
 
     <dimen name="round_progress_wh">60dp</dimen>
 
+    <dimen name="image_width">120dp</dimen>
+    <dimen name="image_final_width">32dp</dimen>
+
 </resources>
