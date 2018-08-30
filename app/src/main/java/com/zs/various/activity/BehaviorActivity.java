@@ -64,7 +64,7 @@ public class BehaviorActivity extends AppCompatActivity {
             }
         });
 
-        initParallaxValues(); // 自动滑动效果
+//        initParallaxValues(); // 自动滑动效果
 
         // 代码绑定 Behavior
 //        AvatarImageBehavior behavior = new AvatarImageBehavior(this);
