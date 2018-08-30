@@ -91,7 +91,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_tb_toolbar"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:layout_anchor="@id/main_fl_title"
@@ -123,7 +123,17 @@
         android:layout_height="120dp"
         android:layout_gravity="center"
         android:src="@drawable/smal_cricle"
-        app:layout_behavior=".view.AvatarImageBehavior"
+        app:layout_behavior=".view.behavior.AvatarImageBehavior"
         />
+
+    <TextView
+        android:layout_marginTop="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/person_name"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_behavior=".view.behavior.TextViewBehavior"/>
 
 </android.support.design.widget.CoordinatorLayout>
