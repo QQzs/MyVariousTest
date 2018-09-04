@@ -37,8 +37,8 @@ public class OpenFileActivity extends AppCompatActivity implements ReaderCallbac
     private DownloadObserver mDownloadObserver;
 
     //  private String mFileUrl = "https://src.ibaodian.com/static/medical/files/msh直付医疗网络列表.xls";
-//  private String mFileUrl = "http://imgs.ibaodian.com/ios/q//0/1491001608.docx";
-    private String mFileUrl = "https://files.ibaodian.com/pdf/o_1bb3bpis712lhaq3pkb15ek1ace9.pdf";
+  private String mFileUrl = "http://imgs.ibaodian.com/ios/q//0/1491001608.docx";
+//    private String mFileUrl = "https://files.ibaodian.com/pdf/o_1bb3bpis712lhaq3pkb15ek1ace9.pdf";
     private String mFileName;
 
     @Override
