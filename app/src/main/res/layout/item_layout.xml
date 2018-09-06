@@ -8,12 +8,9 @@
     android:background="#eee"
     >
 
-    <ScrollView
+    <com.zs.various.view.ReboundScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:fillViewport="true"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,6 +72,14 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </com.zs.various.view.ReboundScrollView>
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:scrollbars="none"-->
+        <!--android:fillViewport="true"-->
+        <!--&gt;-->
+    <!--</ScrollView>-->
 
 </LinearLayout>
