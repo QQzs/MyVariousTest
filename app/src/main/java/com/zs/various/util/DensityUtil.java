@@ -7,7 +7,18 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.util.DisplayMetrics;
 
+import com.zs.various.application.MyApp;
+
 public class DensityUtil {
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    public static int dip2px(float dpValue) {
+        final float scale = MyApp.getAppContext().getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale);
+    }
+
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */

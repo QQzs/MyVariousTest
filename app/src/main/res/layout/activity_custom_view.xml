@@ -37,16 +37,17 @@
     <com.zs.various.view.BorderTextView
         android:id="@+id/tv_border"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:text="dddd"
         android:textColor="@color/font_black"
         app:strokeWidth="1px"
         app:strokeColor="@color/font_light"
-        app:cornerRadius="5dp"
-        app:contentBackColor="@color/background"
+        app:cornerRadius="20dp"
+
         android:layout_margin="20dp"
         android:layout_below="@+id/rl_border"
-        android:gravity="center">
+        android:gravity="center"
+        >
 
     </com.zs.various.view.BorderTextView>
 
