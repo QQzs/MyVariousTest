@@ -17,8 +17,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.TextView;
 
@@ -47,6 +49,7 @@ public class BorderTextView extends TextView {
 
     private Paint mPaint = new Paint();     // 画边框所使用画笔对象
     private Paint mPaintBackground = new Paint();     // 画边框所使用画笔对象
+
     private RectF mRectF;                   // 画边框要使用的矩形
 
     public BorderTextView(Context context) {
@@ -76,28 +79,28 @@ public class BorderTextView extends TextView {
         mFollowTextColor = ta.getBoolean(R.styleable.BorderTextView_followTextColor, true);
         ta.recycle();
 
-        mRectF = new RectF();
+        // 如果使用时没有设置内边距, 设置默认边距
+//        int paddingLeft = getPaddingLeft() == 0 ? (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING, displayMetrics) : getPaddingLeft();
+//        int paddingRight = getPaddingRight() == 0 ? (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING,
+//                displayMetrics) : getPaddingRight();
+//        int paddingTop = getPaddingTop() == 0 ? (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING, displayMetrics) : getPaddingTop();
+//        int paddingBottom = getPaddingBottom() == 0 ? (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING,
+//                displayMetrics) : getPaddingBottom();
+//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+        initView();
+    }
 
+    private void initView(){
+
+        mRectF = new RectF();
         // 边框默认颜色与文字颜色一致
 //        if (strokeColor == Color.TRANSPARENT)
 //            strokeColor = getCurrentTextColor();
 
-        // 如果使用时没有设置内边距, 设置默认边距
-        int paddingLeft = getPaddingLeft() == 0 ? (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING, displayMetrics) : getPaddingLeft();
-        int paddingRight = getPaddingRight() == 0 ? (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING,
-                displayMetrics) : getPaddingRight();
-        int paddingTop = getPaddingTop() == 0 ? (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING, displayMetrics) : getPaddingTop();
-        int paddingBottom = getPaddingBottom() == 0 ? (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING,
-                displayMetrics) : getPaddingBottom();
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
-    }
-
-    @Override
-    protected void onDraw(@NonNull Canvas canvas) {
         mPaint.setStyle(Paint.Style.STROKE);     // 空心效果
         mPaint.setAntiAlias(true);               // 设置画笔为无锯齿
         mPaint.setStrokeWidth(strokeWidth);      // 线宽
@@ -110,14 +113,64 @@ public class BorderTextView extends TextView {
             strokeColor = getCurrentTextColor();
         mPaint.setColor(strokeColor);
 
+    }
+
+
+    @Override
+    protected void onDraw(@NonNull Canvas canvas) {
+
         // 画空心圆角矩形
         mRectF.left = mRectF.top = 0.5f * strokeWidth;
         mRectF.right = getMeasuredWidth() - strokeWidth;
         mRectF.bottom = getMeasuredHeight() - strokeWidth;
         canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaint);
 
+        // 画背景颜色
         mPaintBackground.setColor(contentColor);
         canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaintBackground);
+
         super.onDraw(canvas);
+    }
+
+    /**
+     * 修改边框宽度
+     * @param roederWidth  传值：px
+     */
+    public void setStrokeWidth(int roederWidth){
+        try {
+            strokeWidth = roederWidth;
+            invalidate();
+        }catch (Exception e){
+            Log.e("My_Error",e.toString());
+        }
+
+    }
+
+    /**
+     * 修改边框颜色
+     * @param colorResource  传值：R.color.XXXX
+     */
+    public void setStrokeColor(int colorResource){
+        try {
+            strokeColor = ContextCompat.getColor(getContext(), colorResource);
+            invalidate();
+        }catch (Exception e){
+            Log.e("My_Error",e.toString());
+        }
+
+    }
+
+    /**
+     * 修改背景颜色
+     * @param colorResource  传值：R.color.XXXX
+     */
+    public void setContentColorResource(int colorResource){
+        try {
+            contentColor = ContextCompat.getColor(getContext(), colorResource);
+            invalidate();
+        }catch (Exception e){
+            Log.e("My_Error",e.toString());
+        }
+
     }
 }

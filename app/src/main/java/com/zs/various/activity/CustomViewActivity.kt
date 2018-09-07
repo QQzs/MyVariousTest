@@ -54,5 +54,9 @@ class CustomViewActivity : AppCompatActivity() {
 
         }
 
+        tv_rip?.setOnClickListener {
+//            toast("rip")
+        }
+
     }
 }
