@@ -72,10 +72,10 @@ public class BorderTextView extends TextView {
         pressedColor = ta.getColor(R.styleable.BorderTextView_contentPressedColor, contentColor);
         mFollowTextColor = ta.getBoolean(R.styleable.BorderTextView_followTextColor, true);
         ta.recycle();
-        initView(context);
+        initView();
     }
 
-    private void initView(Context context){
+    private void initView(){
         // 初始化画笔
         mPaint.setStyle(Paint.Style.STROKE);     // 空心效果
         mPaint.setAntiAlias(true);               // 设置画笔为无锯齿
@@ -92,12 +92,12 @@ public class BorderTextView extends TextView {
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
 
+        // 设置画笔颜色
+        mPaint.setColor(strokeColor);
         // 画空心圆角矩形
         mRectF.left = mRectF.top = 0.5f * strokeWidth;
         mRectF.right = getMeasuredWidth() - 0.5f * strokeWidth;
         mRectF.bottom = getMeasuredHeight() - 0.5f * strokeWidth;
-        // 设置画笔颜色
-        mPaint.setColor(strokeColor);
         canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaint);
         super.onDraw(canvas);
     }
@@ -138,7 +138,7 @@ public class BorderTextView extends TextView {
     public void setContentColorResource(int colorResource){
         try {
             contentColor = ContextCompat.getColor(getContext(), colorResource);
-            invalidate();
+            setBackground(DrawableUtil.getPressedSelector(contentColor , contentColor , cornerRadius));
         }catch (Exception e){
             Log.e("My_Error",e.toString());
         }

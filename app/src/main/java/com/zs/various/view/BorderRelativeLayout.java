@@ -84,12 +84,12 @@ public class BorderRelativeLayout extends RelativeLayout {
 
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
+        // 设置画笔颜色
+        mPaint.setColor(strokeColor);
         // 画空心圆角矩形
         mRectF.left = mRectF.top = 0.5f * strokeWidth;
         mRectF.right = getMeasuredWidth() - 0.5f * strokeWidth;
         mRectF.bottom = getMeasuredHeight() - 0.5f * strokeWidth;
-        // 设置画笔颜色
-        mPaint.setColor(strokeColor);
         canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaint);
         super.onDraw(canvas);
     }
