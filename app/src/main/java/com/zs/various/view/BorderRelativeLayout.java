@@ -18,12 +18,12 @@ import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.widget.RelativeLayout;
 
 import com.zs.various.R;
+import com.zs.various.util.DensityUtil;
+import com.zs.various.util.DrawableUtil;
 
 
 /**
@@ -42,13 +42,11 @@ public class BorderRelativeLayout extends RelativeLayout {
     private int strokeWidth;    // 边框线宽
     private int strokeColor;    // 边框颜色
     private int contentColor;   // 背景颜色
+    private int pressedColor;   // 按下背景颜色
     private int cornerRadius;   // 圆角半径
-    private boolean mFollowTextColor; // 边框颜色是否跟随文字颜色
 
-    private Paint mPaint = new Paint();     // 画边框所使用画笔对象
-    private Paint mPaintBackground = new Paint();     // 画边框所使用画笔对象
-    private RectF mRectF;                   // 画边框要使用的矩形
-    private DisplayMetrics displayMetrics;
+    private Paint mPaint = new Paint();                 // 画边框所使用画笔对象
+    private RectF mRectF = new RectF();                 // 画边框要使用的矩形
 
     public BorderRelativeLayout(Context context) {
         this(context, null);
@@ -60,11 +58,8 @@ public class BorderRelativeLayout extends RelativeLayout {
 
     public BorderRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-
-        displayMetrics = context.getResources().getDisplayMetrics();
-        strokeWidth = dp2px(DEFAULT_STROKE_WIDTH);
-        cornerRadius = dp2px(DEFAULT_CORNER_RADIUS);
+        strokeWidth = DensityUtil.dip2px(DEFAULT_STROKE_WIDTH);
+        cornerRadius = DensityUtil.dip2px(DEFAULT_CORNER_RADIUS);
 
         // 读取属性值
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BorderTextView);
@@ -72,29 +67,45 @@ public class BorderRelativeLayout extends RelativeLayout {
         cornerRadius = ta.getDimensionPixelSize(R.styleable.BorderTextView_cornerRadius, cornerRadius);
         strokeColor = ta.getColor(R.styleable.BorderTextView_strokeColor, Color.TRANSPARENT);
         contentColor = ta.getColor(R.styleable.BorderTextView_contentBackColor, Color.TRANSPARENT);
-        mFollowTextColor = ta.getBoolean(R.styleable.BorderTextView_followTextColor, true);
+        pressedColor = ta.getColor(R.styleable.BorderTextView_contentPressedColor, contentColor);
         ta.recycle();
 
-        mRectF = new RectF();
-
-        // 边框默认颜色与文字颜色一致
-//        if (strokeColor == Color.TRANSPARENT)
-//            strokeColor = getCurrentTextColor();
-
         // 如果使用时没有设置内边距, 设置默认边距
-        int paddingLeft = getPaddingLeft() == 0 ? (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING, displayMetrics) : getPaddingLeft();
-        int paddingRight = getPaddingRight() == 0 ? (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING,
-                displayMetrics) : getPaddingRight();
-        int paddingTop = getPaddingTop() == 0 ? (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING, displayMetrics) : getPaddingTop();
-        int paddingBottom = getPaddingBottom() == 0 ? (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING,
-                displayMetrics) : getPaddingBottom();
-        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+//        int paddingLeft = getPaddingLeft() == 0 ? (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING, displayMetrics) : getPaddingLeft();
+//        int paddingRight = getPaddingRight() == 0 ? (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING,
+//                displayMetrics) : getPaddingRight();
+//        int paddingTop = getPaddingTop() == 0 ? (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING, displayMetrics) : getPaddingTop();
+//        int paddingBottom = getPaddingBottom() == 0 ? (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING,
+//                displayMetrics) : getPaddingBottom();
+//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+        initView();
         //设置调用onDraw方法
         setWillNotDraw(false);
+    }
+
+    public void initView(){
+
+        mPaint.setStyle(Paint.Style.STROKE);     // 空心效果
+        mPaint.setAntiAlias(true);               // 设置画笔为无锯齿
+        mPaint.setStrokeWidth(strokeWidth);      // 线宽
+        mPaint.setColor(strokeColor);
+        // 设置背景ce
+        setBackground(DrawableUtil.getPressedSelector(contentColor , pressedColor , cornerRadius));
+
+    }
+
+    @Override
+    protected void onDraw(@NonNull Canvas canvas) {
+        // 画空心圆角矩形
+        mRectF.left = mRectF.top = 0.5f * strokeWidth;
+        mRectF.right = getMeasuredWidth() - 0.5f * strokeWidth;
+        mRectF.bottom = getMeasuredHeight() - 0.5f * strokeWidth;
+        canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaint);
+        super.onDraw(canvas);
     }
 
     /**
@@ -139,39 +150,4 @@ public class BorderRelativeLayout extends RelativeLayout {
 
     }
 
-    @Override
-    protected void onDraw(@NonNull Canvas canvas) {
-
-        mPaint.setStyle(Paint.Style.STROKE);     // 空心效果
-        mPaint.setAntiAlias(true);               // 设置画笔为无锯齿
-        mPaint.setStrokeWidth(strokeWidth);      // 线宽
-
-        mPaintBackground.setStyle(Paint.Style.FILL);
-        mPaintBackground.setAntiAlias(true);               // 设置画笔为无锯齿
-
-        // 设置边框线的颜色, 如果声明为边框跟随文字颜色且当前边框颜色与文字颜色不同时重新设置边框颜色
-//        if (mFollowTextColor && strokeColor != getCurrentTextColor())
-//            strokeColor = getCurrentTextColor();
-        mPaint.setColor(strokeColor);
-
-        // 画空心圆角矩形
-        mRectF.left = mRectF.top = 0.5f * strokeWidth;
-        mRectF.right = getMeasuredWidth() - strokeWidth;
-        mRectF.bottom = getMeasuredHeight() - strokeWidth;
-        canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaint);
-
-        mPaintBackground.setColor(contentColor);
-        canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaintBackground);
-        super.onDraw(canvas);
-    }
-
-    /**
-     * 将DIP单位默认值转为PX
-     * @param data
-     * @return
-     */
-    private int dp2px(float data){
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                data, displayMetrics);
-    }
 }

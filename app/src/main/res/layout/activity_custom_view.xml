@@ -18,17 +18,17 @@
         android:id="@+id/rl_border"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:strokeWidth="1px"
-        app:strokeColor="@color/font_light"
-        app:cornerRadius="5dp"
-        app:contentBackColor="@color/background"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/color_1"
+        app:cornerRadius="20dp"
+        app:contentBackColor="@color/color_3"
         android:layout_margin="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="dddd"
-            android:textColor="@color/font_black"
+            android:textColor="@color/white"
             android:layout_centerInParent="true"
             />
 
@@ -40,10 +40,11 @@
         android:layout_height="60dp"
         android:text="dddd"
         android:textColor="@color/font_black"
-        app:strokeWidth="1px"
-        app:strokeColor="@color/font_light"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/color_4"
         app:cornerRadius="20dp"
-
+        app:contentBackColor="@color/color_2"
+        app:contentPressedColor="@color/color_0"
         android:layout_margin="20dp"
         android:layout_below="@+id/rl_border"
         android:gravity="center"
