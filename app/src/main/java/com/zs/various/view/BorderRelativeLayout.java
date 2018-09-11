@@ -36,8 +36,6 @@ public class BorderRelativeLayout extends RelativeLayout {
 
     public static final float DEFAULT_STROKE_WIDTH = 1.0f;    // 默认边框宽度, 1dp
     public static final float DEFAULT_CORNER_RADIUS = 2.0f;   // 默认圆角半径, 2dp
-    public static final float DEFAULT_LR_PADDING = 6f;      // 默认左右内边距
-    public static final float DEFAULT_TB_PADDING = 2f;      // 默认上下内边距
 
     private int strokeWidth;    // 边框线宽
     private int strokeColor;    // 边框颜色
@@ -69,31 +67,17 @@ public class BorderRelativeLayout extends RelativeLayout {
         contentColor = ta.getColor(R.styleable.BorderTextView_contentBackColor, Color.TRANSPARENT);
         pressedColor = ta.getColor(R.styleable.BorderTextView_contentPressedColor, contentColor);
         ta.recycle();
-
-        // 如果使用时没有设置内边距, 设置默认边距
-//        int paddingLeft = getPaddingLeft() == 0 ? (int) TypedValue.applyDimension(
-//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING, displayMetrics) : getPaddingLeft();
-//        int paddingRight = getPaddingRight() == 0 ? (int) TypedValue.applyDimension(
-//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_LR_PADDING,
-//                displayMetrics) : getPaddingRight();
-//        int paddingTop = getPaddingTop() == 0 ? (int) TypedValue.applyDimension(
-//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING, displayMetrics) : getPaddingTop();
-//        int paddingBottom = getPaddingBottom() == 0 ? (int) TypedValue.applyDimension(
-//                TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TB_PADDING,
-//                displayMetrics) : getPaddingBottom();
-//        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
         initView();
         //设置调用onDraw方法
         setWillNotDraw(false);
     }
 
     public void initView(){
-
+        // 初始化画笔
         mPaint.setStyle(Paint.Style.STROKE);     // 空心效果
         mPaint.setAntiAlias(true);               // 设置画笔为无锯齿
         mPaint.setStrokeWidth(strokeWidth);      // 线宽
-        mPaint.setColor(strokeColor);
-        // 设置背景ce
+        // 设置背景
         setBackground(DrawableUtil.getPressedSelector(contentColor , pressedColor , cornerRadius));
 
     }
@@ -104,6 +88,8 @@ public class BorderRelativeLayout extends RelativeLayout {
         mRectF.left = mRectF.top = 0.5f * strokeWidth;
         mRectF.right = getMeasuredWidth() - 0.5f * strokeWidth;
         mRectF.bottom = getMeasuredHeight() - 0.5f * strokeWidth;
+        // 设置画笔颜色
+        mPaint.setColor(strokeColor);
         canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaint);
         super.onDraw(canvas);
     }
@@ -143,7 +129,7 @@ public class BorderRelativeLayout extends RelativeLayout {
     public void setContentColorResource(int colorResource){
         try {
             contentColor = ContextCompat.getColor(getContext(), colorResource);
-            invalidate();
+            setBackground(DrawableUtil.getPressedSelector(contentColor , contentColor , cornerRadius));
         }catch (Exception e){
             Log.e("My_Error",e.toString());
         }

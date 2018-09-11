@@ -50,7 +50,7 @@ class CustomViewActivity : AppCompatActivity() {
         }
 
         tv_border.setOnClickListener{
-
+            rl_border?.setContentColorResource(R.color.colorPrimary)
         }
 
         tv_rip?.setOnClickListener {
