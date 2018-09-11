@@ -65,12 +65,12 @@ public class BorderTextView extends TextView {
 
         // 读取属性值
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BorderTextView);
-        strokeWidth = ta.getDimensionPixelSize(R.styleable.BorderTextView_strokeWidth, strokeWidth);
-        cornerRadius = ta.getDimensionPixelSize(R.styleable.BorderTextView_cornerRadius, cornerRadius);
-        strokeColor = ta.getColor(R.styleable.BorderTextView_strokeColor, Color.TRANSPARENT);
         contentColor = ta.getColor(R.styleable.BorderTextView_contentBackColor, Color.TRANSPARENT);
         pressedColor = ta.getColor(R.styleable.BorderTextView_contentPressedColor, contentColor);
-        mFollowTextColor = ta.getBoolean(R.styleable.BorderTextView_followTextColor, true);
+        strokeWidth = ta.getDimensionPixelSize(R.styleable.BorderTextView_strokeWidth, strokeWidth);
+        strokeColor = ta.getColor(R.styleable.BorderTextView_strokeColor, contentColor);
+        cornerRadius = ta.getDimensionPixelSize(R.styleable.BorderTextView_cornerRadius, cornerRadius);
+        mFollowTextColor = ta.getBoolean(R.styleable.BorderTextView_followTextColor, false);
         ta.recycle();
         initView();
     }

@@ -39,83 +39,77 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="dddd"
-        android:textColor="@color/font_black"
+        android:textColor="@color/white"
+        app:cornerRadius="20dp"
         app:strokeWidth="2dp"
         app:strokeColor="@color/color_4"
-        app:cornerRadius="20dp"
-        app:contentBackColor="@color/color_2"
+        app:contentBackColor="@color/color_5"
         app:contentPressedColor="@color/color_0"
         android:layout_margin="20dp"
         android:layout_below="@+id/rl_border"
         android:gravity="center"
         >
-
     </com.zs.various.view.BorderTextView>
-
-    <Switch
-        android:id="@+id/btn_switch"
-        android:layout_below="@+id/tv_border"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:track="@drawable/selector_switch_track"
-        android:thumb="@drawable/selector_switch_thumb"/>
 
     <com.zs.various.view.DashView
         android:id="@+id/view_line"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:dashWidth="2dp"
         app:dashLineWidth="4dp"
         app:dashLineHeight="1dp"
         app:dashLineColor="@color/colorAccent"
-        app:dashOrientation="1"
-        android:layout_centerHorizontal="true"/>
+        app:dashOrientation="0"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_border"/>
 
-    <!--<com.zs.various.view.AppendTextView-->
-        <!--android:id="@+id/tv_append"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/tv_border"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:background="@color/colorAccent"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:text="我的测试文字"-->
-        <!--android:gravity="center"/>-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/tv_border"
-        android:gravity="center_vertical"
-        android:layout_toRightOf="@+id/btn_switch"
-        >
-
-        <com.zs.various.view.SwitchColorView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            app:switchColor="@color/color_0"
-            app:switchImage="@mipmap/ic_collect_img"/>
-
-        <com.zs.various.view.SwitchColorView
-            android:id="@+id/switch_view"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            app:switchColor="@color/color_6"
-            app:switchImage="@mipmap/ic_collect_img"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@+id/btn_switch"
-        android:layout_marginTop="10dp">
+        android:layout_below="@+id/tv_border"
+        android:layout_marginTop="10dp"
+        android:visibility="visible">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Switch
+                android:id="@+id/btn_switch"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:track="@drawable/selector_switch_track"
+                android:thumb="@drawable/selector_switch_thumb"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@+id/btn_switch"
+                >
+
+                <com.zs.various.view.SwitchColorView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    app:switchColor="@color/color_0"
+                    app:switchImage="@mipmap/ic_collect_img"/>
+
+                <com.zs.various.view.SwitchColorView
+                    android:id="@+id/switch_view"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    app:switchColor="@color/color_6"
+                    app:switchImage="@mipmap/ic_collect_img"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <com.zs.various.view.RippleLinearLayout
             android:layout_width="200dp"

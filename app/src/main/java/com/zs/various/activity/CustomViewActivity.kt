@@ -45,12 +45,12 @@ class CustomViewActivity : AppCompatActivity() {
         })
 
         rl_border.setOnClickListener{
-            rl_border?.setStrokeColor(R.color.colorAccent)
-            view_line?.setLineColorResource(R.color.colorPrimary)
+//            rl_border?.setStrokeColor(R.color.colorAccent)
+//            view_line?.setLineColorResource(R.color.colorPrimary)
         }
 
         tv_border.setOnClickListener{
-            rl_border?.setContentColorResource(R.color.colorPrimary)
+//            rl_border?.setContentColorResource(R.color.colorPrimary)
         }
 
         tv_rip?.setOnClickListener {
