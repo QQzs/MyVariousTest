@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.meituan.android.walle.WalleChannelReader;
 import com.tencent.smtt.sdk.QbSdk;
-import com.zs.various.util.SharedPreferencesMgr;
+import com.zs.various.util.SpUtil;
 
 /**
  * Created by zs
@@ -26,7 +26,7 @@ public class MyApp extends Application {
         mContext = this;
         String channel = WalleChannelReader.getChannel(this.getApplicationContext());
         Log.d("My_Channel","channel = " + channel);
-        SharedPreferencesMgr.init(this,"my_data");
+        SpUtil.init(this,"my_data");
 
         //初始化X5内核
         QbSdk.initX5Environment(this, new QbSdk.PreInitCallback() {

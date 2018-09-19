@@ -23,7 +23,6 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.zs.various.R;
-import com.zs.various.util.DensityUtil;
 import com.zs.various.util.DrawableUtil;
 
 
@@ -35,9 +34,6 @@ import com.zs.various.util.DrawableUtil;
  */
 @SuppressLint("AppCompatCustomView")
 public class BorderTextView extends TextView {
-
-    public static final float DEFAULT_STROKE_WIDTH = 1.0f;    // 默认边框宽度, 1dp
-    public static final float DEFAULT_CORNER_RADIUS = 2.0f;   // 默认圆角半径, 2dp
 
     private int strokeWidth;    // 边框线宽
     private int strokeColor;    // 边框颜色
@@ -60,16 +56,14 @@ public class BorderTextView extends TextView {
 
     public BorderTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        strokeWidth = DensityUtil.dip2px(DEFAULT_STROKE_WIDTH);
-        cornerRadius = DensityUtil.dip2px(DEFAULT_CORNER_RADIUS);
 
         // 读取属性值
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BorderTextView);
         contentColor = ta.getColor(R.styleable.BorderTextView_contentBackColor, Color.TRANSPARENT);
         pressedColor = ta.getColor(R.styleable.BorderTextView_contentPressedColor, contentColor);
-        strokeWidth = ta.getDimensionPixelSize(R.styleable.BorderTextView_strokeWidth, strokeWidth);
+        strokeWidth = ta.getDimensionPixelSize(R.styleable.BorderTextView_strokeWidth, 0);
         strokeColor = ta.getColor(R.styleable.BorderTextView_strokeColor, contentColor);
-        cornerRadius = ta.getDimensionPixelSize(R.styleable.BorderTextView_cornerRadius, cornerRadius);
+        cornerRadius = ta.getDimensionPixelSize(R.styleable.BorderTextView_cornerRadius, 0);
         mFollowTextColor = ta.getBoolean(R.styleable.BorderTextView_followTextColor, false);
         ta.recycle();
         initView();
@@ -91,7 +85,7 @@ public class BorderTextView extends TextView {
 
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
-
+        super.onDraw(canvas);
         // 设置画笔颜色
         mPaint.setColor(strokeColor);
         // 画空心圆角矩形
@@ -99,7 +93,6 @@ public class BorderTextView extends TextView {
         mRectF.right = getMeasuredWidth() - 0.5f * strokeWidth;
         mRectF.bottom = getMeasuredHeight() - 0.5f * strokeWidth;
         canvas.drawRoundRect(mRectF, cornerRadius, cornerRadius, mPaint);
-        super.onDraw(canvas);
     }
 
 

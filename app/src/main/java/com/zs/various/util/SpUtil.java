@@ -14,26 +14,26 @@ import java.io.StreamCorruptedException;
 /**
  * SharedPreferences管理类
  */
-public class SharedPreferencesMgr {
-    private static SharedPreferencesMgr prefsUtil;
+public class SpUtil {
+    private static SpUtil prefsUtil;
     private static Context context;
     private static SharedPreferences sPrefs;
     private static SharedPreferences.Editor editor;
 
-    public synchronized static SharedPreferencesMgr getInstance() {
+    public synchronized static SpUtil getInstance() {
         return prefsUtil;
     }
 
-    private SharedPreferencesMgr(Context context, String fileName) {
-        SharedPreferencesMgr.context = context;
+    private SpUtil(Context context, String fileName) {
+        SpUtil.context = context;
         sPrefs = context.getSharedPreferences(
                 fileName, Context.MODE_PRIVATE);
         editor = sPrefs.edit();
     }
 
     public static void init(Context context, String fileName) {
-        prefsUtil = new SharedPreferencesMgr(context, fileName);
-        new SharedPreferencesMgr(context, fileName);
+        prefsUtil = new SpUtil(context, fileName);
+        new SpUtil(context, fileName);
     }
 
     public static String fileName;

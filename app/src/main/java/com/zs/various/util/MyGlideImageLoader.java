@@ -43,7 +43,7 @@ public class MyGlideImageLoader {
     }
 
     private static void loadNormal(String url, ImageView img) {  //placeholder占位符。错误占位符：.error()
-        if (!SharedPreferencesMgr.getBoolean("image",true)) {
+        if (!SpUtil.getBoolean("image",true)) {
             Log.i("toast", "无图模式");
         } else {
             Glide.with(mContext).load(url).placeholder(R.mipmap.timg).dontAnimate().//去掉动画
@@ -52,7 +52,7 @@ public class MyGlideImageLoader {
     }
 
     private static void loadCache(String url, ImageView img) {
-        if (!SharedPreferencesMgr.getBoolean("image",true)) {
+        if (!SpUtil.getBoolean("image",true)) {
             Log.i("toast", "无图模式");
         } else {
             Glide.with(mContext).using(new StreamModelLoader<String>() {
@@ -125,10 +125,10 @@ public class MyGlideImageLoader {
                     Bitmap> glideAnimation) {
                 int imageWidth = resource.getWidth();
                 int imageHeight = resource.getHeight();
-                int height = ScreenUtils.getScreenWidth() * imageHeight / imageWidth;
+                int height = ScreenUtil.getScreenWidth() * imageHeight / imageWidth;
                 ViewGroup.LayoutParams para = imageView.getLayoutParams();
                 para.height = height;
-                para.width = ScreenUtils.getScreenWidth();
+                para.width = ScreenUtil.getScreenWidth();
                 imageView.setImageBitmap(resource);
             }
         });

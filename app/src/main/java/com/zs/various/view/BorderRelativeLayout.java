@@ -22,7 +22,6 @@ import android.util.Log;
 import android.widget.RelativeLayout;
 
 import com.zs.various.R;
-import com.zs.various.util.DensityUtil;
 import com.zs.various.util.DrawableUtil;
 
 
@@ -33,9 +32,6 @@ import com.zs.various.util.DrawableUtil;
  * @date 2017/21/11
  */
 public class BorderRelativeLayout extends RelativeLayout {
-
-    public static final float DEFAULT_STROKE_WIDTH = 1.0f;    // 默认边框宽度, 1dp
-    public static final float DEFAULT_CORNER_RADIUS = 2.0f;   // 默认圆角半径, 2dp
 
     private int strokeWidth;    // 边框线宽
     private int strokeColor;    // 边框颜色
@@ -56,13 +52,11 @@ public class BorderRelativeLayout extends RelativeLayout {
 
     public BorderRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        strokeWidth = DensityUtil.dip2px(DEFAULT_STROKE_WIDTH);
-        cornerRadius = DensityUtil.dip2px(DEFAULT_CORNER_RADIUS);
 
         // 读取属性值
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BorderTextView);
-        strokeWidth = ta.getDimensionPixelSize(R.styleable.BorderTextView_strokeWidth, strokeWidth);
-        cornerRadius = ta.getDimensionPixelSize(R.styleable.BorderTextView_cornerRadius, cornerRadius);
+        strokeWidth = ta.getDimensionPixelSize(R.styleable.BorderTextView_strokeWidth, 0);
+        cornerRadius = ta.getDimensionPixelSize(R.styleable.BorderTextView_cornerRadius, 0);
         strokeColor = ta.getColor(R.styleable.BorderTextView_strokeColor, Color.TRANSPARENT);
         contentColor = ta.getColor(R.styleable.BorderTextView_contentBackColor, Color.TRANSPARENT);
         pressedColor = ta.getColor(R.styleable.BorderTextView_contentPressedColor, contentColor);
