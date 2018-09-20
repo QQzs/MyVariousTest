@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:strokeWidth="1dp"
-        app:strokeColor="@color/color_1"
+        app:strokeColor="@color/font_black"
         app:cornerRadius="20dp"
         app:contentBackColor="@color/color_3"
         android:layout_margin="20dp">

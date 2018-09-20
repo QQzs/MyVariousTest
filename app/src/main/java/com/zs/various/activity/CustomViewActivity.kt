@@ -8,6 +8,7 @@ import com.flaviofaria.kenburnsview.KenBurnsView
 import com.flaviofaria.kenburnsview.Transition
 import com.zs.various.R
 import kotlinx.android.synthetic.main.activity_custom_view.*
+import org.jetbrains.anko.toast
 
 class CustomViewActivity : AppCompatActivity() {
 
@@ -51,6 +52,7 @@ class CustomViewActivity : AppCompatActivity() {
 
         tv_border.setOnClickListener{
 //            rl_border?.setContentColorResource(R.color.colorPrimary)
+            toast("click")
         }
 
         tv_rip?.setOnClickListener {
