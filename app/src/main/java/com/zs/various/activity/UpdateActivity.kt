@@ -10,12 +10,17 @@ import org.jetbrains.anko.toast
 
 class UpdateActivity : AppCompatActivity() {
 
-    var mDownloadUtil: DownloadUtil? = null
+//    var mDownloadUtil: DownloadUtil? = null
+
+    private val mDownloadUtil: DownloadUtil by lazy {
+        DownloadUtil.getInstance(this)
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_layout)
-        mDownloadUtil = DownloadUtil.getInstance(this)
+//        mDownloadUtil = DownloadUtil.getInstance(this)
 
     }
 
