@@ -28,7 +28,7 @@ public class RxJavaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rxjava);
 
-        Observable.just("")
+        Observable.just("s")
                 .map(new Function<String, String>() {
                     @Override
                     public String apply(String s) throws Exception {
