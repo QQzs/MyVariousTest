@@ -42,6 +42,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
+        acts.add(SortActivity::class.java)
         acts.add(RxJavaActivity::class.java)
         acts.add(SyncActivity::class.java)
         acts.add(BehaviorActivity::class.java)
