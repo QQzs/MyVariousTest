@@ -60,6 +60,7 @@
         <activity android:name=".activity.SyncActivity"/>
         <activity android:name=".activity.RxJavaActivity"/>
         <activity android:name=".activity.SortActivity"/>
+        <activity android:name=".activity.LeakCanaryActivity"/>
     </application>
 
 </manifest>

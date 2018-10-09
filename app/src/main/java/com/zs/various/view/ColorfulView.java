@@ -217,4 +217,10 @@ public class ColorfulView extends FrameLayout {
         addMyView();
         return true;
     }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mHandler.removeCallbacksAndMessages(null);
+    }
 }
