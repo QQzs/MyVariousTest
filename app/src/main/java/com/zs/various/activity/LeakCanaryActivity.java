@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zs.various.R;
 
@@ -23,6 +25,8 @@ import java.lang.ref.WeakReference;
  */
 public class LeakCanaryActivity extends AppCompatActivity {
 
+    public TextView tvShow;
+
     private LeakHandler1 mHandler1;
 
     public static class LeakHandler1 extends Handler{
@@ -36,10 +40,12 @@ public class LeakCanaryActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Activity activity = weakReference.get();
+            LeakCanaryActivity activity = (LeakCanaryActivity) weakReference.get();
             if (activity != null){
                 if (msg.what == 1){
                     Log.d("My_Log","msg = " + msg.obj);
+                    activity.initView();
+                    Toast.makeText(activity,"",Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -58,6 +64,12 @@ public class LeakCanaryActivity extends AppCompatActivity {
         mHandler1 = new LeakHandler1(this);
 
         mHandler2 = new Handler();
+
+        tvShow = findViewById(R.id.tv_show);
+    }
+
+    public void initView(){
+
     }
 
     public void handler(View view){

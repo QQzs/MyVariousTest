@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -25,6 +26,8 @@ import android.widget.ImageView;
 import com.zs.various.R;
 import com.zs.various.util.BezierUtil;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -59,6 +62,12 @@ public class ColorfulView extends FrameLayout {
     private Point mConTwoPoint;
 
     /**
+     * 动画
+     */
+    private ArrayList<ValueAnimator> mValueAnimators = new ArrayList<>();
+    private ArrayList<AnimatorSet> mAnimatorSets = new ArrayList<>();
+
+    /**
      * 产生随机数
      */
     private Random mRandom;
@@ -70,16 +79,38 @@ public class ColorfulView extends FrameLayout {
     /**
      * handler
      **/
-    private Handler mHandler = new Handler() {
+//    private Handler mHandler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            if (msg.what == mWhat){
+//                addMyView();
+//                mHandler.sendEmptyMessageDelayed(mWhat,mDuration);
+//            }
+//            super.handleMessage(msg);
+//        }
+//    };
+
+    private LeakHandler mHandler;
+    public static class LeakHandler extends Handler{
+
+        private WeakReference<View> weakReference;
+
+        private LeakHandler(View view) {
+            this.weakReference = new WeakReference<>(view);
+        }
+
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what == mWhat){
-                addMyView();
-                mHandler.sendEmptyMessageDelayed(mWhat,mDuration);
-            }
             super.handleMessage(msg);
+            ColorfulView view = (ColorfulView) weakReference.get();
+            if (view != null && view.getContext() != null){
+                if (msg.what == mWhat){
+                    view.addMyView();
+                    view.mHandler.sendEmptyMessageDelayed(mWhat,mDuration);
+                }
+            }
         }
-    };
+    }
 
     /**
      * 添加view间隔时间
@@ -97,6 +128,7 @@ public class ColorfulView extends FrameLayout {
 
     public ColorfulView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mHandler = new LeakHandler(this);
         initView();
     }
 
@@ -143,12 +175,13 @@ public class ColorfulView extends FrameLayout {
      */
     private void initAnimation(final ImageView imageView){
 
-        Point conOnePoint = this.mConOnePoint;
-        Point conTwoPoint = this.mConTwoPoint;
         Point startPoint = this.mStartPoint;
         Point endPoint = this.mEndPoint;
+        Point conOnePoint = this.mConOnePoint;
+        Point conTwoPoint = this.mConTwoPoint;
 
         ValueAnimator valueAnimator = ValueAnimator.ofObject(new MyTypeEvaluator(conOnePoint,conTwoPoint),startPoint,endPoint);
+        mValueAnimators.add(valueAnimator);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -167,7 +200,9 @@ public class ColorfulView extends FrameLayout {
         });
 
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView,"alpha",1.0f,0);
+        mValueAnimators.add(objectAnimator);
         AnimatorSet animatorSet = new AnimatorSet();
+        mAnimatorSets.add(animatorSet);
         animatorSet.setDuration(6000);
         animatorSet.play(valueAnimator).with(objectAnimator);
         animatorSet.start();
@@ -220,7 +255,32 @@ public class ColorfulView extends FrameLayout {
 
     @Override
     protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
         mHandler.removeCallbacksAndMessages(null);
+        if (mBitmap != null){
+            mBitmap.recycle();
+            mBitmap = null;
+        }
+        if (mCopyBitmap != null){
+            mCopyBitmap.recycle();
+            mCopyBitmap = null;
+        }
+        for (int i = 0 ; i < mValueAnimators.size() ; i++){
+            if (mValueAnimators.get(i) != null){
+                mValueAnimators.get(i).removeAllUpdateListeners();
+                mValueAnimators.get(i).cancel();
+            }
+        }
+        mValueAnimators.clear();
+        mValueAnimators = null;
+
+        for (int i = 0 ; i < mAnimatorSets.size() ; i++){
+            if (mAnimatorSets.get(i) != null){
+                mAnimatorSets.get(i).removeAllListeners();
+                mAnimatorSets.get(i).cancel();
+            }
+        }
+        mAnimatorSets.clear();
+        mAnimatorSets = null;
+        super.onDetachedFromWindow();
     }
 }
