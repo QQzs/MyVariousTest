@@ -2,16 +2,21 @@ package com.zs.various.activity
 
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
+import android.text.style.ImageSpan
 import android.text.style.UnderlineSpan
 import com.zs.various.R
+import com.zs.various.span.CenterAlignImageSpan
 import com.zs.various.span.TextLineSpan
 import com.zs.various.span.TextSizeSpan
 import kotlinx.android.synthetic.main.activity_span_string.*
+
+
 
 class SpanStringActivity : AppCompatActivity() {
 
@@ -27,6 +32,7 @@ class SpanStringActivity : AppCompatActivity() {
         setLink()
         changeTextSize()
         addTextLine()
+        setSpanImage()
 
     }
 
@@ -77,4 +83,22 @@ class SpanStringActivity : AppCompatActivity() {
         spannableString.setSpan(TextLineSpan(this), 0,5, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         tv_span_5?.text = spannableString
     }
+
+    /**
+     * 图标
+     */
+    private fun setSpanImage(){
+
+        var drawable = ContextCompat.getDrawable(this,R.mipmap.team_icon)
+        drawable?.setBounds(10, 0, drawable.minimumWidth, drawable.minimumHeight)
+        var imageSpan = CenterAlignImageSpan(drawable)
+        var str1 = "添加这个是什么的的的短款什么的的的短款的款式多的肯定是多的肯定多的肯定的说到底的时刻山东省开始"
+        var str2 = "     "
+        var str = str1 + str2
+        val spannableString = SpannableString(str)
+        spannableString.setSpan(imageSpan,str.length - str2.length , str.length , ImageSpan.ALIGN_BASELINE)
+        tv_span_6?.text = spannableString
+
+    }
+
 }
