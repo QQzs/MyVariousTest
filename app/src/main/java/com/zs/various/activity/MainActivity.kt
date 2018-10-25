@@ -42,6 +42,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
+        acts.add(DispatchEventActivity::class.java)
         acts.add(TabLayoutActivity::class.java)
         acts.add(LeakCanaryActivity::class.java)
         acts.add(SortActivity::class.java)
