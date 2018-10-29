@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 
 import com.zs.various.R
+import com.zs.various.bean.task.TaskB
+import com.zs.various.bean.task.Test
 import kotlinx.android.synthetic.main.activity_dispatch_layout.*
 
 /**
@@ -33,5 +35,14 @@ class DispatchEventActivity : AppCompatActivity() {
 
         }
 
+
+        var test = Test()
+
+        Log.d("My_Log","a = " + test.taskA.a)
+
+        test.taskC.print(test.taskA)
+
+        test.taskC.print(TaskB())
     }
+
 }

@@ -12,7 +12,7 @@ public class InstanceUtil {
 
     public static InstanceUtil mUtil = null;
 
-    private InstanceUtil(){
+    public InstanceUtil() {
 
     }
 
