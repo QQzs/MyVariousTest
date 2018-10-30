@@ -1,12 +1,12 @@
 package com.zs.various.activity
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-
 import com.zs.various.R
-import com.zs.various.bean.task.TaskB
-import com.zs.various.bean.task.Test
+import com.zs.various.util.LogUtil
 import kotlinx.android.synthetic.main.activity_dispatch_layout.*
 
 /**
@@ -18,6 +18,36 @@ import kotlinx.android.synthetic.main.activity_dispatch_layout.*
  * —————————————————————————————————————
  */
 class DispatchEventActivity : AppCompatActivity() {
+
+    val mHandler1 = object : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            when(msg.what){
+                1 ->{
+                    LogUtil.logShow("mHandler1_1")
+                }
+                2 ->{
+                    LogUtil.logShow("mHandler1_2")
+                }
+            }
+
+        }
+    }
+
+    val mHandler2 = object : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            when(msg.what){
+                1 ->{
+                    LogUtil.logShow("mHandler2_1")
+                }
+                2 ->{
+                    LogUtil.logShow("mHandler2_2")
+                }
+            }
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +65,20 @@ class DispatchEventActivity : AppCompatActivity() {
 
         }
 
+//        var test = Test()
+//        Log.d("My_Log","a = " + test.taskA.a)
+//        test.taskC.print(test.taskA)
+//        test.taskC.print(TaskB())
 
-        var test = Test()
 
-        Log.d("My_Log","a = " + test.taskA.a)
+        var msg1 = mHandler1.obtainMessage()
+        msg1.what = 1
+        mHandler1.sendMessage(msg1)
 
-        test.taskC.print(test.taskA)
+        var msg2 = mHandler2.obtainMessage()
+        msg2.what = 2
+        mHandler2.sendMessage(msg2)
 
-        test.taskC.print(TaskB())
     }
 
 }
