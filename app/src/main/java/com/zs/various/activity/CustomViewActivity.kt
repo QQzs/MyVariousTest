@@ -7,6 +7,7 @@ import android.util.Log
 import com.flaviofaria.kenburnsview.KenBurnsView
 import com.flaviofaria.kenburnsview.Transition
 import com.zs.various.R
+import com.zs.various.util.MoreUtil
 import kotlinx.android.synthetic.main.activity_custom_view.*
 import org.jetbrains.anko.toast
 
@@ -58,6 +59,8 @@ class CustomViewActivity : AppCompatActivity() {
         tv_rip?.setOnClickListener {
 //            toast("rip")
         }
+
+        MoreUtil.autotextSize(12,18,tv_auto)
 
     }
 }

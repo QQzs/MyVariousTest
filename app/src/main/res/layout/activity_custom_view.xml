@@ -125,6 +125,13 @@
             android:layout_marginTop="10dp"
             android:background="@color/color_0"/>
 
+        <TextView
+            android:id="@+id/tv_auto"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="今天是个好日子时大师大多实打实范德萨的intajiniissanv"
+            android:layout_marginTop="20dp"/>
+
     </LinearLayout>
 
 
