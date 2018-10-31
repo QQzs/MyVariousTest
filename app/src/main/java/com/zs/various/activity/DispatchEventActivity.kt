@@ -71,11 +71,11 @@ class DispatchEventActivity : AppCompatActivity() {
 //        test.taskC.print(TaskB())
 
 
-        var msg1 = mHandler1.obtainMessage()
+        var msg1 = Message.obtain()
         msg1.what = 1
         mHandler1.sendMessage(msg1)
 
-        var msg2 = mHandler2.obtainMessage()
+        var msg2 = Message.obtain()
         msg2.what = 2
         mHandler2.sendMessage(msg2)
 

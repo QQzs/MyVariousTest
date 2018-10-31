@@ -63,6 +63,7 @@
         <activity android:name=".activity.LeakCanaryActivity"/>
         <activity android:name=".activity.TabLayoutActivity"/>
         <activity android:name=".activity.DispatchEventActivity"/>
+        <activity android:name=".activity.ThreadPoolActivity"/>
     </application>
 
 </manifest>
