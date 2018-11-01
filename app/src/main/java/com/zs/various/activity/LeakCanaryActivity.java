@@ -83,7 +83,21 @@ public class LeakCanaryActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 // a. 定义要发送的消息
-                Message msg = Message.obtain();
+
+                /**
+                 *
+                 * 1: 直接初始化一个Message对象
+                 * Message msg = new Message();
+                 *
+                 * 2: 从整个Message池中返回一个新的Message实例，通过obtainMessage能避免重复Message创建对象
+                 * Message msg = Message.obtain();
+                 *
+                 * 3: 和第二种一样，都可以避免重复创建Message对象
+                 * Message msg = mHandler1.obtainMessage();
+                 *
+                 * 建议使用 2 ，3 种
+                 */
+                Message msg = mHandler1.obtainMessage();
                 msg.what = 1;// 消息标识
                 msg.obj = "AA";// 消息存放
                 // b. 传入主线程的Handler & 向其MessageQueue发送消息
