@@ -56,7 +56,8 @@
         <activity android:name=".activity.ConstraintLayoutActivity"/>
         <activity android:name=".activity.OpenFileActivity"/>
         <activity android:name=".activity.CoordinatorLayoutActivity"/>
-        <activity android:name=".activity.BehaviorActivity"/>
+        <activity android:name=".activity.BehaviorActivity"
+            android:parentActivityName=".activity.MainActivity"/>
         <activity android:name=".activity.SyncActivity"/>
         <activity android:name=".activity.RxJavaActivity"/>
         <activity android:name=".activity.SortActivity"/>
@@ -64,6 +65,16 @@
         <activity android:name=".activity.TabLayoutActivity"/>
         <activity android:name=".activity.DispatchEventActivity"/>
         <activity android:name=".activity.ThreadPoolActivity"/>
+        <activity android:name=".activity.NotificationActivity"/>
+
+        <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.zs.various.close"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
