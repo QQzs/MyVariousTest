@@ -16,7 +16,7 @@ About:
  */
 class ActivityAdapter(var mData: MutableList<Class<*>>): RecyclerView.Adapter<ActivityAdapter.ActivityHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ActivityHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActivityHolder {
         var view = View.inflate(parent?.context,android.R.layout.simple_list_item_1,null)
         return ActivityHolder(view)
     }
@@ -25,7 +25,7 @@ class ActivityAdapter(var mData: MutableList<Class<*>>): RecyclerView.Adapter<Ac
         return mData.size
     }
 
-    override fun onBindViewHolder(holder: ActivityHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ActivityHolder, position: Int) {
         holder?.bindData(position)
     }
 

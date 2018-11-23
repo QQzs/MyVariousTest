@@ -1,0 +1,8 @@
+<resources>
+
+    <!--<style name="MDTheme" parent="Theme.Design.Light.NoActionBar">-->
+        <!--&lt;!&ndash; Android 6.0以上 状态栏字色和图标为浅黑色&ndash;&gt;-->
+        <!--<item name="android:windowLightStatusBar">true</item>-->
+    <!--</style>-->
+
+</resources>

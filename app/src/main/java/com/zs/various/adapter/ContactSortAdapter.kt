@@ -21,7 +21,7 @@ class ContactSortAdapter : RecyclerView.Adapter<ContactSortAdapter.ContactHolder
 
     var mData: MutableList<SortModel>? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ContactHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactHolder {
         var view = View.inflate(parent?.context, R.layout.adapter_sort,null)
         return ContactHolder(view)
     }
@@ -35,7 +35,7 @@ class ContactSortAdapter : RecyclerView.Adapter<ContactSortAdapter.ContactHolder
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ContactHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ContactHolder, position: Int) {
         holder?.bindData(position)
     }
 
