@@ -28,9 +28,7 @@
         <activity android:name=".activity.RadarActivity" />
         <activity android:name=".activity.ColorfullActivity" />
         <activity android:name=".activity.ColorfullBackActivity" />
-        <activity
-            android:name=".activity.ItemActivity"
-            android:theme="@style/TranslucentTheme"/>
+        <activity android:name=".activity.ItemActivity"/>
         <activity android:name=".activity.WebViewActivity" />
         <activity android:name=".activity.ShowActivity" />
         <activity android:name=".activity.CountDownActivity" />

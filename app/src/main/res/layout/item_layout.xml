@@ -9,20 +9,22 @@
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        >
 
         <LinearLayout
+            android:id="@+id/ll_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            >
+            android:background="@color/colorPrimary">
 
             <ImageView
                 android:id="@+id/iv_head_img"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/head_bg_img"
-                android:scaleType="centerCrop"/>
+                android:layout_height="240dp"
+                android:src="@drawable/bg_girl"
+                android:scaleType="centerCrop"
+                />
 
             <com.zs.various.view.ItemView
                 android:id="@+id/item_1"
@@ -33,9 +35,7 @@
                 app:content="内容1"
                 app:contentColor="@color/colorAccent"
                 app:contentSize="20dp"
-                android:layout_marginTop="10dp"
-
-                >
+                android:layout_marginTop="10dp">
 
             </com.zs.various.view.ItemView>
 
@@ -47,8 +47,7 @@
                 app:content=""
                 app:contentColor="@color/colorPrimary"
                 app:contentSize="20dp"
-                android:layout_marginTop="10dp"
-                >
+                android:layout_marginTop="10dp">
 
             </com.zs.various.view.ItemView>
 
@@ -59,8 +58,7 @@
                 app:titleSize="12dp"
                 app:content="内容000"
                 app:showImage="false"
-                android:layout_marginTop="10dp"
-                >
+                android:layout_marginTop="10dp">
 
             </com.zs.various.view.ItemView>
 
@@ -72,21 +70,12 @@
                 app:titleSize="10dp"
                 app:hint="提示"
                 app:hintContentColor="#000"
-                android:layout_marginTop="10dp"
-                >
+                android:layout_marginTop="10dp">
 
             </com.zs.various.view.ItemView>
 
         </LinearLayout>
 
     </com.zs.various.view.ReboundScrollView>
-
-    <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scrollbars="none"-->
-        <!--android:fillViewport="true"-->
-        <!--&gt;-->
-    <!--</ScrollView>-->
 
 </RelativeLayout>

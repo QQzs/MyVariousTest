@@ -2,6 +2,7 @@ package com.zs.various.fragment
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import com.zs.various.R
 
@@ -15,6 +16,9 @@ import com.zs.various.R
  */
 class PageFragmentTest : LazyFragment() {
 
+    var num: Int? = null
+    var tv_pager_num: TextView? = null
+    var iv_head_img: ImageView? = null
 
     companion object {
 
@@ -30,19 +34,19 @@ class PageFragmentTest : LazyFragment() {
 
     override fun initView() {
 
-        var num = arguments?.getInt("num")
+        num = arguments?.getInt("num")
         Log.d("My_Log","initView  $num")
 
         /**
          * 必须要重新获取view 直接用Kotlin  anko库找控件不可以
          */
-        var tv_pager_num = getView<TextView>(R.id.tv_pager_num)
-        tv_pager_num.text = "page = $num"
+        tv_pager_num = getView<TextView>(R.id.tv_pager_num)
+        iv_head_img = getView<ImageView>(R.id.iv_head_img)
+        tv_pager_num?.text = "page = $num"
 
     }
 
     override fun setContentView(): Int {
-
         return R.layout.fragment_pager_item
     }
 
