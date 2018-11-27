@@ -2,7 +2,6 @@ package com.zs.various.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.jaeger.library.StatusBarUtil
@@ -22,10 +21,10 @@ About:
 class TabHomeActivity : AppCompatActivity() , View.OnClickListener{
 
     var mCurrentFragment: Fragment? = null
-    var fragment0: PageFragment? = null
-    var fragment1: PageFragment? = null
-    var fragment2: PageFragment? = null
-    var fragment3: PageFragment? = null
+    var fragment0: Fragment? = null
+    var fragment1: Fragment? = null
+    var fragment2: Fragment? = null
+    var fragment3: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +36,6 @@ class TabHomeActivity : AppCompatActivity() , View.OnClickListener{
         fragment3 = PageFragment.getInstance(3)
 
         changeFragment(fragment0)
-        StatusBarUtil.setColorNoTranslucent(this , ContextCompat.getColor(this,R.color.colorPrimary))
-//        StatusBarUtil.setTranslucentForImageViewInFragment(this,0 , null)
 
         item_tab_0?.setOnClickListener(this)
         item_tab_1?.setOnClickListener(this)
@@ -51,21 +48,15 @@ class TabHomeActivity : AppCompatActivity() , View.OnClickListener{
         when(v?.id){
             R.id.item_tab_0 ->{
                 changeFragment(fragment0)
-                StatusBarUtil.setColorNoTranslucent(this , ContextCompat.getColor(this,R.color.colorPrimary))
-//                StatusBarUtil.setTranslucentForImageViewInFragment(this,0 , null)
             }
             R.id.item_tab_1 ->{
                 changeFragment(fragment1)
-                StatusBarUtil.setColorNoTranslucent(this , ContextCompat.getColor(this,R.color.colorPrimary))
             }
             R.id.item_tab_2 ->{
                 changeFragment(fragment2)
-                StatusBarUtil.setColorNoTranslucent(this , ContextCompat.getColor(this,R.color.colorPrimary))
             }
             R.id.item_tab_3 ->{
                 changeFragment(fragment3)
-                StatusBarUtil.setTranslucentForImageViewInFragment(this,0 , null)
-//                StatusBarUtil.setColorNoTranslucent(this , ContextCompat.getColor(this,R.color.colorPrimary))
             }
 
         }
@@ -89,6 +80,11 @@ class TabHomeActivity : AppCompatActivity() , View.OnClickListener{
                 transaction.show(nextFragment).commitAllowingStateLoss()
             } else {
                 transaction.add(R.id.fl_fragment_container, nextFragment).commitAllowingStateLoss()
+            }
+            if(mCurrentFragment == fragment0){
+                StatusBarUtil.setTranslucentForImageViewInFragment(this,0 , null)
+            }else{
+//                StatusBarUtil.setColorNoTranslucent(this , ContextCompat.getColor(this,R.color.colorPrimary))
             }
         }
     }
