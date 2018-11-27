@@ -46,6 +46,7 @@ class MainActivity : Activity() {
         acts.add(ThreadPoolActivity::class.java)
         acts.add(DispatchEventActivity::class.java)
         acts.add(TabLayoutActivity::class.java)
+        acts.add(TabHomeActivity::class.java)
         acts.add(LeakCanaryActivity::class.java)
         acts.add(SortActivity::class.java)
         acts.add(RxJavaActivity::class.java)

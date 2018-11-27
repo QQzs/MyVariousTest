@@ -66,6 +66,8 @@
         <activity android:name=".activity.DispatchEventActivity"/>
         <activity android:name=".activity.ThreadPoolActivity"/>
         <activity android:name=".activity.NotificationActivity"/>
+        <activity android:name=".activity.TabHomeActivity"/>
+
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
             android:enabled="true"

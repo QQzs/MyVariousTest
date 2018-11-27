@@ -19,6 +19,8 @@ import kotlinx.android.synthetic.main.fragment_pager_item.*
  */
 class PageFragment : Fragment() {
 
+    var containerView: View? = null
+
     companion object {
 
         fun getInstance(num: Int): PageFragment{
@@ -34,7 +36,8 @@ class PageFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var num = arguments?.getInt("num")
         Log.d("My_Log","onCreateView  $num")
-        return inflater.inflate(R.layout.fragment_pager_item, null, false)
+        containerView = inflater.inflate(R.layout.fragment_pager_item, null, false)
+        return containerView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,11 +45,15 @@ class PageFragment : Fragment() {
         var num = arguments?.getInt("num")
         Log.d("My_Log","onViewCreated  -------  $num")
         tv_pager_num?.text = "page = $num"
-
+        if (num == 3){
+            iv_head_img?.visibility = View.VISIBLE
+        }else{
+            iv_head_img?.visibility = View.GONE
+        }
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
+    fun getNeedOffView(): View?{
+        return containerView?.findViewById(R.id.ll_num)
     }
 
 }

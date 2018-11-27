@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_monkey"/>
+        android:src="@drawable/bg_monkey"
+        />
 
     <LinearLayout
         android:id="@+id/ll_num"
@@ -18,13 +19,15 @@
         app:layout_constraintTop_toBottomOf="@id/iv_head_img"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:orientation="vertical"
         android:background="@color/colorPrimary">
 
         <TextView
             android:id="@+id/tv_pager_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:text="page = "
+            android:background="@color/color_3"/>
 
     </LinearLayout>
 
