@@ -81,6 +81,8 @@ dependencies {
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
     // 状态栏
     implementation 'com.githang:status-bar-compat:0.2'
+
+//    implementation 'com.github.QQzs:BorderView:1.0.0'
 }
 
 walle {

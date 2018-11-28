@@ -37,6 +37,7 @@ public class BorderTextView extends TextView {
 
     private int strokeWidth;    // 边框线宽
     private int strokeColor;    // 边框颜色
+    private int enableColor;    // 不可点击颜色
     private int contentColor;   // 背景颜色
     private int pressedColor;   // 按下背景颜色
     private int cornerRadius;   // 圆角半径
@@ -61,6 +62,7 @@ public class BorderTextView extends TextView {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BorderTextView);
         contentColor = ta.getColor(R.styleable.BorderTextView_contentBackColor, Color.TRANSPARENT);
         pressedColor = ta.getColor(R.styleable.BorderTextView_contentPressedColor, contentColor);
+        enableColor = ta.getColor(R.styleable.BorderTextView_enableBackColor, Color.parseColor("#999999"));
         strokeWidth = ta.getDimensionPixelSize(R.styleable.BorderTextView_strokeWidth, 0);
         strokeColor = ta.getColor(R.styleable.BorderTextView_strokeColor, contentColor);
         cornerRadius = ta.getDimensionPixelSize(R.styleable.BorderTextView_cornerRadius, 0);
@@ -78,7 +80,7 @@ public class BorderTextView extends TextView {
         if (mFollowTextColor && strokeColor != getCurrentTextColor())
             strokeColor = getCurrentTextColor();
         // 设置背景
-        setBackground(DrawableUtil.getPressedSelector(contentColor , pressedColor , cornerRadius));
+        setBackground(DrawableUtil.getPressedSelector(enableColor , contentColor , pressedColor , cornerRadius));
 
     }
 
@@ -131,7 +133,7 @@ public class BorderTextView extends TextView {
     public void setContentColorResource(int colorResource){
         try {
             contentColor = ContextCompat.getColor(getContext(), colorResource);
-            setBackground(DrawableUtil.getPressedSelector(contentColor , contentColor , cornerRadius));
+            setBackground(DrawableUtil.getPressedSelector(enableColor , contentColor , contentColor , cornerRadius));
         }catch (Exception e){
             Log.e("My_Error",e.toString());
         }

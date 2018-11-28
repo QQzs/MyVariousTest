@@ -35,6 +35,7 @@ public class BorderRelativeLayout extends RelativeLayout {
 
     private int strokeWidth;    // 边框线宽
     private int strokeColor;    // 边框颜色
+    private int enableColor;    // 不可点击颜色
     private int contentColor;   // 背景颜色
     private int pressedColor;   // 按下背景颜色
     private int cornerRadius;   // 圆角半径
@@ -60,6 +61,7 @@ public class BorderRelativeLayout extends RelativeLayout {
         strokeColor = ta.getColor(R.styleable.BorderTextView_strokeColor, Color.TRANSPARENT);
         contentColor = ta.getColor(R.styleable.BorderTextView_contentBackColor, Color.TRANSPARENT);
         pressedColor = ta.getColor(R.styleable.BorderTextView_contentPressedColor, contentColor);
+        enableColor = ta.getColor(R.styleable.BorderTextView_enableBackColor, Color.parseColor("#999999"));
         ta.recycle();
         initView();
         //设置调用onDraw方法
@@ -72,7 +74,7 @@ public class BorderRelativeLayout extends RelativeLayout {
         mPaint.setAntiAlias(true);               // 设置画笔为无锯齿
         mPaint.setStrokeWidth(strokeWidth);      // 线宽
         // 设置背景
-        setBackground(DrawableUtil.getPressedSelector(contentColor , pressedColor , cornerRadius));
+        setBackground(DrawableUtil.getPressedSelector(enableColor , contentColor , pressedColor , cornerRadius));
 
     }
 
@@ -123,7 +125,7 @@ public class BorderRelativeLayout extends RelativeLayout {
     public void setContentColorResource(int colorResource){
         try {
             contentColor = ContextCompat.getColor(getContext(), colorResource);
-            setBackground(DrawableUtil.getPressedSelector(contentColor , contentColor , cornerRadius));
+            setBackground(DrawableUtil.getPressedSelector(enableColor , contentColor , contentColor , cornerRadius));
         }catch (Exception e){
             Log.e("My_Error",e.toString());
         }
