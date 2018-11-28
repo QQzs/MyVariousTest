@@ -14,7 +14,7 @@
         />
 
 
-    <com.zs.various.view.BorderRelativeLayout
+    <com.zs.border.view.BorderRelativeLayout
         android:id="@+id/rl_border"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -32,9 +32,9 @@
             android:layout_centerInParent="true"
             />
 
-    </com.zs.various.view.BorderRelativeLayout>
+    </com.zs.border.view.BorderRelativeLayout>
 
-    <com.zs.various.view.BorderTextView
+    <com.zs.border.view.BorderTextView
         android:id="@+id/tv_border"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -49,7 +49,7 @@
         android:layout_below="@+id/rl_border"
         android:gravity="center"
         >
-    </com.zs.various.view.BorderTextView>
+    </com.zs.border.view.BorderTextView>
 
     <com.zs.various.view.DashView
         android:id="@+id/view_line"
