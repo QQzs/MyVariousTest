@@ -6,9 +6,11 @@ import android.support.annotation.Nullable;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.zs.various.R;
 import com.zs.various.util.DensityUtil;
+import com.zs.various.util.JS2AndroidUtil;
 
 /**
  * Created by zs
@@ -59,17 +61,37 @@ public class WebViewActivity extends Activity {
         webSettings.setDisplayZoomControls(true);
         // 设置默认字体大小
         webSettings.setDefaultFontSize(DensityUtil.dip2px(this,15));
-
-//        webView.loadUrl("http://www.lanou3g.com/");
-
         webSettings.setDefaultTextEncodingName("UTF-8");
+
+        loadHtml();
+
+    }
+
+    private void loadHtml(){
+
+        // 通过addJavascriptInterface()将Java对象映射到JS对象
+        // 参数1：JS调用android中方法对象
+        // 参数2：映射到js中的test对象
+        webView.addJavascriptInterface(new JS2AndroidUtil(this) , "test");
+        webView.loadUrl("file:////android_asset/index.html");
+
+    }
+
+    /**
+     * android 进行操作
+     * @param msg
+     */
+    public void show(String msg){
+        Toast.makeText(this , msg , Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void loadTextImage(){
 //        String body = "123445555";
 //        webView.loadData(body, "text/html; charset=UTF-8", null);
-
 //        String data = "<HTML>在模拟器 2.1 上测试,这是<IMG src=\"APK'>file:///android_asset/igg.jpg\"/>APK里的图片";
 //        String image = "http://imgs.ibaodian.com/ios/q//0/1492052493.png";
         String image= "<img src=\"http://imgs.ibaodian.com/ios/q//0/1492052493.png\"/>";
-
         String css = "<style type=\"text/css\"> img {" +
                 "text-align:center;" +
                 "width:100%;" +
@@ -84,7 +106,6 @@ public class WebViewActivity extends Activity {
                 "</style>";
         image = "<html><header>" + css + "</header><body>" + image + "</body></html>";
 
-
         String txtcss = "<style type=\"text/css\">" +
                 "body {" +
                 "margin-left:40px;" +
@@ -98,7 +119,9 @@ public class WebViewActivity extends Activity {
         String text2 = "<html><header>" + txtcss + "</header><body>" + "<br>第二段文字显示第二段文混排显示图文混字显示第二段文字显示" + "</body></html>";
 
         String data = text1 + image + text2;
-//        webView.loadDataWithBaseURL(null, data, "text/html", "UTF-8", null);
-        webView.loadUrl("http://localhost:63343/HTML_Day/Demo/Login/index.html?_ijt=jqinknmdcg5ueonq1ueluqcl9o#");
+        webView.loadDataWithBaseURL(null, data, "text/html", "UTF-8", null);
+
     }
+
+
 }
