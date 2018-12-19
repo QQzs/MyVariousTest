@@ -68,8 +68,7 @@ public class TabTitleLayout extends LinearLayout {
                 public void onClick(View v) {
                     mCurrentIndex = index;
                     for (int i = 0 ; i< getChildCount() ; i++){
-                        View childView = getChildAt(i);
-                        setTabStatus(childView , i);
+                        setTabStatus(getChildAt(i) , i);
                     }
                     if (mItemListener != null){
                         mItemListener.backClick(mCurrentIndex);
