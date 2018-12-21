@@ -52,6 +52,15 @@ public class TabTitleLayout extends LinearLayout {
     }
 
     /**
+     * 设置选中item
+     * @param position
+     */
+    public void setSelectItem(int position){
+        this.mCurrentIndex = position;
+        initView();
+    }
+
+    /**
      * 添加Tab
      */
     private void initView(){
