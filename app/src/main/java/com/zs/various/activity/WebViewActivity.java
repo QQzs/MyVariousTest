@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.zs.various.R;
 import com.zs.various.util.DensityUtil;
 import com.zs.various.util.JS2AndroidUtil;
+import com.zs.various.util.LogUtil;
 
 /**
  * Created by zs
@@ -28,12 +29,13 @@ public class WebViewActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.web_view_layout);
-        webView = (WebView) findViewById(R.id.web_view);
+        webView = findViewById(R.id.web_view);
 
         // 设置WebView的客户端
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                LogUtil.Companion.logShow("shouldOverrideUrlLoading");
                 return false;// 返回false
             }
         });
@@ -63,8 +65,13 @@ public class WebViewActivity extends Activity {
         webSettings.setDefaultFontSize(DensityUtil.dip2px(this,15));
         webSettings.setDefaultTextEncodingName("UTF-8");
 
-        loadHtml();
+//        loadHtml();
+        loadUrl();
 
+    }
+
+    private void loadUrl(){
+        webView.loadUrl("http://www.taobao.com");
     }
 
     private void loadHtml(){

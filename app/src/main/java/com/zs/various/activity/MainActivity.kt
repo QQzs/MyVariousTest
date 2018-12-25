@@ -74,6 +74,7 @@ class MainActivity : Activity() {
         acts.add(RelativeActivity::class.java)
         acts.add(VoiceAnimActivity::class.java)
         acts.add(CustomViewActivity::class.java)
+        acts.add(CustomView2Activity::class.java)
         acts.add(DialogActivity::class.java)
         acts.add(SpanStringActivity::class.java)
         acts.add(AnimActivity::class.java)
