@@ -1,15 +1,21 @@
 package com.zs.various.activity;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.zs.various.R;
-import com.zs.various.util.DensityUtil;
 import com.zs.various.util.JS2AndroidUtil;
 import com.zs.various.util.LogUtil;
 
@@ -31,13 +37,46 @@ public class WebViewActivity extends Activity {
         setContentView(R.layout.web_view_layout);
         webView = findViewById(R.id.web_view);
 
-        // 设置WebView的客户端
+        // 辅助WebView处理JavaScript的对话框，网站图标，网站title，加载进度等
+        webView.setWebChromeClient(new WebChromeClient());
+
+        // 使用WebView打开 而不是跳转到浏览器打开
         webView.setWebViewClient(new WebViewClient(){
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                // 打开 https链接
+                handler.proceed();
+//                super.onReceivedSslError(view, handler, error);
+            }
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                LogUtil.Companion.logShow("shouldOverrideUrlLoading");
-                return false;// 返回false
+                LogUtil.Companion.logShow("url = " + url);
+                view.loadUrl(url);
+                return true;
             }
+
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                LogUtil.Companion.logShow("shouldOverrideUrlLoading ======  LOLLIPOP");
+                view.loadUrl(request.getUrl().toString());
+                return true;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                String title = view.getTitle();
+            }
+
+
         });
 
         WebSettings webSettings = webView.getSettings();
@@ -45,6 +84,7 @@ public class WebViewActivity extends Activity {
         webSettings.setJavaScriptEnabled(true);
         // 让JavaScript可以自动打开windows
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setBlockNetworkImage(false);//解决图片不显示
         // 设置缓存
         webSettings.setAppCacheEnabled(true);
         // 设置缓存模式,一共有四种模式
@@ -61,17 +101,20 @@ public class WebViewActivity extends Activity {
         webSettings.setLoadWithOverviewMode(true);
         // 设置可以被显示的屏幕控制
         webSettings.setDisplayZoomControls(true);
-        // 设置默认字体大小
-        webSettings.setDefaultFontSize(DensityUtil.dip2px(this,15));
-        webSettings.setDefaultTextEncodingName("UTF-8");
 
-//        loadHtml();
-        loadUrl();
+        // 允许所有SSL证书
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
+        loadHtml();
+//        loadUrl();
 
     }
 
     private void loadUrl(){
         webView.loadUrl("http://www.taobao.com");
+//        webView.loadUrl("https://tests.ibaodian.com/web/live/invitationcard1?liveuid=c8a4e4c3-39e2-49e2-8b75-f65364faf081&userid=US170317000000000001&v=3.3.0");
     }
 
     private void loadHtml(){
@@ -130,5 +173,13 @@ public class WebViewActivity extends Activity {
 
     }
 
+    // 在 Actvity 中监听返回键按钮
+    @Override
+    public void onBackPressed() {
+        if (webView.canGoBack())
+            webView.goBack();
+        else
+            super.onBackPressed();
+    }
 
 }
