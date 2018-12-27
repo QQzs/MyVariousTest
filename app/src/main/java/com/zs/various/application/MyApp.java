@@ -26,7 +26,7 @@ public class MyApp extends Application {
         mContext = this;
         String channel = WalleChannelReader.getChannel(this.getApplicationContext());
         Log.d("My_Channel","channel = " + channel);
-        SpUtil.init(this,"my_data");
+        SpUtil.init(this,SpUtil.APP_DATA);
 
         //初始化X5内核
         QbSdk.initX5Environment(this, new QbSdk.PreInitCallback() {

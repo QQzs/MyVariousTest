@@ -25,8 +25,6 @@ public class CustomView2Activity extends BaseActivity {
 
     float downX = 0;
     float downY = 0;
-    float upX = 0;
-    float upY = 0;
     private Canvas mCanvas;
     private Paint mPaint;
     private Point mPoint = new Point();

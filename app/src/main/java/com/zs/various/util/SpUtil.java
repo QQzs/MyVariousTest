@@ -15,28 +15,25 @@ import java.io.StreamCorruptedException;
  * SharedPreferences管理类
  */
 public class SpUtil {
-    private static SpUtil prefsUtil;
-    private static Context context;
-    private static SharedPreferences sPrefs;
-    private static SharedPreferences.Editor editor;
 
-    public synchronized static SpUtil getInstance() {
-        return prefsUtil;
-    }
+    public static final String APP_DATA = "my_data";
+    private static SpUtil mSpUtil;
+    private static SharedPreferences sPrefs;
 
     private SpUtil(Context context, String fileName) {
-        SpUtil.context = context;
         sPrefs = context.getSharedPreferences(
                 fileName, Context.MODE_PRIVATE);
-        editor = sPrefs.edit();
     }
 
     public static void init(Context context, String fileName) {
-        prefsUtil = new SpUtil(context, fileName);
-        new SpUtil(context, fileName);
+        if (mSpUtil == null){
+            synchronized (SpUtil.class){
+                if (mSpUtil == null){
+                    mSpUtil = new SpUtil(context, fileName);
+                }
+            }
+        }
     }
-
-    public static String fileName;
 
     public static int getInt(String key, int defaultValue) {
         return sPrefs.getInt(key, defaultValue);
@@ -68,11 +65,8 @@ public class SpUtil {
     /**
      * 移除Key对应的value值
      */
-    public static void remove(Context context,String key){
-
-        SharedPreferences sp = context.getSharedPreferences("mengm",Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.remove(key).commit();
+    public static void remove(String key){
+        sPrefs.edit().remove(key).commit();
     }
 
     public static void clearAll() {
@@ -82,6 +76,7 @@ public class SpUtil {
     }
 
     public void putObject(String key, Object object) {
+        SharedPreferences.Editor editor = sPrefs.edit();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream out = null;
         try {
@@ -134,6 +129,52 @@ public class SpUtil {
                     e.printStackTrace();
                 }
             }
+        }
+        return null;
+    }
+
+    public static void savaData(String key, Object object) {
+        SharedPreferences.Editor editor = sPrefs.edit();
+        if (object instanceof String) {
+            editor.putString(key, (String) object);
+        } else if (object instanceof Integer) {
+            editor.putInt(key, (Integer) object);
+        } else if (object instanceof Boolean) {
+            editor.putBoolean(key, (Boolean) object);
+        } else if (object instanceof Float) {
+            editor.putFloat(key, (Float) object);
+        } else if (object instanceof Long) {
+            editor.putLong(key, (Long) object);
+        } else {
+            editor.putString(key, object.toString());
+        }
+        editor.commit();
+
+    }
+
+    /**
+     * 得到保存数据的方法，我们根据默认值得到保存的数据的具体类型，然后调用相对于的方法获取值
+     *
+     * @param key
+     * @param defaultObject
+     * @return
+     */
+    public static Object getData(String key, Object defaultObject) {
+        if (defaultObject instanceof String) {
+            String str = sPrefs.getString(key, (String) defaultObject);
+            if (str == null || str.equals("")) {
+                return "";//
+            } else {
+                return str;
+            }
+        } else if (defaultObject instanceof Integer) {
+            return sPrefs.getInt(key, (Integer) defaultObject);
+        } else if (defaultObject instanceof Boolean) {
+            return sPrefs.getBoolean(key, (Boolean) defaultObject);
+        } else if (defaultObject instanceof Float) {
+            return sPrefs.getFloat(key, (Float) defaultObject);
+        } else if (defaultObject instanceof Long) {
+            return sPrefs.getLong(key, (Long) defaultObject);
         }
         return null;
     }
