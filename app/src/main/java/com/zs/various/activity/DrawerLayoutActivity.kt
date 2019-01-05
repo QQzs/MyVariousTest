@@ -1,8 +1,10 @@
 package com.zs.various.activity
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.zs.various.R
+import kotlinx.android.synthetic.main.drawer_layout.*
 
 /**
  *
@@ -18,8 +20,16 @@ class DrawerLayoutActivity: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.drawer_layout)
+//        drawer_layout?.openDrawer(Gravity.RIGHT)
+        drawer_layout?.setScrimColor(Color.TRANSPARENT)
 
-//        drawer_layout?.openDrawer(Gravity.LEFT)
+        btn_open?.setOnClickListener {
+            drawer_layout?.openDrawer(drawer_content)
+        }
+
+        view_bottom?.setOnClickListener {
+            drawer_layout?.closeDrawers()
+        }
     }
 
 }
