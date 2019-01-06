@@ -65,7 +65,9 @@ public class RecyclerViewUtil {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setSmoothScrollbarEnabled(true);
         layoutManager.setAutoMeasureEnabled(true);
-        recyclerView.setAdapter(adapter);
+        if (adapter != null){
+            recyclerView.setAdapter(adapter);
+        }
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);

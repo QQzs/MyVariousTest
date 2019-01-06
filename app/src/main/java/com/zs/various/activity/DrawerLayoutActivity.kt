@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.zs.various.R
+import com.zs.various.util.RecyclerViewUtil
 import kotlinx.android.synthetic.main.drawer_layout.*
 
 /**
@@ -22,6 +23,7 @@ class DrawerLayoutActivity: AppCompatActivity(){
         setContentView(R.layout.drawer_layout)
 //        drawer_layout?.openDrawer(Gravity.RIGHT)
         drawer_layout?.setScrimColor(Color.TRANSPARENT)
+        RecyclerViewUtil.initScroll(this,recycler_view,null)
 
         btn_open?.setOnClickListener {
             drawer_layout?.openDrawer(drawer_content)

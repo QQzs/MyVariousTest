@@ -36,31 +36,45 @@
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
+            android:background="@color/colorPrimary"
             android:visibility="visible">
 
-            <LinearLayout
-                android:layout_above="@+id/view_bottom"
-                android:layout_width="300dp"
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical">
+                android:background="@color/colorPrimary">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="100dp"/>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="100dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="100dp"/>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="100dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="100dp"/>
 
-            </LinearLayout>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="150dp"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        >
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
 
             <TextView
                 android:id="@+id/view_bottom"
@@ -70,7 +84,8 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:background="@color/color_3"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentBottom="true"
+                android:visibility="visible"/>
 
         </RelativeLayout>
 
