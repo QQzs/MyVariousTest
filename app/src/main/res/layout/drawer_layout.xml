@@ -31,73 +31,256 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <RelativeLayout
-            android:id="@+id/drawer_content"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/drawer_container"
             android:layout_width="300dp"
             android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:background="@color/colorPrimary"
-            android:visibility="visible">
+            android:background="@color/white"
+            android:layout_gravity="right">
 
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="筛选"
+                android:textSize="@dimen/sp_24"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--app:layout_constraintBottom_toTopOf="@+id/ly_bottom"-->
             <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none"
-                android:background="@color/white"
-                android:layout_above="@+id/view_bottom">
+                android:layout_width="300dp"
+                android:layout_height="0dp"
+                android:fillViewport="true"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintBottom_toTopOf="@+id/ly_bottom"
+                app:layout_constraintTop_toBottomOf="@id/tv_title">
 
-                <LinearLayout
-                    android:layout_width="300dp"
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@color/colorPrimary"/>
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="100dp"/>
+                    >
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="100dp"
-                        android:text="数据测试"/>
+                        android:id="@+id/tv_company_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:text="委托方公司名称"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintLeft_toLeftOf="parent" />
 
                     <EditText
+                        android:id="@+id/et_company_input"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="150dp"
-                        android:text="aaa"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:hint="请输入"
+                        android:maxLines="1"
+                        android:padding="@dimen/dp_10"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_company_title" />
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/cl_goods"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/et_company_input">
+
+                        <TextView
+                            android:id="@+id/tv_goods_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="货物名称"
+                            android:textSize="@dimen/sp_16" />
+
+                        <EditText
+                            android:id="@+id/et_goods_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:hint="请输入"
+                            android:maxLines="1"
+                            android:padding="@dimen/dp_10"
+                            android:textSize="@dimen/sp_14"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_goods_name" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/cl_address"
+                        android:layout_width="match_parent"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cl_goods">
+
+                        <TextView
+                            android:id="@+id/tv_address_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="收/发货单位名称"
+                            android:textSize="@dimen/sp_16" />
+
+                        <EditText
+                            android:id="@+id/et_address_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:hint="请输入"
+                            android:maxLines="1"
+                            android:padding="@dimen/dp_10"
+                            android:textSize="@dimen/sp_14"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_address_name" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/cl_driver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:visibility="visible"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cl_address">
+
+                        <TextView
+                            android:id="@+id/tv_driver_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="司机姓名"
+                            android:textSize="@dimen/sp_16" />
+
+                        <EditText
+                            android:id="@+id/et_driver_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:hint="请输入"
+                            android:maxLines="1"
+                            android:padding="@dimen/dp_10"
+                            android:textSize="@dimen/sp_14"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_driver_name" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/tv_create_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:text="创建时间"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cl_driver" />
+
 
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycler_view"
+                        android:id="@+id/rl_create_time"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:scrollbars="none">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_15"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_create_time">
 
                     </android.support.v7.widget.RecyclerView>
 
-                </LinearLayout>
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/cl_complete_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@+id/rl_create_time">
 
+                        <TextView
+                            android:id="@+id/tv_complete_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_15"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:text="完成类型"
+                            android:textSize="@dimen/sp_16"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rl_complete_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_15"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginRight="@dimen/dp_15"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_complete_type">
+
+                        </android.support.v7.widget.RecyclerView>
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.constraint.ConstraintLayout>
             </ScrollView>
 
-            <TextView
-                android:id="@+id/view_bottom"
+            <LinearLayout
+                android:id="@+id/ly_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="确定"
-                android:textColor="@color/white"
-                android:gravity="center"
-                android:background="@color/color_3"
-                android:layout_alignParentBottom="true"
-                android:visibility="visible"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintBottom_toBottomOf="parent">
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/btn_reset"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:background="@color/white"
+                    android:text="重置"
+                    android:textSize="@dimen/sp_18" />
 
+                <Button
+                    android:id="@+id/btn_sure"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.8"
+                    android:background="@color/colorAccent"
+                    android:text="确定"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_18" />
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.DrawerLayout>
 
