@@ -53,7 +53,8 @@
             android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
         <activity android:name=".activity.CXRecyclerViewActivity"/>
-        <activity android:name=".activity.DrawerLayoutActivity"/>
+        <activity android:name=".activity.DrawerLayoutActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activity.ConstraintLayoutActivity"/>
         <activity android:name=".activity.OpenFileActivity"/>
         <activity android:name=".activity.CoordinatorLayoutActivity"/>
