@@ -3,7 +3,10 @@ package com.zs.various.activity
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.zs.various.R
+import com.zs.various.util.KeyboardStatusDetector
+import com.zs.various.util.LogUtil
 import com.zs.various.util.RecyclerViewUtil
 import kotlinx.android.synthetic.main.drawer_layout.*
 
@@ -32,6 +35,20 @@ class DrawerLayoutActivity: AppCompatActivity(){
         view_bottom?.setOnClickListener {
             drawer_layout?.closeDrawers()
         }
+
+        KeyboardStatusDetector(this).setmVisibilityListener { keyboardVisible ->
+            if(keyboardVisible) {
+                //Do stuff for keyboard visible
+                LogUtil.logShow("visible")
+                view_bottom?.visibility = View.GONE
+            }else {
+                //Do stuff for keyboard hidden
+                LogUtil.logShow("hidden")
+                view_bottom?.visibility = View.VISIBLE
+            }
+        }
+
+
     }
 
 }
