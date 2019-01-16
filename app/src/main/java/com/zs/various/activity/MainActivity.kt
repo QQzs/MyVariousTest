@@ -42,6 +42,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
+        acts.add(ChoiceViewActivity::class.java)
         acts.add(TabTitleActivity::class.java)
         acts.add(NotificationActivity::class.java)
         acts.add(ThreadPoolActivity::class.java)
