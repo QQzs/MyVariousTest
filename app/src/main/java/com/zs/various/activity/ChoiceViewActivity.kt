@@ -29,18 +29,19 @@ class ChoiceViewActivity : BaseActivity() {
     }
 
     override fun initView() {
+
     }
 
     override fun initData() {
 
-        mData.add(GridItemBean(1, "1111"))
-        mData.add(GridItemBean("1" , "10"))
+        mData.add(GridItemBean(1, "类型（多选）" , true))
+        mData.add(GridItemBean("1" , "全部" , true))
         mData.add(GridItemBean("2" , "11"))
         mData.add(GridItemBean("3" , "12"))
         mData.add(GridItemBean("4" , "13"))
         mData.add(GridItemBean("4" , "14"))
 
-        mData.add(GridItemBean(2 , "2222"))
+        mData.add(GridItemBean(2 , "标准（单选）"))
         mData.add(GridItemBean("5" , "20"))
         mData.add(GridItemBean("6" , "21"))
         mData.add(GridItemBean("7" , "22"))
@@ -62,13 +63,13 @@ class ChoiceViewActivity : BaseActivity() {
 
     fun backData(view: View){
 
-        var data1 = mAdapter?.getChoiceItem(1)
+        var data1 = mAdapter?.getMultiChoiceItem(1)
         if (data1 != null){
-            LogUtil.logShow(data1?.id + "  " + data1?.name)
+            LogUtil.logShow(data1?.toString())
         }
         var data2 = mAdapter?.getChoiceItem(2)
         if (data2 != null){
-            LogUtil.logShow(data2?.id + "  " + data2?.name)
+            LogUtil.logShow(data2?.toString())
         }
 
     }

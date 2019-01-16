@@ -15,15 +15,29 @@ public class GridItemBean {
     private String title;
     private String name;
     private boolean choice;
+    private boolean multiChoice;
+    private boolean allChoice;
 
     public GridItemBean(int type, String title) {
         this.type = type;
         this.title = title;
     }
 
+    public GridItemBean(int type, String title, boolean multiChoice) {
+        this.type = type;
+        this.title = title;
+        this.multiChoice = multiChoice;
+    }
+
     public GridItemBean(String id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public GridItemBean(String id, String name, boolean allChoice) {
+        this.id = id;
+        this.name = name;
+        this.allChoice = allChoice;
     }
 
     public int getType() {
@@ -64,5 +78,28 @@ public class GridItemBean {
 
     public void setChoice(boolean choice) {
         this.choice = choice;
+    }
+
+    public boolean isMultiChoice() {
+        return multiChoice;
+    }
+
+    public void setMultiChoice(boolean multiChoice) {
+        this.multiChoice = multiChoice;
+    }
+
+    public boolean isAllChoice() {
+        return allChoice;
+    }
+
+    public void setAllChoice(boolean allChoice) {
+        this.allChoice = allChoice;
+    }
+
+    @Override
+    public String toString() {
+        return "GridItemBean{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
