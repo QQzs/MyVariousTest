@@ -3,7 +3,7 @@ package com.zs.various.activity
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import com.zs.various.R
-import com.zs.various.adapter.ChoiceGridAdapter
+import com.zs.various.adapter.ChoiceAdapter
 import com.zs.various.base.BaseActivity
 import com.zs.various.bean.GridItemBean
 import com.zs.various.util.LogUtil
@@ -22,7 +22,7 @@ About: 筛选
 class ChoiceViewActivity : BaseActivity() {
 
     var mData: MutableList<GridItemBean> = mutableListOf()
-    var mAdapter: ChoiceGridAdapter? = null
+    var mAdapter: ChoiceAdapter? = null
 
     override fun setLayoutId(): Int {
         return R.layout.activity_choice_layout
@@ -48,7 +48,16 @@ class ChoiceViewActivity : BaseActivity() {
         mData.add(GridItemBean("8" , "23"))
         mData.add(GridItemBean("8" , "24"))
 
-        mAdapter = ChoiceGridAdapter(mData)
+        mData.add(GridItemBean(3 , "属性（多选）", true))
+        mData.add(GridItemBean("5" , "30"))
+        mData.add(GridItemBean("6" , "31"))
+        mData.add(GridItemBean("7" , "32"))
+        mData.add(GridItemBean("8" , "33"))
+        mData.add(GridItemBean("8" , "34"))
+
+        mAdapter = ChoiceAdapter()
+        mAdapter?.initData(mData)
+
         RecyclerViewUtil.initGrid(this, recycler_grid , mAdapter,4)
 
         var layoutManager : GridLayoutManager = recycler_grid?.layoutManager as GridLayoutManager
@@ -61,17 +70,22 @@ class ChoiceViewActivity : BaseActivity() {
 
     }
 
-    fun backData(view: View){
+    fun getData(view: View){
 
         var data1 = mAdapter?.getMultiChoiceItem(1)
-        if (data1 != null){
-            LogUtil.logShow(data1?.toString())
-        }
+        LogUtil.logShow(data1?.toString())
         var data2 = mAdapter?.getChoiceItem(2)
-        if (data2 != null){
-            LogUtil.logShow(data2?.toString())
-        }
+        LogUtil.logShow(data2?.toString())
+        var data3 = mAdapter?.getMultiChoiceItem(3)
+        LogUtil.logShow(data3?.toString())
 
+        tv_show?.text = "data1 = " + data1.toString() + "\ndata2 = " + data2.toString() + "\ndata3 = " + data3.toString()
+    }
+
+
+    fun backData(view: View){
+        mAdapter?.clearChoice()
+        tv_show?.text = ""
     }
 
 }

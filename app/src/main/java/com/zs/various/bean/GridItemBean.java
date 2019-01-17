@@ -10,12 +10,30 @@ package com.zs.various.bean;
  */
 public class GridItemBean {
 
+    /**
+     * type:
+     * 标题item 自定义
+     * 内容item 默认为0
+     */
     private int type;
-    private String id;
+    /**
+     * 标题（标题item）
+     */
     private String title;
+
+    private String id;
     private String name;
+    /**
+     * 内容item 是否选择（内容item）
+     */
     private boolean choice;
+    /**
+     * 是否是多选（标题item）
+     */
     private boolean multiChoice;
+    /**
+     * 是否是全选按钮（内容item）
+     */
     private boolean allChoice;
 
     public GridItemBean(int type, String title) {
@@ -98,8 +116,6 @@ public class GridItemBean {
 
     @Override
     public String toString() {
-        return "GridItemBean{" +
-                "name='" + name + '\'' +
-                '}';
+        return "name='" + name + '\'';
     }
 }
