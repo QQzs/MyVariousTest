@@ -1,9 +1,14 @@
 package com.zs.various.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+
+import com.zs.various.R;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,9 +25,23 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoolActivity extends AppCompatActivity {
 
+    private TextView tv_show;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_thread_pool_layout);
+        tv_show = findViewById(R.id.tv_show);
+
+    }
+
+    public void clickListener(View view){
+//        cacheThreadPool();
+        fixedThreadPool();
+//        scheduledThreadPool();
+//        initImTimeThreadPool();
+//        singleThreadExecutor();
+
     }
 
     /**
@@ -32,16 +51,17 @@ public class ThreadPoolActivity extends AppCompatActivity {
         ExecutorService cacheThreadPool = Executors.newCachedThreadPool();
         for ( int i = 0 ; i<10 ; i++ ){
             final  int index = i;
-            try {
-                Thread.sleep(index*10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             //拿到线程的对象的时候将线程扔到线程池中
             cacheThreadPool.execute(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d( "newCachedThreadPool" , "" + index );
+                    try {
+                        Log.d( "newCachedThreadPool" , "" + index );
+                        Thread.sleep((10 -index) * 200);
+                        setTvShow(index);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
@@ -60,7 +80,8 @@ public class ThreadPoolActivity extends AppCompatActivity {
                     try {
                         Log.d("newFixedThreadPool",index+"");
                         Thread.sleep(2000);
-                    } catch (InterruptedException e) {
+                        setTvShow(index);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -77,9 +98,9 @@ public class ThreadPoolActivity extends AppCompatActivity {
         scheduledThreadPool.schedule(new Runnable() {
             @Override
             public void run() {
-                Log.d("newScheduledThreadPool","延期3秒执行");
+                Log.d("newScheduledThreadPool","延期1秒执行");
             }
-        },3, TimeUnit.SECONDS);
+        },1, TimeUnit.SECONDS);
 
     }
 
@@ -89,9 +110,11 @@ public class ThreadPoolActivity extends AppCompatActivity {
         scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                Log.d("newScheduledThreadPool","延时1s后每3s执行一次");
+                Log.d("newScheduledThreadPool","延时1s后每1s执行一次");
             }
-        },1,3,TimeUnit.SECONDS);
+        },1,1,TimeUnit.SECONDS);
+
+        scheduledThreadPool.shutdown();
     }
 
     /**
@@ -108,12 +131,23 @@ public class ThreadPoolActivity extends AppCompatActivity {
                     try {
                         Log.d("newSingleThreadExecutor",""+index);
                         Thread.sleep(2000);
+                        setTvShow(index);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             });
         }
+    }
+
+    public void setTvShow(int index){
+        new Handler(getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                tv_show.append("\nindex = " + index);
+            }
+        });
+
     }
 
 }
