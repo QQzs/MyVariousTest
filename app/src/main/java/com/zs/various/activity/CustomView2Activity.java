@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.zs.various.R;
@@ -43,42 +44,45 @@ public class CustomView2Activity extends BaseActivity {
 
         iv_img = findViewById(R.id.iv_img);
 
-        iv_img.setOnTouchListener((view, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    lastTimestamp = System.currentTimeMillis();
-                    downX = event.getX();
-                    downY = event.getY();
-                    break;
-                case MotionEvent.ACTION_CANCEL:
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    movingX = event.getX();
-                    movingY = event.getY();
-                    long curTimestamp = System.currentTimeMillis();
-                    //计算时间差
-                    long detaT = curTimestamp - lastTimestamp;
-                    //计算距离差
-                    double detaS = Math.sqrt(Math.abs((movingX - downX) * (movingX - downX) + (movingY - downY) * (movingY - downY)));
+        iv_img.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        lastTimestamp = System.currentTimeMillis();
+                        downX = event.getX();
+                        downY = event.getY();
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        movingX = event.getX();
+                        movingY = event.getY();
+                        long curTimestamp = System.currentTimeMillis();
+                        //计算时间差
+                        long detaT = curTimestamp - lastTimestamp;
+                        //计算距离差
+                        double detaS = Math.sqrt(Math.abs((movingX - downX) * (movingX - downX) + (movingY - downY) * (movingY - downY)));
 //                    float detaS = Logic.disPos2d(movingX, movingY, downX, downY);
-                    //由于速度是 px/ms
-                    double v = detaS / detaT;
-                    //速度转化为画笔宽度的等式
-                    float width = 14/(float)v;
+                        //由于速度是 px/ms
+                        double v = detaS / detaT;
+                        //速度转化为画笔宽度的等式
+                        float width = 14/(float)v;
 //                    L.d(width + L.l());
-                    //限制极值情况
-                    if ((width > 0) && width < 30) {
-                        mPaint.setStrokeWidth(width);
-                    }
-                    mCanvas.drawLine(downX, downY, movingX, movingY, mPaint);
-                    iv_img.invalidate();
-                    downX = movingX;
-                    downY = movingY;
-                    lastTimestamp = curTimestamp;//更新时间
+                        //限制极值情况
+                        if ((width > 0) && width < 30) {
+                            mPaint.setStrokeWidth(width);
+                        }
+                        mCanvas.drawLine(downX, downY, movingX, movingY, mPaint);
+                        iv_img.invalidate();
+                        downX = movingX;
+                        downY = movingY;
+                        lastTimestamp = curTimestamp;//更新时间
 //                    movePos.add(new PointF(event.getX(), event.getY()));
-                    break;
+                        break;
+                }
+                return true;
             }
-            return true;
         });
 
     }

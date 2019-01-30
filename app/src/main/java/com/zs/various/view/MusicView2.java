@@ -14,7 +14,9 @@ import com.zs.various.R;
 
 
 /**
- * Created by zhangshuai on 16/8/17.
+ *
+ * Handler控制动画
+ *
  */
 public class MusicView2 extends View {
 
@@ -94,24 +96,52 @@ public class MusicView2 extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec) ;
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int widthSize = measureWH(widthMeasureSpec,0) ;
+        int heightSize = measureWH(heightMeasureSpec,1);
         setMeasuredDimension(widthSize, heightSize);
 
-        width = widthSize- getPaddingLeft() - getPaddingRight();
-        height = heightSize - getPaddingTop() - getPaddingBottom();
-        minHeight = height / 2;
-        maxHeight = height + getPaddingTop();
+        // onMeasure会走多遍，看view在布局中包裹几层
+        if (width == 0){
+            width = widthSize- getPaddingLeft() - getPaddingRight();
+            height = heightSize - getPaddingTop() - getPaddingBottom();
+            minHeight = height / 2;
+            maxHeight = height + getPaddingTop();
 
-        //初始化采样点和映射
-        samplingX = new float[SAMPLING_SIZE];//因为包括起点和终点所以需要+1个位置
-        float gap = width / (float) SAMPLING_SIZE / 2;//确定采样点之间的间距
-        float x;
-        for (int i = 0; i < SAMPLING_SIZE; i++) {
-            x = (2 * i + 1) * gap;
-            samplingX[i] = x;
+            //初始化采样点和映射
+            samplingX = new float[SAMPLING_SIZE]; // 因为包括起点和终点所以需要+1个位置
+            float gap = width / (SAMPLING_SIZE + 1);//确定采样点之间的间距
+            for (int i = 0; i < SAMPLING_SIZE; i++) {
+                samplingX[i] = gap * (i + 1);
+            }
+        }
+
+    }
+
+    /**
+     * 测量宽高
+     * type=0 测量宽度， type=1 测量高度
+     */
+    private int measureWH(int measureSpec, int type){
+        int model = MeasureSpec.getMode(measureSpec);//获得当前空间值的一个模式
+        int size = MeasureSpec.getSize(measureSpec);//获得当前空间值的推荐值
+        int defaultSize = 0; // 默认为0，自己定义
+        switch (model){
+            case MeasureSpec.EXACTLY: // 当你的控件设置了一个精确的值或者为match_parent时, 为这种模式
+                return size;
+            case MeasureSpec.AT_MOST: // 当你的控件设置为wrap_content时，为这种模式
+                if(type == 0){
+                    //测量宽度
+                } else {
+                    //测量高度
+                }
+                return defaultSize;
+            case MeasureSpec.UNSPECIFIED: // 如果没有指定大小，就设置为默认大小
+                return defaultSize;
+            default:
+                return defaultSize;
         }
     }
+
 
     private void initView() {
 

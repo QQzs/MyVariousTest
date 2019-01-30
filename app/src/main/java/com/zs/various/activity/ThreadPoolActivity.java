@@ -140,7 +140,7 @@ public class ThreadPoolActivity extends AppCompatActivity {
         }
     }
 
-    public void setTvShow(int index){
+    public void setTvShow(final int index){
         new Handler(getMainLooper()).post(new Runnable() {
             @Override
             public void run() {

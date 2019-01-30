@@ -26,10 +26,6 @@ class AnimActivity : AppCompatActivity() {
     }
 
     fun setMediaAnim(){
-        widget_view.setOnClickListener {
-            flag1 = !flag1
-            widget_view.setAnim(flag1)
-        }
         widget_view2.setOnClickListener {
             flag2 = !flag2
             widget_view2.setAnim(flag2)
