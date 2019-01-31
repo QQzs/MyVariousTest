@@ -14,30 +14,30 @@ import android.widget.RelativeLayout;
  * About:
  * —————————————————————————————————————
  */
-public class ViewBottom extends RelativeLayout {
+public class ViewCenter extends RelativeLayout {
 
-    public ViewBottom(Context context) {
+    public ViewCenter(Context context) {
         super(context);
     }
 
-    public ViewBottom(Context context, AttributeSet attrs) {
+    public ViewCenter(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ViewBottom(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ViewCenter(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
 //        if (ev.getAction() == MotionEvent.ACTION_DOWN){
-//            Log.d("My_Log"," bottom ====  onInterceptTouchEvent ACTION_DOWN ");
+//            Log.d("My_Log"," center ====  onInterceptTouchEvent ACTION_DOWN ");
 ////            return true;
 //        }else if (ev.getAction() == MotionEvent.ACTION_MOVE){
-//            Log.d("My_Log"," bottom ====  onInterceptTouchEvent ACTION_MOVE ");
+//            Log.d("My_Log"," center ====  onInterceptTouchEvent ACTION_MOVE ");
 ////            return true;
 //        }else if (ev.getAction() == MotionEvent.ACTION_UP){
-//            Log.d("My_Log"," bottom ====  onInterceptTouchEvent ACTION_UP ");
+//            Log.d("My_Log"," center ====  onInterceptTouchEvent ACTION_UP ");
 ////            return true;
 //        }else{
 ////            return true;
@@ -49,13 +49,13 @@ public class ViewBottom extends RelativeLayout {
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
         if (ev.getAction() == MotionEvent.ACTION_DOWN){
-            Log.d("My_Log"," bottom ====  dispatchTouchEvent ACTION_DOWN ");
+            Log.d("My_Log"," center ====  dispatchTouchEvent ACTION_DOWN ");
 //            return true;
         }else if (ev.getAction() == MotionEvent.ACTION_MOVE){
-            Log.d("My_Log"," bottom ====  dispatchTouchEvent ACTION_MOVE ");
+            Log.d("My_Log"," center ====  dispatchTouchEvent ACTION_MOVE ");
 //            return true;
         }else if (ev.getAction() == MotionEvent.ACTION_UP){
-            Log.d("My_Log"," bottom ====  dispatchTouchEvent ACTION_UP ");
+            Log.d("My_Log"," center ====  dispatchTouchEvent ACTION_UP ");
 //            return true;
         }
 //        return true;
@@ -66,13 +66,13 @@ public class ViewBottom extends RelativeLayout {
     public boolean onTouchEvent(MotionEvent event) {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN){
-            Log.d("My_Log"," bottom ====  onTouchEvent ACTION_DOWN ");
+            Log.d("My_Log"," center ====  onTouchEvent ACTION_DOWN ");
 //            return true;
         }else if (event.getAction() == MotionEvent.ACTION_MOVE){
-            Log.d("My_Log"," bottom ====  onTouchEvent ACTION_MOVE ");
+            Log.d("My_Log"," center ====  onTouchEvent ACTION_MOVE ");
 //            return true;
         }else if (event.getAction() == MotionEvent.ACTION_UP){
-            Log.d("My_Log"," bottom ====  onTouchEvent ACTION_UP ");
+            Log.d("My_Log"," center ====  onTouchEvent ACTION_UP ");
 //            return true;
         }
 //        return true;

@@ -10,15 +10,21 @@
         android:layout_height="400dp"
         android:background="@color/colorPrimary">
 
-
-        <com.zs.various.view.dispatch.ViewTop
-            android:id="@+id/top_view"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:background="@color/colorAccent"
+        <com.zs.various.view.dispatch.ViewCenter
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@color/font_gray"
             android:layout_centerInParent="true">
 
-        </com.zs.various.view.dispatch.ViewTop>
+            <com.zs.various.view.dispatch.ViewTop
+                android:id="@+id/top_view"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@color/colorAccent"
+                android:layout_centerInParent="true"/>
+
+        </com.zs.various.view.dispatch.ViewCenter>
+
 
     </com.zs.various.view.dispatch.ViewBottom>
 

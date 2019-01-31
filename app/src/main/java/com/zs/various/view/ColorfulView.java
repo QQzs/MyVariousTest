@@ -76,20 +76,6 @@ public class ColorfulView extends FrameLayout {
      */
     protected int[] mColors = {Color.BLUE, Color.CYAN, Color.GREEN, Color.RED, Color.MAGENTA, Color.YELLOW};
 
-    /**
-     * handler
-     **/
-//    private Handler mHandler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            if (msg.what == mWhat){
-//                addMyView();
-//                mHandler.sendEmptyMessageDelayed(mWhat,mDuration);
-//            }
-//            super.handleMessage(msg);
-//        }
-//    };
-
     private LeakHandler mHandler;
     public static class LeakHandler extends Handler{
 
@@ -182,6 +168,7 @@ public class ColorfulView extends FrameLayout {
 
         ValueAnimator valueAnimator = ValueAnimator.ofObject(new MyTypeEvaluator(conOnePoint,conTwoPoint),startPoint,endPoint);
         mValueAnimators.add(valueAnimator);
+        // 动画的进度监听
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -191,6 +178,7 @@ public class ColorfulView extends FrameLayout {
             }
         });
 
+        // 动画的结束监听
         valueAnimator.addListener(new AnimatorListenerAdapter(){
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -209,6 +197,9 @@ public class ColorfulView extends FrameLayout {
 
     }
 
+    /**
+     * 定义view 的运动轨迹
+     */
     class MyTypeEvaluator implements TypeEvaluator<Point> {
 
         private Point onePoint;
@@ -221,8 +212,16 @@ public class ColorfulView extends FrameLayout {
 
         @Override
         public Point evaluate(float t, Point startValue, Point endValue) {
-            //利用三阶贝塞尔曲线公式算出中间点坐标
+            //利用三阶贝塞尔曲线公式得到轨迹
             return BezierUtil.CalculateBezierPointForCubicPoint(t,startValue,onePoint,twoPoint,endValue);
+
+            // 正弦函数轨迹
+//            Point startPoint = (Point) startValue;
+//            Point endPoint = (Point) endValue;
+//            float x = startPoint.getX() + fraction * (endPoint.getX() - startPoint.getX());
+//            float y = (float) (Math.sin(x * Math.PI / 180) * 100) + endPoint.getY() / 2;
+//            Point point = new Point(x, y);
+//            return point;
         }
     }
 

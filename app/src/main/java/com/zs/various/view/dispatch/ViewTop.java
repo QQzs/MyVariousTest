@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.widget.RelativeLayout;
+import android.view.View;
 
 /**
  * Created by zs
@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
  * About:
  * —————————————————————————————————————
  */
-public class ViewTop extends RelativeLayout {
+public class ViewTop extends View {
 
     public ViewTop(Context context) {
         super(context);
@@ -29,27 +29,19 @@ public class ViewTop extends RelativeLayout {
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return super.onInterceptTouchEvent(ev);
-    }
-
-    @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
-        switch (ev.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                Log.d("My_Log"," top  ACTION_DOWN ");
-                break;
-            case MotionEvent.ACTION_MOVE:
-                Log.d("My_Log"," top  ACTION_MOVE ");
-                break;
-            case MotionEvent.ACTION_UP:
-                Log.d("My_Log"," top  ACTION_UP ");
-                break;
-            case MotionEvent.ACTION_CANCEL:
-                Log.d("My_Log"," top  ACTION_CANCEL ");
-                break;
+        if (ev.getAction() == MotionEvent.ACTION_DOWN){
+            Log.d("My_Log"," top ====  dispatchTouchEvent ACTION_DOWN ");
+//            return true;
+        }else if (ev.getAction() == MotionEvent.ACTION_MOVE){
+            Log.d("My_Log"," top ====  dispatchTouchEvent ACTION_MOVE ");
+//            return true;
+        }else if (ev.getAction() == MotionEvent.ACTION_UP){
+            Log.d("My_Log"," top ====  dispatchTouchEvent ACTION_UP ");
+//            return true;
         }
+//        return false;
         return super.dispatchTouchEvent(ev);
     }
 
@@ -64,10 +56,9 @@ public class ViewTop extends RelativeLayout {
 //            return true;
         }else if (event.getAction() == MotionEvent.ACTION_UP){
             Log.d("My_Log"," top ====  onTouchEvent ACTION_UP ");
-//            return true;
-        }else{
-//            return true;
+//            return false;
         }
+//        return false;
         return super.onTouchEvent(event);
     }
 }
