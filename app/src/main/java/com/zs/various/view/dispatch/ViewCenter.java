@@ -39,9 +39,8 @@ public class ViewCenter extends RelativeLayout {
 //        }else if (ev.getAction() == MotionEvent.ACTION_UP){
 //            Log.d("My_Log"," center ====  onInterceptTouchEvent ACTION_UP ");
 ////            return true;
-//        }else{
-////            return true;
 //        }
+//        return true;
         return super.onInterceptTouchEvent(ev);
     }
 
@@ -75,7 +74,7 @@ public class ViewCenter extends RelativeLayout {
             Log.d("My_Log"," center ====  onTouchEvent ACTION_UP ");
 //            return true;
         }
-//        return true;
+//        return false;
         return super.onTouchEvent(event);
     }
 

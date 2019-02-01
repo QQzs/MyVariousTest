@@ -58,7 +58,7 @@ public class ViewTop extends View {
             Log.d("My_Log"," top ====  onTouchEvent ACTION_UP ");
 //            return false;
         }
-//        return false;
+//        return true;
         return super.onTouchEvent(event);
     }
 }

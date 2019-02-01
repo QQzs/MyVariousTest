@@ -11,6 +11,7 @@
         android:background="@color/colorPrimary">
 
         <com.zs.various.view.dispatch.ViewCenter
+            android:id="@+id/center_view"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:background="@color/font_gray"
