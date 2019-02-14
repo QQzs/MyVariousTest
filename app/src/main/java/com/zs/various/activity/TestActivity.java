@@ -17,7 +17,6 @@ import java.util.HashSet;
  */
 public class TestActivity extends BaseActivity{
 
-
     @Override
     protected int setLayoutId() {
         return R.layout.activity_test;
@@ -31,16 +30,13 @@ public class TestActivity extends BaseActivity{
     @Override
     public void initData() {
 
-
         HashSet<TestBean> hashSet = new HashSet<>();
-
         TestBean bean1 = new TestBean("aaa" , 1);
         TestBean bean2 = new TestBean("aaa" , 1);
         hashSet.add(bean1);
         hashSet.add(bean2);
         bean1.setAge(2);
         hashSet.add(bean1);
-
         LogUtil.Companion.logShow("size = " + hashSet.size());
 
     }
