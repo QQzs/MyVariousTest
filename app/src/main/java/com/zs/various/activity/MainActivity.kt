@@ -48,6 +48,7 @@ class MainActivity : Activity() {
         acts.add(NotificationActivity::class.java)
         acts.add(ThreadPoolActivity::class.java)
         acts.add(DispatchEventActivity::class.java)
+        acts.add(DispatchActivity::class.java)
         acts.add(TabLayoutActivity::class.java)
         acts.add(TabHomeActivity::class.java)
         acts.add(LeakCanaryActivity::class.java)

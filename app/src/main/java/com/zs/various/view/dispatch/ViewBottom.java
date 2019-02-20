@@ -30,18 +30,17 @@ public class ViewBottom extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-//        if (ev.getAction() == MotionEvent.ACTION_DOWN){
-//            Log.d("My_Log"," bottom ====  onInterceptTouchEvent ACTION_DOWN ");
-////            return true;
-//        }else if (ev.getAction() == MotionEvent.ACTION_MOVE){
-//            Log.d("My_Log"," bottom ====  onInterceptTouchEvent ACTION_MOVE ");
-////            return true;
-//        }else if (ev.getAction() == MotionEvent.ACTION_UP){
-//            Log.d("My_Log"," bottom ====  onInterceptTouchEvent ACTION_UP ");
-////            return true;
-//        }else{
-////            return true;
-//        }
+        if (ev.getAction() == MotionEvent.ACTION_DOWN){
+            Log.d("My_Log"," bottom ====  onInterceptTouchEvent ACTION_DOWN ");
+//            return true;
+        }else if (ev.getAction() == MotionEvent.ACTION_MOVE){
+            Log.d("My_Log"," bottom ====  onInterceptTouchEvent ACTION_MOVE ");
+//            return true;
+        }else if (ev.getAction() == MotionEvent.ACTION_UP){
+            Log.d("My_Log"," bottom ====  onInterceptTouchEvent ACTION_UP ");
+//            return true;
+        }
+//        return true;
         return super.onInterceptTouchEvent(ev);
     }
 
@@ -56,9 +55,9 @@ public class ViewBottom extends RelativeLayout {
 //            return true;
         }else if (ev.getAction() == MotionEvent.ACTION_UP){
             Log.d("My_Log"," bottom ====  dispatchTouchEvent ACTION_UP ");
-//            return true;
+//            return false;
         }
-//        return true;
+//        return false;
         return super.dispatchTouchEvent(ev);
     }
 
@@ -75,7 +74,7 @@ public class ViewBottom extends RelativeLayout {
             Log.d("My_Log"," bottom ====  onTouchEvent ACTION_UP ");
 //            return true;
         }
-//        return true;
+//        return false;
         return super.onTouchEvent(event);
     }
 
