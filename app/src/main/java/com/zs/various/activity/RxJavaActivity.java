@@ -36,6 +36,8 @@ public class RxJavaActivity extends AppCompatActivity{
         setContentView(R.layout.activity_rxjava);
         iv_image = findViewById(R.id.iv_image);
 
+
+
         /**
          * create  just  from  区别
          *
@@ -45,8 +47,6 @@ public class RxJavaActivity extends AppCompatActivity{
          *
          * 3.使用from( )，遍历集合，发送每个item
          */
-
-
         Observable.just("s")
                 .map(new Function<String, String>() {
                     @Override
@@ -54,8 +54,8 @@ public class RxJavaActivity extends AppCompatActivity{
                         return "";
                     }
                 })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()) // 事件执行的线程
+                .observeOn(AndroidSchedulers.mainThread()) // 事件回调的线程
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -78,26 +78,6 @@ public class RxJavaActivity extends AppCompatActivity{
                     }
                 });
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                iv_image.setImageResource(R.mipmap.ic_default_avatar);
-//            }
-//        },3000);
-
-        /**
-         *
-          */
-//        Observable.just(getDrawableFromUrl("ddddd"))
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Consumer<Drawable>() {
-//                    @Override
-//                    public void accept(Drawable drawable) throws Exception {
-//                        iv_image.setBackground(drawable);
-//                    }
-//                });
-
         /**
          * 如果from()里面执行了耗时操作，即使使用了subscribeOn(Schedulers.io())，
          * 仍然是在主线程执行，可能会造成界面卡顿甚至崩溃，
@@ -119,6 +99,19 @@ public class RxJavaActivity extends AppCompatActivity{
                         iv_image.setBackground(drawable);
                     }
                 });
+
+
+        /**
+         * 总结
+         *
+         * Observable 被观察者
+         * Observer 观察者
+         * subscribeOn ： 事件执行的线程
+         * observeOn ： 事件回调的线程
+         * 如果不关心什么时候处理结束，可以直接重载subscribe(Consumer<? spuer T> onNext)这个方法，会减少代码
+         * 默认订阅 subscribe(new Observer<String>()
+         */
+
 
     }
 

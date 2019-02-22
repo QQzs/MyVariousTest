@@ -42,6 +42,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
+        acts.add(RadarActivity::class.java)
         acts.add(TestActivity::class.java)
         acts.add(ChoiceViewActivity::class.java)
         acts.add(TabTitleActivity::class.java)
@@ -70,7 +71,6 @@ class MainActivity : Activity() {
         acts.add(ColorfullActivity::class.java)
         acts.add(ColorfullBackActivity::class.java)
         acts.add(ItemActivity::class.java)
-        acts.add(RadarActivity::class.java)
         acts.add(ShowActivity::class.java)
         acts.add(WebViewActivity::class.java)
         acts.add(CountDownActivity::class.java)

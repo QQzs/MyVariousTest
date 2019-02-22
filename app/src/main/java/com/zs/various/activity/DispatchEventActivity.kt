@@ -45,6 +45,9 @@ class DispatchEventActivity : AppCompatActivity() {
      UP Event return true, down事件正常分发，不再往下分发up事件，up事件截止
      UP Event return false,
 
+    onInterceptTouchEvent ：事件拦截
+    DOWN Event return true   down，up事件都在本view的OnTouchEvent中处理，click可以相应
+    UP Event return true   down事件不影响， up在本view的OnTouchEvent中处理，click不相应
 
      */
 
