@@ -11,11 +11,13 @@ import com.zs.various.R;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -37,15 +39,14 @@ public class RxJavaActivity extends AppCompatActivity{
         iv_image = findViewById(R.id.iv_image);
 
 
-
         /**
-         * create  just  from  区别
+         * create  just  fromArray  区别
          *
-         * 1.使用create( ),最基本的创建方式 , 手动发射数据 , 有耗时操作用create
+         * 1.create( ),最基本的创建方式 , 手动发射数据 , 有耗时操作用create
          *
-         * 2.使用just( )，将为你创建一个Observable并自动为你调用onNext( )发射数据
+         * 2.just( )，将为你创建一个Observable并自动为你调用onNext( )发射数据
          *
-         * 3.使用from( )，遍历集合，发送每个item
+         * 3.fromArray( )，遍历集合，接受一个集合作为输入，然后每次输出一个元素给subscriber
          */
         Observable.just("s")
                 .map(new Function<String, String>() {
@@ -79,7 +80,7 @@ public class RxJavaActivity extends AppCompatActivity{
                 });
 
         /**
-         * 如果from()里面执行了耗时操作，即使使用了subscribeOn(Schedulers.io())，
+         * 如果fromArray()里面执行了耗时操作，即使使用了subscribeOn(Schedulers.io())，
          * 仍然是在主线程执行，可能会造成界面卡顿甚至崩溃，
          * 所以耗时操作还是使用Observable.create(…);
          */
@@ -123,6 +124,47 @@ public class RxJavaActivity extends AppCompatActivity{
             e.printStackTrace();
         }
         return getResources().getDrawable(R.mipmap.ic_default_avatar);
+    }
+
+    private void action(){
+
+        Observable.just(1)
+                .filter(new Predicate<Integer>() {
+
+                    @Override
+                    public boolean test(Integer integer) throws Exception {
+                        return false;
+                    }
+                })
+                .map(new Function<Integer, String>() {
+
+                    @Override
+                    public String apply(Integer integer) throws Exception {
+                        return String.valueOf(integer);
+                    }
+                })
+                .flatMap(new Function<String, ObservableSource<String>>() {
+                    @Override
+                    public ObservableSource<String> apply(String s) throws Exception {
+                        return Observable.create(new ObservableOnSubscribe<String>() {
+                            @Override
+                            public void subscribe(ObservableEmitter<String> e) throws Exception {
+                                e.onNext("2");
+                                e.onComplete();
+                            }
+                        });
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+
+                    @Override
+                    public void accept(String s) throws Exception {
+
+                    }
+                });
+
     }
 
 }
