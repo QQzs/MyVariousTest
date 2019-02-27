@@ -4,8 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import top.zibin.luban.Luban;
+import top.zibin.luban.OnCompressListener;
 
 /**
  * Created by zs
@@ -26,6 +32,30 @@ public class TestActivity extends AppCompatActivity {
         for (Map.Entry<String , String> entry : map.entrySet()) {
 
         }
+
+        List<String> array = new ArrayList<>();
+
+        Luban.with(this)
+                .load(array)
+                .ignoreBy(100)
+                .setCompressListener(new OnCompressListener() {
+                    @Override
+                    public void onStart() {
+
+                    }
+
+                    @Override
+                    public void onSuccess(File file) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                })
+                .launch();
+
 
     }
 }

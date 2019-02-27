@@ -73,6 +73,7 @@
         <activity android:name=".activity.TabTitleActivity"/>
         <activity android:name=".activity.ChoiceViewActivity"/>
         <activity android:name=".activity.TestActivity"/>
+        <activity android:name=".activity.ViewFlipperActivity"/>
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
             android:enabled="true"
