@@ -74,6 +74,7 @@
         <activity android:name=".activity.ChoiceViewActivity"/>
         <activity android:name=".activity.TestActivity"/>
         <activity android:name=".activity.ViewFlipperActivity"/>
+        <activity android:name=".activity.ViewStubActivity"/>
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
             android:enabled="true"
