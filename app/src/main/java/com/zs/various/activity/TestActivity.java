@@ -40,4 +40,5 @@ public class TestActivity extends BaseActivity{
         LogUtil.Companion.logShow("size = " + hashSet.size());
 
     }
+
 }

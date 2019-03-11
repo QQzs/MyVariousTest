@@ -22,8 +22,16 @@ import android.widget.FrameLayout;
  */
 public abstract class LazyFragment extends Fragment {
 
+    /**
+     * 创建根布局 RootView，默认布局添加到根布局中
+     *
+     * setUserVisibleHint 在 onCreateView方法之前调用
+     * 正在显示 | 没有被加载过 | 已经调用过onCreateView方法 三个条件才进行加载布局，把布局添加到根布局中
+     *
+     */
+
     // Fragment的根View
-    private FrameLayout mRootView;
+    protected FrameLayout mRootView;
 
     private boolean hasLoaded = false;  //标识是否已经加载过
     private boolean hasCreated = false; //标识onCreateView是否已调用
@@ -40,7 +48,7 @@ public abstract class LazyFragment extends Fragment {
         Log.i("lazy_load", "LazyFragment onCreateView. ");
         final Context context = inflater.getContext();
         mRootView = new FrameLayout(context);
-        if(needInit) {
+        if(needInit) {  // 第一个fragment 在 setUserVisibleHint中 needInit 置为true，
             initWrapper();
             needInit = false;
         }
@@ -52,11 +60,10 @@ public abstract class LazyFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         Log.i("lazy_load", "LazyFragment setUserVisibleHint "+isVisibleToUser);
-
-        if (isVisibleToUser && !hasLoaded) {    //如果当前Fragment向用户展示且没有加载过，进行下一步判断
-            if (hasCreated) {   //如果onCreateView已经被创建，此时进行加载
+        if (isVisibleToUser && !hasLoaded) {    // 如果当前Fragment向用户展示且没有加载过，进行下一步判断
+            if (hasCreated) {   // 如果onCreateView已经被创建，此时进行加载
                 initWrapper();
-            } else {        //如果Fragment没有创建，那么设置标记，在onCreateView中加载
+            } else {            // 如果Fragment没有创建，那么设置标记，在onCreateView中加载（第一个fragment）
                 needInit = true;
             }
         }

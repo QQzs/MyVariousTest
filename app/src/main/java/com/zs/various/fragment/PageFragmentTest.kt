@@ -2,9 +2,9 @@ package com.zs.various.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
 import android.widget.TextView
 import com.zs.various.R
+import kotlinx.android.synthetic.main.fragment_pager_item.view.*
 
 /**
  * Created by zs
@@ -18,7 +18,6 @@ class PageFragmentTest : LazyFragment() {
 
     var num: Int? = null
     var tv_pager_num: TextView? = null
-    var iv_head_img: ImageView? = null
 
     companion object {
 
@@ -40,9 +39,10 @@ class PageFragmentTest : LazyFragment() {
         /**
          * 必须要重新获取view 直接用Kotlin  anko库找控件不可以
          */
-        tv_pager_num = getView<TextView>(R.id.tv_pager_num)
-        iv_head_img = getView<ImageView>(R.id.iv_head_img)
-        tv_pager_num?.text = "page = $num"
+//        tv_pager_num = getView<TextView>(R.id.tv_pager_num)
+
+        mRootView?.tv_pager_num?.text = "page = $num"
+
 
     }
 

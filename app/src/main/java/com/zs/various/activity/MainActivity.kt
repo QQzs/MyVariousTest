@@ -42,6 +42,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val acts = ArrayList<Class<*>>()
+        acts.add(LocalBroadcastActivity::class.java)
         acts.add(ViewStubActivity::class.java)
         acts.add(ViewFlipperActivity::class.java)
         acts.add(RadarActivity::class.java)
