@@ -2,7 +2,6 @@ package com.zs.various.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import com.zs.various.R
 import kotlinx.android.synthetic.main.fragment_pager_item.view.*
 
@@ -17,7 +16,6 @@ import kotlinx.android.synthetic.main.fragment_pager_item.view.*
 class PageFragmentTest : LazyFragment() {
 
     var num: Int? = null
-    var tv_pager_num: TextView? = null
 
     companion object {
 
@@ -37,9 +35,10 @@ class PageFragmentTest : LazyFragment() {
         Log.d("My_Log","initView  $num")
 
         /**
-         * 必须要重新获取view 直接用Kotlin  anko库找控件不可以
+         * 要通过mRootView来获取控件，直接调用不可以
+         *
+         * tv_pager_num?.text = "page = $num"
          */
-//        tv_pager_num = getView<TextView>(R.id.tv_pager_num)
 
         mRootView?.tv_pager_num?.text = "page = $num"
 
