@@ -94,28 +94,34 @@ public class MusicView4 extends View {
 
     }
 
+    private void initView() {
+        paint = new Paint();
+        paint.setColor(color);
+        // 设置宽度
+        paint.setStrokeWidth(lineWidth);
+        // 设置样式
+        paint.setStyle(Paint.Style.FILL);
+        // 抗锯齿
+        paint.setAntiAlias(true);
+
+        paintCircle = new Paint();
+        paintCircle.setColor(color);
+        // 设置宽度
+        paintCircle.setStrokeWidth(circleWidth);
+        // 设置样式
+        paintCircle.setStyle(Paint.Style.STROKE);
+        // 抗锯齿
+        paintCircle.setAntiAlias(true);
+
+        initAnimator();
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int widthSize = measureWH(widthMeasureSpec,0) ;
         int heightSize = measureWH(heightMeasureSpec,1);
         setMeasuredDimension(widthSize, heightSize);
-        Log.d("My_Log", "onMeasure: "+ widthSize+"----"+heightSize);
-
-        if (width == 0){
-            width = widthSize- getPaddingLeft() - getPaddingRight();
-            height = heightSize - getPaddingTop() - getPaddingBottom();
-            minHeight = height / 2;
-            maxHeight = height + getPaddingTop();
-            disparityHeight = maxHeight / 12;
-
-            //初始化采样点和映射
-            samplingX = new float[SAMPLING_SIZE]; // 因为包括起点和终点所以需要+1个位置
-            float gap = width / (SAMPLING_SIZE + 1);//确定采样点之间的间距
-            for (int i = 0; i < SAMPLING_SIZE; i++) {
-                samplingX[i] = gap * (i + 1);
-            }
-        }
     }
 
     /**
@@ -143,28 +149,23 @@ public class MusicView4 extends View {
         }
     }
 
-    private void initView() {
-        paint = new Paint();
-        paint.setColor(color);
-        // 设置宽度
-        paint.setStrokeWidth(lineWidth);
-        // 设置样式
-        paint.setStyle(Paint.Style.FILL);
-        // 抗锯齿
-        paint.setAntiAlias(true);
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        Log.d("My_Log", "onSizeChanged: "+ w  +"----"+ h);
+        width = w- getPaddingLeft() - getPaddingRight();
+        height = h - getPaddingTop() - getPaddingBottom();
+        minHeight = height / 2;
+        maxHeight = height + getPaddingTop();
+        disparityHeight = maxHeight / 12;
 
-        paintCircle = new Paint();
-        paintCircle.setColor(color);
-        // 设置宽度
-        paintCircle.setStrokeWidth(circleWidth);
-        // 设置样式
-        paintCircle.setStyle(Paint.Style.STROKE);
-        // 抗锯齿
-        paintCircle.setAntiAlias(true);
-
-        initAnimator();
+        //初始化采样点和映射
+        samplingX = new float[SAMPLING_SIZE]; // 因为包括起点和终点所以需要+1个位置
+        float gap = width / (SAMPLING_SIZE + 1);//确定采样点之间的间距
+        for (int i = 0; i < SAMPLING_SIZE; i++) {
+            samplingX[i] = gap * (i + 1);
+        }
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {

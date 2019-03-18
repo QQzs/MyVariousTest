@@ -47,7 +47,6 @@ public class ColorfullActivity extends Activity {
                         getString(R.string.transition_image)
                 );
                 ActivityCompat.startActivity(ColorfullActivity.this, intent, optionsCompat.toBundle());
-//                startActivity(intent);
             }
         });
 

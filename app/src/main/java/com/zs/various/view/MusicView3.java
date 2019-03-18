@@ -79,27 +79,25 @@ public class MusicView3 extends View {
         initView();
     }
 
+    private void initView() {
+        paint = new Paint();
+        paint.setColor(color);
+        // 设置宽度
+        paint.setStrokeWidth(lineWidth);
+        // 设置样式
+        paint.setStyle(Paint.Style.FILL);
+        // 抗锯齿
+        paint.setAntiAlias(true);
+//        mHandler.sendEmptyMessage(MESSAGE_WHAT);
+        initAnimator();
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int widthSize = measureWH(widthMeasureSpec,0) ;
         int heightSize = measureWH(heightMeasureSpec,1);
         setMeasuredDimension(widthSize, heightSize);
-
-        if (width == 0){ // onMeasure方法会走多遍
-            width = widthSize- getPaddingLeft() - getPaddingRight();
-            height = heightSize - getPaddingTop() - getPaddingBottom();
-            minHeight = height / 2;
-            maxHeight = height + getPaddingTop() ;
-            disparityHeight = maxHeight / 12;
-
-            //初始化采样点和映射
-            samplingX = new float[SAMPLING_SIZE]; // 因为包括起点和终点所以需要+1个位置
-            float gap = width / (SAMPLING_SIZE + 1);//确定采样点之间的间距
-            for (int i = 0; i < SAMPLING_SIZE; i++) {
-                samplingX[i] = gap * (i + 1);
-            }
-        }
 
     }
 
@@ -128,17 +126,21 @@ public class MusicView3 extends View {
         }
     }
 
-    private void initView() {
-        paint = new Paint();
-        paint.setColor(color);
-        // 设置宽度
-        paint.setStrokeWidth(lineWidth);
-        // 设置样式
-        paint.setStyle(Paint.Style.FILL);
-        // 抗锯齿
-        paint.setAntiAlias(true);
-//        mHandler.sendEmptyMessage(MESSAGE_WHAT);
-        initAnimator();
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        width = w- getPaddingLeft() - getPaddingRight();
+        height = h - getPaddingTop() - getPaddingBottom();
+        minHeight = height / 2;
+        maxHeight = height + getPaddingTop() ;
+        disparityHeight = maxHeight / 12;
+
+        //初始化采样点和映射
+        samplingX = new float[SAMPLING_SIZE]; // 因为包括起点和终点所以需要+1个位置
+        float gap = width / (SAMPLING_SIZE + 1);//确定采样点之间的间距
+        for (int i = 0; i < SAMPLING_SIZE; i++) {
+            samplingX[i] = gap * (i + 1);
+        }
     }
 
     @Override
