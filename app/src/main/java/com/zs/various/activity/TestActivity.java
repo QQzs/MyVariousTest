@@ -3,6 +3,7 @@ package com.zs.various.activity;
 import com.zs.various.R;
 import com.zs.various.base.BaseActivity;
 import com.zs.various.bean.TestBean;
+import com.zs.various.bean.java.SubClass;
 import com.zs.various.util.LogUtil;
 
 import java.util.HashSet;
@@ -37,12 +38,39 @@ public class TestActivity extends BaseActivity{
         hashSet.add(bean2);
         bean1.setAge(2);
         hashSet.add(bean1);
-        LogUtil.Companion.logShow("size = " + hashSet.size());
+        getData();
+
+        new SubClass();
 
     }
 
 
-    
+    private void getData(){
+
+        Man man = new Man();
+        man.action(10);
+        LogUtil.Companion.logShow(man.name);
+
+        Person person = man;
+        person.action(20);
+        LogUtil.Companion.logShow(person.name);
+
+    }
+
+
+    class Person{
+        String name = "Person";
+        public void action(int age){
+            LogUtil.Companion.logShow("Person" + age);
+        }
+    }
+
+    class Man extends Person{
+        String name = "Man";
+        public void action(int age){
+            LogUtil.Companion.logShow("Man" + age);
+        }
+    }
 
 
 }
