@@ -1,4 +1,4 @@
-package com.zs.various.bean.java;
+package com.zs.various.bean.java1;
 
 /**
  * Created by zs
