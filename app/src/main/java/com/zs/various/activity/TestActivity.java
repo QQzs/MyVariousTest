@@ -6,8 +6,10 @@ import com.zs.various.bean.TestBean;
 import com.zs.various.bean.java1.SubClass;
 import com.zs.various.bean.java2.Man;
 import com.zs.various.bean.java2.Person;
+import com.zs.various.util.Constant;
 import com.zs.various.util.LogUtil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 /**
@@ -44,6 +46,10 @@ public class TestActivity extends BaseActivity{
 
         new SubClass();
 
+        int[] data = {1,2,3,4};
+        Constant.changeData(data);
+        LogUtil.Companion.logShow(Arrays.toString(data));
+
     }
 
 
@@ -53,6 +59,20 @@ public class TestActivity extends BaseActivity{
         LogUtil.Companion.logShow(person.name);
         person.action(10);
         person.print();
+
+        /** 输出结果：
+         * Person constructor
+          Man constructor
+          Person
+          Man10
+          print Person
+         */
+
+        /**
+         * 注意
+         * 1、父类的构造器调用以及初始化过程一定在子类的前面
+         * 2、覆盖只只对于非静态方法，而隐藏是针对于成员变量和静态方法
+         */
 
     }
 
