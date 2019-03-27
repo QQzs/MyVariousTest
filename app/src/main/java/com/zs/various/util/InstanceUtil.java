@@ -10,7 +10,7 @@ package com.zs.various.util;
  */
 public class InstanceUtil {
 
-    private static InstanceUtil mUtil = null;
+    private static volatile InstanceUtil mUtil = null;
 
     private InstanceUtil() {
 
@@ -40,7 +40,7 @@ public class InstanceUtil {
     }
 
     private static class TestHolder{
-        public static final InstanceUtil instance = new InstanceUtil();
+        private static final InstanceUtil instance = new InstanceUtil();
     }
 
 }
