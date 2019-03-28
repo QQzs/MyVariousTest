@@ -48,6 +48,7 @@ class MainActivity : Activity() {
         data.add(ViewFlipperActivity::class.java)
         data.add(RadarActivity::class.java)
         data.add(TestActivity::class.java)
+        data.add(TestKotlinActivity::class.java)
         data.add(ChoiceViewActivity::class.java)
         data.add(TabTitleActivity::class.java)
         data.add(NotificationActivity::class.java)

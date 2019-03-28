@@ -9,9 +9,9 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
 import com.zs.various.R;
 import com.zs.various.util.Constant;
+import com.zs.various.util.extension.ImageViewExtensionKt;
 
 /**
  * Created by zs
@@ -32,10 +32,12 @@ public class ColorfullActivity extends Activity {
         setContentView(R.layout.colorfull_layout);
         iv_show = findViewById(R.id.iv_show);
 
-        Picasso.with(this)
-                .load(Constant.IMAGE_URL)
-                .placeholder(R.mipmap.timg)
-                .into(iv_show);
+//        Picasso.with(this)
+//                .load(Constant.IMAGE_URL)
+//                .placeholder(R.mipmap.timg)
+//                .into(iv_show);
+
+        ImageViewExtensionKt.loadImage(iv_show,Constant.IMAGE_URL);
 
         iv_show.setOnClickListener(new View.OnClickListener() {
             @Override
