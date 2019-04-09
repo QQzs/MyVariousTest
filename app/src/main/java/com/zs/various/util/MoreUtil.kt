@@ -18,6 +18,7 @@ class MoreUtil{
     companion object {
 
         /**
+         * 设置字体自适应
          * @param min  字体最小字号
          * @param max  字体最大字号
          * @param textViews 要设置的textview

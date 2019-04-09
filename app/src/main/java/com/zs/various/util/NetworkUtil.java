@@ -15,9 +15,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * <pre>
- *     desc  : 网络相关工具类
- * </pre>
+ * 网络相关工具类
  */
 public class NetworkUtil {
 

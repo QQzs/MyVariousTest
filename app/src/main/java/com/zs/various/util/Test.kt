@@ -14,6 +14,9 @@ About:
  */
 class Test{
 
+    /**
+     * Kotlin 遍历
+     */
     var TAG = "Test"
 
     fun forMethod(){

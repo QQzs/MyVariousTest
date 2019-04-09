@@ -24,7 +24,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
  * Date：2018年 11月 06日
  * Time：10:24
  * —————————————————————————————————————
- * About:
+ * About: Notification工具
  * —————————————————————————————————————
  */
 public class NotificationUtil {
