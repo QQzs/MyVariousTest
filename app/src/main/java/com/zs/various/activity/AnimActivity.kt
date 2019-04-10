@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit
 
 class AnimActivity : AppCompatActivity() {
 
-    var flag1 = true
     var flag2 = true
     var flag3 = true
     var flag4 = true
