@@ -78,6 +78,7 @@
         <activity android:name=".activity.ViewStubActivity"/>
         <activity android:name=".activity.LocalBroadcastActivity"/>
         <activity android:name=".activity.SleepAndWaitActivity"/>
+        <activity android:name=".activity.VoiceActivity"/>
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
             android:enabled="true"

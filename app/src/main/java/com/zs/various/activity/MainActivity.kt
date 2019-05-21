@@ -42,6 +42,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val data = ArrayList<Class<*>>()
+        data.add(VoiceActivity::class.java)
         data.add(SleepAndWaitActivity::class.java)
         data.add(LocalBroadcastActivity::class.java)
         data.add(ViewStubActivity::class.java)
