@@ -67,5 +67,9 @@ class CustomViewActivity : AppCompatActivity() {
         var anim = OnClickEffectTouchListener()
         tv_complete?.setOnTouchListener(anim)
 
+        tv_complete?.setOnClickListener {
+            Log.d("My_Log","ccccc")
+        }
+
     }
 }

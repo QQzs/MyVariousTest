@@ -91,6 +91,8 @@ dependencies {
     implementation 'com.github.QQzs:BorderView:1.0.6'
     // 鲁班压缩
     implementation 'top.zibin:Luban:1.1.8'
+
+    implementation 'com.zhy:base-rvadapter:3.0.3'
 }
 
 walle {
