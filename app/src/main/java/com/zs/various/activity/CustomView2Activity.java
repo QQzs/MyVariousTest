@@ -105,6 +105,8 @@ public class CustomView2Activity extends BaseActivity {
         //将bitmap用ImageView展示
         iv_img.setImageBitmap(bitmap);
 
+//        NiceImageView roundImage = findViewById(R.id.round_img);
+//        roundImage.setImageResource(R.drawable.bg_girl);
 
     }
 
