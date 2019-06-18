@@ -23,8 +23,6 @@ class NotificationActivity: AppCompatActivity(){
         setContentView(R.layout.activity_notification_layout)
 
         btn_1?.setOnClickListener {
-//            NotificationUtilCopy.showNotification(this)
-
             NotificationUtil.Builder(this)
                     .setNotificationId(666)
                     .setChannel("iddd" , "我的")
@@ -35,14 +33,20 @@ class NotificationActivity: AppCompatActivity(){
                     .build()
                     .notification()
         }
+
+
+
+
         btn_2?.setOnClickListener {
 
+            var list = arrayListOf("1、是据台湾" , "2、今天18" , "3、主的席")
             NotificationUtil.Builder(this)
                     .setNotificationId(123)
                     .setChannel("iddd" , "我的")
                     .setTitle("标题")
                     .setContent("完成未来所有补选工作。")
-                    .setType(NotificationUtil.TYPE_PICTURE)
+                    .setContentList(list)
+                    .setType(NotificationUtil.TYPE_INBOX)
                     .setNextPage(ProfileActivity::class.java , HashMap<String , String>())
                     .build()
                     .notification()

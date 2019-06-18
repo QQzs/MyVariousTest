@@ -17,6 +17,7 @@ import com.zs.various.R;
 import com.zs.various.activity.BehaviorActivity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 import static android.app.Notification.VISIBILITY_SECRET;
@@ -33,6 +34,7 @@ public class NotificationUtil{
     public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_MORE = 1;
     public static final int TYPE_PICTURE = 2;
+    public static final int TYPE_INBOX = 3;
 
     private Context mContext;
     private NotificationManager mNotificationManager;
@@ -74,10 +76,12 @@ public class NotificationUtil{
 
     public void notification(){
 
-        if (mBuilder.smallIcon == 0){
-            mNotificationBuilder.setSmallIcon(R.mipmap.icon_small);
-        }else{
-            mNotificationBuilder.setSmallIcon(mBuilder.smallIcon);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            if (mBuilder.smallIcon == 0){
+                mNotificationBuilder.setSmallIcon(R.mipmap.icon_small);
+            }else{
+                mNotificationBuilder.setSmallIcon(mBuilder.smallIcon);
+            }
         }
         if (mBuilder.largeIcon == null){
             mNotificationBuilder.setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(),R.mipmap.icon_small));
@@ -109,7 +113,7 @@ public class NotificationUtil{
 
         // 设置样式
         if (mBuilder.type == TYPE_DEFAULT){
-
+            // 单行
         }else if (mBuilder.type == TYPE_MORE){
             // 多行文本
             mNotificationBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(mBuilder.content));
@@ -119,6 +123,16 @@ public class NotificationUtil{
                 mNotificationBuilder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(mBuilder.bigPicture));
             }else{
                 mNotificationBuilder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(mContext.getResources(),R.mipmap.icon_small)));
+            }
+        } else if (mBuilder.type == TYPE_INBOX){
+            // 多条通知
+            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+            if (mBuilder.contentList != null){
+                for (String content: mBuilder.contentList){
+                    inboxStyle.addLine(content);
+                }
+                inboxStyle.setSummaryText("+" + mBuilder.contentList.size() + " " + mBuilder.title);
+                mNotificationBuilder.setStyle(inboxStyle);
             }
         }
 
@@ -147,8 +161,9 @@ public class NotificationUtil{
      * @param context
      * @param notificationId
      */
-    public void clearNotificationById(Context context, int notificationId){
-        getNotificationManager(context).cancel(notificationId);
+    public static void clearNotificationById(Context context, int notificationId){
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.cancel(notificationId);
     }
 
     /**
@@ -156,7 +171,8 @@ public class NotificationUtil{
      * @param context
      */
     public void clearNotification(Context context){
-        getNotificationManager(context).cancelAll();
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.cancelAll();
     }
 
     public static class Builder{
@@ -180,6 +196,8 @@ public class NotificationUtil{
         private String title;
 
         private String content;
+
+        private List<String> contentList;
 
         private Class<?> nextPage;
 
@@ -222,6 +240,11 @@ public class NotificationUtil{
 
         public Builder setContent(String content) {
             this.content = content;
+            return this;
+        }
+
+        public Builder setContentList(List<String> contentList) {
+            this.contentList = contentList;
             return this;
         }
 
