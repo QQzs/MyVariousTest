@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,8 +16,10 @@ import android.text.TextUtils;
 
 import com.zs.various.R;
 import com.zs.various.activity.BehaviorActivity;
+import com.zs.various.bean.NotificationModel;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +34,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 public class NotificationUtil{
 
     public static final String NOTIFICATION_DATA = "notification_data";
+    public static final String ACTION_CLOSE_NOTICE = "com.zs.various.close";
     public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_MORE = 1;
     public static final int TYPE_PICTURE = 2;
@@ -97,7 +101,7 @@ public class NotificationUtil{
         mNotificationBuilder.setWhen(System.currentTimeMillis());
 
         //点击自动删除通知
-        mNotificationBuilder.setAutoCancel(true);
+//        mNotificationBuilder.setAutoCancel(true);
 
         // 通知优先级
         mNotificationBuilder.setPriority(NotificationManager.IMPORTANCE_HIGH);
@@ -137,17 +141,40 @@ public class NotificationUtil{
         }
 
         // 通知落地页
-        Intent intent;
-        if (mBuilder.nextPage != null){
-            intent = new Intent(mContext, mBuilder.nextPage);
-        } else{
-            intent = new Intent(mContext, BehaviorActivity.class);
+        if (mBuilder.manage){
+
+            Intent intent = new Intent();
+            intent.setAction(ACTION_CLOSE_NOTICE);
+
+            NotificationModel notificationModel = new NotificationModel();
+            notificationModel.notificationId = mBuilder.notificationId;
+            if (mBuilder.nextPage != null){
+                notificationModel.nextPage = mBuilder.nextPage;
+            }
+            if (mBuilder.params != null){
+                notificationModel.params = mBuilder.params;
+            } else{
+                notificationModel.params = new HashMap<>();
+            }
+
+            intent.putExtra(NOTIFICATION_DATA, notificationModel);
+            intent.setComponent(new ComponentName("com.zs.various", "com.zs.various.receiver.CloseNoticeBroadcastReceiver"));
+            PendingIntent pendingClose = PendingIntent.getBroadcast(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            mNotificationBuilder.setContentIntent(pendingClose);
+
+        }else{
+            Intent intent;
+            if (mBuilder.nextPage != null){
+                intent = new Intent(mContext, mBuilder.nextPage);
+            } else{
+                intent = new Intent(mContext, BehaviorActivity.class);
+            }
+            if (mBuilder.params != null){
+                intent.putExtra(NOTIFICATION_DATA, (Serializable)mBuilder.params);
+            }
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            mNotificationBuilder.setContentIntent(pendingIntent);
         }
-        if (mBuilder.params != null){
-             intent.putExtra(NOTIFICATION_DATA, (Serializable)mBuilder.params);
-        }
-        PendingIntent pendingIntent = PendingIntent.getActivity(mContext,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        mNotificationBuilder.setContentIntent(pendingIntent);
 
         Notification notification = mNotificationBuilder.build();
         if (mBuilder.notificationId != 0){
@@ -198,6 +225,8 @@ public class NotificationUtil{
         private String content;
 
         private List<String> contentList;
+
+        private boolean manage;
 
         private Class<?> nextPage;
 
@@ -254,6 +283,13 @@ public class NotificationUtil{
         }
 
         public Builder setNextPage(Class<?> nextPage , Map<String, String> params) {
+            this.nextPage = nextPage;
+            this.params = params;
+            return this;
+        }
+
+        public Builder setNextPage(boolean manage ,  Class<?> nextPage , Map<String, String> params) {
+            this.manage = manage;
             this.nextPage = nextPage;
             this.params = params;
             return this;

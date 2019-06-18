@@ -10,6 +10,7 @@ import com.zs.various.base.BaseActivity
 import com.zs.various.fragment.WorkFragment
 import com.zs.various.view.pull.callback.OnReadyPullListener
 import kotlinx.android.synthetic.main.activity_profile_layout.*
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 /**
@@ -30,6 +31,10 @@ class ProfileActivity: BaseActivity(){
     }
 
     override fun initView() {
+
+        iv_useravator?.setOnClickListener {
+            startActivity<NotificationActivity>()
+        }
     }
 
     override fun initData() {

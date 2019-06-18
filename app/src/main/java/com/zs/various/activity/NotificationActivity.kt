@@ -47,7 +47,7 @@ class NotificationActivity: AppCompatActivity(){
                     .setContent("完成未来所有补选工作。")
                     .setContentList(list)
                     .setType(NotificationUtil.TYPE_INBOX)
-                    .setNextPage(ProfileActivity::class.java , HashMap<String , String>())
+                    .setNextPage(true , ProfileActivity::class.java , HashMap<String , String>())
                     .build()
                     .notification()
 
