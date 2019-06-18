@@ -4,17 +4,22 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.zs.various.util.NotificationUtil;
+import com.zs.various.util.NotificationUtilCopy;
 
 /**
- * Created by kris on 16/4/14.
+ *
+ * @author kris
+ * @date 16/4/14
  */
 public class CloseNoticeBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        int noticeId = intent.getIntExtra(NotificationUtil.NOTICE_ID_KEY, -1);
+        int noticeId = intent.getIntExtra(NotificationUtilCopy.NOTICE_ID_KEY, -1);
         if(noticeId != -1){
-            NotificationUtil.clearNotification(context, noticeId);
+
+            NotificationUtilCopy.clearNotification(context, noticeId);
+//            NotificationUtil.clearNotificationById(context , noticeId);
+
         }
     }
 }
