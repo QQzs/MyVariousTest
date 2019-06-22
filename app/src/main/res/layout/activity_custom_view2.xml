@@ -33,4 +33,20 @@
         app:border_color="@color/blue"
         app:mask_color="@color/dialog_tran_color"/>
 
+    <com.zs.various.view.MessageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
+
+    </com.zs.various.view.MessageView>
+
+    <com.zs.various.view.MessageView2
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
+
+    </com.zs.various.view.MessageView2>
+
+
+
 </LinearLayout>
