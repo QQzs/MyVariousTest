@@ -23,7 +23,7 @@ import org.jetbrains.anko.dip
 class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0): FrameLayout(context, attrs, defStyleAttr){
 
     private var view: View? = null
-    private var mTextHeight = 0f
+    private var mTextHeight = dip(20f).toFloat()
 
     private var mAnimatorSet: AnimatorSet? = null
     private var mAnimatorTransition1: ObjectAnimator? = null
@@ -39,7 +39,7 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
             when(msg?.what){
                 1 -> {
                     update("message ${newMessage ++}")
-                    sendEmptyMessageDelayed(1,700)
+                    sendEmptyMessageDelayed(1,2000)
                 }
 
             }
@@ -50,11 +50,12 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
     init {
         view = LayoutInflater.from(context).inflate(R.layout.view_message, this)
 
-        tv_msg_one?.post {
-            mTextHeight = tv_msg_one.measuredHeight.toFloat()
-            initAnim()
-        }
-        mHandler?.sendEmptyMessageDelayed(1,700)
+//        tv_msg_one?.post {
+//            mTextHeight = tv_msg_one.measuredHeight.toFloat()
+//            initAnim()
+//        }
+        initAnim()
+        mHandler?.sendEmptyMessageDelayed(1,2000)
     }
 
     /**
@@ -95,7 +96,7 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
             }
 
         })
-        mAnimatorSet?.duration = 400
+        mAnimatorSet?.duration = 1500
         mAnimatorSet?.playTogether(mAnimatorTransition1 ,mAnimatorAlpha1 , mAnimatorTransition2 ,mAnimatorTransition3 , mAnimatorAlpha2)
     }
 

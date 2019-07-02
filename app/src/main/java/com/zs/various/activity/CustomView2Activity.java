@@ -9,8 +9,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.zs.various.R;
 import com.zs.various.base.BaseActivity;
+import com.zs.various.view.RoundImageView;
 
 /**
  * Created by zs
@@ -105,7 +107,9 @@ public class CustomView2Activity extends BaseActivity {
         //将bitmap用ImageView展示
         iv_img.setImageBitmap(bitmap);
 
-//        NiceImageView roundImage = findViewById(R.id.round_img);
+        RoundImageView roundImage = findViewById(R.id.round_img);
+
+        Glide.with(this).load("https://freshmate-dev-bigbang-pub.oss-cn-beijing.aliyuncs.com/avatar/1000017/05ff9e913cd89f0b36c1ec184bd2a471.jpg").into(roundImage);
 //        roundImage.setImageResource(R.drawable.bg_girl);
 
     }
