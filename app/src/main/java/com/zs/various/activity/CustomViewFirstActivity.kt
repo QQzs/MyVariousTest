@@ -12,7 +12,7 @@ import com.zs.various.util.MoreUtil
 import kotlinx.android.synthetic.main.activity_custom_view.*
 import org.jetbrains.anko.toast
 
-class CustomViewActivity : AppCompatActivity() {
+class CustomViewFirstActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

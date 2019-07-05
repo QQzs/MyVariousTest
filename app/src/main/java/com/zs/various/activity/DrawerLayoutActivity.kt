@@ -35,7 +35,7 @@ class DrawerLayoutActivity: AppCompatActivity(){
         acts.add(CountDownActivity::class.java)
         acts.add(RelativeActivity::class.java)
         acts.add(VoiceAnimActivity::class.java)
-        acts.add(CustomViewActivity::class.java)
+        acts.add(CustomViewFirstActivity::class.java)
         acts.add(DialogActivity::class.java)
         acts.add(SpanStringActivity::class.java)
 

@@ -34,8 +34,8 @@
         <activity android:name=".activity.CountDownActivity" />
         <activity android:name=".activity.RelativeActivity" />
         <activity android:name=".activity.VoiceAnimActivity" />
-        <activity android:name=".activity.CustomViewActivity" />
-        <activity android:name=".activity.CustomView2Activity" />
+        <activity android:name=".activity.CustomViewFirstActivity" />
+        <activity android:name=".activity.CustomViewTwoActivity" />
         <activity android:name=".activity.UpdateActivity"/>
         <activity android:name=".activity.ContactActivity"
             android:windowSoftInputMode="adjustPan">

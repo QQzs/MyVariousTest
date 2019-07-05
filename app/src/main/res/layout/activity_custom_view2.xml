@@ -6,13 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.zs.various.activity.CustomViewActivity">
-
-    <ImageView
-        android:id="@+id/iv_img"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
+    tools:context="com.zs.various.activity.CustomViewFirstActivity">
 
     <com.zs.various.view.LinePathView
         android:layout_width="match_parent"
@@ -45,6 +39,32 @@
         android:layout_marginTop="@dimen/dp_10">
 
     </com.zs.various.view.MessageView2>
+
+    <TextView
+        android:id="@+id/tv_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/text_info"/>
+
+
+    <com.zs.various.view.ExpandTextView
+        android:id="@+id/tv_limit1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <com.zs.various.view.ExpandableTextView
+        android:id="@+id/tv_limit2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/colorAccent"/>
+
+
 
 
 
