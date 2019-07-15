@@ -1,11 +1,24 @@
 package com.zs.various.activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
+import android.support.v7.graphics.Palette;
+import android.util.Log;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.github.florent37.glidepalette.BitmapPalette;
+import com.github.florent37.glidepalette.GlidePalette;
 import com.zs.various.R;
 import com.zs.various.base.BaseActivity;
 import com.zs.various.view.ExpandTextView;
 import com.zs.various.view.ExpandableTextView;
 import com.zs.various.view.RoundImageView;
+import com.zs.various.view.ShadowView;
 
 /**
  * Created by zs
@@ -35,13 +48,43 @@ public class CustomViewTwoActivity extends BaseActivity {
 
     }
 
+    private String mUrl = "https://freshmate-dev-bigbang-pub.oss-cn-beijing.aliyuncs.com/avatar/1000017/05ff9e913cd89f0b36c1ec184bd2a471.jpg";
 
 
     @Override
     public void initData() {
         RoundImageView roundImage = findViewById(R.id.round_img);
-        Glide.with(this).load("https://freshmate-dev-bigbang-pub.oss-cn-beijing.aliyuncs.com/avatar/1000017/05ff9e913cd89f0b36c1ec184bd2a471.jpg").into(roundImage);
-//        roundImage.setImageResource(R.drawable.bg_girl);
+
+        final ShadowView shadow_img = findViewById(R.id.shadow_img);
+
+        Glide.with(this)
+                .load(mUrl)
+                .listener(GlidePalette.with(mUrl)
+                        .intoCallBack(new BitmapPalette.CallBack() {
+                            @Override
+                            public void onPaletteLoaded(@Nullable Palette palette) {
+                                //specific task
+                                int color = palette.getVibrantColor(Color.WHITE);
+
+                                shadow_img.setBack(color);
+
+                                Log.d("My_Log" , "color = " + color);
+
+                            }
+                        })
+                        .setGlideListener(new RequestListener<Drawable>() {
+                            @Override public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                Log.d("My_Log" , "NO");
+                                return false;
+                            }
+
+                            @Override public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                Log.d("My_Log" , "YES");
+                                return false;
+                            }
+                        }))
+                .into(roundImage);
+        roundImage.setImageResource(R.drawable.bg_girl);
 
     }
 

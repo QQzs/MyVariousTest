@@ -13,6 +13,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // 支持lambda表达式
@@ -67,7 +68,7 @@ dependencies {
     // 美团批量打包
     implementation 'com.squareup.picasso:picasso:2.5.2'
     // 图片
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
     // 图片
     implementation 'com.github.iwgang:countdownview:2.1.6'
     // 倒计时
@@ -93,6 +94,12 @@ dependencies {
     implementation 'top.zibin:Luban:1.1.8'
 
     implementation 'com.zhy:base-rvadapter:3.0.3'
+
+    implementation 'com.github.florent37:glidepalette:2.1.2'
+
+    implementation 'com.android.support:multidex:1.0.1'
+
+
 }
 
 walle {

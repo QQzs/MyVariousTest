@@ -18,10 +18,11 @@ import android.util.AttributeSet;
 
 import com.zs.various.R;
 
+
 /**
  * @Author: zs
  * @Date: 2019-06-03 13:50
- * @Description:
+ * @Description: 圆角图片
  */
 public class RoundImageView extends AppCompatImageView {
     private Context context;
@@ -135,25 +136,17 @@ public class RoundImageView extends AppCompatImageView {
         super.onDraw(canvas);
         paint.reset();
         path.reset();
-        if (isCircle) {
-            path.addCircle(width / 2.0f, height / 2.0f, radius, Path.Direction.CCW);
-        } else {
-            path.addRoundRect(srcRectF, srcRadii, Path.Direction.CCW);
-        }
-
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
         paint.setXfermode(xfermode);
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
-            canvas.drawPath(path, paint);
-        } else {
-            srcPath.addRect(srcRectF, Path.Direction.CCW);
-            // 计算tempPath和path的差集
-            srcPath.op(path, Path.Op.DIFFERENCE);
-            canvas.drawPath(srcPath, paint);
-        }
-        paint.setXfermode(null);
 
+        if (isCircle) {
+            drawCirclePath(canvas , srcRectF , radius);
+        } else {
+            drawRectFPath(canvas , srcRectF , srcRadii);
+        }
+
+        paint.setXfermode(null);
         // 绘制遮罩
         if (maskColor != 0) {
             paint.setColor(maskColor);
@@ -166,30 +159,12 @@ public class RoundImageView extends AppCompatImageView {
     }
 
     private void drawBorders(Canvas canvas) {
+        initBorderPaint(borderWidth, borderColor);
         if (isCircle) {
-            if (borderWidth > 0) {
-                drawCircleBorder(canvas, borderWidth, borderColor, radius - borderWidth / 2.0f);
-            }
-            if (innerBorderWidth > 0) {
-                drawCircleBorder(canvas, innerBorderWidth, innerBorderColor, radius - borderWidth - innerBorderWidth / 2.0f);
-            }
+            drawCirclePath(canvas , srcRectF , radius - borderWidth / 2.0f);
         } else {
-            if (borderWidth > 0) {
-                drawRectFBorder(canvas, borderWidth, borderColor, borderRectF, borderRadii);
-            }
+            drawRectFPath(canvas , borderRectF , borderRadii);
         }
-    }
-
-    private void drawCircleBorder(Canvas canvas, int borderWidth, int borderColor, float radius) {
-        initBorderPaint(borderWidth, borderColor);
-        path.addCircle(width / 2.0f, height / 2.0f, radius, Path.Direction.CCW);
-        canvas.drawPath(path, paint);
-    }
-
-    private void drawRectFBorder(Canvas canvas, int borderWidth, int borderColor, RectF rectF, float[] radii) {
-        initBorderPaint(borderWidth, borderColor);
-        path.addRoundRect(rectF, radii, Path.Direction.CCW);
-        canvas.drawPath(path, paint);
     }
 
     private void initBorderPaint(int borderWidth, int borderColor) {
@@ -197,6 +172,32 @@ public class RoundImageView extends AppCompatImageView {
         paint.setStrokeWidth(borderWidth);
         paint.setColor(borderColor);
         paint.setStyle(Paint.Style.STROKE);
+    }
+
+    private void drawCirclePath(Canvas canvas , RectF rectF , float radius ){
+
+        path.addCircle(width / 2.0f, height / 2.0f, radius, Path.Direction.CCW);
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
+            canvas.drawPath(path, paint);
+        } else {
+            srcPath.addRect(rectF, Path.Direction.CCW);
+            srcPath.op(path, Path.Op.DIFFERENCE);
+            canvas.drawPath(srcPath, paint);
+        }
+
+    }
+
+    private void drawRectFPath(Canvas canvas , RectF rectF, float[] radii){
+
+        path.addRoundRect(rectF, radii, Path.Direction.CCW);
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
+            canvas.drawPath(path, paint);
+        } else {
+            srcPath.addRect(rectF, Path.Direction.CCW);
+            srcPath.op(path, Path.Op.DIFFERENCE);
+            canvas.drawPath(srcPath, paint);
+        }
+
     }
 
     /**

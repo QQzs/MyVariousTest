@@ -1,7 +1,8 @@
 package com.zs.various.application;
 
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.meituan.android.walle.WalleChannelReader;
@@ -17,7 +18,7 @@ import com.zs.various.util.SpUtil;
  * —————————————————————————————————————
  */
 
-public class MyApp extends Application {
+public class MyApp extends MultiDexApplication {
 
     private static Context mContext;
     @Override
@@ -46,5 +47,11 @@ public class MyApp extends Application {
 
     public static Context getAppContext() {
         return mContext;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
