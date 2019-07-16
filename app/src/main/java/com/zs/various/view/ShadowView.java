@@ -24,22 +24,18 @@ public class ShadowView extends AppCompatImageView {
     private float mShadowAlpha;
     private float mShadowX;
     private float mShadowY;
-    private float mShadow;
+    private float mShadowPadding;
     private float mShadowRadius;
 
     public ShadowView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        // 关闭硬件加速
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+
         mPaint = new Paint();
         mPaint.setColor(Color.WHITE);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
-        this.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-
-
-        mShadowAlpha = dp2px(5);
-        mShadowX = dp2px(0);
-        mShadowY = dp2px(5);
-        mShadowRadius = dp2px(10);
 
 
     }
@@ -49,6 +45,13 @@ public class ShadowView extends AppCompatImageView {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
+
+        mShadowAlpha = dp2px(6);
+        mShadowX = dp2px(0);
+        mShadowY = dp2px(6);
+
+        mShadowPadding = dp2px(15);
+        mShadowRadius = dp2px(10);
     }
 
     @Override
@@ -57,7 +60,7 @@ public class ShadowView extends AppCompatImageView {
 
         //绘制阴影，param1：模糊半径；param2：x轴大小：param3：y轴大小；param4：阴影颜色
         mPaint.setShadowLayer(mShadowAlpha, mShadowX, mShadowY, mColor);
-        RectF rect = new RectF(mShadowRadius , mShadowRadius, mWidth - mShadowRadius, mHeight - mShadowRadius);
+        RectF rect = new RectF(mWidth * 0.1f , 0, mWidth - mWidth * 0.1f, mHeight - mShadowPadding);
         canvas.drawRoundRect(rect, mShadowRadius, mShadowRadius, mPaint);
     }
 

@@ -11,14 +11,14 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.github.florent37.glidepalette.BitmapPalette;
-import com.github.florent37.glidepalette.GlidePalette;
 import com.zs.various.R;
 import com.zs.various.base.BaseActivity;
 import com.zs.various.view.ExpandTextView;
 import com.zs.various.view.ExpandableTextView;
 import com.zs.various.view.RoundImageView;
 import com.zs.various.view.ShadowView;
+import com.zs.various.view.palette.BitmapPalette;
+import com.zs.various.view.palette.GlidePalette;
 
 /**
  * Created by zs
@@ -57,6 +57,8 @@ public class CustomViewTwoActivity extends BaseActivity {
 
         final ShadowView shadow_img = findViewById(R.id.shadow_img);
 
+
+
         Glide.with(this)
                 .load(mUrl)
                 .listener(GlidePalette.with(mUrl)
@@ -64,7 +66,7 @@ public class CustomViewTwoActivity extends BaseActivity {
                             @Override
                             public void onPaletteLoaded(@Nullable Palette palette) {
                                 //specific task
-                                int color = palette.getVibrantColor(Color.WHITE);
+                                int color = palette.getDominantColor(Color.WHITE);
 
                                 shadow_img.setBack(color);
 
