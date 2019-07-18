@@ -29,9 +29,7 @@ public class RoundImageView extends AppCompatImageView {
 
     private boolean isCircle; // 是否显示为圆形，如果为圆形则设置的corner无效
     private int borderWidth; // 边框宽度
-    private int borderColor = Color.WHITE; // 边框颜色
-    private int innerBorderWidth; // 内层边框宽度
-    private int innerBorderColor = Color.WHITE; // 内层边框充色
+    private int borderColor = Color.TRANSPARENT; // 边框颜色
 
     private int cornerRadius; // 统一设置圆角半径，优先级高于单独设置每个角的半径
     private int cornerTopLeftRadius; // 左上角圆角半径
@@ -79,10 +77,6 @@ public class RoundImageView extends AppCompatImageView {
                 borderWidth = ta.getDimensionPixelSize(attr, borderWidth);
             } else if (attr == R.styleable.RoundImageView_border_color) {
                 borderColor = ta.getColor(attr, borderColor);
-            } else if (attr == R.styleable.RoundImageView_inner_border_width) {
-                innerBorderWidth = ta.getDimensionPixelSize(attr, innerBorderWidth);
-            } else if (attr == R.styleable.RoundImageView_inner_border_color) {
-                innerBorderColor = ta.getColor(attr, innerBorderColor);
             } else if (attr == R.styleable.RoundImageView_corner_radius) {
                 cornerRadius = ta.getDimensionPixelSize(attr, cornerRadius);
             } else if (attr == R.styleable.RoundImageView_corner_top_left_radius) {
@@ -116,7 +110,6 @@ public class RoundImageView extends AppCompatImageView {
         }
 
         calculateRadii();
-        clearInnerBorderWidth();
     }
 
     @Override
@@ -255,18 +248,8 @@ public class RoundImageView extends AppCompatImageView {
         invalidate();
     }
 
-    /**
-     * 目前圆角矩形情况下不支持inner_border，需要将其置0
-     */
-    private void clearInnerBorderWidth() {
-        if (!isCircle) {
-            this.innerBorderWidth = 0;
-        }
-    }
-
     public void isCircle(boolean isCircle) {
         this.isCircle = isCircle;
-        clearInnerBorderWidth();
         initSrcRectF();
         invalidate();
     }
@@ -277,17 +260,6 @@ public class RoundImageView extends AppCompatImageView {
 
     public void setBorderColor(@ColorInt int borderColor) {
         this.borderColor = borderColor;
-        invalidate();
-    }
-
-    public void setInnerBorderWidth(int innerBorderWidth) {
-        this.innerBorderWidth = dp2px(context, innerBorderWidth);
-        clearInnerBorderWidth();
-        invalidate();
-    }
-
-    public void setInnerBorderColor(@ColorInt int innerBorderColor) {
-        this.innerBorderColor = innerBorderColor;
         invalidate();
     }
 

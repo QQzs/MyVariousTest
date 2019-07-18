@@ -13,41 +13,31 @@
         android:layout_height="300dp"
         />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <com.zs.various.view.ShadowLayout
+        android:id="@+id/shadow_layout"
+        android:layout_width="90dp"
         android:layout_height="wrap_content">
 
-        <com.zs.various.view.ShadowLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <com.zs.various.view.RoundImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:scaleType="centerCrop"
+            app:corner_radius="@dimen/dp_10"
+            android:layout_centerHorizontal="true"
+            />
 
-            <com.zs.various.view.RoundImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:scaleType="centerCrop"
-                app:corner_radius="@dimen/dp_10"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/bg_girl"/>
+    </com.zs.various.view.ShadowLayout>
 
-
-        </com.zs.various.view.ShadowLayout>
-
-    </RelativeLayout>
-
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <com.zs.various.view.ShadowView
             android:id="@+id/shadow_img"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/round_img"
-            android:layout_marginTop="-75dp"/>
+            android:layout_marginTop="10dp" />
 
         <com.zs.various.view.RoundImageView
             android:id="@+id/round_img"
@@ -55,10 +45,9 @@
             android:layout_height="90dp"
             android:scaleType="centerCrop"
             app:corner_radius="@dimen/dp_10"
-            android:layout_centerHorizontal="true"
-            android:visibility="visible"/>
+            android:layout_gravity="center_horizontal" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,24 +69,9 @@
         
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_limit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:text="@string/text_info"/>
-
-
     <com.zs.various.view.ExpandTextView
         android:id="@+id/tv_limit1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-    <com.zs.various.view.ExpandableTextView
-        android:id="@+id/tv_limit2"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
 
 </LinearLayout>

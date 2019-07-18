@@ -1,6 +1,7 @@
 package com.zs.various.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,6 +9,8 @@ import android.graphics.RectF;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.zs.various.R;
 
 /**
  * @Author: zs
@@ -19,25 +22,62 @@ public class ShadowView extends AppCompatImageView {
     private Paint mPaint;
     private float mWidth;
     private float mHeight;
-    private int mColor = Color.BLACK;
+    /**
+     * 阴影的颜色
+     */
+    private int mShadowColor;
 
-    private float mShadowAlpha;
-    private float mShadowX;
-    private float mShadowY;
-    private float mShadowPadding;
+    /**
+     * 阴影 x 轴的偏移量
+     */
+    private float mShadowDx;
+
+    /**
+     * 阴影 y 轴的偏移量
+     */
+    private float mShadowDy;
+
+    /**
+     * 阴影模糊半径
+     */
     private float mShadowRadius;
+
+    /**
+     * 阴影高度
+     */
+    private float mShadowHeight;
+
+    /**
+     * 阴影的圆角弧度
+     */
+    private float mShadowLayoutRadius;
+
+    public ShadowView(Context context) {
+        this(context , null);
+    }
 
     public ShadowView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 关闭硬件加速
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
+        TypedArray typedArray = context.obtainStyledAttributes(attrs , R.styleable.ShadowView);
+        mShadowColor = typedArray.getColor(R.styleable.ShadowView_shadowColor , Color.GRAY);
+        mShadowRadius = typedArray.getDimension(R.styleable.ShadowView_shadowRadius , dp2px(5));
+        mShadowDx = typedArray.getDimension(R.styleable.ShadowView_shadowDx , 0);
+        mShadowDy = typedArray.getDimension(R.styleable.ShadowView_shadowDy , dp2px(5));
+        mShadowHeight = typedArray.getDimension(R.styleable.ShadowView_shadowHeight , dp2px(10));
+        mShadowLayoutRadius = typedArray.getDimension(R.styleable.ShadowView_shadowLayoutRadius , dp2px(10));
+
+        init();
+
+    }
+
+    private void init(){
         mPaint = new Paint();
         mPaint.setColor(Color.WHITE);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
-
-
     }
 
     @Override
@@ -45,27 +85,19 @@ public class ShadowView extends AppCompatImageView {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
-
-        mShadowAlpha = dp2px(6);
-        mShadowX = dp2px(0);
-        mShadowY = dp2px(6);
-
-        mShadowPadding = dp2px(15);
-        mShadowRadius = dp2px(10);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         //绘制阴影，param1：模糊半径；param2：x轴大小：param3：y轴大小；param4：阴影颜色
-        mPaint.setShadowLayer(mShadowAlpha, mShadowX, mShadowY, mColor);
-        RectF rect = new RectF(mWidth * 0.1f , 0, mWidth - mWidth * 0.1f, mHeight - mShadowPadding);
-        canvas.drawRoundRect(rect, mShadowRadius, mShadowRadius, mPaint);
+        mPaint.setShadowLayer(mShadowRadius, mShadowDx, mShadowDy, mShadowColor);
+        RectF rect = new RectF(mWidth * 0.1f , 0, mWidth - mWidth * 0.1f, mHeight - mShadowHeight);
+        canvas.drawRoundRect(rect, mShadowLayoutRadius, mShadowLayoutRadius, mPaint);
     }
 
-    public void setBack(int color){
-        mColor = color;
+    public void setShadowColor(int color){
+        mShadowColor = color;
         invalidate();
     }
 

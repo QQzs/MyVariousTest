@@ -67,13 +67,13 @@ public class ShadowLayout extends RelativeLayout {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         setWillNotDraw(false);
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs , R.styleable.ShadowLayout);
-        mShadowColor = typedArray.getColor(R.styleable.ShadowLayout_shadowColor , Color.GRAY);
-        mShadowRadius = typedArray.getDimension(R.styleable.ShadowLayout_shadowRadius , dp2px(5));
-        mShadowDx = typedArray.getDimension(R.styleable.ShadowLayout_shadowDx , 0);
-        mShadowDy = typedArray.getDimension(R.styleable.ShadowLayout_shadowDy , dp2px(5));
-        mShadowHeight = typedArray.getDimension(R.styleable.ShadowLayout_shadowHeight , dp2px(10));
-        mShadowLayoutRadius = typedArray.getDimension(R.styleable.ShadowLayout_shadowLayoutRadius , dp2px(10));
+        TypedArray typedArray = context.obtainStyledAttributes(attrs , R.styleable.ShadowView);
+        mShadowColor = typedArray.getColor(R.styleable.ShadowView_shadowColor , Color.GRAY);
+        mShadowRadius = typedArray.getDimension(R.styleable.ShadowView_shadowRadius , dp2px(5));
+        mShadowDx = typedArray.getDimension(R.styleable.ShadowView_shadowDx , 0);
+        mShadowDy = typedArray.getDimension(R.styleable.ShadowView_shadowDy , dp2px(5));
+        mShadowHeight = typedArray.getDimension(R.styleable.ShadowView_shadowHeight , dp2px(10));
+        mShadowLayoutRadius = typedArray.getDimension(R.styleable.ShadowView_shadowLayoutRadius , dp2px(10));
 
         init();
 

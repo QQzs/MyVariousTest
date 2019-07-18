@@ -15,9 +15,7 @@ import com.zs.various.R
  *
  * @Description:
  */
-class ExpandTextView @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : TextView(context, attrs, defStyleAttr) {
+class ExpandTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : TextView(context, attrs, defStyleAttr) {
 
     lateinit var mText: String
     var mViewHeight: Int = 0
@@ -25,31 +23,27 @@ class ExpandTextView @JvmOverloads constructor(
     var mLine: Int = 0
     var mShowLine: Int = 2
 
-    init {
-
-
-    }
-
     fun initText(text: String?){
         text?.let {
             mLine = 0
             mText = it
             setText(text)
             post {
-                if (mLine == 0){
-                    mLine = lineCount
-                }
+//                if (mLine == 0){
+//                    mLine = lineCount
+//                }
+                mLine = lineCount
                 mViewHeight = measuredHeight
                 initLine()
             }
         }?: clearText()
     }
 
-    fun clearText(){
+    private fun clearText(){
         text = ""
     }
 
-    fun initLine(){
+    private fun initLine(){
         if(isExpand){
             setShowText("$mText\u3000 ", isExpand)
         }else{
@@ -64,7 +58,6 @@ class ExpandTextView @JvmOverloads constructor(
             }
 
         }
-
         setOnClickListener {
             if (mLine > mShowLine){
                 isExpand = !isExpand
