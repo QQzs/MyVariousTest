@@ -19,6 +19,7 @@ class LogUtil{
         val LOG_TAG = "My_Log"
         val LOG_TAG_ERROE = "My_Log_Error"
 
+        @JvmStatic
         fun logShow(content : String?){
             if (TextUtils.isEmpty(content)){
                 Log.d(LOG_TAG, "emptyData  $content")
@@ -28,6 +29,7 @@ class LogUtil{
 
         }
 
+        @JvmStatic
         fun logShowError(content : String?){
             Log.e(LOG_TAG_ERROE,content)
         }

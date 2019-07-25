@@ -32,24 +32,24 @@ class ProfileActivity: BaseActivity(){
 
     override fun initView() {
 
-        iv_useravator?.setOnClickListener {
+        iv_user_avatar?.setOnClickListener {
             startActivity<NotificationActivity>()
         }
     }
 
     override fun initData() {
 
-        StatusBarUtil.setTranslucentForImageView(this , 0 , toolbar)
+        StatusBarUtil.setTranslucentForImageView(this , 0 , null)
 
         for (i in titles.indices) {
             fragments.add(WorkFragment())
-            tablayout.addTab(tablayout.newTab())
+            tab_layout.addTab(tab_layout.newTab())
         }
-        viewpager.adapter = FmPagerAdapter(fragments, supportFragmentManager)
-        tablayout.setupWithViewPager(viewpager)
+        view_pager.adapter = FmPagerAdapter(fragments, supportFragmentManager)
+        tab_layout.setupWithViewPager(view_pager)
 
         for (j in titles.indices) {
-            tablayout.getTabAt(j)?.text = titles[j]
+            tab_layout.getTabAt(j)?.text = titles[j]
         }
 
         appbar?.addOnOffsetChangedListener(object: AppBarLayout.OnOffsetChangedListener{

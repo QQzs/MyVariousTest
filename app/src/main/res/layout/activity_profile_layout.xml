@@ -18,7 +18,6 @@
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
                 <RelativeLayout
@@ -35,31 +34,22 @@
                         <ImageView
                             android:id="@+id/iv_bg"
                             android:layout_width="match_parent"
-                            android:layout_height="220dp"
+                            android:layout_height="250dp"
                             android:scaleType="centerInside"
                             android:background="@drawable/head_bg_img"/>
 
                         <RelativeLayout
                             android:id="@+id/ll_personal_me"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp">
-
-                            <ImageView
-                                android:id="@+id/iv_useravator"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:background="@mipmap/internet_star"/>
+                            android:layout_marginTop="150dp">
 
                             <LinearLayout
                                 android:id="@+id/ll_username"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_toRightOf="@id/iv_useravator"
-                                android:layout_marginLeft="20dp"
-                                android:layout_centerVertical="true">
+                                android:layout_centerHorizontal="true">
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -117,32 +107,32 @@
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
                     android:background="#fff"
-                    app:layout_collapseMode="pin">
+                    app:layout_collapseMode="pin"
+                    app:contentInsetStart="0dp"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
-                        <TextView
+                        <com.zs.various.view.StatusBarView
+                            android:id="@+id/view_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
                             android:id="@+id/tv1"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="40dp"
+                            android:layout_height="45dp"
+                            android:paddingTop="13dp"
+                            android:paddingBottom="13dp"
                             android:layout_centerVertical="true"
-                            android:background="@mipmap/ic_back"/>
+                            android:src="@mipmap/ic_back"
+                            android:layout_below="@+id/view_status"/>
 
-                        <TextView
-                            android:id="@+id/tv2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:padding="4dp"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="#000"
-                            android:textSize="16sp"
-                            android:gravity="center"
-                            android:text=""/>
                     </RelativeLayout>
 
                 </android.support.v7.widget.Toolbar>
@@ -150,18 +140,28 @@
             </android.support.design.widget.CollapsingToolbarLayout>
 
             <android.support.design.widget.TabLayout
-                android:id="@+id/tablayout"
+                android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:background="#fff"/>
 
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager"
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        <ImageView
+            android:id="@+id/iv_user_avatar"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:elevation="4dp"
+            android:background="@mipmap/internet_star"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center_horizontal"
+            app:layout_behavior=".view.behavior.ProfileBehavior"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

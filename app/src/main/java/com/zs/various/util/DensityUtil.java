@@ -2,9 +2,7 @@ package com.zs.various.util;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Rect;
-import android.net.Uri;
+import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
 import com.zs.various.application.MyApp;
@@ -61,23 +59,19 @@ public class DensityUtil {
      * @return
      */
     public static int getStatusBarHeight(Context context) {
-//        int statusBarHeight = -1;
-//        try {
-//            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
-//            Object object = clazz.newInstance();
-//            int height = Integer.parseInt(clazz.getField("status_bar_height") .get(object).toString());
-//            statusBarHeight = context.getResources().getDimensionPixelSize(height);
-//        } catch (Exception e) {
-//            e.printStackTrace();
+
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+        return height;
+
+//        if (context != null) {
+//            Rect frame = new Rect();
+//            ((Activity) context).getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+//            return frame.top;
+//        } else {
+//            return 0;
 //        }
-//        return statusBarHeight;
-        if (context != null) {
-            Rect frame = new Rect();
-            ((Activity) context).getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-            return frame.top;
-        } else {
-            return 0;
-        }
     }
 
 
@@ -117,13 +111,4 @@ public class DensityUtil {
     }
 
 
-    //打电话
-    public void callSystemPhone(String phone_number, Activity activity) {
-        if (phone_number != null && !phone_number.equals("") && activity != null) {
-            phone_number = phone_number.trim();//删除字符串首部和尾部的空格
-            //封装一个拨打电话的intent，并且将电话号码包装成一个Uri对象传入
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:" + phone_number));
-            activity.startActivity(intent);//内部类
-        }
-    }
 }

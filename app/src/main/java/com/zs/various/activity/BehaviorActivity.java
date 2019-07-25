@@ -75,11 +75,9 @@ public class BehaviorActivity extends AppCompatActivity {
 
     // 设置自动滑动的动画效果
     private void initParallaxValues() {
-        CollapsingToolbarLayout.LayoutParams petDetailsLp =
-                (CollapsingToolbarLayout.LayoutParams) mIvPlaceholder.getLayoutParams();
+        CollapsingToolbarLayout.LayoutParams petDetailsLp = (CollapsingToolbarLayout.LayoutParams) mIvPlaceholder.getLayoutParams();
 
-        CollapsingToolbarLayout.LayoutParams petBackgroundLp =
-                (CollapsingToolbarLayout.LayoutParams) mFlTitleContainer.getLayoutParams();
+        CollapsingToolbarLayout.LayoutParams petBackgroundLp = (CollapsingToolbarLayout.LayoutParams) mFlTitleContainer.getLayoutParams();
 
         petDetailsLp.setParallaxMultiplier(0.9f);
         petBackgroundLp.setParallaxMultiplier(0.3f);
