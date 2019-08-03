@@ -28,6 +28,22 @@
 
     </com.zs.various.view.ShadowLayout>
 
+    <com.zs.various.view.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:shadowLayoutColor="#FF524F">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="确定"
+            android:gravity="center"
+            android:background="@drawable/shape_shadow_bg"/>
+
+    </com.zs.various.view.ShadowLayout>
+
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,16 +73,10 @@
 
         <com.zs.various.view.MessageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20">
         </com.zs.various.view.MessageView>
 
-        <com.zs.various.view.MessageView2
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </com.zs.various.view.MessageView2>
-        
     </LinearLayout>
 
     <com.zs.various.view.ExpandTextView

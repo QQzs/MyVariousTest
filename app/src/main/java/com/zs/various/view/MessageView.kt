@@ -11,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import com.zs.various.R
+import com.zs.various.bean.MessageBean
+import com.zs.various.util.extension.drawLeft
 import kotlinx.android.synthetic.main.view_message.view.*
 import org.jetbrains.anko.dip
 
@@ -32,6 +34,8 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private var mAnimatorAlpha1: ObjectAnimator? = null
     private var mAnimatorAlpha2: ObjectAnimator? = null
 
+    private var mMessageList = mutableListOf<MessageBean>()
+
     private var newMessage = 3
     private var mHandler: Handler = object : Handler() {
         override fun handleMessage(msg: Message?) {
@@ -39,7 +43,7 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
             when(msg?.what){
                 1 -> {
                     update("message ${newMessage ++}")
-                    sendEmptyMessageDelayed(1,2000)
+                    sendEmptyMessageDelayed(1,1500)
                 }
 
             }
@@ -54,8 +58,18 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
 //            mTextHeight = tv_msg_one.measuredHeight.toFloat()
 //            initAnim()
 //        }
+
+        mMessageList.add(MessageBean("message === 1"))
+        mMessageList.add(MessageBean(1 , "message === 2"))
+        mMessageList.add(MessageBean("message === 3"))
+        mMessageList.add(MessageBean("message === 4"))
+        mMessageList.add(MessageBean("message === 5"))
+        mMessageList.add(MessageBean(1 , "theme ========= "))
+
         initAnim()
-        mHandler?.sendEmptyMessageDelayed(1,2000)
+        switchMessage()
+
+//        mHandler?.sendEmptyMessageDelayed(1,1500)
     }
 
     /**
@@ -82,8 +96,12 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 tv_msg_three?.translationY = 0f
                 tv_msg_three?.visibility = View.GONE
 
-                tv_msg_one?.text = tv_msg_two?.text
-                tv_msg_two?.text = tv_msg_three?.text
+                var bean = mMessageList[0]
+                mMessageList.removeAt(0)
+                mMessageList.add(bean)
+
+                switchMessage()
+
 
             }
 
@@ -96,21 +114,68 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
             }
 
         })
-        mAnimatorSet?.duration = 1500
+        mAnimatorSet?.duration = 1000
         mAnimatorSet?.playTogether(mAnimatorTransition1 ,mAnimatorAlpha1 , mAnimatorTransition2 ,mAnimatorTransition3 , mAnimatorAlpha2)
     }
+
+
+    fun switchMessage(){
+
+        var bean1 = mMessageList[0]
+        tv_msg_one?.text = bean1.message
+        if (bean1.type == 0){
+            tv_msg_one?.drawLeft(R.mipmap.home_bar_news_nor)
+        }else{
+            tv_msg_one?.drawLeft(R.mipmap.home_bar_news_sel)
+        }
+
+        var bean2 = mMessageList[1]
+        tv_msg_two?.text = bean2.message
+        if (bean2.type == 0){
+            tv_msg_two?.drawLeft(R.mipmap.home_bar_news_nor)
+        }else{
+            tv_msg_two?.drawLeft(R.mipmap.home_bar_news_sel)
+        }
+
+        var bean3 = mMessageList[2]
+        tv_msg_three?.text = bean3.message
+        if (bean3.type == 0){
+            tv_msg_three?.drawLeft(R.mipmap.home_bar_news_nor)
+        }else{
+            tv_msg_three?.drawLeft(R.mipmap.home_bar_news_sel)
+        }
+
+        mAnimatorSet?.start()
+
+    }
+
 
     /**
      * 刷新消息显示
      */
     fun update(message: String){
-        tv_msg_three?.text = message
+
         mAnimatorSet?.let {
             if(!it.isRunning){
                 it.start()
             }
         }
     }
+
+    /**
+     * 刷新消息显示
+     */
+    fun update(bean: MessageBean){
+
+
+
+        mAnimatorSet?.let {
+            if(!it.isRunning){
+                it.start()
+            }
+        }
+    }
+
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()

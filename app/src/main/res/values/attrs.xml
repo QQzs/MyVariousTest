@@ -102,14 +102,25 @@
     </declare-styleable>
 
 
-    <!-- ShadowLayout 阴影 -->
+    <!-- ShadowView 阴影 -->
     <declare-styleable name="ShadowView">
         <attr name="shadowColor" format="color"/>
         <attr name="shadowDx" format="dimension"/>
         <attr name="shadowDy" format="dimension"/>
         <attr name="shadowRadius" format="dimension"/>
-        <attr name="shadowLayoutRadius" format="dimension"/>
+        <attr name="shadowViewRadius" format="dimension"/>
         <attr name="shadowHeight" format="dimension"/>
+    </declare-styleable>
+
+    <!-- ShadowLayout 阴影 -->
+    <declare-styleable name="ShadowLayout">
+        <attr name="shadowLayoutColor" format="color"/>
+        <attr name="shadowLayoutDx" format="dimension"/>
+        <attr name="shadowLayoutDy" format="dimension"/>
+        <attr name="shadowLayoutRadius" format="dimension"/>
+        <attr name="shadowLayoutRectFRadius" format="dimension"/>
+        <attr name="shadowLayoutHeight" format="dimension"/>
+        <attr name="shadowLayoutPercent" format="float"/>
     </declare-styleable>
 
 </resources>

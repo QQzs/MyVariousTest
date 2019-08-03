@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 import com.zs.various.R;
 
@@ -17,7 +17,7 @@ import com.zs.various.R;
  * @Date: 2019-07-15 16:59
  * @Description:
  */
-public class ShadowLayout extends RelativeLayout {
+public class ShadowLayout extends FrameLayout {
 
     private float mWidth;
     private float mHeight;
@@ -51,7 +51,9 @@ public class ShadowLayout extends RelativeLayout {
     /**
      * 阴影的圆角弧度
      */
-    private float mShadowLayoutRadius;
+    private float mShadowRectFRadius;
+
+    private float mShadowPercent;
 
     public ShadowLayout(Context context) {
         this(context, null);
@@ -67,14 +69,14 @@ public class ShadowLayout extends RelativeLayout {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         setWillNotDraw(false);
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs , R.styleable.ShadowView);
-        mShadowColor = typedArray.getColor(R.styleable.ShadowView_shadowColor , Color.GRAY);
-        mShadowRadius = typedArray.getDimension(R.styleable.ShadowView_shadowRadius , dp2px(5));
-        mShadowDx = typedArray.getDimension(R.styleable.ShadowView_shadowDx , 0);
-        mShadowDy = typedArray.getDimension(R.styleable.ShadowView_shadowDy , dp2px(5));
-        mShadowHeight = typedArray.getDimension(R.styleable.ShadowView_shadowHeight , dp2px(10));
-        mShadowLayoutRadius = typedArray.getDimension(R.styleable.ShadowView_shadowLayoutRadius , dp2px(10));
-
+        TypedArray typedArray = context.obtainStyledAttributes(attrs , R.styleable.ShadowLayout);
+        mShadowColor = typedArray.getColor(R.styleable.ShadowLayout_shadowLayoutColor , Color.GRAY);
+        mShadowRadius = typedArray.getDimension(R.styleable.ShadowLayout_shadowLayoutRadius , dp2px(5));
+        mShadowDx = typedArray.getDimension(R.styleable.ShadowLayout_shadowLayoutDx , 0);
+        mShadowDy = typedArray.getDimension(R.styleable.ShadowLayout_shadowLayoutDy , dp2px(5));
+        mShadowHeight = typedArray.getDimension(R.styleable.ShadowLayout_shadowLayoutHeight , dp2px(10));
+        mShadowRectFRadius = typedArray.getDimension(R.styleable.ShadowLayout_shadowLayoutRadius , dp2px(10));
+        mShadowPercent = typedArray.getFloat(R.styleable.ShadowLayout_shadowLayoutPercent , 0.8f);
         init();
 
     }
@@ -111,11 +113,15 @@ public class ShadowLayout extends RelativeLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+
+        float marginPercent = (1 - mShadowPercent) / 2.0f;
+
         //绘制阴影，param1：模糊半径；param2：x轴大小：param3：y轴大小；param4：阴影颜色
         mPaint.setShadowLayer(mShadowRadius, mShadowDx, mShadowDy, mShadowColor);
-        RectF rect = new RectF(mWidth * 0.1f , 0, mWidth - mWidth * 0.1f, mHeight - mShadowHeight);
-        canvas.drawRoundRect(rect, mShadowLayoutRadius, mShadowLayoutRadius, mPaint);
+        RectF rect = new RectF(mWidth * marginPercent , 0, mWidth - mWidth * marginPercent, mHeight - mShadowHeight);
+        canvas.drawRoundRect(rect, mShadowRectFRadius, mShadowRectFRadius, mPaint);
+
+        super.onDraw(canvas);
 
     }
 

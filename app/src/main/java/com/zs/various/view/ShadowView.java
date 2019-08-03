@@ -50,7 +50,7 @@ public class ShadowView extends AppCompatImageView {
     /**
      * 阴影的圆角弧度
      */
-    private float mShadowLayoutRadius;
+    private float mShadowViewRadius;
 
     public ShadowView(Context context) {
         this(context , null);
@@ -67,7 +67,7 @@ public class ShadowView extends AppCompatImageView {
         mShadowDx = typedArray.getDimension(R.styleable.ShadowView_shadowDx , 0);
         mShadowDy = typedArray.getDimension(R.styleable.ShadowView_shadowDy , dp2px(5));
         mShadowHeight = typedArray.getDimension(R.styleable.ShadowView_shadowHeight , dp2px(10));
-        mShadowLayoutRadius = typedArray.getDimension(R.styleable.ShadowView_shadowLayoutRadius , dp2px(10));
+        mShadowViewRadius = typedArray.getDimension(R.styleable.ShadowView_shadowViewRadius , dp2px(10));
 
         init();
 
@@ -93,7 +93,7 @@ public class ShadowView extends AppCompatImageView {
         //绘制阴影，param1：模糊半径；param2：x轴大小：param3：y轴大小；param4：阴影颜色
         mPaint.setShadowLayer(mShadowRadius, mShadowDx, mShadowDy, mShadowColor);
         RectF rect = new RectF(mWidth * 0.1f , 0, mWidth - mWidth * 0.1f, mHeight - mShadowHeight);
-        canvas.drawRoundRect(rect, mShadowLayoutRadius, mShadowLayoutRadius, mPaint);
+        canvas.drawRoundRect(rect, mShadowViewRadius, mShadowViewRadius, mPaint);
     }
 
     public void setShadowColor(int color){
