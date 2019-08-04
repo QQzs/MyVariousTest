@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.zs.various.R
 import com.zs.various.bean.MessageBean
+import com.zs.various.util.LogUtil
 import com.zs.various.util.extension.drawLeft
 import kotlinx.android.synthetic.main.view_message.view.*
 import org.jetbrains.anko.dip
@@ -34,6 +35,7 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private var mAnimatorAlpha1: ObjectAnimator? = null
     private var mAnimatorAlpha2: ObjectAnimator? = null
 
+    private var mAnimFlag = false
     private var mMessageList = mutableListOf<MessageBean>()
 
     private var newMessage = 3
@@ -60,7 +62,7 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
 //        }
 
         mMessageList.add(MessageBean("message === 1"))
-        mMessageList.add(MessageBean(1 , "message === 2"))
+        mMessageList.add(MessageBean("message === 2"))
         mMessageList.add(MessageBean("message === 3"))
         mMessageList.add(MessageBean("message === 4"))
         mMessageList.add(MessageBean("message === 5"))
@@ -68,7 +70,6 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
         initAnim()
         switchMessage()
-
 //        mHandler?.sendEmptyMessageDelayed(1,1500)
     }
 
@@ -101,8 +102,9 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 mMessageList.add(bean)
 
                 switchMessage()
-
-
+                if (mAnimFlag){
+                    mAnimatorSet?.start()
+                }
             }
 
             override fun onAnimationCancel(p0: Animator?) {
@@ -118,34 +120,39 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
         mAnimatorSet?.playTogether(mAnimatorTransition1 ,mAnimatorAlpha1 , mAnimatorTransition2 ,mAnimatorTransition3 , mAnimatorAlpha2)
     }
 
-
+    /**
+     * 切换
+     */
     fun switchMessage(){
 
-        var bean1 = mMessageList[0]
-        tv_msg_one?.text = bean1.message
-        if (bean1.type == 0){
-            tv_msg_one?.drawLeft(R.mipmap.home_bar_news_nor)
-        }else{
-            tv_msg_one?.drawLeft(R.mipmap.home_bar_news_sel)
+        if (mMessageList.size > 0){
+            var beanOne = mMessageList[0]
+            tv_msg_one?.text = beanOne.message
+            if (beanOne.type == 0){
+                tv_msg_one?.drawLeft(R.mipmap.home_bar_news_nor)
+            }else{
+                tv_msg_one?.drawLeft(R.mipmap.home_bar_news_sel)
+            }
         }
 
-        var bean2 = mMessageList[1]
-        tv_msg_two?.text = bean2.message
-        if (bean2.type == 0){
-            tv_msg_two?.drawLeft(R.mipmap.home_bar_news_nor)
-        }else{
-            tv_msg_two?.drawLeft(R.mipmap.home_bar_news_sel)
+        if (mMessageList.size > 1){
+            var beanTwo = mMessageList[1]
+            tv_msg_two?.text = beanTwo.message
+            if (beanTwo.type == 0){
+                tv_msg_two?.drawLeft(R.mipmap.home_bar_news_nor)
+            }else{
+                tv_msg_two?.drawLeft(R.mipmap.home_bar_news_sel)
+            }
         }
-
-        var bean3 = mMessageList[2]
-        tv_msg_three?.text = bean3.message
-        if (bean3.type == 0){
-            tv_msg_three?.drawLeft(R.mipmap.home_bar_news_nor)
-        }else{
-            tv_msg_three?.drawLeft(R.mipmap.home_bar_news_sel)
+        if (mMessageList.size > 2){
+            var beanThree = mMessageList[2]
+            tv_msg_three?.text = beanThree.message
+            if (beanThree.type == 0){
+                tv_msg_three?.drawLeft(R.mipmap.home_bar_news_nor)
+            }else{
+                tv_msg_three?.drawLeft(R.mipmap.home_bar_news_sel)
+            }
         }
-
-        mAnimatorSet?.start()
 
     }
 
@@ -154,7 +161,6 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * 刷新消息显示
      */
     fun update(message: String){
-
         mAnimatorSet?.let {
             if(!it.isRunning){
                 it.start()
@@ -162,13 +168,11 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
         }
     }
 
-    /**
-     * 刷新消息显示
-     */
-    fun update(bean: MessageBean){
-
-
-
+    fun startAnim(){
+        mAnimFlag = true
+        if (mAnimatorSet == null){
+            initAnim()
+        }
         mAnimatorSet?.let {
             if(!it.isRunning){
                 it.start()
@@ -176,9 +180,31 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
         }
     }
 
+    fun stopAnim(){
+        mAnimFlag = false
+        mAnimatorSet?.cancel()
+//        mAnimatorSet?.let {
+//            mAnimatorSet = null
+//            mAnimatorTransition1 = null
+//            mAnimatorTransition2 = null
+//            mAnimatorTransition3 = null
+//            mAnimatorAlpha1 = null
+//            mAnimatorAlpha2 = null
+//        }
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        LogUtil.Companion.logShow("onAttachedToWindow")
+        if (mAnimFlag){
+            startAnim()
+        }
+    }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
+        LogUtil.Companion.logShow("onDetachedFromWindow")
+        mAnimatorSet?.cancel()
         mAnimatorSet?.let {
             mAnimatorSet = null
             mAnimatorTransition1 = null
@@ -187,7 +213,7 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
             mAnimatorAlpha1 = null
             mAnimatorAlpha2 = null
         }
-        mHandler?.removeCallbacksAndMessages(null)
+//        mHandler?.removeCallbacksAndMessages(null)
     }
 
 }
