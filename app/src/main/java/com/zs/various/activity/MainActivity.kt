@@ -42,6 +42,7 @@ class MainActivity : Activity() {
         layout_main?.addView(listView)
 
         val data = ArrayList<Class<*>>()
+        data.add(ProfileActivity::class.java)
         data.add(VoiceActivity::class.java)
         data.add(SleepAndWaitActivity::class.java)
         data.add(LocalBroadcastActivity::class.java)
@@ -82,8 +83,8 @@ class MainActivity : Activity() {
         data.add(CountDownActivity::class.java)
         data.add(RelativeActivity::class.java)
         data.add(VoiceAnimActivity::class.java)
-        data.add(CustomViewActivity::class.java)
-        data.add(CustomView2Activity::class.java)
+        data.add(CustomViewFirstActivity::class.java)
+        data.add(CustomViewTwoActivity::class.java)
         data.add(DialogActivity::class.java)
         data.add(SpanStringActivity::class.java)
         data.add(AnimActivity::class.java)

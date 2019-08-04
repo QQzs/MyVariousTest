@@ -23,7 +23,6 @@ public class SideBarView extends View {
     private int index;
     private int choose = -1;
     private boolean mFlag;
-//    private LetterChangeListener mChangeListener;
     private LetterTouchListener mTouchListener;
 
     public SideBarView(Context context) {

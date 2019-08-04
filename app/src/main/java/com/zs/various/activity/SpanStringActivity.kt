@@ -89,14 +89,18 @@ class SpanStringActivity : AppCompatActivity() {
      */
     private fun setSpanImage(){
 
-        var drawable = ContextCompat.getDrawable(this,R.mipmap.team_icon)
-        drawable?.setBounds(10, 0, drawable.minimumWidth, drawable.minimumHeight)
+        var drawable = ContextCompat.getDrawable(this,R.mipmap.ic_chat_img)
+        drawable?.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
         var imageSpan = CenterAlignImageSpan(drawable)
         var str1 = "添加这个是什么的的的短款什么的的的短款的款式多的肯定是多的肯定多的肯定的说到底的时刻山东省开始"
-        var str2 = "     "
-        var str = str1 + str2
+        var str2 = "    "
+        var str = str2 + str1
         val spannableString = SpannableString(str)
-        spannableString.setSpan(imageSpan,str.length - str2.length , str.length , ImageSpan.ALIGN_BASELINE)
+
+//        spannableString.setSpan(imageSpan,str.length - str2.length , str.length , ImageSpan.ALIGN_BASELINE)
+
+        spannableString.setSpan(imageSpan,0 , 2 , ImageSpan.ALIGN_BASELINE)
+
         tv_span_6?.text = spannableString
 
     }

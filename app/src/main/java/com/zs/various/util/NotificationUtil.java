@@ -7,137 +7,298 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
-import android.widget.RemoteViews;
+import android.text.TextUtils;
 
 import com.zs.various.R;
 import com.zs.various.activity.BehaviorActivity;
+import com.zs.various.bean.NotificationModel;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static android.app.Notification.VISIBILITY_SECRET;
 import static android.content.Context.NOTIFICATION_SERVICE;
 
 /**
- * Created by zs
- * Date：2018年 11月 06日
- * Time：10:24
- * —————————————————————————————————————
- * About: Notification工具
- * —————————————————————————————————————
+ * @Author: zs
+ * @Date: 2019-06-17 15:03
+ * @Description:
  */
-public class NotificationUtil {
+public class NotificationUtil{
 
-    public static String CHANNEL_ID = "channel_id";
-    public static String CHANANL_NAME = "channel_name";
-    public static final String NOTICE_ID_KEY = "NOTICE_ID";
+    public static final String NOTIFICATION_DATA = "notification_data";
     public static final String ACTION_CLOSE_NOTICE = "com.zs.various.close";
-    public static int notificationId = 111;
+    public static final int TYPE_DEFAULT = 0;
+    public static final int TYPE_MORE = 1;
+    public static final int TYPE_PICTURE = 2;
+    public static final int TYPE_INBOX = 3;
 
-    public static void showNotification(Context context){
+    private Context mContext;
+    private NotificationManager mNotificationManager;
+    private NotificationCompat.Builder mNotificationBuilder;
+    private final Builder mBuilder;
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID);
+    public NotificationUtil(Context context, Builder builder) {
 
-        /**
-         * 8.0 设置 NotificationChannel
-         */
+        mContext = context;
+        mBuilder = builder;
+        getNotificationManager(context);
+
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    CHANANL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setLockscreenVisibility(VISIBILITY_SECRET);//锁屏显示通知
-            notificationManager.createNotificationChannel(channel);
+            if (TextUtils.isEmpty(mBuilder.channelId)){
+                NotificationChannel channel = new NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_HIGH);
+                channel.setLockscreenVisibility(VISIBILITY_SECRET);
+                mNotificationManager.createNotificationChannel(channel);
+                mNotificationBuilder = new NotificationCompat.Builder(context, "channel_id");
+            }else{
+                NotificationChannel channel = new NotificationChannel(mBuilder.channelId, mBuilder.channelName, NotificationManager.IMPORTANCE_HIGH);
+                channel.setLockscreenVisibility(VISIBILITY_SECRET);
+                mNotificationManager.createNotificationChannel(channel);
+                mNotificationBuilder = new NotificationCompat.Builder(context, mBuilder.channelId);
+            }
+        }else{
+            mNotificationBuilder = new NotificationCompat.Builder(context, "channel_default_id");
         }
-
-        /**
-         * 默认情况下，从通知启动一个Activity，按返回键会回到主屏幕。
-           但某些时候有按返回键仍然留在当前应用的需求，这就要用到TaskStackBuilder了
-           清单文件要配置 android:parentActivityName=".MainActivity"
-         */
-//        TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
-//        taskStackBuilder.addParentStack(BehaviorActivity.class);
-//        taskStackBuilder.addNextIntent(new Intent(context, BehaviorActivity.class));
-//        PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(1,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Intent intent = new Intent(context, BehaviorActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        builder.setSmallIcon(R.mipmap.icon_star);
-        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_launcher));
-        builder.setContentTitle("title");
-        builder.setContentText("content");
-        builder.setContentIntent(pendingIntent);
-        builder.setAutoCancel(true); //点击自动删除通知
-        builder.setLights(Color.GREEN, 1000, 1000);//设置呼吸灯 参数：颜色  亮起时长 暗去时长
-        builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(context.getResources(),R.mipmap.timg)));//设置显示大图片
-
-
-        Notification notification = builder.build();
-//        notification.flags = Notification.FLAG_NO_CLEAR; // 通知不可清除
-        notificationManager.notify(notificationId,notification);
 
     }
 
-    public static void showNotification2(Context context){
+    private NotificationManager getNotificationManager(Context context){
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID);
-
-        /**
-         * 8.0 设置 NotificationChannel
-         */
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    CHANANL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setLockscreenVisibility(VISIBILITY_SECRET);//锁屏显示通知
-            notificationManager.createNotificationChannel(channel);
+        if (mNotificationManager == null){
+            mNotificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         }
+        return mNotificationManager;
 
-        // 点击打开通知
-        Intent intent = new Intent(context, BehaviorActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+    }
 
-        // 通知关闭按钮
-        Intent closeIntent = new Intent();
-        closeIntent.setAction(ACTION_CLOSE_NOTICE);
-        closeIntent.putExtra(NOTICE_ID_KEY, notificationId);
-        /**
-         * 适配8.0 广播 添加 setComponent
-         */
-        closeIntent.setComponent(new ComponentName("com.zs.various",
-                "com.zs.various.receiver.CloseNoticeBroadcastReceiver"));
-        PendingIntent pendingClose = PendingIntent.getBroadcast(context, 0, closeIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+    public void notification(){
 
-        // 通知的大布局 最高256dp
-        RemoteViews remoteBigViews = new RemoteViews(context.getPackageName(), R.layout.notification_big_layout);
-        remoteBigViews.setImageViewResource(R.id.iv_icon,R.mipmap.timg);
-        remoteBigViews.setOnClickPendingIntent(R.id.iv_close, pendingClose);
-
-        // 通知默认布局 高度64dp
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_layout);
-        remoteViews.setImageViewResource(R.id.iv_icon,R.mipmap.timg);
-        remoteViews.setOnClickPendingIntent(R.id.iv_close, pendingClose);
-
-        builder.setSmallIcon(R.mipmap.icon_star);
-        builder.setContentTitle("title");
-        builder.setContentText("content");
-        builder.setAutoCancel(true); //点击自动删除通知
-        builder.setContentIntent(pendingIntent);
-        builder.setLights(Color.GREEN, 1000, 1000);//设置呼吸灯 参数：颜色  亮起时长 暗去时长
-
-        Notification notification = builder.build();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            notification.bigContentView = remoteBigViews;
+            if (mBuilder.smallIcon == 0){
+                mNotificationBuilder.setSmallIcon(R.mipmap.icon_small);
+            }else{
+                mNotificationBuilder.setSmallIcon(mBuilder.smallIcon);
+            }
         }
-        notification.contentView = remoteViews;
-        notificationManager.notify(notificationId,notification);
+        if (mBuilder.largeIcon == null){
+            mNotificationBuilder.setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(),R.mipmap.icon_small));
+        }else{
+            mNotificationBuilder.setLargeIcon(mBuilder.largeIcon);
+        }
+        if (!TextUtils.isEmpty(mBuilder.title)){
+            mNotificationBuilder.setContentTitle(mBuilder.title);
+        }
+        if (!TextUtils.isEmpty(mBuilder.content)){
+            mNotificationBuilder.setContentText(mBuilder.content);
+        }
+        mNotificationBuilder.setWhen(System.currentTimeMillis());
+
+        //点击自动删除通知
+//        mNotificationBuilder.setAutoCancel(true);
+
+        // 通知优先级
+        mNotificationBuilder.setPriority(NotificationManager.IMPORTANCE_HIGH);
+
+        // 设置通知 提示音 震动
+        mNotificationBuilder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
+
+        //设置呼吸灯 参数：颜色  亮起时长 暗去时长
+        mNotificationBuilder.setLights(Color.GREEN, 1000, 1000);
+
+        // 设置角标
+        mNotificationBuilder.setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL);
+
+        // 设置样式
+        if (mBuilder.type == TYPE_DEFAULT){
+            // 单行
+        }else if (mBuilder.type == TYPE_MORE){
+            // 多行文本
+            mNotificationBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(mBuilder.content));
+        } else if (mBuilder.type == TYPE_PICTURE){
+            // 设置显示大图片
+            if (mBuilder.bigPicture != null){
+                mNotificationBuilder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(mBuilder.bigPicture));
+            }else{
+                mNotificationBuilder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(mContext.getResources(),R.mipmap.icon_small)));
+            }
+        } else if (mBuilder.type == TYPE_INBOX){
+            // 多条通知
+            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+            if (mBuilder.contentList != null){
+                for (String content: mBuilder.contentList){
+                    inboxStyle.addLine(content);
+                }
+                inboxStyle.setSummaryText("+" + mBuilder.contentList.size() + " " + mBuilder.title);
+                mNotificationBuilder.setStyle(inboxStyle);
+            }
+        }
+
+        // 通知落地页
+        if (mBuilder.manage){
+
+            Intent intent = new Intent();
+            intent.setAction(ACTION_CLOSE_NOTICE);
+
+            NotificationModel notificationModel = new NotificationModel();
+            notificationModel.notificationId = mBuilder.notificationId;
+            if (mBuilder.nextPage != null){
+                notificationModel.nextPage = mBuilder.nextPage;
+            }
+            if (mBuilder.params != null){
+                notificationModel.params = mBuilder.params;
+            } else{
+                notificationModel.params = new HashMap<>();
+            }
+
+            intent.putExtra(NOTIFICATION_DATA, notificationModel);
+            intent.setComponent(new ComponentName("com.zs.various", "com.zs.various.receiver.CloseNoticeBroadcastReceiver"));
+            PendingIntent pendingClose = PendingIntent.getBroadcast(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            mNotificationBuilder.setContentIntent(pendingClose);
+
+        }else{
+            Intent intent;
+            if (mBuilder.nextPage != null){
+                intent = new Intent(mContext, mBuilder.nextPage);
+            } else{
+                intent = new Intent(mContext, BehaviorActivity.class);
+            }
+            if (mBuilder.params != null){
+                intent.putExtra(NOTIFICATION_DATA, (Serializable)mBuilder.params);
+            }
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            mNotificationBuilder.setContentIntent(pendingIntent);
+        }
+
+        Notification notification = mNotificationBuilder.build();
+        if (mBuilder.notificationId != 0){
+            mNotificationManager.notify(mBuilder.notificationId,notification);
+        }
 
     }
 
-    public static void clearNotification(Context context, int noticeId) {
+    /**
+     * 清除一条通知
+     * @param context
+     * @param notificationId
+     */
+    public static void clearNotificationById(Context context, int notificationId){
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.cancel(noticeId);
+        manager.cancel(notificationId);
+    }
+
+    /**
+     * 清除所有通知
+     * @param context
+     */
+    public void clearNotification(Context context){
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.cancelAll();
+    }
+
+    public static class Builder{
+
+        private Context context;
+
+        private int notificationId;
+
+        private String channelId;
+
+        private String channelName;
+
+        private int type;
+
+        private int smallIcon;
+
+        private Bitmap largeIcon;
+
+        private Bitmap bigPicture;
+
+        private String title;
+
+        private String content;
+
+        private List<String> contentList;
+
+        private boolean manage;
+
+        private Class<?> nextPage;
+
+        private Map<String , String> params;
+
+        public Builder(Context context){
+            this.context = context;
+        }
+
+        public Builder setNotificationId(int notificationId) {
+            this.notificationId = notificationId;
+            return this;
+        }
+
+        public Builder setChannel(String channelId , String channelName) {
+            this.channelId = channelId;
+            this.channelName = channelName;
+            return this;
+        }
+
+        public Builder setSmallIcon(int smallIcon) {
+            this.smallIcon = smallIcon;
+            return this;
+        }
+
+        public Builder setLargeIcon(Bitmap largeIcon) {
+            this.largeIcon = largeIcon;
+            return this;
+        }
+
+        public Builder setBigPicture(Bitmap bigPicture) {
+            this.bigPicture = bigPicture;
+            return this;
+        }
+
+        public Builder setTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder setContent(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public Builder setContentList(List<String> contentList) {
+            this.contentList = contentList;
+            return this;
+        }
+
+        public Builder setType(int type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder setNextPage(Class<?> nextPage , Map<String, String> params) {
+            this.nextPage = nextPage;
+            this.params = params;
+            return this;
+        }
+
+        public Builder setNextPage(boolean manage ,  Class<?> nextPage , Map<String, String> params) {
+            this.manage = manage;
+            this.nextPage = nextPage;
+            this.params = params;
+            return this;
+        }
+
+        public NotificationUtil build(){
+            return new NotificationUtil(context , this);
+        }
+
     }
 
 }

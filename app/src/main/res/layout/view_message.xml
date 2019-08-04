@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_msg_one"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_20"
+        android:text="message 1"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/blue_show"
+        android:layout_marginTop="@dimen/dp_20"
+        android:drawableLeft="@mipmap/ic_chat_img"
+        android:drawablePadding="4dp"/>
+
+    <TextView
+        android:id="@+id/tv_msg_two"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_20"
+        android:text="message 2"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/blue_show"
+        android:layout_below="@+id/tv_msg_one"
+        android:layout_marginBottom="5dp"
+        android:drawableLeft="@mipmap/ic_chat_img"
+        android:drawablePadding="4dp"/>
+
+    <TextView
+        android:id="@+id/tv_msg_three"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_20"
+        android:text="message 3"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/blue_show"
+        android:layout_below="@+id/tv_msg_one"
+        android:layout_marginBottom="5dp"
+        android:drawableLeft="@mipmap/ic_chat_img"
+        android:drawablePadding="4dp"
+        android:visibility="gone"/>
+
+</RelativeLayout>

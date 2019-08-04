@@ -7,11 +7,12 @@ import android.util.Log
 import com.flaviofaria.kenburnsview.KenBurnsView
 import com.flaviofaria.kenburnsview.Transition
 import com.zs.various.R
+import com.zs.various.listener.OnClickEffectTouchListener
 import com.zs.various.util.MoreUtil
 import kotlinx.android.synthetic.main.activity_custom_view.*
 import org.jetbrains.anko.toast
 
-class CustomViewActivity : AppCompatActivity() {
+class CustomViewFirstActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +62,14 @@ class CustomViewActivity : AppCompatActivity() {
         }
 
         MoreUtil.autotextSize(12,18,tv_auto)
+
+
+        var anim = OnClickEffectTouchListener()
+        tv_complete?.setOnTouchListener(anim)
+
+        tv_complete?.setOnClickListener {
+            Log.d("My_Log","ccccc")
+        }
 
     }
 }

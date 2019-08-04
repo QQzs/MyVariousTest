@@ -86,4 +86,41 @@
         <attr name="switchImage" format="reference"/>
     </declare-styleable>
 
+    <declare-styleable name="RoundImageView">
+        <attr name="is_cover_src" format="boolean" />
+        <attr name="is_circle" format="boolean" />
+        <attr name="corner_radius" format="dimension" />
+        <attr name="corner_top_left_radius" format="dimension" />
+        <attr name="corner_top_right_radius" format="dimension" />
+        <attr name="corner_bottom_left_radius" format="dimension" />
+        <attr name="corner_bottom_right_radius" format="dimension" />
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="inner_border_width" format="dimension" />
+        <attr name="inner_border_color" format="color" />
+        <attr name="mask_color" format="color" />
+    </declare-styleable>
+
+
+    <!-- ShadowView 阴影 -->
+    <declare-styleable name="ShadowView">
+        <attr name="shadowColor" format="color"/>
+        <attr name="shadowDx" format="dimension"/>
+        <attr name="shadowDy" format="dimension"/>
+        <attr name="shadowRadius" format="dimension"/>
+        <attr name="shadowViewRadius" format="dimension"/>
+        <attr name="shadowHeight" format="dimension"/>
+    </declare-styleable>
+
+    <!-- ShadowLayout 阴影 -->
+    <declare-styleable name="ShadowLayout">
+        <attr name="shadowLayoutColor" format="color"/>
+        <attr name="shadowLayoutDx" format="dimension"/>
+        <attr name="shadowLayoutDy" format="dimension"/>
+        <attr name="shadowLayoutRadius" format="dimension"/>
+        <attr name="shadowLayoutRectFRadius" format="dimension"/>
+        <attr name="shadowLayoutHeight" format="dimension"/>
+        <attr name="shadowLayoutPercent" format="float"/>
+    </declare-styleable>
+
 </resources>
