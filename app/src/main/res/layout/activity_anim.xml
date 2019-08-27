@@ -21,6 +21,7 @@
           android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:layout_marginTop="20dp">
 
         <com.zs.various.view.MusicView2
@@ -48,6 +49,11 @@
             android:padding="14dp"
             android:background="@color/background"
             app:color="@color/colorAccent"
+            android:layout_marginLeft="20dp"/>
+
+        <com.zs.various.view.PlayerView
+            android:layout_width="40dp"
+            android:layout_height="25dp"
             android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
