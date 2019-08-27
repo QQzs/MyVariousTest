@@ -81,6 +81,7 @@
         <activity android:name=".activity.SleepAndWaitActivity"/>
         <activity android:name=".activity.VoiceActivity"/>
         <activity android:name=".activity.ProfileActivity"/>
+        <activity android:name=".activity.SmartRefreshActivity"/>
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
             android:enabled="true"

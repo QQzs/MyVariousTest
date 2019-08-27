@@ -44,6 +44,9 @@ class TestKotlinActivity : BaseActivity(){
 
         iv_test?.loadImage(Constant.IMAGE_URL)
 
+//        val params = LinearLayout.LayoutParams(1, 1, (Gravity.CENTER or Gravity.BOTTOM).toFloat())
+
+
     }
 
 }

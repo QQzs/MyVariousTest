@@ -101,6 +101,8 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.1'
 
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+
 
 }
 

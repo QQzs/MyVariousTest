@@ -183,14 +183,6 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
     fun stopAnim(){
         mAnimFlag = false
         mAnimatorSet?.cancel()
-//        mAnimatorSet?.let {
-//            mAnimatorSet = null
-//            mAnimatorTransition1 = null
-//            mAnimatorTransition2 = null
-//            mAnimatorTransition3 = null
-//            mAnimatorAlpha1 = null
-//            mAnimatorAlpha2 = null
-//        }
     }
 
     override fun onAttachedToWindow() {
@@ -203,7 +195,7 @@ class MessageView @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        LogUtil.Companion.logShow("onDetachedFromWindow")
+        LogUtil.logShow("onDetachedFromWindow")
         mAnimatorSet?.cancel()
         mAnimatorSet?.let {
             mAnimatorSet = null
