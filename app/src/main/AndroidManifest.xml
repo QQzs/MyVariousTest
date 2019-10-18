@@ -44,7 +44,7 @@
         <activity android:name=".activity.ContactViewActivity"
             android:windowSoftInputMode="adjustPan">
         </activity>
-        <activity android:name=".activity.DialogActivity" />
+        <activity android:name=".activity.DialogWithPopupActivity" />
         <activity android:name=".activity.SpanStringActivity" />
         <activity android:name=".activity.AnimActivity" />
         <activity android:name=".activity.ReflexActivity"></activity>

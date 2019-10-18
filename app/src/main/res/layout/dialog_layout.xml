@@ -15,4 +15,12 @@
             android:textSize="30dp"
             android:textColor="@color/white"/>
     </LinearLayout>
+    <View
+        android:id="@+id/view_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="300dp"
+        android:background="@color/black"
+        android:alpha="0"
+        android:visibility="gone"/>
 </RelativeLayout>

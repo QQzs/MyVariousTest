@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.zs.various.view.ColorfulView
+    <com.zs.various.view.ColorfullView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -17,7 +17,7 @@
             android:layout_centerInParent="true"
             />
 
-    </com.zs.various.view.ColorfulView>
+    </com.zs.various.view.ColorfullView>
 
 
 </LinearLayout>

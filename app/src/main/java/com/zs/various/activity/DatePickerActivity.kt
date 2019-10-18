@@ -58,6 +58,7 @@ class DatePickerActivity : AppCompatActivity(){
         hour?.currentItem = 8
         minute?.currentItem = 30
         second?.currentItem = 30
+        second?.isCyclic = true
     }
 
 }

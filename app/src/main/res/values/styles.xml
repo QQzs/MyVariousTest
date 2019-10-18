@@ -53,4 +53,9 @@
         <item name="android:textColor">#00000000</item>
     </style>
 
+    <style name="top_slide_animation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_top</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_top</item>
+    </style>
+
 </resources>

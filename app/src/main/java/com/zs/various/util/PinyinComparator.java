@@ -15,7 +15,8 @@ public class PinyinComparator implements Comparator<SortModel> {
 		} else if (arg0.getLetter().equals("#") || arg1.getLetter().equals("@")) {
 			return 1;
 		} else {
-			return arg0.getLetter().compareTo(arg1.getLetter()); // 升序
+			// 升序
+			return arg0.getLetter().compareTo(arg1.getLetter());
 		//    return arg1.getLetter().compareTo(arg0.getLetter()); // 降序
 		}
 	}

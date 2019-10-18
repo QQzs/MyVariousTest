@@ -36,7 +36,7 @@ class DrawerLayoutActivity: AppCompatActivity(){
         acts.add(RelativeActivity::class.java)
         acts.add(VoiceAnimActivity::class.java)
         acts.add(CustomViewFirstActivity::class.java)
-        acts.add(DialogActivity::class.java)
+        acts.add(DialogWithPopupActivity::class.java)
         acts.add(SpanStringActivity::class.java)
 
         var adapter = ActivityAdapter(acts)

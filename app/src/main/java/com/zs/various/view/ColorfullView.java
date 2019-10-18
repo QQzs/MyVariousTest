@@ -38,7 +38,7 @@ import java.util.Random;
  * About:
  * —————————————————————————————————————
  */
-public class ColorfulView extends FrameLayout {
+public class ColorfullView extends FrameLayout {
 
     private Paint mPaint;
     /**
@@ -88,7 +88,7 @@ public class ColorfulView extends FrameLayout {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            ColorfulView view = (ColorfulView) weakReference.get();
+            ColorfullView view = (ColorfullView) weakReference.get();
             if (view != null && view.getContext() != null){
                 if (msg.what == mWhat){
                     view.addMyView();
@@ -104,15 +104,15 @@ public class ColorfulView extends FrameLayout {
     private static int mDuration = 600;
     private static int mWhat = 1000;
 
-    public ColorfulView(Context context) {
+    public ColorfullView(Context context) {
         this(context,null);
     }
 
-    public ColorfulView(Context context, AttributeSet attrs) {
+    public ColorfullView(Context context, AttributeSet attrs) {
         this(context, attrs,0);
     }
 
-    public ColorfulView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ColorfullView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mHandler = new LeakHandler(this);
         initView();
@@ -183,7 +183,7 @@ public class ColorfulView extends FrameLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                ColorfulView.this.removeView(imageView);
+                ColorfullView.this.removeView(imageView);
             }
         });
 

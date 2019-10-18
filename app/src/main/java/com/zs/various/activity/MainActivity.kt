@@ -87,7 +87,7 @@ class MainActivity : Activity() {
         data.add(VoiceAnimActivity::class.java)
         data.add(CustomViewFirstActivity::class.java)
         data.add(CustomViewTwoActivity::class.java)
-        data.add(DialogActivity::class.java)
+        data.add(DialogWithPopupActivity::class.java)
         data.add(SpanStringActivity::class.java)
         data.add(AnimActivity::class.java)
         data.add(ReflexActivity::class.java)

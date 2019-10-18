@@ -240,6 +240,13 @@ public class AnimButton extends View {
         animatorSet.play(animator_move_to_up).after(animator_rect_to_square);
         animatorSet.play(animator_draw_ok).after(animator_move_to_up);
 
+
+        // PropertyValuesHolder
+//        PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat("scaleX", 0.5f, 1.2f,1);
+//        PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat("scaleY", 0.5f, 1.2f,1);
+//        ObjectAnimator scaleAnimator = ObjectAnimator.ofPropertyValuesHolder(this, scaleX, scaleY);
+//        scaleAnimator.setDuration(300);
+
     }
 
     /**
