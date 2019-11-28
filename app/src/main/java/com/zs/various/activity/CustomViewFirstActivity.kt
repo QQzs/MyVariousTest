@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import com.flaviofaria.kenburnsview.KenBurnsView
 import com.flaviofaria.kenburnsview.Transition
 import com.zs.various.R
 import com.zs.various.listener.OnClickEffectTouchListener
 import com.zs.various.util.MoreUtil
 import kotlinx.android.synthetic.main.activity_custom_view.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class CustomViewFirstActivity : AppCompatActivity() {
@@ -63,13 +65,11 @@ class CustomViewFirstActivity : AppCompatActivity() {
 
         MoreUtil.autotextSize(12,18,tv_auto)
 
-
-        var anim = OnClickEffectTouchListener()
-        tv_complete?.setOnTouchListener(anim)
-
-        tv_complete?.setOnClickListener {
-            Log.d("My_Log","ccccc")
-        }
+        tv_complete?.setOnTouchListener(object : OnClickEffectTouchListener(){
+            override fun onTouchClick(view: View?) {
+                startActivity<CustomViewTwoActivity>()
+            }
+        })
 
     }
 }

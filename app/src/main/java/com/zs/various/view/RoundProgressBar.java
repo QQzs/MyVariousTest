@@ -30,14 +30,8 @@ public class RoundProgressBar extends View {
      */
     private static final int STROKE_TEXT = 1;
 
-    /**
-     * 填充
-     */
     private static final int STROKE_FILL = 2;
 
-    /**
-     * 填充
-     */
     private static final int STROKE_IMAGE = 3;
 
     private Paint mPaint;

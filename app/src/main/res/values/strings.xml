@@ -16,6 +16,9 @@
     <string name="refresh_done">刷新完成</string>
     <string name="refreshing">正在刷新...</string>
 
+    <string name="count_down_time">松开即可发送，上滑取消 %d\"</string>
+
+
     <string name="person_name">孙骁骁</string>
     <string name="person_title">演员</string>
     <string name="person_intro">

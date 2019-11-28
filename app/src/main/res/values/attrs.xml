@@ -69,6 +69,15 @@
         </attr>
     </declare-styleable>
 
+    <!--圆形进度条-->
+    <declare-styleable name="RecordView">
+        <attr name="recordBackColor" format="color|reference"/>
+        <attr name="recordFrontColor" format="color|reference"/>
+        <attr name="recordFrontCancelColor" format="color|reference"/>
+        <attr name="recordBorderWidth" format="dimension" />
+        <attr name="recordCenterWidth" format="dimension" />
+    </declare-styleable>
+
     <attr name="textSize" format="dimension"/>
 
     <declare-styleable name="LoopView">
@@ -121,6 +130,12 @@
         <attr name="shadowLayoutRectFRadius" format="dimension"/>
         <attr name="shadowLayoutHeight" format="dimension"/>
         <attr name="shadowLayoutPercent" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="MarqueeTextView">
+        <attr name="marqueeTextSize" format="dimension"/>
+        <attr name="marqueeTextColor" format="color|reference"/>
+        <attr name="marqueeSpeed" format="integer"/>
     </declare-styleable>
 
 </resources>

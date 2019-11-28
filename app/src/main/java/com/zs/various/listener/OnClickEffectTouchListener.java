@@ -9,7 +9,12 @@ import android.view.View;
  * @author SamWang
  * @date 2015/12/25	14:39
  */
-public class OnClickEffectTouchListener implements View.OnTouchListener {
+public abstract class OnClickEffectTouchListener implements View.OnTouchListener {
+
+    /**
+     * 点击回调
+     */
+    public abstract void onTouchClick(View view);
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -37,6 +42,7 @@ public class OnClickEffectTouchListener implements View.OnTouchListener {
                     v.performClick();
                     v.setPressed(false);
                 }
+                onTouchClick(v);
                 break;
         }
         return true;

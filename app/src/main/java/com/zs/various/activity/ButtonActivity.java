@@ -1,8 +1,8 @@
 package com.zs.various.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.zs.various.R;
@@ -17,9 +17,8 @@ import com.zs.various.view.AnimButton;
  * —————————————————————————————————————
  */
 
-public class ButtonActivity extends Activity {
+public class ButtonActivity extends AppCompatActivity {
 
-//    @Bind(R.id.btn)
     AnimButton button;
 
     @Override

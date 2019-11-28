@@ -24,7 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ButtonActivity" />
+        <activity android:name=".activity.ButtonActivity"
+            android:theme="@style/TransparentTheme"/>
         <activity android:name=".activity.RadarActivity" />
         <activity android:name=".activity.ColorfullActivity" />
         <activity android:name=".activity.ColorfullBackActivity" />
@@ -81,7 +82,8 @@
         <activity android:name=".activity.SleepAndWaitActivity"/>
         <activity android:name=".activity.VoiceActivity"/>
         <activity android:name=".activity.ProfileActivity"/>
-        <activity android:name=".activity.SmartRefreshActivity"/>
+        <activity android:name=".activity.SmartRefreshActivity"
+            />
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
             android:enabled="true"
