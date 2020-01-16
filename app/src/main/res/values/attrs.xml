@@ -138,4 +138,22 @@
         <attr name="marqueeSpeed" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="MusicCutView">
+        <attr name="progressHeight" format="dimension"/>
+        <attr name="progressColor" format="color|reference"/>
+        <attr name="progressCutColor" format="color|reference"/>
+        <attr name="progressDotColor" format="color|reference"/>
+        <attr name="progressDotRadius" format="dimension"/>
+        <attr name="progressIcon" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomSeekView">
+        <attr name="seekHeight" format="dimension"/>
+        <attr name="seekBackColor" format="color|reference"/>
+        <attr name="seekProgressColor" format="color|reference"/>
+        <attr name="seekProgress" format="float"/>
+        <attr name="seekDotColor" format="color|reference"/>
+        <attr name="seekDotRadius" format="dimension"/>
+    </declare-styleable>
+
 </resources>

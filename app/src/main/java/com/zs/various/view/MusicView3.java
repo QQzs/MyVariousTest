@@ -189,7 +189,6 @@ public class MusicView3 extends View {
      * 动画
      */
     private void initAnimator(){
-
         mAnimator = ValueAnimator.ofFloat(0,max,0);
         mAnimator.setDuration(duration);
         mAnimator.setRepeatCount(ValueAnimator.INFINITE);//无限循环
