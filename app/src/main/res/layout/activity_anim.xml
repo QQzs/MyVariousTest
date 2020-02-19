@@ -137,4 +137,9 @@
         android:layout_height="wrap_content"
         android:background="@color/black"/>
 
+    <com.zs.various.view.LoadingView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@color/black"/>
+
 </LinearLayout>

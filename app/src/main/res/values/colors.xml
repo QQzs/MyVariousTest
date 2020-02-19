@@ -44,4 +44,7 @@
     <color name="planbook_default">#ff6969</color>
     <color name="dialog_tran_color">#99000000</color>
 
+    <color name="tran_color">#00ffffff</color>
+
+
 </resources>
