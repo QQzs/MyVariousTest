@@ -1,9 +1,9 @@
 package com.zs.various.activity
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import android.view.View
 import com.zs.various.R
 import com.zs.various.bean.IroMan
@@ -11,10 +11,10 @@ import com.zs.various.fragment.TestFragment
 import com.zs.various.listener.TestHero
 import kotlinx.android.synthetic.main.activity_reflex.*
 
-class ReflexActivity : FragmentActivity() {
+class ReflexActivity : androidx.fragment.app.FragmentActivity() {
 
-    var fragmentmanager : FragmentManager ?= null
-    var transaction : FragmentTransaction ?= null
+    var fragmentmanager : androidx.fragment.app.FragmentManager?= null
+    var transaction : androidx.fragment.app.FragmentTransaction?= null
     var fragment = TestFragment()
     var flag : Boolean = false
 

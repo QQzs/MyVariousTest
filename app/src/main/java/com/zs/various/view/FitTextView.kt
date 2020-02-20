@@ -2,7 +2,7 @@ package com.zs.various.view
 
 import android.content.Context
 import android.graphics.Paint
-import android.support.v7.widget.AppCompatTextView
+import androidx.appcompat.widget.AppCompatTextView
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.Gravity

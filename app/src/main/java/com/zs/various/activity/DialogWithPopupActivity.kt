@@ -3,7 +3,7 @@ package com.zs.various.activity
 import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import android.view.*
 import android.widget.PopupWindow
 import com.zs.various.R
@@ -11,7 +11,7 @@ import com.zs.various.fragment.MyDialogFragment
 import kotlinx.android.synthetic.main.activity_dialog.*
 import kotlinx.android.synthetic.main.dialog_layout.view.*
 
-class DialogWithPopupActivity : FragmentActivity() {
+class DialogWithPopupActivity : androidx.fragment.app.FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

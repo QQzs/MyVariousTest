@@ -1,6 +1,6 @@
 package com.zs.various.util
 
-import android.support.v4.widget.TextViewCompat
+import androidx.core.widget.TextViewCompat
 import android.util.TypedValue
 import android.widget.TextView
 

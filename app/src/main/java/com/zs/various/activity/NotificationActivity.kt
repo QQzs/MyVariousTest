@@ -1,7 +1,7 @@
 package com.zs.various.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.zs.various.R
 import com.zs.various.util.NotificationUtil
 import kotlinx.android.synthetic.main.activity_notification_layout.*

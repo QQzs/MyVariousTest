@@ -1,9 +1,9 @@
 package com.zs.various.activity
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.jaeger.library.StatusBarUtil
 import com.zs.various.R
 import com.zs.various.fragment.PageFragment
@@ -68,11 +68,11 @@ class TabHomeActivity : AppCompatActivity() , View.OnClickListener{
      * fragment切换
      * @param nextFragment
      */
-    private fun changeFragment(nextFragment: Fragment?) {
+    private fun changeFragment(nextFragment: androidx.fragment.app.Fragment?) {
         if (nextFragment != null) {
-            if (mCurrentFragment != null) {
+            mCurrentFragment?.let {
                 var transaction = supportFragmentManager.beginTransaction()
-                transaction.hide(mCurrentFragment).commitAllowingStateLoss()
+                transaction.hide(it).commitAllowingStateLoss()
             }
             mCurrentFragment = nextFragment
             var transaction = supportFragmentManager.beginTransaction()

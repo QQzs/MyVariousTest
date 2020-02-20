@@ -1,6 +1,6 @@
 package com.zs.various.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.zs.various.R
@@ -16,7 +16,7 @@ Time：16:52
 About:
 —————————————————————————————————————
  */
-class MessageAdapter(): RecyclerView.Adapter<MessageAdapter.MyHolder>(){
+class MessageAdapter(): androidx.recyclerview.widget.RecyclerView.Adapter<MessageAdapter.MyHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         var view = View.inflate(parent?.context, R.layout.item_mesage,null)
@@ -58,5 +58,5 @@ class MessageAdapter(): RecyclerView.Adapter<MessageAdapter.MyHolder>(){
         }
     }
 
-    inner class MyHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class MyHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 }

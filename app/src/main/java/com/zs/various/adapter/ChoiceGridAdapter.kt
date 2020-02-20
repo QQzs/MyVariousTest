@@ -1,6 +1,6 @@
 package com.zs.various.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.zs.various.bean.GridItemBean
 
 /**
@@ -12,7 +12,7 @@ Time：10:47
 About:
 —————————————————————————————————————
  */
-abstract class ChoiceGridAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class ChoiceGridAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     var mData: MutableList<GridItemBean> = mutableListOf()
 

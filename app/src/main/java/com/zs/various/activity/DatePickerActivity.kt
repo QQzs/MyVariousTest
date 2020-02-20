@@ -2,7 +2,7 @@ package com.zs.various.activity
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.zs.various.R
 import com.zs.various.view.datepicker.DatePickerPopWin

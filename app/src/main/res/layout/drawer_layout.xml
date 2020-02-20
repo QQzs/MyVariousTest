@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     >
 
-    <android.support.v4.widget.DrawerLayout
+    <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:openDrawer="right">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
@@ -29,9 +29,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/drawer_container"
             android:layout_width="300dp"
             android:layout_height="match_parent"
@@ -58,7 +58,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/ly_bottom"
                 app:layout_constraintTop_toBottomOf="@id/tv_title">
 
-                <android.support.constraint.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:focusableInTouchMode="true"
                     android:focusable="true"
@@ -88,7 +88,7 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_company_title" />
 
-                    <android.support.constraint.ConstraintLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_goods"
                         android:focusableInTouchMode="true"
                         android:focusable="true"
@@ -121,9 +121,9 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_goods_name" />
 
-                    </android.support.constraint.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <android.support.constraint.ConstraintLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_address"
                         android:layout_width="match_parent"
                         android:focusableInTouchMode="true"
@@ -156,9 +156,9 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_address_name" />
 
-                    </android.support.constraint.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <android.support.constraint.ConstraintLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_driver"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_driver_name" />
 
-                    </android.support.constraint.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:id="@+id/tv_create_time"
@@ -205,7 +205,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/cl_driver" />
 
 
-                    <android.support.v7.widget.RecyclerView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rl_create_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -216,9 +216,9 @@
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_create_time">
 
-                    </android.support.v7.widget.RecyclerView>
+                    </androidx.recyclerview.widget.RecyclerView>
 
-                    <android.support.constraint.ConstraintLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_complete_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -236,7 +236,7 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <android.support.v7.widget.RecyclerView
+                        <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rl_complete_type"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -247,9 +247,9 @@
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_complete_type">
 
-                        </android.support.v7.widget.RecyclerView>
-                    </android.support.constraint.ConstraintLayout>
-                </android.support.constraint.ConstraintLayout>
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
 
             <LinearLayout
@@ -280,9 +280,9 @@
                     android:textSize="@dimen/sp_18" />
             </LinearLayout>
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v4.widget.DrawerLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 
 </LinearLayout>

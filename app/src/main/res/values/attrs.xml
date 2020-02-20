@@ -9,7 +9,7 @@
         <attr name="titleColor" format="color"></attr>
         <attr name="titleSize" format="dimension"></attr>
 
-        <attr name="content" format="string"></attr>
+        <attr name="contentString" format="string"></attr>
         <attr name="contentColor" format="color"></attr>
         <attr name="contentSize" format="dimension"></attr>
         <attr name="contentLines" format="integer"></attr>

@@ -3,9 +3,6 @@ package com.zs.various.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.AttrRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -14,6 +11,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.squareup.picasso.Picasso;
 import com.zs.various.R;
@@ -84,7 +85,7 @@ public class ItemView extends FrameLayout {
 
         mShowImage = array.getBoolean(R.styleable.ItemView_showImage,false);
         String hint = array.getString(R.styleable.ItemView_hint);
-        String content = array.getString(R.styleable.ItemView_content);
+        String content = array.getString(R.styleable.ItemView_contentString);
         mContentColor = array.getColor(R.styleable.ItemView_contentColor, getResources().getColor(R.color.font_black));
         mContentSize = array.getDimension(R.styleable.ItemView_contentSize, DensityUtil.dip2px(context,15));
         mHintContentColor = array.getColor(R.styleable.ItemView_hintContentColor,getResources().getColor(R.color.font_lightgray));

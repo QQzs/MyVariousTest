@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 app:titleColor="@color/colorPrimary"
                 app:titleSize="10dp"
-                app:content="内容1"
+                app:contentString="内容1"
                 app:contentColor="@color/colorAccent"
                 app:contentSize="20dp"
                 android:layout_marginTop="10dp">
@@ -43,7 +43,6 @@
                 android:layout_height="50dp"
                 app:itemTitle="标题2"
                 app:hint="100"
-                app:content=""
                 app:contentColor="@color/colorPrimary"
                 app:contentSize="20dp"
                 android:layout_marginTop="10dp">
@@ -55,7 +54,7 @@
                 android:layout_height="50dp"
                 app:titleColor="@color/colorPrimary"
                 app:titleSize="12dp"
-                app:content="内容000"
+                app:contentString="内容000"
                 app:showImage="false"
                 android:layout_marginTop="10dp">
 

@@ -1,6 +1,6 @@
 package com.zs.various.activity
 
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.text.TextUtils
 import android.widget.TextView
 import com.zs.various.R

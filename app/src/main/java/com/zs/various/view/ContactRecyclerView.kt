@@ -1,8 +1,6 @@
 package com.zs.various.view
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -10,6 +8,8 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.zs.various.R
 import com.zs.various.bean.SortModel
 import com.zs.various.util.CharacterParser
@@ -31,7 +31,7 @@ class ContactRecyclerView @JvmOverloads constructor(context: Context, attrs: Att
     var tv_letter: TextView? = null
     var mLetterHeight = 0
     var mCurrentPosition = 0
-    var mLayoutManager: LinearLayoutManager? = null
+    var mLayoutManager: androidx.recyclerview.widget.LinearLayoutManager? = null
     var mData: MutableList<SortModel> = mutableListOf()
     var mParser: CharacterParser = CharacterParser.getInstance()
 
@@ -41,14 +41,15 @@ class ContactRecyclerView @JvmOverloads constructor(context: Context, attrs: Att
         tv_letter = findViewById(R.id.tv_letter)
         view_sidebar?.setLetterTouchListener(this)
         recycler_view?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 mLetterHeight = ll_top_title?.height!!
             }
 
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                mLayoutManager = recyclerView?.layoutManager as LinearLayoutManager
+                mLayoutManager = recyclerView.layoutManager as LinearLayoutManager
                 //找到列表下一个可见的View
                 var view = mLayoutManager?.findViewByPosition(mCurrentPosition + 1)
                 // 检查列表中的letter布局是否显示
@@ -68,7 +69,7 @@ class ContactRecyclerView @JvmOverloads constructor(context: Context, attrs: Att
         })
     }
 
-    fun getRecycler(): RecyclerView{
+    fun getRecycler(): RecyclerView {
         return recycler_view
     }
 

@@ -1,8 +1,8 @@
 package com.zs.various.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -129,7 +129,7 @@ class ContactActivity: AppCompatActivity() , SideBarView.LetterTouchListener{
         tv_letter_show?.text = letter
         var position = mAdater!!.getPositionForSection(letter!![0].toInt())
         if (position != -1) {
-            (recycler_view?.layoutManager as LinearLayoutManager)?.scrollToPositionWithOffset(position,0) // 使当前位置处于最顶端
+            (recycler_view?.layoutManager as androidx.recyclerview.widget.LinearLayoutManager)?.scrollToPositionWithOffset(position,0) // 使当前位置处于最顶端
         }
     }
 

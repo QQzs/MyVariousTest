@@ -11,7 +11,7 @@ import android.view.MotionEvent;
  *  点击时显示明暗变化(滤镜效果)的ImageView
  *  
  */
-public class FilterImageView extends android.support.v7.widget.AppCompatImageView {
+public class FilterImageView extends androidx.appcompat.widget.AppCompatImageView {
 	public FilterImageView(Context context){
 		super(context);
 	}

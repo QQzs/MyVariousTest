@@ -1,8 +1,8 @@
 package com.zs.various.activity
 
 import android.graphics.Color
-import android.support.design.widget.AppBarLayout
-import android.support.v4.app.Fragment
+import com.google.android.material.appbar.AppBarLayout
+import androidx.fragment.app.Fragment
 import com.jaeger.library.StatusBarUtil
 import com.zs.various.R
 import com.zs.various.adapter.FmPagerAdapter
@@ -24,7 +24,7 @@ class ProfileActivity: BaseActivity(){
     private var mPercent = 0f
 
     private var titles = arrayOf("热门", "最新")
-    private var fragments = ArrayList<Fragment>()
+    private var fragments = ArrayList<androidx.fragment.app.Fragment>()
 
     override fun setLayoutId(): Int {
         return R.layout.activity_profile_layout

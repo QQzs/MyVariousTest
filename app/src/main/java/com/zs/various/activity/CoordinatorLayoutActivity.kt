@@ -3,10 +3,11 @@ package com.zs.various.activity
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.githang.statusbar.StatusBarCompat
+import com.google.android.material.appbar.AppBarLayout
 import com.zs.various.R
 import com.zs.various.adapter.ActivityAdapter
 import com.zs.various.util.RecyclerViewUtil
@@ -31,8 +32,7 @@ class CoordinatorLayoutActivity: AppCompatActivity() {
         setContentView(R.layout.activity_coordinator_layout)
         StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this,R.color.colorPrimary), true)
 
-        app_bar_layout?.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
-
+        app_bar_layout?.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (verticalOffset == 0){
                 switchToolbar(1,255)
                 myRecyclerView?.setPullRefreshEnabled(true)
@@ -48,8 +48,7 @@ class CoordinatorLayoutActivity: AppCompatActivity() {
                     switchToolbar(1,alpha)
                 }
             }
-
-        }
+        })
 
         var acts = ArrayList<Class<*>>()
         acts.add(WebViewActivity::class.java)

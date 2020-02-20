@@ -3,7 +3,7 @@ package com.zs.various.fragment
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +24,7 @@ Time：11:39
 About:
 —————————————————————————————————————
  */
-class TestFragment : Fragment(){
+class TestFragment : androidx.fragment.app.Fragment(){
     var currentValue = 0
     var pool : ScheduledExecutorService?= null
 

@@ -1,9 +1,9 @@
 package com.zs.various.activity
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayout
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
 import com.zs.various.R
 import com.zs.various.adapter.TabPageAdapter
 import kotlinx.android.synthetic.main.activity_tab_layout.*
@@ -36,7 +36,7 @@ class TabLayoutActivity: AppCompatActivity(){
 
     }
 
-    inner class TabListener(viewPager: ViewPager?) : TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
+    inner class TabListener(viewPager: androidx.viewpager.widget.ViewPager?) : TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
 
         override fun onTabSelected(tab: TabLayout.Tab?) {
             super.onTabSelected(tab)

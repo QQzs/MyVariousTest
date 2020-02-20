@@ -1,6 +1,6 @@
 package com.zs.various.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.zs.various.R
@@ -24,7 +24,7 @@ class ChoiceAdapter : ChoiceGridAdapter() {
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return if (viewType == 0){
             TabHolder(View.inflate(parent?.context , R.layout.item_choice_tab , null))
         }else{
@@ -36,7 +36,7 @@ class ChoiceAdapter : ChoiceGridAdapter() {
         return mData.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == 0){
             (holder as TabHolder).bindData(position)
         }else{
@@ -44,7 +44,7 @@ class ChoiceAdapter : ChoiceGridAdapter() {
         }
     }
 
-    inner class TabHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class TabHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView){
         fun bindData(position: Int)= with(itemView){
             var data = mData[position]
             tv_item_tab?.text = data.name
@@ -65,7 +65,7 @@ class ChoiceAdapter : ChoiceGridAdapter() {
 
     }
 
-    inner class TitleHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class TitleHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView){
         fun bindData(position: Int) = with(itemView){
             tv_item_title?.text = mData[position].title
         }

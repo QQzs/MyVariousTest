@@ -1,6 +1,6 @@
 package com.zs.various.activity
 
-import android.support.v7.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import android.view.View
 import com.zs.various.R
 import com.zs.various.adapter.ChoiceAdapter
@@ -60,8 +60,8 @@ class ChoiceViewActivity : BaseActivity() {
 
         RecyclerViewUtil.initGrid(this, recycler_grid , mAdapter,4)
 
-        var layoutManager : GridLayoutManager = recycler_grid?.layoutManager as GridLayoutManager
-        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
+        var layoutManager : androidx.recyclerview.widget.GridLayoutManager = recycler_grid?.layoutManager as androidx.recyclerview.widget.GridLayoutManager
+        layoutManager.spanSizeLookup = object : androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup(){
             override fun getSpanSize(position: Int): Int {
                 var type = mAdapter?.getItemViewType(position)
                 return if (type == 0) 1 else 4

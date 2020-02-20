@@ -1,6 +1,6 @@
 package com.zs.various.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.zs.various.R
@@ -17,7 +17,7 @@ Time：15:19
 About:
 —————————————————————————————————————
  */
-class ContactSortAdapter : RecyclerView.Adapter<ContactSortAdapter.ContactHolder>() {
+class ContactSortAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<ContactSortAdapter.ContactHolder>() {
 
     var mData: MutableList<SortModel>? = null
 
@@ -40,7 +40,7 @@ class ContactSortAdapter : RecyclerView.Adapter<ContactSortAdapter.ContactHolder
     }
 
 
-    inner class ContactHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class ContactHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView){
         fun bindData(position: Int) = with(itemView) {
             var sortModel = mData!![position]
             name?.text = sortModel.name
