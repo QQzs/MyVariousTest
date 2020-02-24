@@ -4,10 +4,19 @@
     <meta charset="utf-8">
     <title>Carson</title>
     <script>
-         <!--由于对象映射，所以调用test对象等于调用Android映射的对象-->
+         <!--由于对象映射，所以调用javaMethod对象等于调用Android映射的对象-->
          function callAndroid(){
-            test.clickAction("js调用了android中的clickAction方法");
+            javaMethod.clickAction("js调用了android中的clickAction方法");
          }
+
+         function callAndroid2(){
+            javaMethod.backAndroid()
+         }
+
+         function callJS(value){
+            javaMethod.clickAction(value)
+         }
+
     </script>
 </head>
 <body>
@@ -16,6 +25,12 @@
             id="button1"
             style="width: 500px; height: 100px; font-size:40px; margin-left:40px; margin-top:60px;"
             onclick="callAndroid()">点击调用Android中方法</button>
+
+    <!--点击按钮则调用callAndroid有参函数-->
+    <button type="button"
+            id="button2"
+            style="width: 600px; height: 100px; font-size:40px; margin-left:40px; margin-top:260px;"
+            onclick="callAndroid2()">Android调用JS中有参方法</button>
 
 </body>
 </html>

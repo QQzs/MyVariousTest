@@ -5,15 +5,17 @@ import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.webkit.SslErrorHandler;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.zs.various.R;
 import com.zs.various.util.JS2AndroidUtil;
@@ -122,7 +124,7 @@ public class WebViewActivity extends Activity {
         // 通过addJavascriptInterface()将Java对象映射到JS对象
         // 参数1：JS调用android中方法对象
         // 参数2：映射到js中的test对象
-        webView.addJavascriptInterface(new JS2AndroidUtil(this) , "test");
+        webView.addJavascriptInterface(new JS2AndroidUtil(this) , "javaMethod");
         webView.loadUrl("file:////android_asset/index.html");
 
     }
@@ -135,6 +137,23 @@ public class WebViewActivity extends Activity {
         Toast.makeText(this , msg , Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * android 调用 JS方法
+     */
+    public void loadJSMethod(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // 函数传的参数要用 '' 单引号包起来
+                webView.evaluateJavascript("javascript:callJS('Android调用JS中有参方法')", new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String value) {
+                        // 用不到可以传null
+                    }
+                });
+            }
+        });
+    }
 
     private void loadTextImage(){
 //        String body = "123445555";

@@ -1,6 +1,5 @@
 package com.zs.various.util;
 
-import android.app.Activity;
 import android.webkit.JavascriptInterface;
 
 import com.zs.various.activity.WebViewActivity;
@@ -15,9 +14,9 @@ import com.zs.various.activity.WebViewActivity;
  */
 public class JS2AndroidUtil {
 
-    private Activity mActivity;
+    private WebViewActivity mActivity;
 
-    public JS2AndroidUtil(Activity activity) {
+    public JS2AndroidUtil(WebViewActivity activity) {
         this.mActivity = activity;
     }
 
@@ -25,9 +24,12 @@ public class JS2AndroidUtil {
     // 被JS调用的方法必须加入@JavascriptInterface注解
     @JavascriptInterface
     public void clickAction(String msg) {
-        if (mActivity instanceof WebViewActivity){
-            ((WebViewActivity) mActivity).show(msg);
-        }
+        mActivity.show(msg);
+    }
+
+    @JavascriptInterface
+    public void backAndroid(){
+        mActivity.loadJSMethod();
     }
 
 }
