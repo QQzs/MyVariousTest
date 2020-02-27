@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -11,10 +12,13 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Xfermode;
 import android.os.Build;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
-import android.util.AttributeSet;
 
 import com.zs.various.R;
 
@@ -120,6 +124,8 @@ public class RoundImageView extends AppCompatImageView {
 
         initBorderRectF();
         initSrcRectF();
+
+        setRound();
     }
 
     @Override
@@ -133,22 +139,37 @@ public class RoundImageView extends AppCompatImageView {
         paint.setStyle(Paint.Style.FILL);
         paint.setXfermode(xfermode);
 
-        if (isCircle) {
-            drawCirclePath(canvas , srcRectF , radius);
-        } else {
-            drawRectFPath(canvas , srcRectF , srcRadii);
-        }
+//        if (isCircle) {
+//            drawCirclePath(canvas , srcRectF , radius);
+//        } else {
+//            drawRectFPath(canvas , srcRectF , srcRadii);
+//        }
+//
+//        paint.setXfermode(null);
+//        // 绘制遮罩
+//        if (maskColor != 0) {
+//            paint.setColor(maskColor);
+//            canvas.drawPath(path, paint);
+//        }
+//        // 恢复画布
+//        canvas.restore();
+//        // 绘制边框
+//        drawBorders(canvas);
 
-        paint.setXfermode(null);
-        // 绘制遮罩
-        if (maskColor != 0) {
-            paint.setColor(maskColor);
-            canvas.drawPath(path, paint);
-        }
-        // 恢复画布
-        canvas.restore();
-        // 绘制边框
-        drawBorders(canvas);
+    }
+
+    private void setRound(){
+        setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                if (isCircle){
+                    outline.setOval(0, 0, width, height);
+                }else{
+                    outline.setRoundRect(0, 0, width, height, cornerRadius);
+                }
+            }
+        });
+        setClipToOutline(true);
     }
 
     private void drawBorders(Canvas canvas) {

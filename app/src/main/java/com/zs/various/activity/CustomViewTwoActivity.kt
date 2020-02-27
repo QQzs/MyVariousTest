@@ -2,7 +2,7 @@ package com.zs.various.activity
 
 import com.zs.various.R
 import com.zs.various.base.BaseActivity
-import com.zs.various.util.extension.loadImageShadow
+import com.zs.various.util.extension.loadImage
 import com.zs.various.view.ExpandTextView
 import kotlinx.android.synthetic.main.activity_custom_view2.*
 
@@ -35,7 +35,9 @@ class CustomViewTwoActivity : BaseActivity() {
 
 //        round_img?.loadImageGlide(mUrl)
 
-        round_img?.loadImageShadow(mUrl , shadow_img)
+//        round_img?.loadImageShadow(mUrl , shadow_img)
+
+        round_img?.loadImage(mUrl)
 
     }
 
