@@ -103,6 +103,8 @@ dependencies {
 
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
 
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
 
 }
 

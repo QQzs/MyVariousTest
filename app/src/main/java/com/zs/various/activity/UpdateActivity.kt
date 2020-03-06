@@ -1,8 +1,11 @@
 package com.zs.various.activity
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zs.various.R
 import com.zs.various.util.DownloadUtil
 import kotlinx.android.synthetic.main.activity_update_layout.*
@@ -17,10 +20,18 @@ class UpdateActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_layout)
 //        mDownloadUtil = DownloadUtil.getInstance(this)
+        var rxPermission = RxPermissions(this)
+        rxPermission.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe { granted ->
+                    if (!granted){
+                        toast("请开启读写权限")
+                    }
+                }
 
     }
 
