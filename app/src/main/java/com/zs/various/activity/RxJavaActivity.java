@@ -1,10 +1,12 @@
 package com.zs.various.activity;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.ImageView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.ImageView;
 
 import com.zs.various.R;
 
@@ -28,15 +30,18 @@ import io.reactivex.schedulers.Schedulers;
  * About:
  * —————————————————————————————————————
  */
-public class RxJavaActivity extends AppCompatActivity{
+public class RxJavaActivity extends AppCompatActivity {
 
-    private ImageView iv_image;
+    private ImageView iv_image_1;
+    private ImageView iv_image_2;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rxjava);
-        iv_image = findViewById(R.id.iv_image);
+        iv_image_1 = findViewById(R.id.iv_image_1);
+        iv_image_2 = findViewById(R.id.iv_image_2);
 
 
         /**
@@ -49,23 +54,23 @@ public class RxJavaActivity extends AppCompatActivity{
          * 3.fromArray( )，遍历集合，接受一个集合作为输入，然后每次输出一个元素给subscriber
          */
         Observable.just("s")
-                .map(new Function<String, String>() {
+                .map(new Function<String, Drawable>() {
                     @Override
-                    public String apply(String s) throws Exception {
-                        return "";
+                    public Drawable apply(String s) throws Exception {
+                        return getDrawableFromUrl("");
                     }
                 })
                 .subscribeOn(Schedulers.io()) // 事件执行的线程
                 .observeOn(AndroidSchedulers.mainThread()) // 事件回调的线程
-                .subscribe(new Observer<String>() {
+                .subscribe(new Observer<Drawable>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(String s) {
-
+                    public void onNext(Drawable drawable) {
+                        iv_image_1.setBackground(drawable);
                     }
 
                     @Override
@@ -86,7 +91,7 @@ public class RxJavaActivity extends AppCompatActivity{
          */
         Observable.create(new ObservableOnSubscribe<Drawable>() {
             @Override
-            public void subscribe(ObservableEmitter<Drawable> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<Drawable> emitter) {
                 // 发射数据
                 emitter.onNext(getDrawableFromUrl(""));
                 // 发射完成,这种方法需要手动调用onCompleted，才会回调Observer的onCompleted方法
@@ -96,8 +101,8 @@ public class RxJavaActivity extends AppCompatActivity{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Drawable>() {
                     @Override
-                    public void accept(Drawable drawable) throws Exception {
-                        iv_image.setBackground(drawable);
+                    public void accept(Drawable drawable) {
+                        iv_image_2.setBackground(drawable);
                     }
                 });
 
@@ -117,7 +122,7 @@ public class RxJavaActivity extends AppCompatActivity{
     }
 
     // 模拟网络请求图片
-    private Drawable getDrawableFromUrl(String url){
+    private Drawable getDrawableFromUrl(String url) {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -126,7 +131,9 @@ public class RxJavaActivity extends AppCompatActivity{
         return getResources().getDrawable(R.mipmap.ic_default_avatar);
     }
 
-    private void action(){
+
+
+    private void action() {
 
         Observable.just(1)
                 .filter(new Predicate<Integer>() {
