@@ -26,7 +26,6 @@ class CXRecyclerViewActivity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cx_layout)
 
-
         var acts = ArrayList<Class<*>>()
         acts.add(WebViewActivity::class.java)
         acts.add(CountDownActivity::class.java)
