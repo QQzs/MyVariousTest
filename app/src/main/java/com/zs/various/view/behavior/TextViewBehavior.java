@@ -1,13 +1,15 @@
 package com.zs.various.view.behavior;
 
 import android.content.Context;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.appcompat.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import com.zs.various.R;
+import com.zs.various.util.DensityUtil;
 
 /**
  * 图片控件位置动画
@@ -76,12 +78,6 @@ public class TextViewBehavior extends CoordinatorLayout.Behavior<TextView> {
         child.setY(mStartYPosition - distanceYToSubtract);
         child.setX(mStartXPosition - distanceXToSubtract);
 
-        // 图片大小
-        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
-//        lp.width = (int) (mStartHeight - heightToSubtract);
-//        lp.height = (int) (mStartHeight - heightToSubtract);
-//        child.setLayoutParams(lp);
-
         return true;
     }
 
@@ -115,7 +111,7 @@ public class TextViewBehavior extends CoordinatorLayout.Behavior<TextView> {
 
         // 边缘+缩略图宽度的一半
         if (mFinalXPosition == 0)
-            mFinalXPosition = mContext.getResources().getDimensionPixelOffset(R.dimen.abc_action_bar_content_inset_material) + 300;
+            mFinalXPosition = DensityUtil.getDisplayWidth(mContext) - DensityUtil.dip2px(100);
 
         // Toolbar的起始位置
         if (mStartToolbarPosition == 0)

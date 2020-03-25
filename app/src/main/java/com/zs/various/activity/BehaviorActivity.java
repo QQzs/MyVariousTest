@@ -1,10 +1,6 @@
 package com.zs.various.activity;
 
 import android.os.Bundle;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
@@ -12,6 +8,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.zs.various.R;
 
 public class BehaviorActivity extends AppCompatActivity {
@@ -52,6 +53,8 @@ public class BehaviorActivity extends AppCompatActivity {
         mIvSmall = findViewById(R.id.iv_small_img);
 
         mTbToolbar.setTitle("");
+
+
 
         // AppBar的监听
         mAblAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
