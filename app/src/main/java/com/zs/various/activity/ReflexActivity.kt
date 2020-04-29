@@ -1,14 +1,12 @@
 package com.zs.various.activity
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import android.view.View
 import com.zs.various.R
 import com.zs.various.bean.IroMan
 import com.zs.various.fragment.TestFragment
 import com.zs.various.listener.TestHero
+import com.zs.various.util.LogUtil
 import kotlinx.android.synthetic.main.activity_reflex.*
 
 class ReflexActivity : androidx.fragment.app.FragmentActivity() {
@@ -42,6 +40,15 @@ class ReflexActivity : androidx.fragment.app.FragmentActivity() {
                 fragment_layout.visibility = View.GONE
             }
             flag = !flag
+        }
+
+
+        tv_line_1?.post {
+            LogUtil.logShow("height 1 = ${tv_line_1.height}")
+        }
+
+        tv_line_2?.post {
+            LogUtil.logShow("height 2 = ${tv_line_2.height}")
         }
 
     }

@@ -1,20 +1,20 @@
 package com.zs.various.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.zs.various.R
 import com.zs.various.adapter.MyAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,6 +99,15 @@ class MainActivity : Activity() {
             val act = adapter.getItem(position) as Class<*>
             startActivity(Intent(this@MainActivity, act))
         }
+
+//        var rxPermission = RxPermissions(this)
+//        rxPermission.request(Manifest.permission.READ_PHONE_STATE)
+//                .subscribe { granted ->
+//                    if (granted){
+//                        SystemTool.getDeviceId(this)
+//                    }
+//                }
+
 
     }
 
