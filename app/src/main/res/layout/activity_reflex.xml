@@ -45,7 +45,8 @@
             android:layout_height="wrap_content"
             android:text="湖南卫南卫aaaay1230"
             android:textSize="40sp"
-            android:background="@color/color_1"/>
+            android:background="@color/color_1"
+            android:includeFontPadding="false"/>
 
 
         <TextView

@@ -85,6 +85,8 @@
         <activity android:name=".activity.ProfileActivity"/>
         <activity android:name=".activity.SmartRefreshActivity"
             />
+        <activity android:name=".activity.BaseAdapterActivity" />
+        <activity android:name=".activity.KotlinActivity" />
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
             android:enabled="true"
