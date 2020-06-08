@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         data.add(ViewStubActivity::class.java)
         data.add(ViewFlipperActivity::class.java)
         data.add(RadarActivity::class.java)
-        data.add(TestActivity::class.java)
+        data.add(JavaTestActivity::class.java)
         data.add(TestKotlinActivity::class.java)
         data.add(ChoiceViewActivity::class.java)
         data.add(TabTitleActivity::class.java)

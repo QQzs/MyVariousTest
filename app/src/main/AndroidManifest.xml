@@ -75,7 +75,7 @@
         <activity android:name=".activity.TabHomeActivity"/>
         <activity android:name=".activity.TabTitleActivity"/>
         <activity android:name=".activity.ChoiceViewActivity"/>
-        <activity android:name=".activity.TestActivity"/>
+        <activity android:name=".activity.JavaTestActivity"/>
         <activity android:name=".activity.TestKotlinActivity"/>
         <activity android:name=".activity.ViewFlipperActivity"/>
         <activity android:name=".activity.ViewStubActivity"/>

@@ -29,7 +29,7 @@ import java.util.TimeZone;
  * About: 测试
  * —————————————————————————————————————
  */
-public class TestActivity extends BaseActivity{
+public class JavaTestActivity extends BaseActivity{
 
     @Override
     protected int setLayoutId() {
@@ -51,9 +51,6 @@ public class TestActivity extends BaseActivity{
         hashSet.add(bean2);
         bean1.setAge(2);
         hashSet.add(bean1);
-        getData();
-
-        new SubClass();
 
         int[] data = {1,2,3,4};
         Constant.changeData(data);
@@ -62,30 +59,24 @@ public class TestActivity extends BaseActivity{
         findViewById(R.id.tv_date).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                long time1 = getZeroTime(getThisWeekMonday(new Date()).getTime());
-                long time2 = getZeroTime(getNextWeekMonday(new Date()).getTime());
-
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                Log.d("My_Log" , "time1 = " + time1 + "  " + DateUtils.parseDateTime(time1));
-                Log.d("My_Log" , "time2 = " + time2 + "  " + DateUtils.parseDateTime(time2));
             }
         });
 
+        printData1();
+        printData2();
     }
 
-
-    private void getData(){
-
+    private void printData1(){
         Person person = new Man();
         LogUtil.Companion.logShow(person.name);
-        person.action(10);
+        person.action();
+        person.print();
 
         /** 输出结果：
          * Person constructor
           Man constructor
           Person
-          Man10
+          Man20
           print Person
          */
 
@@ -97,46 +88,23 @@ public class TestActivity extends BaseActivity{
 
     }
 
-    /**
-     * 获取一天中的零点零分零秒时间戳
-     * @return
-     */
-    public static long getZeroTime(long current){
-        return current / (1000*3600*24)*(1000*3600*24) - TimeZone.getDefault().getRawOffset();
+    private void printData2(){
+        new SubClass();
+        /**
+         * a
+         * d
+         * b
+         * c
+         * e
+         * f
+         */
+
+        /**
+         * 1、静态代码块最先打印
+         * 2、父类代码块 -》父类构造方法 -》子类代码块 -》子类构造方法
+         */
+
     }
 
-    /**
-     * 获取这周一Date
-     * @param date
-     * @return
-     */
-    public static Date getThisWeekMonday(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        // 获得当前日期是一个星期的第几天
-        int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
-        if (1 == dayWeek) {
-            cal.add(Calendar.DAY_OF_MONTH, -1);
-        }
-        // 设置一个星期的第一天，按中国的习惯一个星期的第一天是星期一
-        cal.setFirstDayOfWeek(Calendar.MONDAY);
-        // 获得当前日期是一个星期的第几天
-        int day = cal.get(Calendar.DAY_OF_WEEK);
-        // 根据日历的规则，给当前日期减去星期几与一个星期第一天的差值
-        cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);
-        return cal.getTime();
-    }
-
-    /**
-     * 获取下周一Date
-     * @param date
-     * @return
-     */
-    public static Date getNextWeekMonday(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(getThisWeekMonday(date));
-        cal.add(Calendar.DATE, 7);
-        return cal.getTime();
-    }
 
 }

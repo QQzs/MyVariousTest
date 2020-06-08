@@ -10,20 +10,16 @@ package com.zs.various.bean.java1;
  */
 public class Parent {
 
-    public static String p_StaticField = "khg";
-    public String p_Field = "yhr";
-
     static{
-        System.out.println(p_StaticField);
-        System.out.println("ign");
+        System.out.println("a");
     }
+
     {
-        System.out.println(p_Field);
-        System.out.println("ngc");
+        System.out.println("b");
     }
 
     public Parent(){
-        System.out.println("ija");
+        System.out.println("c");
     }
 
 

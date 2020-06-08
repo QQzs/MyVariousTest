@@ -10,20 +10,16 @@ package com.zs.various.bean.java1;
  */
 public class SubClass extends Parent {
 
-    public static String s_StaticField = "pgr";
-    public String s_Field = "qaz";
-
     static{
-        System.out.println(s_StaticField);
-        System.out.println("ony");
+        System.out.println("d");
     }
+
     {
-        System.out.println(s_Field);
-        System.out.println("tef");
+        System.out.println("e");
     }
 
     public SubClass(){
-        System.out.println("fye");
+        System.out.println("f");
     }
 
 }

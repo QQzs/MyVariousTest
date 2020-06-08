@@ -12,13 +12,15 @@ import com.zs.various.util.LogUtil;
  */
 public class Man extends Person{
 
+    int age = 20;
+
     public String name = "Man";
 
     public Man() {
         LogUtil.Companion.logShow("Man constructor");
     }
 
-    public void action(int age){
+    public void action(){
         LogUtil.Companion.logShow("Man" + age);
     }
     public static void print(){
