@@ -1,8 +1,10 @@
 package com.zs.various.activity
 
 import android.view.View
+import androidx.fragment.app.FragmentTransaction
 import com.zs.various.R
 import com.zs.various.base.BaseActivity
+import com.zs.various.fragment.JavaFragment
 import kotlinx.android.synthetic.main.error_layout.view.*
 import kotlinx.android.synthetic.main.view_stub_layout.*
 
