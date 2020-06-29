@@ -105,4 +105,8 @@ class ProfileActivity: BaseActivity(){
         return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color))
     }
 
+    fun test(){
+
+    }
+
 }
