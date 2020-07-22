@@ -19,7 +19,8 @@ public class TestDataActivity extends BaseActivity implements View.OnClickListen
     private int key = 0;
     private Button btn_put;
     private HashTable<Integer , String> table;
-    private LinkedHashMap<String , String> linkedHashMap;
+    private LinkedHashMap<Integer , String> linkedHashMap1;
+    private LinkedHashMap<Integer , String> linkedHashMap2;
 
     @Override
     protected int setLayoutId() {
@@ -36,18 +37,33 @@ public class TestDataActivity extends BaseActivity implements View.OnClickListen
     public void initData() {
         table = new HashTable<>();
 
-        linkedHashMap = new LinkedHashMap<>(16 , 0.75f , true);
-        linkedHashMap.put("a" , "a");
-        linkedHashMap.put("b" , "b");
-        linkedHashMap.put("c" , "c");
-        linkedHashMap.put("d" , "d");
-        linkedHashMap.put("f" , "f");
-        linkedHashMap.put("e" , "e");
+        // 按插入顺序
+        linkedHashMap1 = new LinkedHashMap<>(16 , 0.75f , true);
+        linkedHashMap1.put(1 , "a");
+        linkedHashMap1.put(2 , "b");
+        linkedHashMap1.put(3 , "c");
+        linkedHashMap1.put(5 , "e");
+        linkedHashMap1.put(4 , "d");
+        linkedHashMap1.get(4);
+        linkedHashMap1.get(5);
 
-        linkedHashMap.get("e");
-        linkedHashMap.put("f" , "ff");
+        System.out.println("=================== 按插入顺序 ==============================");
+        for(Map.Entry<Integer, String> entry : linkedHashMap1.entrySet()) {
+            System.out.println("key:" + entry.getKey() + "   value:" + entry.getValue());
+        }
 
-        for(Map.Entry<String, String> entry : linkedHashMap.entrySet()) {
+        // 按访问顺序
+        linkedHashMap2 = new LinkedHashMap<>(16 , 0.75f , true);
+        linkedHashMap2.put(1 , "a");
+        linkedHashMap2.put(2 , "b");
+        linkedHashMap2.put(3 , "c");
+        linkedHashMap2.put(5 , "e");
+        linkedHashMap2.put(4 , "d");
+        linkedHashMap2.get(4);
+        linkedHashMap2.get(5);
+
+        System.out.println("================== 按访问顺序 ===========================");
+        for(Map.Entry<Integer, String> entry : linkedHashMap2.entrySet()) {
             System.out.println("key:" + entry.getKey() + "   value:" + entry.getValue());
         }
 
