@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.zs.various.R
 import com.zs.various.adapter.MyAdapter
+import com.zs.various.datastructure.TestDataActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         layout_main?.addView(listView)
 
         val data = ArrayList<Class<*>>()
+        data.add(TestDataActivity::class.java)
         data.add(KotlinActivity::class.java)
         data.add(BaseAdapterActivity::class.java)
         data.add(SmartRefreshActivity::class.java)
