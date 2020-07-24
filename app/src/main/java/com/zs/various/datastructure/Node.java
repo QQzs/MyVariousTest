@@ -5,7 +5,7 @@ package com.zs.various.datastructure;
  * @CreateDate: 2020/7/20 2:45 PM
  * @Description: 单项链表
  */
-public class Entry<K , V> {
+public class Node<K , V> {
 
     /**
      * 键值
@@ -20,9 +20,9 @@ public class Entry<K , V> {
     /**
      * 下一节点指针
      */
-    public Entry<K , V> next;
+    public Node<K , V> next;
 
-    public Entry(K key, V value, Entry<K, V> next) {
+    public Node(K key, V value, Node<K, V> next) {
         this.key = key;
         this.value = value;
         this.next = next;
