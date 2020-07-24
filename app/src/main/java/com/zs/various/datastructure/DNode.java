@@ -17,12 +17,12 @@ public class DNode<K , V> {
     public V value;
 
     /**
-     * 前驱指针
+     * 上一个节点指针
      */
     public DNode<K, V> prev;
 
     /**
-     * 后继指针
+     * 下一个节点指针
      */
     public DNode<K, V> next;
 

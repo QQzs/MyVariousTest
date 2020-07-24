@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         layout_main?.addView(listView)
 
         val data = ArrayList<Class<*>>()
+        data.add(CustomViewFourActivity::class.java)
         data.add(TestDataActivity::class.java)
         data.add(KotlinActivity::class.java)
         data.add(BaseAdapterActivity::class.java)

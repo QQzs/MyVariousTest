@@ -81,7 +81,7 @@ public class LRUBaseHashTable<K , V> {
     }
 
     /**
-     * 将新节点加到头部
+     * 将新节点加到双向链表头部
      *
      * @param newNode
      */
@@ -103,7 +103,7 @@ public class LRUBaseHashTable<K , V> {
     }
 
     /**
-     * 移除节点
+     * 双向链表移除节点
      *
      * @param node
      */

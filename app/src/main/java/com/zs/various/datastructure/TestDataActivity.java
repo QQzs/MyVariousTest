@@ -38,7 +38,7 @@ public class TestDataActivity extends BaseActivity implements View.OnClickListen
         table = new HashTable<>();
 
         // 按插入顺序
-        linkedHashMap1 = new LinkedHashMap<>(16 , 0.75f , true);
+        linkedHashMap1 = new LinkedHashMap<>(16 , 0.75f , false);
         linkedHashMap1.put(1 , "a");
         linkedHashMap1.put(2 , "b");
         linkedHashMap1.put(3 , "c");
