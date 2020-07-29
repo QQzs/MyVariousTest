@@ -125,6 +125,10 @@ public abstract class BaseFoldFlowAdapter<T> extends BaseAdapter {
 
     }
 
+    public void onConvertUpView(View view) {
+
+    }
+
     @Override
     public int getItemViewType(int position) {
         return getTagLayoutId(position);

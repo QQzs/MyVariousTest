@@ -39,6 +39,13 @@ public class FoldAdapter extends BaseFoldFlowAdapter<String> {
     }
 
     @Override
+    public void onConvertUpView(View view) {
+        super.onConvertUpView(view);
+        TextView tv = view.findViewById(R.id.tv_tag_view);
+        tv.setText("A");
+    }
+
+    @Override
     public long getItemId(int position) {
         return 0;
     }

@@ -188,6 +188,9 @@ public class FoldFlowLayout extends ViewGroup {
             }
             child.layout(childLeft, childTop, childLeft + childWidth - mTagMarginRight,
                     childTop + childHeight - mTagMarginBottom);
+            if (i == childCount -1 && line > mFoldLine) {
+                convertUpView(child);
+            }
         }
     }
 
@@ -230,6 +233,23 @@ public class FoldFlowLayout extends ViewGroup {
             @Override
             public void onClick(View v) {
                 setFold(false);
+            }
+        });
+    }
+
+    /**
+     * 处理折叠view
+     * @param foldView
+     */
+    private void convertUpView(View foldView) {
+        if (mTagAdapter == null) {
+            return;
+        }
+        mTagAdapter.onConvertUpView(foldView);
+        foldView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFold(true);
             }
         });
     }
