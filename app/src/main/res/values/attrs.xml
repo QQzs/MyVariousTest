@@ -156,4 +156,13 @@
         <attr name="seekDotRadius" format="dimension"/>
     </declare-styleable>
 
+    <!--折叠标签布局-->
+    <declare-styleable name="FoldFlowLayout">
+        <attr name="tagMarginRight" format="dimension" />
+        <attr name="tagMarginBottom" format="dimension" />
+        <attr name="foldViewWidth" format="dimension" />
+        <attr name="foldLine" format="integer" />
+        <attr name="isNeedFold" format="boolean" />
+    </declare-styleable>
+
 </resources>

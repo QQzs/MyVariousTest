@@ -5,14 +5,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zs.various.R;
-import com.zs.various.view.flowlayout.FlowTagLayout;
 
 /**
  * @Author: zhangshuai
  * @CreateDate: 2020/7/26 12:05 PM
  * @Description:
  */
-public class FoldAdapter extends BaseFlowTagAdapter<String> {
+public class FoldAdapter extends BaseFoldFlowAdapter<String> {
 
     @Override
     public void onConvertView(int position, int tagLayoutId, View tag, String s) {
@@ -32,6 +31,12 @@ public class FoldAdapter extends BaseFlowTagAdapter<String> {
         this.notifyDataSetChanged();
     }
 
+    @Override
+    public void onConvertFoldView(View view) {
+        super.onConvertFoldView(view);
+        TextView tv = view.findViewById(R.id.tv_tag_view);
+        tv.setText("V");
+    }
 
     @Override
     public long getItemId(int position) {

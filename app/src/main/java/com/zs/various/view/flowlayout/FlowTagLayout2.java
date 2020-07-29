@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zs.various.view.flowlayout.adapter.BaseFlowTagAdapter;
+import com.zs.various.view.flowlayout.adapter.BaseFoldFlowAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import static android.os.Build.VERSION_CODES.M;
  * 备注 ：此控件，默认有左边距和上边距，数值等于 mTagMarginLeft 和 mTagMarginTop；
  */
 
-public class FlowTagFoldLayout extends ViewGroup {
+public class FlowTagLayout2 extends ViewGroup {
 
     private static boolean sUseZeroUnspecifiedMeasureSpec;
 
@@ -27,11 +27,11 @@ public class FlowTagFoldLayout extends ViewGroup {
 
     private int mTagMarginTop = 10;
 
-    private int mTagMaxLines = 2;
-
-    protected BaseFlowTagAdapter mTagAdapter;
+    protected BaseFoldFlowAdapter mTagAdapter;
 
     private AdapterDataObserver mDataObserver;
+
+    private FoldViewListener mListener;
 
     //标签流标签添加完成回调(loading可以取消)
     private FlowTagAddFinishedObservable mFlowTagAddFinishedObservable;
@@ -39,28 +39,28 @@ public class FlowTagFoldLayout extends ViewGroup {
     /**
      * 是否需要展示折叠Tag（不能与isReverseOrder和Gravity同用）
      */
-    private boolean isNeedFold;
+    private boolean isNeedFold = true;
     /**
      * 折叠的行数
      */
-    private int foldLine;
+    private int foldLine = 2;
 
     /**
      * 存储一行宽度
      */
     private List<Integer> lineWidthList = new ArrayList<>();
 
-    public FlowTagFoldLayout(Context context) {
+    public FlowTagLayout2(Context context) {
         this(context, null);
         final int targetSdkVersion = context.getApplicationInfo().targetSdkVersion;
         sUseZeroUnspecifiedMeasureSpec = targetSdkVersion < M;
     }
 
-    public FlowTagFoldLayout(Context context, AttributeSet attrs) {
+    public FlowTagLayout2(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FlowTagFoldLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FlowTagLayout2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 //        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FlowTagLayout);
 //        mTagMarginLeft = typedArray.getDimensionPixelSize(R.styleable.FlowTagLayout_tagMarginRight, CommonUtils.dip2px(context, 8));
@@ -124,10 +124,6 @@ public class FlowTagFoldLayout extends ViewGroup {
             if ((lineWidth + realChildWidth) > sizeWidth && i != 0) {
                 //行数大于最大行数结束绘制
                 line++;
-                if (mTagMaxLines > 0 && line >= mTagMaxLines) {
-                    resultHeight += (lineHeight + mTagMarginTop);
-                    break;
-                }
                 // 行数大于折叠行数结束绘制
                 if (isNeedFold && foldLine > 0 && line >= foldLine) {
                     resultHeight += (lineHeight + mTagMarginTop);
@@ -161,13 +157,13 @@ public class FlowTagFoldLayout extends ViewGroup {
 
         }
 
-//        if (isNeedFold) {
-//            //需要展示查看更多，先测量
-//            View moreView = getChildAt(getChildCount() - 1);
-//            if (moreView != null) {
-//                measureChild(moreView,widthMeasureSpec, heightMeasureSpec);
-//            }
-//        }
+        if (isNeedFold) {
+            //需要展示查看更多，先测量
+            View moreView = getChildAt(getChildCount() - 1);
+            if (moreView != null) {
+                measureChild(moreView,widthMeasureSpec, heightMeasureSpec);
+            }
+        }
         setMeasuredDimension(modeWidth == MeasureSpec.EXACTLY ? sizeWidth : resultWidth,
                 modeHeight == MeasureSpec.EXACTLY ? sizeHeight : resultHeight);
     }
@@ -180,9 +176,9 @@ public class FlowTagFoldLayout extends ViewGroup {
         int childTop = 0;
         //标签行数(从0开始)
         int line = 0;
-
+        int childCount = getChildCount();
         //遍历子控件，记录每个子view的位置
-        for (int i = 0, childCount = getChildCount(); i < childCount; i++) {
+        for (int i = 0 ; i < childCount; i++) {
             View childView = getChildAt(i);
             //跳过View.GONE的子View
             if (childView.getVisibility() == View.GONE) {
@@ -204,15 +200,16 @@ public class FlowTagFoldLayout extends ViewGroup {
             if (childLeft + mTagMarginLeft + childWidth > (flowWidth - widthOffset) && i != 0) {
                 // 行数大于最大行数结束绘制
                 line ++;
-                if (mTagMaxLines >0 && line >= mTagMaxLines) {
-                    break;
-                }
                 // 需要折叠结束绘制
                 if (isNeedFold && foldLine > 0 && line >= foldLine) {
                     //将折叠的View补防到预留位置
                     View foldView = getChildAt(getChildCount() - 1);
                     if (foldView != null) {
                         layoutMoreViewInReservedPosition(foldView,childLeft,childTop);
+                        mTagAdapter.onConvertFoldView(foldView);
+                        if (mListener != null) {
+                            mListener.onConvertFoldView(i , foldView);
+                        }
                     }
                     break;
                 }
@@ -359,14 +356,14 @@ public class FlowTagFoldLayout extends ViewGroup {
      * 设置tag适配器
      * @param adapter       数据
      */
-    public void setTagAdapter(BaseFlowTagAdapter adapter) {
+    public void setTagAdapter(BaseFoldFlowAdapter adapter) {
         initAdapter(adapter);
     }
 
     /**
      * 初始化tag适配器
      */
-    private void initAdapter(BaseFlowTagAdapter adapter) {
+    private void initAdapter(BaseFoldFlowAdapter adapter) {
         if (mDataObserver != null && mTagAdapter != null) {
             mTagAdapter.unregisterDataSetObserver(mDataObserver);
             mTagAdapter.onDetachedFromParent(this);
@@ -416,5 +413,13 @@ public class FlowTagFoldLayout extends ViewGroup {
         if (mFlowTagAddFinishedObservable != null) {
             mFlowTagAddFinishedObservable.addFinished();
         }
+    }
+
+    public void setFoldListener(FoldViewListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface FoldViewListener {
+        void onConvertFoldView(int position, View foldView);
     }
 }

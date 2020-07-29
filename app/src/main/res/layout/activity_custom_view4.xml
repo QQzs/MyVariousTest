@@ -14,24 +14,44 @@
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"/>
 
-    <Button
-        android:id="@+id/btn_add"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:text="add"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_clear"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:text="clear"/>
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="@dimen/dp_20"
+            android:text="add"/>
 
-    <com.zs.various.view.flowlayout.FlowTagLayoutMine
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="@dimen/dp_20"
+            android:text="clear"/>
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="reset"/>
+
+    </LinearLayout>
+
+
+
+    <com.zs.various.view.flowlayout.FoldFlowLayout
         android:id="@+id/flow_layout_mine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/hint_color"
+        app:foldLine="3"
+        app:isNeedFold="true"
+        app:foldViewWidth="30dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"/>
 
@@ -44,7 +64,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"/>
 
-    <com.zs.various.view.flowlayout.FlowTagFoldLayout
+    <com.zs.various.view.flowlayout.FlowTagLayout2
         android:id="@+id/flow_fold_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

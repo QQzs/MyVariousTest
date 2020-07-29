@@ -16,7 +16,7 @@ import java.util.List;
  * Created by zhangkun on 2018/3/27.
  */
 
-public abstract class BaseFlowTagAdapter<T> extends BaseAdapter {
+public abstract class BaseFoldFlowAdapter<T> extends BaseAdapter {
 
     protected ViewGroup mParent;
 
@@ -27,7 +27,7 @@ public abstract class BaseFlowTagAdapter<T> extends BaseAdapter {
      */
     protected boolean isSolidTag = true;
 
-    public BaseFlowTagAdapter() {
+    public BaseFoldFlowAdapter() {
         mDatas = new ArrayList<>();
     }
 
@@ -119,10 +119,9 @@ public abstract class BaseFlowTagAdapter<T> extends BaseAdapter {
 
     /**
      * 设置折叠Vie
-     * @param position 折叠position
      * @param view 折叠View
      */
-    public void onConvertFoldView(int position , View view) {
+    public void onConvertFoldView(View view) {
 
     }
 
