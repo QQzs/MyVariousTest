@@ -1,5 +1,6 @@
 package com.zs.various.view.flowlayout;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zs.various.R;
+import com.zs.various.util.LogUtil;
 import com.zs.various.view.flowlayout.adapter.BaseFoldFlowAdapter;
 
 /**
@@ -39,8 +41,6 @@ public class FoldFlowLayout extends ViewGroup {
      * 折叠view宽度
      */
     private int mFoldViewWidth;
-
-    private int mRealViewHeight;
 
     /**
      * 数据适配器
@@ -91,11 +91,11 @@ public class FoldFlowLayout extends ViewGroup {
                 if (mNeedFold && mFoldLine > 0) {
                     // 最后一个View 不测量 是收起View
                     if (i == childCount - 1) {
-                       break;
+                        break;
                     }
                     // 测量下一个View，作为折叠View
                     if (line == mFoldLine && i < childCount - 1) {
-                        View foldView = getChildAt(i + 1);
+                        View foldView = getChildAt(childCount - 1);
                         if (foldView != null) {
                             measureChild(foldView, widthMeasureSpec, heightMeasureSpec);
                         }
@@ -110,10 +110,12 @@ public class FoldFlowLayout extends ViewGroup {
         }
         //设置flow的宽高
         setMeasuredDimension(widthSize, line * childHeight);
+        LogUtil.logShow("FlowLayout onMeasure = ");
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        LogUtil.logShow("FlowLayout onLayout ========================= ");
         // 控件本身宽度
         int widthSize = getMeasuredWidth();
         // 一行子view已经占得行总宽度
@@ -133,6 +135,7 @@ public class FoldFlowLayout extends ViewGroup {
 
         for (int i = 0, childCount = getChildCount(); i < childCount; i++) {
             View child = getChildAt(i);
+            child.setVisibility(View.VISIBLE);
             // 获取元素测量宽度和高度 child.getMeasuredWidth+MarginRight
             // 注意此时不能child.getWidth,因为界面没有绘制完成，此时width为0
             int childMeasuredWidth = child.getMeasuredWidth();
@@ -161,7 +164,7 @@ public class FoldFlowLayout extends ViewGroup {
                         child.setVisibility(View.INVISIBLE);
                         if (i < childCount - 1) {
                             // 不是最后一个View，取下一个View作为折叠View
-                            View foldView = getChildAt(i + 1);
+                            View foldView = getChildAt(childCount - 1);
                             foldView.layout(childLeft, childTop, childLeft + mFoldViewWidth, childTop + childHeight - mTagMarginBottom);
                             convertFoldView(foldView);
                         }
@@ -181,7 +184,7 @@ public class FoldFlowLayout extends ViewGroup {
                             // 当前view 不显示但是占据这个位置，防止重新layout
                             child.setVisibility(View.INVISIBLE);
                             // 不是最后一个View，取下一个View作为折叠View
-                            View foldView = getChildAt(i + 1);
+                            View foldView = getChildAt(childCount - 1);
                             foldView.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight - mTagMarginBottom);
                             convertFoldView(foldView);
                             break;
@@ -218,22 +221,6 @@ public class FoldFlowLayout extends ViewGroup {
         }
     }
 
-    private void reMeasureChild(View child, int width, int height) {
-        int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(width - mFoldViewWidth - mTagMarginRight
-                , MeasureSpec.EXACTLY);
-        int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height
-                , MeasureSpec.EXACTLY);
-        child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
-    }
-
-    private void measureFoldView(View child, int height) {
-        int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(mFoldViewWidth
-                , MeasureSpec.EXACTLY);
-        int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height
-                , MeasureSpec.EXACTLY);
-        child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
-    }
-
     /**
      * 设置折叠状态
      *
@@ -241,7 +228,7 @@ public class FoldFlowLayout extends ViewGroup {
      */
     public void setFold(boolean fold) {
         this.mNeedFold = fold;
-        reloadData();
+        requestLayout();
     }
 
     /**
@@ -276,6 +263,20 @@ public class FoldFlowLayout extends ViewGroup {
                 setFold(true);
             }
         });
+    }
+
+    private void updateAnim(int fromHeight , int toHeight) {
+        ValueAnimator animator = ValueAnimator.ofInt(fromHeight, toHeight);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator arg) {
+                int value = (int) arg.getAnimatedValue();
+                getLayoutParams().height = value;
+            }
+        });
+        animator.setDuration(1000);
+        animator.start();
     }
 
     /**

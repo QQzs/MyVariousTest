@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zs.various.util.LogUtil;
 import com.zs.various.view.flowlayout.adapter.BaseFoldFlowAdapter;
 
 import java.util.ArrayList;

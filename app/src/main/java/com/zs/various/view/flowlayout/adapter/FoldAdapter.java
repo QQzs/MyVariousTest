@@ -2,6 +2,7 @@ package com.zs.various.view.flowlayout.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zs.various.R;
@@ -35,14 +36,20 @@ public class FoldAdapter extends BaseFoldFlowAdapter<String> {
     public void onConvertFoldView(View view) {
         super.onConvertFoldView(view);
         TextView tv = view.findViewById(R.id.tv_tag_view);
-        tv.setText("V");
+        tv.setVisibility(View.GONE);
+        ImageView arrow = view.findViewById(R.id.iv_tag_arrow);
+        arrow.setImageResource(R.mipmap.icon_fold_arrow_down);
+        arrow.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onConvertUpView(View view) {
         super.onConvertUpView(view);
         TextView tv = view.findViewById(R.id.tv_tag_view);
-        tv.setText("A");
+        tv.setVisibility(View.GONE);
+        ImageView arrow = view.findViewById(R.id.iv_tag_arrow);
+        arrow.setImageResource(R.mipmap.icon_fold_arrow_up);
+        arrow.setVisibility(View.VISIBLE);
     }
 
     @Override
