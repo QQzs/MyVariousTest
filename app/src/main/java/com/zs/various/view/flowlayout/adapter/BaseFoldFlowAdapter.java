@@ -118,13 +118,17 @@ public abstract class BaseFoldFlowAdapter<T> extends BaseAdapter {
     }
 
     /**
-     * 设置折叠Vie
+     * 设置折叠View
      * @param view 折叠View
      */
     public void onConvertFoldView(View view) {
 
     }
 
+    /**
+     * 设置收起View
+     * @param view 收起View
+     */
     public void onConvertUpView(View view) {
 
     }
