@@ -33,24 +33,24 @@ public class FoldAdapter extends BaseFoldFlowAdapter<String> {
     }
 
     @Override
-    public void onConvertFoldView(View view) {
-        super.onConvertFoldView(view);
+    public void onConvertFoldView(View view , boolean isFold) {
+        super.onConvertFoldView(view , isFold);
         TextView tv = view.findViewById(R.id.tv_tag_view);
         tv.setVisibility(View.GONE);
         ImageView arrow = view.findViewById(R.id.iv_tag_arrow);
-        arrow.setImageResource(R.mipmap.icon_fold_arrow_down);
         arrow.setVisibility(View.VISIBLE);
+        arrow.setImageResource(isFold ? R.mipmap.icon_fold_arrow_down : R.mipmap.icon_fold_arrow_up);
     }
 
-    @Override
-    public void onConvertUpView(View view) {
-        super.onConvertUpView(view);
-        TextView tv = view.findViewById(R.id.tv_tag_view);
-        tv.setVisibility(View.GONE);
-        ImageView arrow = view.findViewById(R.id.iv_tag_arrow);
-        arrow.setImageResource(R.mipmap.icon_fold_arrow_up);
-        arrow.setVisibility(View.VISIBLE);
-    }
+//    @Override
+//    public void onConvertUpView(View view) {
+//        super.onConvertUpView(view);
+//        TextView tv = view.findViewById(R.id.tv_tag_view);
+//        tv.setVisibility(View.GONE);
+//        ImageView arrow = view.findViewById(R.id.iv_tag_arrow);
+//        arrow.setImageResource(R.mipmap.icon_fold_arrow_up);
+//        arrow.setVisibility(View.VISIBLE);
+//    }
 
     @Override
     public long getItemId(int position) {

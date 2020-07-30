@@ -166,7 +166,7 @@ public class FoldFlowLayout extends ViewGroup {
                             // 不是最后一个View，取最后一个View作为折叠View
                             View foldView = getChildAt(childCount - 1);
                             foldView.layout(childLeft, childTop, childLeft + mFoldViewWidth, childTop + childHeight - mTagMarginBottom);
-                            convertFoldView(foldView);
+                            convertFoldView(foldView , true);
                         }
                         break;
                     } else if (childWidth + mFoldViewWidth > widthSize && line + 1 >= mFoldLine) {
@@ -180,7 +180,7 @@ public class FoldFlowLayout extends ViewGroup {
                             // 不是最后一个View，取下一个View作为折叠View
                             View foldView = getChildAt(childCount - 1);
                             foldView.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight - mTagMarginBottom);
-                            convertFoldView(foldView);
+                            convertFoldView(foldView , true);
                             break;
                         }
                     }
@@ -204,7 +204,7 @@ public class FoldFlowLayout extends ViewGroup {
                 if (line > mFoldLine) {
                     child.layout(childLeft, childTop, childLeft + childWidth - mTagMarginRight,
                             childTop + childHeight - mTagMarginBottom);
-                    convertUpView(child);
+                    convertFoldView(child , false);
                 }
             } else {
                 child.layout(childLeft, childTop, childLeft + childWidth - mTagMarginRight,
@@ -227,32 +227,15 @@ public class FoldFlowLayout extends ViewGroup {
      * 处理折叠view
      * @param foldView
      */
-    private void convertFoldView(View foldView) {
+    private void convertFoldView(View foldView , final boolean isFold) {
         if (mTagAdapter == null) {
             return;
         }
-        mTagAdapter.onConvertFoldView(foldView);
+        mTagAdapter.onConvertFoldView(foldView , isFold);
         foldView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setFold(false);
-            }
-        });
-    }
-
-    /**
-     * 处理收起view
-     * @param foldView
-     */
-    private void convertUpView(View foldView) {
-        if (mTagAdapter == null) {
-            return;
-        }
-        mTagAdapter.onConvertUpView(foldView);
-        foldView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setFold(true);
+                setFold(!isFold);
             }
         });
     }
