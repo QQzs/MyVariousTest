@@ -207,7 +207,6 @@ public class FlowTagLayout2 extends ViewGroup {
                     View foldView = getChildAt(getChildCount() - 1);
                     if (foldView != null) {
                         layoutMoreViewInReservedPosition(foldView,childLeft,childTop);
-                        mTagAdapter.onConvertFoldView(foldView);
                         if (mListener != null) {
                             mListener.onConvertFoldView(i , foldView);
                         }

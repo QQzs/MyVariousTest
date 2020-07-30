@@ -93,7 +93,7 @@ public class FoldFlowLayout extends ViewGroup {
                     if (i == childCount - 1) {
                         break;
                     }
-                    // 测量下一个View，作为折叠View
+                    // 测量最后一个View，作为折叠View
                     if (line == mFoldLine && i < childCount - 1) {
                         View foldView = getChildAt(childCount - 1);
                         if (foldView != null) {
@@ -163,17 +163,11 @@ public class FoldFlowLayout extends ViewGroup {
                         // 当前view 不显示但是占据这个位置，防止重新layout
                         child.setVisibility(View.INVISIBLE);
                         if (i < childCount - 1) {
-                            // 不是最后一个View，取下一个View作为折叠View
+                            // 不是最后一个View，取最后一个View作为折叠View
                             View foldView = getChildAt(childCount - 1);
                             foldView.layout(childLeft, childTop, childLeft + mFoldViewWidth, childTop + childHeight - mTagMarginBottom);
                             convertFoldView(foldView);
                         }
-                        // 把最后一个view显示折叠 放在这个位置
-//                        View foldView = getChildAt(childCount - 1);
-//                        // 最后一个view可能就是要折叠的view ，需要再显示出来
-//                        foldView.setVisibility(View.VISIBLE);
-//                        foldView.layout(childLeft, childTop, childLeft + mFoldViewWidth, childTop + childHeight - mTagMarginBottom);
-//                        convertFoldView(foldView);
                         break;
                     } else if (childWidth + mFoldViewWidth > widthSize && line + 1 >= mFoldLine) {
                         // 折叠行的上一行，并且这一个子view会导致换行，后面还有view
@@ -204,8 +198,6 @@ public class FoldFlowLayout extends ViewGroup {
                 // 宽度增加一个子View宽度
                 rowsWidth += childWidth;
             }
-//            child.layout(childLeft, childTop, childLeft + childWidth - mTagMarginRight,
-//                    childTop + childHeight - mTagMarginBottom);
 
             if (i == childCount -1) {
                 // 如果超过折叠行数最后一个作为收起View，否则最后一个View不显示
@@ -331,7 +323,7 @@ public class FoldFlowLayout extends ViewGroup {
             View childView = mTagAdapter.getView(i, null, this);
             addView(childView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         }
-        // 如果数据不为空，添加一个数据作为收起View使用
+        // 如果数据不为空，添加一个数据作为折叠、收起View使用
         if (count > 0) {
             View upView = mTagAdapter.getView(0, null, this);
             addView(upView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
