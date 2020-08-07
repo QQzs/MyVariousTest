@@ -52,9 +52,10 @@
         app:shadowLayoutColor="#FF524F">
 
         <TextView
+            android:id="@+id/tv_download"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="确定"
+            android:text="下载"
             android:gravity="center"
             android:background="@drawable/shape_shadow_bg"/>
 
