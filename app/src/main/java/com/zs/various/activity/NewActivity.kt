@@ -20,6 +20,10 @@ class NewActivity : Activity() {
     private val mList = ArrayList<User>()
     private val mMap = HashMap<Int, User>()
 
+    /**
+     * commit 4
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
