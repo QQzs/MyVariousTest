@@ -27,6 +27,20 @@ class MainActivity : AppCompatActivity() {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = ContextCompat.getColor(this,R.color.color_3)
         }
+
+        /**
+         * commit 1
+         */
+
+        /**
+         * commit 2
+         */
+
+        /**
+         * commit 3
+         */
+
+
         val listView = ListView(this)
         layout_main?.addView(listView)
 
