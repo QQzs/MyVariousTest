@@ -89,6 +89,7 @@
         <activity android:name=".activity.KotlinActivity" />
         <activity android:name=".datastructure.TestDataActivity" />
         <activity android:name=".activity.CustomViewFourActivity" />
+        <activity android:name=".activity.GlideActivity" />
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
             android:enabled="true"
