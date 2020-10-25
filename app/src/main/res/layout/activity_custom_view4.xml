@@ -8,6 +8,51 @@
     android:background="@color/white"
     tools:context="com.zs.various.activity.CustomViewFirstActivity">
 
+    <com.zs.various.view.MarqueeTextView2
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="50dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:text="熊大爷给金主大大送了一梦的契约，直播间扭蛋抽到了超大礼物，欢迎欢迎,一二三四五六七八，123456789"
+        android:background="@drawable/gray_radius_bg"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/fl_bg_anim"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/gray_radius_bg"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="10dp">
+
+            <com.zs.various.view.LongTextView
+                android:id="@+id/long_tv"
+                android:layout_width="2000dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/color_2"
+                android:textSize="12sp"
+                android:maxLines="1" />
+        </FrameLayout>
+
+        <com.zs.various.view.RoundImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_default_avatar"/>
+
+    </FrameLayout>
+
     <EditText
         android:id="@+id/et_tag"
         android:layout_width="match_parent"
@@ -120,6 +165,37 @@
 
     </com.zs.various.view.BottomMoreLayout>
 
+    <Button
+        android:id="@+id/btn_add_message"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="msg"/>
+
+    <com.zs.various.view.LongTextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="50dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        android:background="@drawable/gray_radius_bg"/>
+
+
+
+    <com.zs.various.view.LongTextViewOld
+        android:id="@+id/marquee_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        app:marqueeTextColor="@color/white"
+        app:marqueeTextSize="15dp"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"/>
 
 
 </LinearLayout>

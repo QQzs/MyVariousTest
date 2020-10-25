@@ -110,12 +110,10 @@ public class FoldFlowLayout extends ViewGroup {
         }
         //设置flow的宽高
         setMeasuredDimension(widthSize, line * childHeight);
-        LogUtil.logShow("FlowLayout onMeasure = ");
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        LogUtil.logShow("FlowLayout onLayout ========================= ");
         // 控件本身宽度
         int widthSize = getMeasuredWidth();
         // 一行子view已经占得行总宽度

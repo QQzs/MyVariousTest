@@ -138,6 +138,10 @@
         <attr name="marqueeSpeed" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="LongTextView">
+        <attr name="longTextViewSpeed" format="float"/>
+    </declare-styleable>
+
     <declare-styleable name="MusicCutView">
         <attr name="progressHeight" format="dimension"/>
         <attr name="progressColor" format="color|reference"/>
