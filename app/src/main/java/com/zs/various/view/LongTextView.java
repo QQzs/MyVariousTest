@@ -67,7 +67,6 @@ public class LongTextView extends TextView {
         super.onLayout(changed, left, top, right, bottom);
         if (changed) {
             mViewWidth = getWidth();
-            LogUtil.logShow("onLayout mViewWidth = " + mViewWidth);
         }
     }
 

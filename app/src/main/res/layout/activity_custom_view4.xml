@@ -8,16 +8,6 @@
     android:background="@color/white"
     tools:context="com.zs.various.activity.CustomViewFirstActivity">
 
-    <com.zs.various.view.MarqueeTextView2
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="50dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:text="熊大爷给金主大大送了一梦的契约，直播间扭蛋抽到了超大礼物，欢迎欢迎,一二三四五六七八，123456789"
-        android:background="@drawable/gray_radius_bg"
-        android:visibility="gone"/>
-
     <FrameLayout
         android:id="@+id/fl_bg_anim"
         android:layout_width="match_parent"
@@ -88,17 +78,24 @@
     </LinearLayout>
 
 
-
-    <com.zs.various.view.flowlayout.FoldFlowLayout
-        android:id="@+id/flow_layout_mine"
+    <com.zs.various.view.ChangeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/hint_color"
-        app:foldLine="2"
-        app:isNeedFold="true"
-        app:foldViewWidth="30dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"/>
+        android:layout_marginTop="@dimen/dp_20"
+        android:orientation="vertical">
+
+        <com.zs.various.view.flowlayout.FoldFlowLayout
+            android:id="@+id/flow_layout_mine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/hint_color"
+            app:foldLine="2"
+            app:isNeedFold="true"
+            app:foldViewWidth="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"/>
+
+    </com.zs.various.view.ChangeLayout>
 
 
     <com.zs.various.view.flowlayout.FlowTagLayout
