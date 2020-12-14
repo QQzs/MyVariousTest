@@ -34,7 +34,7 @@
 
             </HorizontalScrollView>
 
-            <com.zs.various.view.dispatch.TestScrollView
+            <com.zs.various.view.dispatch.InnerScrollView
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
 
@@ -60,7 +60,7 @@
 
                 </LinearLayout>
 
-            </com.zs.various.view.dispatch.TestScrollView>
+            </com.zs.various.view.dispatch.InnerScrollView>
 
             <View
                 android:layout_width="match_parent"

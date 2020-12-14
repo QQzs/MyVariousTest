@@ -18,7 +18,8 @@ class DispatchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dispatch_move_layout)
+//        setContentView(R.layout.activity_dispatch_move_layout)
+        setContentView(R.layout.activity_dispatch_layout)
 
 //        view_back?.setOnClickListener {
 //            Log.d("My_Log", " activity ====  setOnClickListener ")

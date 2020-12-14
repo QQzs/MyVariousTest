@@ -3,128 +3,48 @@ package com.zs.various.view.dispatch;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ScrollView;
 
 /**
  * Created by zs
  * Date：2019年 02月 20日
- * Time：9:59
+ * Time：9:06
  * —————————————————————————————————————
- * About:
+ * About:内部拦截
+ *
+ * 推荐：
+ * 当子元素占满父元素空间时，使用外部拦截法
+ * 当没有占满时使用内部拦截
  * —————————————————————————————————————
  */
 public class InnerScrollView extends ScrollView {
 
-    public ScrollView parentScrollView;
+    public InnerScrollView(Context context) {
+        super(context);
+    }
 
     public InnerScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
     }
 
-    private int lastScrollDelta = 0;
-
-    public void resume() {
-        overScrollBy(0, -lastScrollDelta, 0, getScrollY(), 0, getScrollRange(), 0, 0, true);
-        lastScrollDelta = 0;
-    }
-
-    int mTop = 10;
-
-    /**
-     * 将targetView滚到最顶端
-     */
-    public void scrollTo(View targetView) {
-
-        int oldScrollY = getScrollY();
-        int top = targetView.getTop() - mTop;
-        int delatY = top - oldScrollY;
-        lastScrollDelta = delatY;
-        overScrollBy(0, delatY, 0, getScrollY(), 0, getScrollRange(), 0, 0, true);
-    }
-
-    private int getScrollRange() {
-        int scrollRange = 0;
-        if (getChildCount() > 0) {
-            View child = getChildAt(0);
-            scrollRange = Math.max(0, child.getHeight() - (getHeight()));
-        }
-        return scrollRange;
-    }
-
-    int currentY;
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (parentScrollView == null) {
-            return super.onInterceptTouchEvent(ev);
-        } else {
-            if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-                // 将父scrollview的滚动事件拦截
-                currentY = (int)ev.getY();
-                setParentScrollAble(false);
-                return super.onInterceptTouchEvent(ev);
-            } else if (ev.getAction() == MotionEvent.ACTION_UP) {
-                // 把滚动事件恢复给父Scrollview
-                setParentScrollAble(true);
-            } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-            }
-        }
-        return super.onInterceptTouchEvent(ev);
-
+    public InnerScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        View child = getChildAt(0);
-        if (parentScrollView != null) {
-            if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-                int height = child.getMeasuredHeight();
-                height = height - getMeasuredHeight();
-
-                // System.out.println("height=" + height);
-                int scrollY = getScrollY();
-                // System.out.println("scrollY" + scrollY);
-                int y = (int)ev.getY();
-
-                // 手指向下滑动
-                if (currentY < y) {
-                    if (scrollY <= 0) {
-                        // 如果向下滑动到头，就把滚动交给父Scrollview
-                        setParentScrollAble(true);
-                        return false;
-                    } else {
-                        setParentScrollAble(false);
-
-                    }
-                } else if (currentY > y) {
-                    if (scrollY >= height) {
-                        // 如果向上滑动到头，就把滚动交给父Scrollview
-                        setParentScrollAble(true);
-                        return false;
-                    } else {
-                        setParentScrollAble(false);
-
-                    }
-
-                }
-                currentY = y;
-            }
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        // view接收到ACTION_DOWN事件后，告知父容器View接下来的事件序列不要拦截,后面的事件，本View都能接收到
+        // 内部拦截法要求父View不能拦截ACTION_DOWN事件
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            getParent().requestDisallowInterceptTouchEvent(true);
         }
-
-        return super.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
-    /**
-     * 是否把滚动事件交给父scrollview
-     *
-     * @param flag
-     */
-    private void setParentScrollAble(boolean flag) {
-
-        parentScrollView.requestDisallowInterceptTouchEvent(!flag);
-    }
-
+//    @Override
+//    public boolean onInterceptTouchEvent(MotionEvent ev) {
+//        getParent().requestDisallowInterceptTouchEvent(true);
+//        return super.onInterceptTouchEvent(ev);
+//    }
 
 }
