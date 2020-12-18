@@ -117,20 +117,20 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <com.zs.various.view.MusicCutView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20"
+        android:background="@color/black" />
 
-        <com.zs.various.view.MusicCutView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/dp_20"
-            android:paddingRight="@dimen/dp_20"
-            android:background="@color/black" />
-
-    </LinearLayout>
+    <com.zs.various.view.CustomSeekView
+        android:id="@+id/seek_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20"
+        android:background="@color/black"/>
 
     <com.zs.various.view.SeekPointLayout
         android:layout_width="match_parent"

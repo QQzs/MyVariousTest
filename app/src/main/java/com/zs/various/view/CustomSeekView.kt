@@ -9,7 +9,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.zs.various.R
-import com.zs.various.util.LogUtil
 import org.jetbrains.anko.dip
 import kotlin.math.max
 import kotlin.math.min
@@ -18,9 +17,9 @@ import kotlin.math.min
  * @Author: zs
  * @Date: 2020-01-07 18:54
  *
- * @Description: 剪切音乐
+ * @Description:
  */
-class CustomSeekView @JvmOverloads constructor(context: Context, var attrs: AttributeSet? = null, defStyleAttr: Int = 0): View(context, attrs, defStyleAttr) {
+class CustomSeekView @JvmOverloads constructor(context: Context, var attrs: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attrs, defStyleAttr) {
 
     private var mPaint: Paint? = null
     private var mHeight: Float = 0f
@@ -36,17 +35,22 @@ class CustomSeekView @JvmOverloads constructor(context: Context, var attrs: Attr
     private var mProgressColor: Int = Color.GREEN
     private var mDotColor: Int = Color.WHITE
     private var mSeekStatus: Boolean = true
+    private var mDownScale: Boolean = false
+    private var mScrolling: Boolean = false
 
-    private var mListener: SeekListener? = null
+    var seekProgressCallBack: ((Float) -> Unit)? = null
+    var seekUpCallBack: ((Float) -> Unit)? = null
+    var seekDownCallBack: (() -> Unit)? = null
 
     init {
-        var typeArray = context.obtainStyledAttributes(attrs , R.styleable.CustomSeekView)
-        mLineHeight = typeArray.getDimension(R.styleable.CustomSeekView_seekHeight , mLineHeight)
-        mBackColor = typeArray.getColor(R.styleable.CustomSeekView_seekBackColor , mBackColor)
-        mProgressColor = typeArray.getColor(R.styleable.CustomSeekView_seekProgressColor , mProgressColor)
-        mProgress = typeArray.getFloat(R.styleable.CustomSeekView_seekProgress , mProgress)
-        mDotColor = typeArray.getColor(R.styleable.CustomSeekView_seekDotColor , mDotColor)
-        mDotRadius = typeArray.getDimension(R.styleable.CustomSeekView_seekDotRadius , mDotRadius)
+        var typeArray = context.obtainStyledAttributes(attrs, R.styleable.CustomSeekView)
+        mLineHeight = typeArray.getDimension(R.styleable.CustomSeekView_seekHeight, mLineHeight)
+        mBackColor = typeArray.getColor(R.styleable.CustomSeekView_seekBackColor, mBackColor)
+        mProgressColor = typeArray.getColor(R.styleable.CustomSeekView_seekProgressColor, mProgressColor)
+        mProgress = typeArray.getFloat(R.styleable.CustomSeekView_seekProgress, mProgress)
+        mDotColor = typeArray.getColor(R.styleable.CustomSeekView_seekDotColor, mDotColor)
+        mDotRadius = typeArray.getDimension(R.styleable.CustomSeekView_seekDotRadius, mDotRadius)
+        mDownScale = typeArray.getBoolean(R.styleable.CustomSeekView_seekDownScale, mDownScale)
         typeArray.recycle()
 
         mPaint = Paint()
@@ -58,8 +62,8 @@ class CustomSeekView @JvmOverloads constructor(context: Context, var attrs: Attr
         mBackRectF = RectF()
         mProgressRectF = RectF()
     }
-    
-    private fun initRectF(){
+
+    private fun initRectF() {
         mBackRectF.left = paddingLeft.toFloat()
         mBackRectF.top = (mHeight - mLineHeight) / 2
         mBackRectF.right = paddingLeft + mWidth
@@ -72,21 +76,23 @@ class CustomSeekView @JvmOverloads constructor(context: Context, var attrs: Attr
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        if (MeasureSpec.getMode(heightMeasureSpec) != MeasureSpec.EXACTLY){
+        var mode = MeasureSpec.getMode(heightMeasureSpec)
+        if (mode != MeasureSpec.EXACTLY) {
             var statusBarHeight = dip(30)
-            var newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(statusBarHeight), View.MeasureSpec.EXACTLY)
+            var newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(statusBarHeight), MeasureSpec.EXACTLY)
             super.onMeasure(widthMeasureSpec, newHeightMeasureSpec)
-        }else{
+            mHeight = statusBarHeight.toFloat()
+        } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+            mHeight = MeasureSpec.getSize(heightMeasureSpec).toFloat()
         }
         mWidth = MeasureSpec.getSize(widthMeasureSpec).toFloat() - paddingLeft - paddingRight
-        mHeight = MeasureSpec.getSize(heightMeasureSpec).toFloat()
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        if (paddingLeft == 0){
-            setPadding((mDotRadius / 2).toInt() , 0 , (mDotRadius / 2).toInt() , 0)
+        if (paddingLeft == 0) {
+            setPadding((mDotRadius / 2).toInt() + 1, 0, (mDotRadius / 2).toInt() + 1, 0)
         }
         mWidth = w.toFloat() - paddingLeft - paddingRight
         mHeight = h.toFloat()
@@ -96,81 +102,112 @@ class CustomSeekView @JvmOverloads constructor(context: Context, var attrs: Attr
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         mPaint?.color = mBackColor
-        canvas?.drawRoundRect(mBackRectF, mLineHeight / 2, mLineHeight / 2, mPaint)
-
-        mPaint?.color = mProgressColor
-        canvas?.drawRoundRect(mProgressRectF, mLineHeight / 2, mLineHeight / 2, mPaint)
+        mPaint?.let {
+            canvas?.drawRoundRect(mBackRectF, mLineHeight / 2, mLineHeight / 2, it)
+            mPaint?.color = mProgressColor
+            canvas?.drawRoundRect(mProgressRectF, mLineHeight / 2, mLineHeight / 2, it)
+        }
 
         mPaint?.color = mDotColor
-        canvas?.drawCircle(mProgressRectF.right + mDotRadius / 2, + mProgressRectF.top + mDotRadius / 2, mDotRadius, mPaint)
 
+
+        if (mDotRadius == 0f)
+            return
+        var realRadius = mDotRadius
+        if (mDownScale && mScrolling) {
+            realRadius = mDotRadius * 1.5f
+        }
+        var circleX = mProgressRectF.right + realRadius / 2
+        circleX = max(circleX, realRadius)
+        circleX = min(circleX, paddingLeft + mWidth - realRadius)
+        mPaint?.let {
+            canvas?.drawCircle(circleX, mHeight / 2, realRadius, it)
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        if(!isEnabled){
+        if (!isEnabled) {
             return true
         }
         event?.let {
-            when(event.action){
-                MotionEvent.ACTION_DOWN ->{
-                    getProgress(event.x)
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    seekDownCallBack?.invoke()
+                    mScrolling = true
+                    updateProgress(event.x)
                 }
-                MotionEvent.ACTION_MOVE ->{
-                    getProgress(event.x)
+                MotionEvent.ACTION_MOVE -> {
+                    mScrolling = true
+                    updateProgress(event.x)
                 }
-                else ->{}
+                MotionEvent.ACTION_CANCEL,
+                MotionEvent.ACTION_UP -> {
+                    mScrolling = false
+                    seekUpCallBack?.invoke(getProgress(event.x))
+                    invalidate()
+                }
+                else -> {
+                }
             }
         }
         return true
     }
 
-    fun setSeekScroll(flag: Boolean){
+    fun setSeekScroll(flag: Boolean) {
         isEnabled = flag
+    }
+
+    fun setDotRadio(radio: Float) {
+        mDotRadius = radio
+        invalidate()
     }
 
     /**
      * 设置Enable
      */
-    fun setSeekStatus(flag: Boolean){
+    fun setSeekStatus(flag: Boolean) {
         mSeekStatus = flag
         isEnabled = flag
-        alpha = if (flag){
+        alpha = if (flag) {
             1.0f
-        }else{
+        } else {
             0.5f
         }
     }
 
-    private fun getProgress(downX: Float){
-        var currentX = max(downX , mBackRectF.left)
-        currentX = min(currentX , mBackRectF.right - mDotRadius)
-        mProgressRectF.right = currentX
-        var progress = (mProgressRectF.right - paddingLeft) / (mWidth - mDotRadius)
-        progress = min(progress , 1.0f)
-        if (mProgress != progress){
+    private fun updateProgress(downX: Float) {
+        var progress = getProgress(downX)
+        if (mProgress != progress) {
             mProgress = progress
-            LogUtil.logShow("progress = $progress")
-            mListener?.backProgress(mProgress)
+            seekProgressCallBack?.invoke(mProgress)
             invalidate()
         }
     }
 
-    fun setProgress(progress: Float){
-        mProgress = progress
-        mProgressRectF.right = paddingLeft.toFloat() + mWidth * mProgress
-        mListener?.backProgress(mProgress)
-        invalidate()
+    private fun getProgress(downX: Float): Float {
+        var currentX = max(downX, mBackRectF.left)
+        currentX = min(currentX, mBackRectF.right)
+        mProgressRectF.right = currentX
+        var progress = (mProgressRectF.right - paddingLeft) / (mWidth - mDotRadius)
+        return min(progress, 1.0f)
     }
 
-    /**
-     * 设置监听
-     */
-    fun setSeekListener(listener: SeekListener?){
-        mListener = listener
+    fun setProgress(progress: Float) {
+        if (!mScrolling) {
+            mProgress = progress
+            var right = paddingLeft.toFloat() + mWidth * mProgress
+            mProgressRectF.right = min(right, mBackRectF.right)
+            seekProgressCallBack?.invoke(mProgress)
+            invalidate()
+        }
     }
 
-    interface SeekListener{
-        fun backProgress(progress: Float)
+    fun getProgress(): Float {
+        return mProgress
     }
 
+    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
+        parent?.requestDisallowInterceptTouchEvent(true)
+        return super.dispatchTouchEvent(event)
+    }
 }

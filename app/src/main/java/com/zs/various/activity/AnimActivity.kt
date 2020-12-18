@@ -3,6 +3,7 @@ package com.zs.various.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.zs.various.R
+import com.zs.various.util.LogUtil
 import kotlinx.android.synthetic.main.activity_anim.*
 import java.util.*
 import java.util.concurrent.Executors
@@ -19,9 +20,16 @@ class AnimActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anim)
+        initListener()
 
         setMediaAnim()
         setRoundProgress()
+    }
+
+    private fun initListener() {
+        seek_view?.seekProgressCallBack = {
+            LogUtil.logShow("progress = $it")
+        }
     }
 
     fun setMediaAnim(){

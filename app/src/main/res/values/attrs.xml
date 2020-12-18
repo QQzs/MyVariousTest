@@ -158,6 +158,7 @@
         <attr name="seekProgress" format="float"/>
         <attr name="seekDotColor" format="color|reference"/>
         <attr name="seekDotRadius" format="dimension"/>
+        <attr name="seekDownScale" format="boolean"/>
     </declare-styleable>
 
     <!--折叠标签布局-->
