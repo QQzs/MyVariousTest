@@ -1,7 +1,9 @@
 package com.zs.various.activity.kotlin
 
+import android.annotation.SuppressLint
 import com.zs.various.R
 import com.zs.various.base.BaseActivity
+import kotlinx.android.synthetic.main.kotlin_test_layout.*
 
 /**
  * @Author: zs
@@ -16,11 +18,20 @@ open class KotlinTestActivity : BaseActivity() {
      */
     var age: Int = 10
     var age2 = 10
+        set(value) {
+            field = value + 5
+        }
+        get() {
+            return field + 5
+        }
 
     /**
      * 只读变量：val
      */
     val age3 = 10
+        get() {
+            return field + 5
+        }
 
     companion object {
         /**
@@ -44,25 +55,19 @@ open class KotlinTestActivity : BaseActivity() {
     }
 
     var name: String? = null
-        set(value) {
-            field = value + "a"
-        }
-        get() {
-            return field + "b"
-        }
 
     val name2 : String? = null
-        get() {
-            return field + "c"
-        }
-
 
     override fun setLayoutId(): Int {
         return R.layout.kotlin_test_layout
     }
 
+    @SuppressLint("SetTextI18n")
     override fun initView() {
 
+        tv_age?.text = "年龄 = $age2"
+        age2 = 20
+        tv_age?.text = "年龄 = $age2"
     }
 
     override fun initData() {

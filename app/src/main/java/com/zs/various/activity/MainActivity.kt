@@ -10,6 +10,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.zs.various.R
+import com.zs.various.activity.kotlin.KotlinTestActivity
 import com.zs.various.adapter.MyAdapter
 import com.zs.various.datastructure.TestDataActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         layout_main?.addView(listView)
 
         val data = ArrayList<Class<*>>()
+        data.add(KotlinTestActivity::class.java)
         data.add(GlideActivity::class.java)
         data.add(CustomViewFourActivity::class.java)
         data.add(TestDataActivity::class.java)

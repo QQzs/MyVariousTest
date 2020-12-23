@@ -90,6 +90,7 @@
         <activity android:name=".datastructure.TestDataActivity" />
         <activity android:name=".activity.CustomViewFourActivity" />
         <activity android:name=".activity.GlideActivity" />
+        <activity android:name=".activity.kotlin.KotlinTestActivity" />
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"
             android:enabled="true"
