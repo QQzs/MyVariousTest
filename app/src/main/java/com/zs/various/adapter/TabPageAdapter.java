@@ -3,9 +3,11 @@ package com.zs.various.adapter;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.zs.various.fragment.PageFragmentTest;
+import com.zs.various.listener.TabFragmentHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,20 +22,21 @@ import java.util.List;
  */
 public class TabPageAdapter extends FragmentStatePagerAdapter {
 
-    private List<String> mTitles = new ArrayList<>();
+    // FragmentStatePagerAdapter  FragmentPagerAdapter
 
-    public TabPageAdapter(FragmentManager fm) {
-        super(fm);
-    }
+    private List<String> mTitles;
+    private TabFragmentHelper fragmentHelper;
 
-    public TabPageAdapter(FragmentManager fm, List<String> mTitles) {
+    public TabPageAdapter(FragmentManager fm, List<String> mTitles, TabFragmentHelper fragmentHelper) {
         super(fm);
         this.mTitles = mTitles;
+        this.fragmentHelper = fragmentHelper;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return PageFragmentTest.Companion.getInstance(position);
+//        return PageFragmentTest.Companion.getInstance(position);
+        return fragmentHelper.getFragment(position);
     }
 
     @Nullable

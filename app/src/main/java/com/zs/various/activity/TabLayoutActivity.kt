@@ -4,8 +4,14 @@ import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.zs.various.R
 import com.zs.various.adapter.TabPageAdapter
+import com.zs.various.fragment.PageFragment
+import com.zs.various.fragment.PageFragmentTest
+import com.zs.various.fragment.TabFragment
+import com.zs.various.listener.TabFragmentHelper
+import com.zs.various.util.LogUtil
 import kotlinx.android.synthetic.main.activity_tab_layout.*
 
 /**
@@ -26,25 +32,24 @@ class TabLayoutActivity: AppCompatActivity(){
         setContentView(R.layout.activity_tab_layout)
 
         var titles = arrayListOf("体育", "科技", "新闻", "阅读")
-        mPageAdapter = TabPageAdapter(supportFragmentManager,titles)
+        mPageAdapter = TabPageAdapter(supportFragmentManager,titles, TabFragmentHelper { index ->
+            LogUtil.logShow("TabFragmentHelper index = $index")
+            PageFragment.getInstance(index)
+        })
         view_pager?.adapter = mPageAdapter
-        view_pager?.offscreenPageLimit = 4
+        view_pager?.offscreenPageLimit = 1
         view_pager?.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_layout))
         tab_layout?.setupWithViewPager(view_pager)
 //        tab_layout?.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(view_pager))
+        // 自定义TabSelectedListener
         tab_layout?.addOnTabSelectedListener(TabListener(view_pager))
 
     }
 
-    inner class TabListener(viewPager: androidx.viewpager.widget.ViewPager?) : TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
+    inner class TabListener(viewPager: ViewPager?) : TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
 
-        override fun onTabSelected(tab: TabLayout.Tab?) {
+        override fun onTabSelected(tab: TabLayout.Tab) {
             super.onTabSelected(tab)
-//            if (tab?.position == 0){
-//                StatusBarUtil.setTranslucentForImageViewInFragment(this@TabLayoutActivity,0 , null)
-//            }else{
-//                StatusBarUtil.setColorNoTranslucent(this@TabLayoutActivity , ContextCompat.getColor(this@TabLayoutActivity,R.color.colorPrimary))
-//            }
         }
 
     }

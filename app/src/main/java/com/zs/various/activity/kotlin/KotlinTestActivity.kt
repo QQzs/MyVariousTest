@@ -2,6 +2,7 @@ package com.zs.various.activity.kotlin
 
 import android.annotation.SuppressLint
 import com.zs.various.R
+import com.zs.various.activity.kotlin.data.UserData
 import com.zs.various.base.BaseActivity
 import kotlinx.android.synthetic.main.kotlin_test_layout.*
 
@@ -71,9 +72,8 @@ open class KotlinTestActivity : BaseActivity() {
     }
 
     override fun initData() {
-
+        UserData("name1")
+        UserData("name2", age)
     }
-
-
 
 }
