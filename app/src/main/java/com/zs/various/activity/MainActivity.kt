@@ -10,7 +10,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.zs.various.R
-import com.zs.various.activity.kotlin.KotlinTestActivity
+import com.zs.various.kotlin.KotlinTestActivity
 import com.zs.various.adapter.MyAdapter
 import com.zs.various.datastructure.TestDataActivity
 import kotlinx.android.synthetic.main.activity_main.*

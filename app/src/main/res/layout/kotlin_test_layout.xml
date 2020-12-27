@@ -10,7 +10,8 @@
         android:id="@+id/tv_age"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:text="aaaaaa"/>
 
 
     <ImageView

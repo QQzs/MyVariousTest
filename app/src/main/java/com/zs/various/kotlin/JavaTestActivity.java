@@ -1,4 +1,4 @@
-package com.zs.various.activity.kotlin;
+package com.zs.various.kotlin;
 
 /**
  * @Author: zs

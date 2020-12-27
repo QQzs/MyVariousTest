@@ -1,5 +1,7 @@
 package com.zs.various.bean;
 
+import com.zs.various.kotlin.data.OneData;
+
 /**
  * Created with IntelliJ IDEA.
  * **********************************

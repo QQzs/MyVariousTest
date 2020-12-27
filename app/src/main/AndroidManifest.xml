@@ -90,7 +90,7 @@
         <activity android:name=".datastructure.TestDataActivity" />
         <activity android:name=".activity.CustomViewFourActivity" />
         <activity android:name=".activity.GlideActivity" />
-        <activity android:name=".activity.kotlin.KotlinTestActivity" />
+        <activity android:name="com.zs.various.kotlin.KotlinTestActivity" />
         <activity android:name=".activity.ViewPager2Activity" />
 
         <receiver android:name=".receiver.CloseNoticeBroadcastReceiver"

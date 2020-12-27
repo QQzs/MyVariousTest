@@ -3,6 +3,16 @@ apply plugin: 'walle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-noarg'
+apply plugin: 'kotlin-allopen'
+
+
+noArg {
+    annotation("com.zs.various.KotlinData")
+}
+allOpen {
+    annotation("com.zs.various.KotlinData")
+}
 
 android {
     compileSdkVersion 28
