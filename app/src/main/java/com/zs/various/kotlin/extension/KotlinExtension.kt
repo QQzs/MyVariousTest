@@ -11,6 +11,9 @@ import com.bumptech.glide.Glide
  * @Description:
  */
 
+fun test(str: String): String {
+    return "back$str"
+}
 
 fun TextView.setColor(colorRes: Int) {
     this.setTextColor(context.getColor(colorRes))

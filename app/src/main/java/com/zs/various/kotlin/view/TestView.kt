@@ -13,8 +13,10 @@ import android.view.View
 class TestView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
     : View(context, attrs, defStyleAttr) {
 
-    var callBack: ((String) -> Unit)? = null
-    var callBackMore: ((String, Int) -> Unit)? = null
+    var callBack = { _: String, _: Int -> Unit}
+
+    var callBack2: ((String) -> Unit)? = null
+    var callBack3: ((String, Int) -> Unit)? = null
 
     /**
      * 构造方法
@@ -24,8 +26,12 @@ class TestView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
     }
 
     fun backData() {
-        callBack?.invoke("back")
-        callBackMore?.invoke("back", 1)
+        callBack.invoke("back", 0)
+    }
+
+    fun backData2() {
+        callBack2?.invoke("back")
+        callBack3?.invoke("back", 1)
     }
 
 }
