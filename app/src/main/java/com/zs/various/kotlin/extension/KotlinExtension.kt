@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
  * @Description:
  */
 
-fun test(str: String): String {
+fun getBack(str: String): String {
     return "back$str"
 }
 

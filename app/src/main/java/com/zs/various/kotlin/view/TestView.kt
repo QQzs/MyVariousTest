@@ -19,7 +19,7 @@ class TestView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
     var callBack3: ((String, Int) -> Unit)? = null
 
     /**
-     * 构造方法
+     * 初始化方法
      */
     init {
 
