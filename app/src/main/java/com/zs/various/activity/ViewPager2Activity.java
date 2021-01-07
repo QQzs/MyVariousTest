@@ -18,7 +18,9 @@ import com.zs.various.listener.TabFragmentHelper;
 import com.zs.various.util.LogUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: zs
@@ -51,7 +53,7 @@ public class ViewPager2Activity extends BaseActivity {
     @Override
     public void initData() {
         titles = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             titles.add(new TitleData("title" + i, i));
         }
 
@@ -59,7 +61,7 @@ public class ViewPager2Activity extends BaseActivity {
         bottomViewPager.setAdapter(adapter2);
         bottomViewPager.setOffscreenPageLimit(1);
 
-        adapter3 = new TabPageAdapter3(this, new TabFragmentHelper() {
+        adapter3 = new TabPageAdapter3(this, titles, new TabFragmentHelper() {
             @Override
             public Fragment getFragment(int index) {
                 LogUtil.logShow("getFragment index = " + index);
@@ -88,7 +90,7 @@ public class ViewPager2Activity extends BaseActivity {
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, topViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText("Tab" + position);
+                tab.setText(titles.get(position).getTitle());
             }
         });
         tabLayoutMediator.attach();

@@ -8,10 +8,17 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="@color/color_3"
         app:tabIndicatorColor="@color/font_gray"
+        app:tabRippleColor="@android:color/transparent"
         app:tabTextColor="@color/white"
-        android:layout_height="50dp"/>
+        app:tabMode="scrollable"
+        app:tabMaxWidth="80dp"
+        app:tabMinWidth="40dp"
+        app:tabPaddingEnd="8dp"
+        app:tabPaddingStart="8dp"
+        android:overScrollMode="never" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_top"

@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.zs.various.bean.TitleData;
 import com.zs.various.listener.TabFragmentHelper;
+
+import java.util.List;
 
 /**
  * @Author: zs
@@ -14,10 +17,12 @@ import com.zs.various.listener.TabFragmentHelper;
  */
 public class TabPageAdapter3 extends FragmentStateAdapter {
 
+    private List<TitleData> titles;
     private TabFragmentHelper fragmentHelper;
 
-    public TabPageAdapter3(@NonNull FragmentActivity fragmentActivity, TabFragmentHelper helper) {
+    public TabPageAdapter3(@NonNull FragmentActivity fragmentActivity, List<TitleData> titles, TabFragmentHelper helper) {
         super(fragmentActivity);
+        this.titles = titles;
         fragmentHelper = helper;
     }
 
@@ -29,6 +34,6 @@ public class TabPageAdapter3 extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 5;
+        return titles == null ? 0 : titles.size();
     }
 }

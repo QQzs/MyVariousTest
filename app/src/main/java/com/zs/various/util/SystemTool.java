@@ -66,5 +66,14 @@ public class SystemTool {
         return "";
     }
 
+    /**
+     * HashMap初始长度
+     * @param expectedSize
+     * @return
+     */
+    private int mapSize(int expectedSize) {
+        return (int) ((float) expectedSize / 0.75F + 1.0F);
+    }
+
 
 }

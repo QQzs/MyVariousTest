@@ -9,8 +9,9 @@ import com.zs.various.kotlin.extension.getBack
 import com.zs.various.kotlin.extension.setColor
 import com.zs.various.kotlin.view.TestView
 import com.zs.various.util.LogUtil
-import kotlinx.android.synthetic.main.kotlin_test_layout.*
 import com.zs.various.kotlin.extension.loadImage
+import kotlinx.android.synthetic.main.kotlin_test_layout.*
+import kotlinx.android.synthetic.main.item_view_layout.view.*
 
 /**
  * @Author: zs
@@ -119,6 +120,8 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
         println("num = ${user1.age}")
 
         tv_age?.text = "年龄 = $num2"
+        item_view?.tv_item_content?.text = "aaaaaaaaaa"
+
         var test = getBack("test")
         tv_age?.setColor(R.color.color_4)
         tv_avatar?.loadImage(R.drawable.head_bg_img)
