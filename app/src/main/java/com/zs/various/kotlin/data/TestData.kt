@@ -24,15 +24,21 @@ data class UserData(
 )
 
 data class UserInfo(
-        var info1: String,
+        var info1: String? = null,
         var info2: String? = null,
         var info3: Int = 0
 )
 
+class OtherInfo {
+    var info1: String? = null
+    var info2: String? = null
+    var info3: Int = 0
+}
+
 @KotlinData
 data class OneData(var arg: String)
 
-class NewData(var arg2: String, var arg3: Int, arg: String): OneData(arg)
+class NewData(var arg2: String, var arg3: Int, arg: String) : OneData(arg)
 
 
 

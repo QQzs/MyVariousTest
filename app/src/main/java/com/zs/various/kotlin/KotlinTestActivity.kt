@@ -1,17 +1,22 @@
 package com.zs.various.kotlin
 
 import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.View
 import com.zs.various.R
 import com.zs.various.kotlin.data.UserData
 import com.zs.various.base.BaseActivity
+import com.zs.various.bean.User
+import com.zs.various.kotlin.data.OtherInfo
+import com.zs.various.kotlin.data.UserInfo
 import com.zs.various.kotlin.extension.getBack
 import com.zs.various.kotlin.extension.setColor
 import com.zs.various.kotlin.view.TestView
-import com.zs.various.util.LogUtil
 import com.zs.various.kotlin.extension.loadImage
+import com.zs.various.kotlin.listener.TestListener
 import kotlinx.android.synthetic.main.kotlin_test_layout.*
 import kotlinx.android.synthetic.main.item_view_layout.view.*
+import kotlinx.android.synthetic.main.activity_test_kotlin.view.*
 
 /**
  * @Author: zs
@@ -108,6 +113,7 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
     override fun initData() {
         var user1 = UserData("name1")
         var user2 = UserData("name2", num)
+        var other = OtherInfo()
 
         // 方法重载
         test("arg1", 2, "arg3")
@@ -121,6 +127,10 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
 
         tv_age?.text = "年龄 = $num2"
         item_view?.tv_item_content?.text = "aaaaaaaaaa"
+
+        var otherView = LayoutInflater.from(this).inflate(R.layout.activity_test_kotlin, null)
+        otherView?.btn_test?.text = "bbbbbbbbbb"
+        ll_container?.addView(otherView)
 
         var test = getBack("test")
         tv_age?.setColor(R.color.color_4)
@@ -145,11 +155,19 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
 
         var view = TestView(this)
 
-        view.callBack = { s: String, i: Int ->
-            LogUtil.logShow(s + i)
+        view.setCallBack(object: TestListener{
+
+            override fun callBack1() {
+
+            }
+
+        })
+
+        view.callBack = { _: String, _: Int ->
+
         }
         view.callBack2 = {
-            LogUtil.logShow(it)
+
         }
 
         view.backData()
