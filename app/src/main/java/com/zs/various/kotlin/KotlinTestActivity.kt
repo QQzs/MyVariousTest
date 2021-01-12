@@ -2,21 +2,20 @@ package com.zs.various.kotlin
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import com.zs.various.R
-import com.zs.various.kotlin.data.UserData
 import com.zs.various.base.BaseActivity
-import com.zs.various.bean.User
 import com.zs.various.kotlin.data.OtherInfo
-import com.zs.various.kotlin.data.UserInfo
+import com.zs.various.kotlin.data.UserData
 import com.zs.various.kotlin.extension.getBack
-import com.zs.various.kotlin.extension.setColor
-import com.zs.various.kotlin.view.TestView
 import com.zs.various.kotlin.extension.loadImage
+import com.zs.various.kotlin.extension.setColor
 import com.zs.various.kotlin.listener.TestListener
-import kotlinx.android.synthetic.main.kotlin_test_layout.*
-import kotlinx.android.synthetic.main.item_view_layout.view.*
+import com.zs.various.kotlin.view.TestView
 import kotlinx.android.synthetic.main.activity_test_kotlin.view.*
+import kotlinx.android.synthetic.main.item_view_layout.view.*
+import kotlinx.android.synthetic.main.kotlin_test_layout.*
 
 /**
  * @Author: zs
@@ -29,7 +28,7 @@ const val num8 = 10
 open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
 
     /**
-     * 变量：var
+     * 可变变量：var
      */
     var num: Int = 10
     var num2 = 10
@@ -109,7 +108,7 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("ClickableViewAccessibility")
     override fun initData() {
         var user1 = UserData("name1")
         var user2 = UserData("name2", num)
@@ -134,23 +133,36 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
 
         var test = getBack("test")
         tv_age?.setColor(R.color.color_4)
-        tv_avatar?.loadImage(R.drawable.head_bg_img)
+        iv_avatar?.loadImage(R.drawable.head_bg_img)
 
 
-        tv_avatar?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
+        iv_avatar?.setOnClickListener(View.OnClickListener {
+            fun onClick(v: View?) {
 
             }
         })
 
-        // 如果 lambda 表达式是函数调用的最后一个实参，它可以放到括号的外边。
-        tv_avatar?.setOnClickListener() {
+        // 当lambda表达式是函数调用的最后一个实参，它可以放到括号的外边。
+        iv_avatar?.setOnClickListener() {
 
         }
 
-        // 当 lambda 是函数唯一实参时，还可以去掉代码中的空括号对
-        tv_avatar?.setOnClickListener {
+        // 当lambda表达式是函数唯一实参时，还可以去掉代码中的空括号对
+        iv_avatar?.setOnClickListener {
 
+        }
+
+        // 当lambda表达式只有一个参数,那么在调用该lambda表达式时,可以不指定它的参数名字,在lambda函数体内用it来代表这个参数.
+        iv_avatar?.setOnClickListener {
+            it.alpha = 1f
+        }
+
+        // 当lambda表达式有多个参数,那么在调用该lambda表达式时,必须指定每一个参数的名字,如果某个参数用不到可以用 _ 来代替
+        iv_avatar?.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+
+            }
+            false
         }
 
         var view = TestView(this)

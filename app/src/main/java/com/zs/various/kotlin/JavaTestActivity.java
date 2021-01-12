@@ -1,6 +1,9 @@
 package com.zs.various.kotlin;
 
+import android.annotation.SuppressLint;
 import android.media.Image;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +23,7 @@ public class JavaTestActivity extends BaseActivity {
 
     @Override
     protected int setLayoutId() {
-        return 0;
+        return R.layout.kotlin_test_layout;
     }
 
     @Override
@@ -28,19 +31,31 @@ public class JavaTestActivity extends BaseActivity {
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void initData() {
+
+        tv = findViewById(R.id.tv_age);
+        iv = findViewById(R.id.iv_avatar);
+
         KotlinTestActivity.Companion.getNum4();
 
         KotlinTestActivity.getNewData();
 
         int b = KotlinTestActivity.StaticData.num7;
-
         int a = KotlinTestActivityKt.num8;
 
 
         KotlinExtensionKt.getBack("test");
         KotlinExtensionKt.setColor(tv, R.color.color_0);
         KotlinExtensionKt.loadImage(iv, R.drawable.head_bg_img);
+
+        iv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
+
     }
 }
