@@ -136,8 +136,8 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
         iv_avatar?.loadImage(R.drawable.head_bg_img)
 
 
-        iv_avatar?.setOnClickListener(View.OnClickListener {
-            fun onClick(v: View?) {
+        iv_avatar?.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(v: View?) {
 
             }
         })
