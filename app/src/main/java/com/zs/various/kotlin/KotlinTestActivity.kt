@@ -1,6 +1,7 @@
 package com.zs.various.kotlin
 
 import android.annotation.SuppressLint
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -13,6 +14,7 @@ import com.zs.various.kotlin.extension.loadImage
 import com.zs.various.kotlin.extension.setColor
 import com.zs.various.kotlin.listener.TestListener
 import com.zs.various.kotlin.view.TestView
+import com.zs.various.util.LogUtil
 import kotlinx.android.synthetic.main.activity_test_kotlin.view.*
 import kotlinx.android.synthetic.main.item_view_layout.view.*
 import kotlinx.android.synthetic.main.kotlin_test_layout.*
@@ -99,12 +101,30 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
     var name: String? = null
     var name1: String = ""
 
+    var name2: String = "name2"
+
     override fun setLayoutId(): Int {
         return R.layout.kotlin_test_layout
     }
 
     @SuppressLint("SetTextI18n")
     override fun initView() {
+
+        takeIf {
+            TextUtils.isEmpty(name1)
+        }?.let {
+            LogUtil.logShow("name1 null")
+        } ?: let {
+            LogUtil.logShow("name1 not null")
+        }
+
+        takeIf {
+            TextUtils.isEmpty(name2)
+        }?.let {
+            LogUtil.logShow("name2 null")
+        } ?: let {
+            LogUtil.logShow("name2 not null")
+        }
 
     }
 
