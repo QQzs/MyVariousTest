@@ -9,6 +9,7 @@ import com.zs.various.R
 import com.zs.various.base.BaseActivity
 import com.zs.various.kotlin.data.OtherInfo
 import com.zs.various.kotlin.data.UserData
+import com.zs.various.kotlin.data.UserInfo
 import com.zs.various.kotlin.extension.getBack
 import com.zs.various.kotlin.extension.loadImage
 import com.zs.various.kotlin.extension.setColor
@@ -103,6 +104,8 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
 
     var name2: String = "name2"
 
+    var user: UserInfo? = null
+
     override fun setLayoutId(): Int {
         return R.layout.kotlin_test_layout
     }
@@ -124,6 +127,14 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
             LogUtil.logShow("name2 null")
         } ?: let {
             LogUtil.logShow("name2 not null")
+        }
+
+        user?.takeIf {
+            it.info3 == 0
+        }?.let {
+            LogUtil.logShow("info3 = 0")
+        } ?: let {
+            LogUtil.logShow("info = null")
         }
 
     }

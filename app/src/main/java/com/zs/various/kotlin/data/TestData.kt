@@ -26,7 +26,8 @@ data class UserData(
 data class UserInfo(
         var info1: String? = null,
         var info2: String? = null,
-        var info3: Int = 0
+        var info3: Int = 0,
+        var info4: Boolean? = null
 )
 
 class OtherInfo {
