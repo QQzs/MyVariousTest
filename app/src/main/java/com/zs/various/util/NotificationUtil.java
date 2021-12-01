@@ -11,7 +11,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 import android.text.TextUtils;
 
 import com.zs.various.R;
@@ -24,14 +27,13 @@ import java.util.List;
 import java.util.Map;
 
 import static android.app.Notification.VISIBILITY_SECRET;
-import static android.content.Context.NOTIFICATION_SERVICE;
 
 /**
  * @Author: zs
  * @Date: 2019-06-17 15:03
  * @Description:
  */
-public class NotificationUtil{
+public class NotificationUtil {
 
     public static final String NOTIFICATION_DATA = "notification_data";
     public static final String ACTION_CLOSE_NOTICE = "com.zs.various.close";
@@ -41,7 +43,7 @@ public class NotificationUtil{
     public static final int TYPE_INBOX = 3;
 
     private Context mContext;
-    private NotificationManager mNotificationManager;
+    private NotificationManagerCompat mNotificationManager;
     private NotificationCompat.Builder mNotificationBuilder;
     private final Builder mBuilder;
 
@@ -51,51 +53,48 @@ public class NotificationUtil{
         mBuilder = builder;
         getNotificationManager(context);
 
+        String channelId = "channel_default_id";
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (TextUtils.isEmpty(mBuilder.channelId)){
-                NotificationChannel channel = new NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_HIGH);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            if (TextUtils.isEmpty(mBuilder.channelId)) {
+                NotificationChannel channel = new NotificationChannel(channelId, "channel_name", importance);
                 channel.setLockscreenVisibility(VISIBILITY_SECRET);
                 mNotificationManager.createNotificationChannel(channel);
-                mNotificationBuilder = new NotificationCompat.Builder(context, "channel_id");
-            }else{
-                NotificationChannel channel = new NotificationChannel(mBuilder.channelId, mBuilder.channelName, NotificationManager.IMPORTANCE_HIGH);
+            } else {
+                NotificationChannel channel = new NotificationChannel(mBuilder.channelId, mBuilder.channelName, importance);
                 channel.setLockscreenVisibility(VISIBILITY_SECRET);
                 mNotificationManager.createNotificationChannel(channel);
-                mNotificationBuilder = new NotificationCompat.Builder(context, mBuilder.channelId);
+                channelId = mBuilder.channelId;
             }
-        }else{
-            mNotificationBuilder = new NotificationCompat.Builder(context, "channel_default_id");
         }
-
+        mNotificationBuilder = new NotificationCompat.Builder(context, channelId);
     }
 
-    private NotificationManager getNotificationManager(Context context){
+    private NotificationManagerCompat getNotificationManager(Context context) {
 
-        if (mNotificationManager == null){
-            mNotificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        if (mNotificationManager == null) {
+            mNotificationManager = NotificationManagerCompat.from(context);
         }
         return mNotificationManager;
 
     }
 
-    public void notification(){
+    public void notification() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (mBuilder.smallIcon == 0){
-                mNotificationBuilder.setSmallIcon(R.mipmap.icon_small);
-            }else{
-                mNotificationBuilder.setSmallIcon(mBuilder.smallIcon);
-            }
+        if (mBuilder.smallIcon == 0) {
+            mNotificationBuilder.setSmallIcon(R.mipmap.icon_small);
+        } else {
+            mNotificationBuilder.setSmallIcon(mBuilder.smallIcon);
         }
-        if (mBuilder.largeIcon == null){
-            mNotificationBuilder.setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(),R.mipmap.icon_small));
-        }else{
+        if (mBuilder.largeIcon == null) {
+            mNotificationBuilder.setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.icon_small));
+        } else {
             mNotificationBuilder.setLargeIcon(mBuilder.largeIcon);
         }
-        if (!TextUtils.isEmpty(mBuilder.title)){
+        if (!TextUtils.isEmpty(mBuilder.title)) {
             mNotificationBuilder.setContentTitle(mBuilder.title);
         }
-        if (!TextUtils.isEmpty(mBuilder.content)){
+        if (!TextUtils.isEmpty(mBuilder.content)) {
             mNotificationBuilder.setContentText(mBuilder.content);
         }
         mNotificationBuilder.setWhen(System.currentTimeMillis());
@@ -103,36 +102,39 @@ public class NotificationUtil{
         //点击自动删除通知
 //        mNotificationBuilder.setAutoCancel(true);
 
-        // 通知优先级
-        mNotificationBuilder.setPriority(NotificationManager.IMPORTANCE_HIGH);
+        // 通知优先级 默认 NotificationCompat.PRIORITY_DEFAULT
+        mNotificationBuilder.setPriority(mBuilder.priority);
 
         // 设置通知 提示音 震动
         mNotificationBuilder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
+//        mNotificationBuilder.setSound(null);
+//        mNotificationBuilder.setVibrate(null);
 
         //设置呼吸灯 参数：颜色  亮起时长 暗去时长
-        mNotificationBuilder.setLights(Color.GREEN, 1000, 1000);
+//        mNotificationBuilder.setLights(Color.GREEN, 1000, 1000);
+        mNotificationBuilder.setLights(0, 0, 0);
 
         // 设置角标
         mNotificationBuilder.setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL);
 
         // 设置样式
-        if (mBuilder.type == TYPE_DEFAULT){
+        if (mBuilder.type == TYPE_DEFAULT) {
             // 单行
-        }else if (mBuilder.type == TYPE_MORE){
+        } else if (mBuilder.type == TYPE_MORE) {
             // 多行文本
             mNotificationBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(mBuilder.content));
-        } else if (mBuilder.type == TYPE_PICTURE){
+        } else if (mBuilder.type == TYPE_PICTURE) {
             // 设置显示大图片
-            if (mBuilder.bigPicture != null){
+            if (mBuilder.bigPicture != null) {
                 mNotificationBuilder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(mBuilder.bigPicture));
-            }else{
-                mNotificationBuilder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(mContext.getResources(),R.mipmap.icon_small)));
+            } else {
+                mNotificationBuilder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.icon_small)));
             }
-        } else if (mBuilder.type == TYPE_INBOX){
+        } else if (mBuilder.type == TYPE_INBOX) {
             // 多条通知
             NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
-            if (mBuilder.contentList != null){
-                for (String content: mBuilder.contentList){
+            if (mBuilder.contentList != null) {
+                for (String content : mBuilder.contentList) {
                     inboxStyle.addLine(content);
                 }
                 inboxStyle.setSummaryText("+" + mBuilder.contentList.size() + " " + mBuilder.title);
@@ -141,19 +143,19 @@ public class NotificationUtil{
         }
 
         // 通知落地页
-        if (mBuilder.manage){
+        if (mBuilder.manage) {
 
             Intent intent = new Intent();
             intent.setAction(ACTION_CLOSE_NOTICE);
 
             NotificationModel notificationModel = new NotificationModel();
             notificationModel.notificationId = mBuilder.notificationId;
-            if (mBuilder.nextPage != null){
+            if (mBuilder.nextPage != null) {
                 notificationModel.nextPage = mBuilder.nextPage;
             }
-            if (mBuilder.params != null){
+            if (mBuilder.params != null) {
                 notificationModel.params = mBuilder.params;
-            } else{
+            } else {
                 notificationModel.params = new HashMap<>();
             }
 
@@ -162,47 +164,50 @@ public class NotificationUtil{
             PendingIntent pendingClose = PendingIntent.getBroadcast(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             mNotificationBuilder.setContentIntent(pendingClose);
 
-        }else{
+        } else {
             Intent intent;
-            if (mBuilder.nextPage != null){
+            if (mBuilder.nextPage != null) {
                 intent = new Intent(mContext, mBuilder.nextPage);
-            } else{
+            } else {
                 intent = new Intent(mContext, BehaviorActivity.class);
             }
-            if (mBuilder.params != null){
-                intent.putExtra(NOTIFICATION_DATA, (Serializable)mBuilder.params);
+            if (mBuilder.params != null) {
+                intent.putExtra(NOTIFICATION_DATA, (Serializable) mBuilder.params);
             }
-            PendingIntent pendingIntent = PendingIntent.getActivity(mContext,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             mNotificationBuilder.setContentIntent(pendingIntent);
         }
 
         Notification notification = mNotificationBuilder.build();
-        if (mBuilder.notificationId != 0){
-            mNotificationManager.notify(mBuilder.notificationId,notification);
+
+        if (mBuilder.notificationId != 0) {
+            mNotificationManager.notify(mBuilder.notificationId, notification);
         }
 
     }
 
     /**
      * 清除一条通知
+     *
      * @param context
      * @param notificationId
      */
-    public static void clearNotificationById(Context context, int notificationId){
+    public static void clearNotificationById(Context context, int notificationId) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancel(notificationId);
     }
 
     /**
      * 清除所有通知
+     *
      * @param context
      */
-    public void clearNotification(Context context){
+    public void clearNotification(Context context) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancelAll();
     }
 
-    public static class Builder{
+    public static class Builder {
 
         private Context context;
 
@@ -211,6 +216,8 @@ public class NotificationUtil{
         private String channelId;
 
         private String channelName;
+
+        private int priority;
 
         private int type;
 
@@ -230,9 +237,9 @@ public class NotificationUtil{
 
         private Class<?> nextPage;
 
-        private Map<String , String> params;
+        private Map<String, String> params;
 
-        public Builder(Context context){
+        public Builder(Context context) {
             this.context = context;
         }
 
@@ -241,11 +248,17 @@ public class NotificationUtil{
             return this;
         }
 
-        public Builder setChannel(String channelId , String channelName) {
+        public Builder setChannel(String channelId, String channelName) {
             this.channelId = channelId;
             this.channelName = channelName;
             return this;
         }
+
+        public Builder setPriority(int priority) {
+            this.priority = priority;
+            return this;
+        }
+
 
         public Builder setSmallIcon(int smallIcon) {
             this.smallIcon = smallIcon;
@@ -282,21 +295,21 @@ public class NotificationUtil{
             return this;
         }
 
-        public Builder setNextPage(Class<?> nextPage , Map<String, String> params) {
+        public Builder setNextPage(Class<?> nextPage, Map<String, String> params) {
             this.nextPage = nextPage;
             this.params = params;
             return this;
         }
 
-        public Builder setNextPage(boolean manage ,  Class<?> nextPage , Map<String, String> params) {
+        public Builder setNextPage(boolean manage, Class<?> nextPage, Map<String, String> params) {
             this.manage = manage;
             this.nextPage = nextPage;
             this.params = params;
             return this;
         }
 
-        public NotificationUtil build(){
-            return new NotificationUtil(context , this);
+        public NotificationUtil build() {
+            return new NotificationUtil(context, this);
         }
 
     }

@@ -2,6 +2,7 @@ package com.zs.various.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import com.zs.various.R
 import com.zs.various.util.NotificationUtil
 import kotlinx.android.synthetic.main.activity_notification_layout.*
@@ -25,7 +26,8 @@ class NotificationActivity: AppCompatActivity(){
         btn_1?.setOnClickListener {
             NotificationUtil.Builder(this)
                     .setNotificationId(666)
-                    .setChannel("iddd" , "我的")
+                    .setPriority(NotificationCompat.PRIORITY_MIN)
+                    .setChannel("iddd" , "通知名称1")
                     .setTitle("标题")
                     .setContent("据台湾“中央社”报道，国民党主席朱立伦今天(18日)向中常会报告，为败选请辞党主席一职，他感谢各位中常委的指教包容，也宣布未来党务工作由副主席黄敏惠暂代，完成未来所有补选工作。")
                     .setType(NotificationUtil.TYPE_MORE)
@@ -42,7 +44,7 @@ class NotificationActivity: AppCompatActivity(){
             var list = arrayListOf("1、是据台湾" , "2、今天18" , "3、主的席")
             NotificationUtil.Builder(this)
                     .setNotificationId(123)
-                    .setChannel("iddd" , "我的")
+                    .setChannel("iddd" , "通知名称2")
                     .setTitle("标题")
                     .setContent("完成未来所有补选工作。")
                     .setContentList(list)
