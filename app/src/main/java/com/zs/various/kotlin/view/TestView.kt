@@ -25,7 +25,10 @@ class TestView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
      * 初始化方法
      */
     init {
-
+        // 此时view还没渲染完成
+        post {
+            // 渲染完成
+        }
     }
 
     fun backData() {

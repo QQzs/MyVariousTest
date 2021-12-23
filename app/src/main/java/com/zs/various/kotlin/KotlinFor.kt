@@ -1,4 +1,4 @@
-package com.zs.various.util
+package com.zs.various.kotlin
 
 import android.util.Log
 import com.zs.various.bean.User
@@ -12,7 +12,7 @@ Time：13:45
 About:
 —————————————————————————————————————
  */
-class Test{
+class KotlinFor{
 
     /**
      * Kotlin 遍历
@@ -26,11 +26,6 @@ class Test{
             Log.d(TAG, "- $index")
         }
 
-        //倒序 遍历0-100 包括0和100
-        for (index in 100 downTo 0) {
-            Log.d(TAG, "$index")
-        }
-
         //顺序 遍历0-99 注意：不包括100(until 排除结束元素)
         for (index in 0 until 100) {
             Log.d(TAG, "$index")
@@ -38,6 +33,11 @@ class Test{
 
         //遍历0-100 步长为5 输出0 5 10 15 20..
         for (index in 0..100 step 5) {
+            Log.d(TAG, "$index")
+        }
+
+        //倒序 遍历0-100 包括0和100
+        for (index in 100 downTo 0) {
             Log.d(TAG, "$index")
         }
 

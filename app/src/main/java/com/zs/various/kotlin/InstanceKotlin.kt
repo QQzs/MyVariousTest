@@ -7,9 +7,10 @@ package com.zs.various.kotlin
  */
 class InstanceKotlin {
 
-    companion object{
+    companion object {
         @Volatile
         private var mUtil: InstanceKotlin? = null
+
         /**
          * 两次判空实现单例
          * @return
@@ -35,6 +36,15 @@ class InstanceKotlin {
 
         private object TestHolder {
             val instance: InstanceKotlin = InstanceKotlin()
+        }
+    }
+
+    //kotlin 语法实现
+    class SingletonDemo private constructor() {
+        companion object {
+            val instance: SingletonDemo by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+                SingletonDemo()
+            }
         }
     }
 }

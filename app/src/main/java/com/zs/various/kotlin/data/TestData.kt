@@ -37,9 +37,9 @@ class OtherInfo {
 }
 
 @KotlinData
-data class OneData(var arg: String)
+data class BaseData(var arg: String)
 
-class NewData(var arg2: String, var arg3: Int, arg: String) : OneData(arg)
+class ChildData(var arg2: String, var arg3: Int, arg: String) : BaseData(arg)
 
 
 

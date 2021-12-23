@@ -33,7 +33,7 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
     /**
      * 可变变量：var
      */
-    var num: Int = 10
+    var num1: Int = 10
     var num2 = 10
         set(value) {
             field = value + 5
@@ -106,6 +106,13 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
 
     var user: UserInfo? = null
 
+    /**
+     * List Set Map
+     */
+    var mutableList = mutableListOf<Int>()
+    var mutableSet = mutableSetOf<Int>()
+    var mutableMap = mutableMapOf<Int, Int>()
+
     override fun setLayoutId(): Int {
         return R.layout.kotlin_test_layout
     }
@@ -142,7 +149,7 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
     @SuppressLint("ClickableViewAccessibility")
     override fun initData() {
         var user1 = UserData("name1")
-        var user2 = UserData("name2", num)
+        var user2 = UserData("name2", num1)
         var other = OtherInfo()
 
         // 方法重载
@@ -152,7 +159,7 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
         test(arg1 = "arg1", arg2 = 2, arg3 = "arg3")
         test(arg3 = "arg3", arg1 = "arg1", arg2 = 2)
 
-        println("num = $num")
+        println("num = $num1")
         println("num = ${user1.age}")
 
         tv_age?.text = "年龄 = $num2"
@@ -210,6 +217,10 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
 
         }
         view.callBack2 = {
+
+        }
+
+        view.callBack3 = { name: String, num: Int ->
 
         }
 
