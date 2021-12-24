@@ -152,14 +152,31 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
         var user2 = UserData("name2", num1)
         var other = OtherInfo()
 
+        user1?.let { data ->
+            data.userInfo?.let { info ->
+                when(info.info3) {
+                    1 -> {
+
+                    }
+                    2 -> {
+
+                    }
+                    else ->{
+
+                    }
+                }
+            }
+        }
+
         // 方法重载
         test("arg1", 2, "arg3")
+        test("arg1", 2, "arg3", 4)
         test("arg1", 2, "arg3", 4, "arg5")
 
         test(arg1 = "arg1", arg2 = 2, arg3 = "arg3")
         test(arg3 = "arg3", arg1 = "arg1", arg2 = 2)
 
-        println("num = $num1")
+        println("num = $num1 num 1 = $num2")
         println("num = ${user1.age}")
 
         tv_age?.text = "年龄 = $num2"
@@ -181,7 +198,7 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
         })
 
         // 当lambda表达式是函数调用的最后一个实参，它可以放到括号的外边。
-        iv_avatar?.setOnClickListener() {
+        iv_avatar?.setOnClickListener() { view ->
 
         }
 

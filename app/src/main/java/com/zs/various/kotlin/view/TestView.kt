@@ -14,11 +14,27 @@ import com.zs.various.kotlin.listener.TestListener
 class TestView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
     : View(context, attrs, defStyleAttr) {
 
+    /**
+     * 方式一：
+     * 回调监听 Java方式
+     */
     var testListener: TestListener? = null
 
+    /**
+     * 方式二：
+     * 回调监听 Kotlin lambda表达式
+     */
     var callBack = { s: String, i: Int -> Unit}
 
+    /**
+     * 方式三：
+     * 回调监听 Kotlin lambda表达式 简写 一个参数
+     */
     var callBack2: ((String) -> Unit)? = null
+
+    /**
+     * 回调监听 Kotlin lambda表达式 简写 两个参数
+     */
     var callBack3: ((String, Int) -> Unit)? = null
 
     /**

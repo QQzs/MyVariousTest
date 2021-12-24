@@ -33,6 +33,10 @@ android {
 //        }
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
     signingConfigs {
         pkg {
             storeFile file("keystore/test.jks")
