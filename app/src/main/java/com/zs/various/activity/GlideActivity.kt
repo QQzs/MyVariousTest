@@ -10,6 +10,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.zs.various.R
 import com.zs.various.base.BaseActivity
 import com.zs.various.util.LogUtil
+import kotlinx.android.synthetic.main.activity_glide.*
 import java.io.File
 
 /**
@@ -26,7 +27,10 @@ class GlideActivity : BaseActivity(){
 
     override fun initData() {
 
-        var imageUrl = "https://img.hongrenshuo.com.cn/274411095247015978507022630.gif"
+        var local = "/storage/emulated/0/DCIM/Camera/dc86a559eef62847be1ab2673348bebf.jpeg"
+        Glide.with(this).load(local).into(image_view)
+
+        var imageUrl = "https://img.hongrenshuo.com.cn/h5/a840bde806813f8ae20725eb0276422c.png"
 
         Glide.with(this).downloadOnly().load(imageUrl).listener(object: RequestListener<File>{
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<File>?, isFirstResource: Boolean): Boolean {
