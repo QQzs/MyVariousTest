@@ -162,6 +162,13 @@
 
     </com.zs.various.view.BottomMoreLayout>
 
+    <com.zs.various.view.DoubleClickView
+        android:id="@+id/double_click_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:clickable="true"
+        android:background="@color/color_1"/>
+
     <Button
         android:id="@+id/btn_add_message"
         android:layout_width="120dp"
@@ -177,7 +184,6 @@
         android:textColor="@color/white"
         android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         android:background="@drawable/gray_radius_bg"/>
-
 
 
     <com.zs.various.view.LongTextViewOld

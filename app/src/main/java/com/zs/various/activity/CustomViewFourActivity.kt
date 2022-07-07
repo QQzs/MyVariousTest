@@ -81,6 +81,10 @@ class CustomViewFourActivity(): BaseActivity(){
 
         screenWidth = DensityUtil.getDisplayWidth(this) * 1f
 
+        double_click_view?.setOnDoubleClickListener {
+            LogUtil.logShow("dddddddddddddddddddd")
+        }
+
     }
 
     override fun initData() {
