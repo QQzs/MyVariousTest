@@ -32,6 +32,12 @@
             android:background="@color/color_0"/>
 
 
+        <com.zs.various.view.SearchEditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+
     </LinearLayout>
 
 

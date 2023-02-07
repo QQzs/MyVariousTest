@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         layout_main?.addView(listView)
 
         val data = ArrayList<Class<*>>()
+        data.add(JavaTestActivity::class.java)
         data.add(ExtendActivity::class.java)
         data.add(ViewPager2Activity::class.java)
         data.add(KotlinTestActivity::class.java)
@@ -63,7 +64,6 @@ class MainActivity : AppCompatActivity() {
         data.add(ViewStubActivity::class.java)
         data.add(ViewFlipperActivity::class.java)
         data.add(RadarActivity::class.java)
-        data.add(JavaTestActivity::class.java)
         data.add(TestKotlinActivity::class.java)
         data.add(ChoiceViewActivity::class.java)
         data.add(TabTitleActivity::class.java)

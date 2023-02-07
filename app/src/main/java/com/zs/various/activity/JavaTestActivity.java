@@ -1,7 +1,12 @@
 package com.zs.various.activity;
 
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 
 import com.zs.various.R;
 import com.zs.various.base.BaseActivity;
@@ -12,6 +17,7 @@ import com.zs.various.bean.java2.Person;
 import com.zs.various.util.Constant;
 import com.zs.various.util.DateUtils;
 import com.zs.various.util.LogUtil;
+import com.zs.various.view.SearchEditText;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -64,13 +70,32 @@ public class JavaTestActivity extends BaseActivity{
 
         printData1();
         printData2();
+
+        initEdit();
+    }
+
+    private void initEdit() {
+
+        SearchEditText edit_text = findViewById(R.id.edit_text);
+        edit_text.setSearchEditListener(new SearchEditText.SearchEditListener() {
+
+            @Override
+            public void onTextChanged(String text) {
+
+            }
+
+            @Override
+            public void startSearchAction(String text) {
+                LogUtil.logShow("text = " + text);
+            }
+        });
+
     }
 
     private void printData1(){
         Person person = new Man();
         LogUtil.Companion.logShow(person.name);
         person.action();
-        person.print();
 
         /** 输出结果：
          * Person constructor

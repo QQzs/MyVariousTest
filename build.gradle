@@ -13,9 +13,9 @@ buildscript {
     repositories {
         // 依次执行的
 //        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://jitpack.io' }
         jcenter()
         google()
+        maven { url 'https://jitpack.io' }
     }
     // 依赖包
     dependencies {
@@ -36,9 +36,9 @@ buildscript {
 allprojects {
     repositories {
 //        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://jitpack.io' }
         jcenter()
         google()
+        maven { url 'https://jitpack.io' }
     }
 }
 
