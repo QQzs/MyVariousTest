@@ -17,15 +17,15 @@
         android:layout_height="200dp"
         android:src="@mipmap/ic_shell_bg_x" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="160dp"
-        android:layout_height="200dp"
-        android:src="@mipmap/ic_shell_bg_xx" />
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:layout_width="160dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:src="@mipmap/ic_shell_bg_xx" />-->
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="160dp"
-        android:layout_height="200dp"
-        android:src="@mipmap/ic_shell_bg_xxx" />
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:layout_width="160dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:src="@mipmap/ic_shell_bg_xxx" />-->
 
 
 

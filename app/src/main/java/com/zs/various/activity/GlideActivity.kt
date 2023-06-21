@@ -53,9 +53,9 @@ class GlideActivity : BaseActivity(){
 //        imageUrl = "https://img.kilamanbo.com/2717534601218.png?t=1687175210000"
         val image = findViewById<ImageView>(R.id.image_view_url)
 //        image.scaleType = ImageView.ScaleType.CENTER_CROP
-//        Glide.with(this)
-//            .load(imageUrl)
-//            .into(image)
+        Glide.with(this)
+            .load(imageUrl)
+            .into(image)
 
 
         val image3 = findViewById<LargeImageView>(R.id.image_view_url_large)
