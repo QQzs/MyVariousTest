@@ -14,7 +14,7 @@ public class DensityUtil {
      */
     public static int dip2px(float dpValue) {
         final float scale = MyApp.getAppContext().getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale);
+        return (int) (dpValue * scale + 0.5f);
     }
 
     /**

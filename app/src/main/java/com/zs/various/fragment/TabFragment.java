@@ -6,10 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.zs.various.R;
 import com.zs.various.base.BaseFragment;
 import com.zs.various.util.LogUtil;
@@ -41,6 +43,10 @@ public class TabFragment extends BaseFragment {
         index = getArguments().getInt("index");
         TextView title = view.findViewById(R.id.tv_title);
         title.setText("Title " + index);
+
+        String imageUrl = "https://img.hongrenshuo.com.cn/h5/a840bde806813f8ae20725eb0276422c.png";
+        ImageView image = view.findViewById(R.id.image_view_url);
+        Glide.with(this).load(imageUrl).into(image);
     }
 
     @Override

@@ -120,6 +120,13 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
     @SuppressLint("SetTextI18n")
     override fun initView() {
 
+//        val m: String? = if (name.isNullOrBlank()) {
+//            "ffff"
+//        } else {
+//            name
+//        }
+//        tv_age?.text = m
+
         takeIf {
             TextUtils.isEmpty(name1)
         }?.let {
@@ -179,7 +186,7 @@ open class KotlinTestActivity : BaseActivity(), View.OnClickListener {
         println("num = $num1 num 1 = $num2")
         println("num = ${user1.age}")
 
-        tv_age?.text = "年龄 = $num2"
+//        tv_age?.text = "年龄 = $num2"
         item_view?.tv_item_content?.text = "aaaaaaaaaa"
 
         var otherView = LayoutInflater.from(this).inflate(R.layout.activity_test_kotlin, null)

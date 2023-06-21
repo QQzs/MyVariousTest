@@ -1,11 +1,17 @@
 package com.zs.various.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.content.ContextCompat;
+
+import android.os.Environment;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -51,6 +57,28 @@ public class ColorfullActivity extends Activity {
                 ActivityCompat.startActivity(ColorfullActivity.this, intent, optionsCompat.toBundle());
             }
         });
+
+//        Manifest.permission.READ_EXTERNAL_STORAGE,
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                Manifest.permission.READ_PHONE_STATE
+
+//        if (Build.VERSION.SDK_INT >= 23) {// 6.0
+//            String[] perms = {
+//                    Manifest.permission.CAMERA
+//                    };
+//            for (String p : perms) {
+//                int f = ContextCompat.checkSelfPermission(this, p);
+//                if (f != PackageManager.PERMISSION_GRANTED) {
+//                    requestPermissions(perms, 0XCF);
+//                    break;
+//                }
+//            }
+//        }
+
+//        Intent intent = new Intent(); //调用照相机
+//        intent.setAction("android.media.action.STILL_IMAGE_CAMERA");
+//        startActivity(intent);
+
 
 
     }
