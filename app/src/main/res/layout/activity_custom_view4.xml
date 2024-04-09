@@ -115,58 +115,113 @@
         android:layout_marginRight="50dp"/>
 
     <com.zs.various.view.BottomMoreLayout
+        android:id="@+id/more_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@color/color_0"
             android:gravity="center"
-            android:text="0"/>
+            android:text="0" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@color/color_1"
             android:gravity="center"
-            android:text="1"/>
+            android:text="1" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@color/color_2"
             android:gravity="center"
-            android:text="2"/>
+            android:text="2" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@color/color_3"
             android:gravity="center"
-            android:text="3"/>
+            android:text="3" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/color_4"
-            android:gravity="center"
-            android:text="4"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/color_5"
-            android:gravity="center"
-            android:text="6"/>
 
     </com.zs.various.view.BottomMoreLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <GridLayout
+            android:id="@+id/flex_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:columnCount="4">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/color_0"
+                android:gravity="center"
+                android:text="0" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/color_0"
+                android:gravity="center"
+                android:text="0" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/color_0"
+                android:gravity="center"
+                android:text="0" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/color_0"
+                android:gravity="center"
+                android:text="0" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/color_0"
+                android:gravity="center"
+                android:text="0" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/color_0"
+                android:gravity="center"
+                android:text="0" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/color_0"
+                android:gravity="center"
+                android:text="0" />
+
+
+        </GridLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.zs.various.view.DoubleClickView
         android:id="@+id/double_click_view"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:clickable="true"
+        android:visibility="gone"
         android:background="@color/color_1"/>
 
     <Button

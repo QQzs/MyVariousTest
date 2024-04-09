@@ -3,11 +3,15 @@ package com.zs.various.activity
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.app.ActionBar
+import android.text.Layout
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import com.zs.various.R
 import com.zs.various.base.BaseActivity
 import com.zs.various.util.DensityUtil
@@ -40,20 +44,32 @@ class CustomViewFourActivity(): BaseActivity(){
         adapter = FoldAdapter()
         flow_layout_mine?.setTagAdapter(adapter)
         btn_add?.setOnClickListener {
-            var tag = et_tag.text.toString().trim()
-            if (!TextUtils.isEmpty(tag)) {
-                var view = View.inflate(this , R.layout.item_tag_view , null);
-                view.tv_tag_view.text = tag
-                tagStrings.add(0 , tag)
+//            var tag = et_tag.text.toString().trim()
+//            if (!TextUtils.isEmpty(tag)) {
+//                var view = View.inflate(this , R.layout.item_tag_view , null);
+//                view.tv_tag_view.text = tag
+//                tagStrings.add(0 , tag)
+//
+//            } else {
+//                var view = View.inflate(this , R.layout.item_tag_view , null);
+//                view.tv_tag_view.text = "${tagViews.size} 我的数据"
+//                tagStrings.add(0 , "${tagStrings.size} 我的数据")
+//
+//            }
+//            adapter?.addAll(tagStrings)
+//            et_tag.setText("")
 
-            } else {
-                var view = View.inflate(this , R.layout.item_tag_view , null);
-                view.tv_tag_view.text = "${tagViews.size} 我的数据"
-                tagStrings.add(0 , "${tagStrings.size} 我的数据")
+            var tv = TextView(this)
+            var lp = ViewGroup.LayoutParams(dip(100) , dip(100))
+            tv.layoutParams = lp
+            tv.setBackgroundColor(resources.getColor(R.color.color_1))
+            tv.text = "2222"
 
-            }
-            adapter?.addAll(tagStrings)
-            et_tag.setText("")
+            flex_box?.addView(tv)
+//            more_layout?.addView(tv)
+
+
+
         }
 
         btn_clear?.setOnClickListener {

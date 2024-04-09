@@ -8,6 +8,7 @@
         android:id="@+id/image_view_url"
         android:layout_width="160dp"
         android:layout_height="200dp"
+        android:scaleType="centerCrop"
         android:background="@color/color_1" />
 
 

@@ -3,6 +3,7 @@ package com.zs.various.activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
@@ -13,6 +14,7 @@ import com.zs.various.R
 import com.zs.various.kotlin.KotlinTestActivity
 import com.zs.various.adapter.MyAdapter
 import com.zs.various.datastructure.TestDataActivity
+import com.zs.various.util.leak.WeakHandler
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = ContextCompat.getColor(this,R.color.color_3)
         }
+
+        var handler = WeakHandler(Looper.getMainLooper())
 
         /**
          * commit 1
