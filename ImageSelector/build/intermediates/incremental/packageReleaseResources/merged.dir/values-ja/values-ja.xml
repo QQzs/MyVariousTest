@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="select_video_too_long">
+        <item quantity="other">%s分以上の動画は投稿できないよ</item>
+    </plurals>
+    <string name="common_cancel">キャンセル</string>
+    <string name="common_confirm">OK</string>
+    <string name="gif_select_limit_toast_big">画像サイズが大きすぎだ(゜Д゜；)他の画像を選んでください</string>
+    <string name="mis_action_done">完了</string>
+    <string name="mis_all_video">全ての動画</string>
+    <string name="mis_error_image_not_exist">写真エラー</string>
+    <string name="mis_error_no_permission">権限なし</string>
+    <string name="mis_folder_all">すべての画像</string>
+    <string name="mis_folder_photo_all">全ての写真</string>
+    <string name="mis_msg_amount_limit">毎回最大%1$d枚の写真をアップロードすることができ、回数には制限がありません</string>
+    <string name="mis_msg_no_camera">カメラがありません</string>
+    <string name="pic_clarity_high">高画質</string>
+    <string name="select_image_preview">プレビュー</string>
+    <string name="select_only_choose_one">動画と画像は同時選択できないよ</string>
+    <string name="select_permission_explain"/>
+    <string name="select_permission_explain_title"/>
+    <string name="select_photo_more_than_max">画像は%1$d枚までだよ</string>
+    <string name="select_tip_know">OK</string>
+    <string name="select_video_formal_unkonwn">この動画の解像度が高すぎます。もう一度選択してください</string>
+    <string name="select_video_format_unkonwn">この動画は投稿できないよ</string>
+    <string name="select_video_ratio_unkonwn">この動画の解像度が高すぎます。もう一度選択してください</string>
+    <string name="select_video_too_short">3秒未満の動画は投稿できないよ</string>
+</resources>

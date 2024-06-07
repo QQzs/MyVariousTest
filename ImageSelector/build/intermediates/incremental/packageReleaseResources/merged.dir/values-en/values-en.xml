@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="select_video_too_long">
+		<item quantity="one">Uploading videos that are longer than %s minute is not supported</item>
+		<item quantity="other">Uploading videos that are longer than %s minutes is not supported</item>
+	</plurals>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_confirm">Confirm</string>
+    <string name="gif_select_limit_toast_big">Image size is too large, please reselect the image</string>
+    <string name="mis_action_done">Complete</string>
+    <string name="mis_all_video">All videos</string>
+    <string name="mis_error_image_not_exist">Image error</string>
+    <string name="mis_error_no_permission">No permissions</string>
+    <string name="mis_folder_all">Photos and Videos</string>
+    <string name="mis_folder_photo_all">All Photos</string>
+    <string name="mis_msg_amount_limit">Upload up to %1$d images at a time, as many times as you like</string>
+    <string name="mis_msg_no_camera">No system camera</string>
+    <string name="pic_clarity_high">HD</string>
+    <string name="select_image_preview">Preview</string>
+    <string name="select_only_choose_one">Can\'t select image or video at the same time</string>
+    <string name="select_permission_explain">Allow to open the camera, for taking pictures/video, uploading post</string>
+    <string name="select_permission_explain_title">Device permission instructions</string>
+    <string name="select_photo_more_than_max">Select up to %1$d photos</string>
+    <string name="select_tip_know">I know</string>
+    <string name="select_video_formal_unkonwn">The resolution of the video is too high, please select again</string>
+    <string name="select_video_format_unkonwn">Video format is not supported for uploading</string>
+    <string name="select_video_ratio_unkonwn">The resolution of the video is not supported at the moment, please select again</string>
+    <string name="select_video_too_short">Video less than 3 seconds can not be uploaded</string>
+</resources>

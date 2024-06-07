@@ -116,7 +116,6 @@ public class WebViewActivity extends Activity {
 
     private void loadUrl(){
 //        webView.loadUrl("http://www.taobao.com");
-        webView.loadUrl("http://playtest.uxin.com//Viewsh5//hotpotlive");
 //        webView.loadUrl("https://tests.ibaodian.com/web/live/invitationcard1?liveuid=c8a4e4c3-39e2-49e2-8b75-f65364faf081&userid=US170317000000000001&v=3.3.0");
     }
 

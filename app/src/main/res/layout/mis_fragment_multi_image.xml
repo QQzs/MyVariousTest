@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!--    <GridView-->
+    <!--        android:id="@+id/grid"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:clipToPadding="false"-->
+    <!--        android:horizontalSpacing="@dimen/mis_space_size"-->
+    <!--        android:paddingBottom="?android:attr/actionBarSize"-->
+    <!--        android:verticalSpacing="@dimen/mis_space_size" />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="?android:attr/actionBarSize"
+        android:clipToPadding="true"
+        android:clipChildren="true"
+        />
+
+    <RelativeLayout
+        android:visibility="visible"
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="#cc000000"
+        android:clickable="true">
+
+<!--        <Button-->
+<!--            android:id="@+id/category_btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:background="@null"-->
+<!--            android:drawablePadding="5dp"-->
+<!--            android:drawableRight="@drawable/mis_text_indicator"-->
+<!--            android:ellipsize="end"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingLeft="16dp"-->
+<!--            android:paddingRight="16dp"-->
+<!--            android:singleLine="true"-->
+<!--            android:textColor="@color/mis_folder_text_color"-->
+<!--            android:textSize="16sp"-->
+<!--            tools:text="所有图片" />-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/enable_press_group"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:duplicateParentState="true"
+                android:src="@drawable/choose_high_figure" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:textColor="#CDCECE"
+                android:text="@string/pic_clarity_high"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:gravity="center_vertical"
+            android:id="@+id/tv_ui_mode_one_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_dp_56"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/dimen_margin_13"
+            android:layout_centerVertical="true"
+            android:text="@string/select_image_preview"
+            android:textColor="@color/color_60_white"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/commit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:background="@drawable/mis_action_btn"
+            android:textColor="@color/mis_default_text_color"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

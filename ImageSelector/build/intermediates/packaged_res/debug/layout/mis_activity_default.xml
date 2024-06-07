@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_1d1818"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_title_anchor_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/mis_actionbar_color">
+
+            <TextView
+                android:id="@+id/tv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_white"
+                android:layout_gravity="center_vertical"
+                android:textSize="15sp"
+                android:text="@string/common_cancel"/>
+
+
+            <me.nereo.multi_image_selector.view.PopTextLayoutView
+                android:id="@+id/pop_layout_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:minHeight="28dp"/>
+
+<!--            <Button-->
+<!--                android:id="@+id/category_btn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:minHeight="28dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@null"-->
+<!--                android:drawablePadding="5dp"-->
+<!--                android:ellipsize="end"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:textColor="@color/color_white"-->
+<!--                android:textSize="16sp"-->
+<!--                android:drawableRight="@drawable/kl_icon_issue_dynamic_select_category_down"/>-->
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/image_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/rl_window_shade"
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colro_60_black"
+        android:visibility="gone"/>
+
+    <com.largeimage.LargeImageView
+        android:id="@+id/liv_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lib_color_1F1A1A"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_gif_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lib_color_1F1A1A"
+        android:visibility="invisible"/>
+</FrameLayout>
